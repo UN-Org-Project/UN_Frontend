@@ -36,7 +36,7 @@ const Login = () => {
     } catch (error) {
       //! display an error message to the user and clear the userName and password input fields.
       setErrorMessage("Invalid username or password");
-      setUserName("");
+      setUsername("");
       setPassword("");
     }
   };
