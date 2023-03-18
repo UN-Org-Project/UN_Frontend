@@ -1,0 +1,52 @@
+.about-us-section {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.image-div {
+  flex: 1 40%;
+}
+
+.image-div img {
+  max-width: 100%;
+  margin-top: var(--margin-primary);
+}
+
+
+.text-div {
+  flex: 1 60%;
+  padding: 0 20px;
+  margin-top: 170px;
+}
+
+.text-div h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.text-div p {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+h4 {
+  padding: 15px;
+}
+
+.Services {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #000;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+}
+
+.Services span {
+  background: #fff;
+  padding: 0 10px;
+}
+
+.about-div {
+  margin-top: -200px;
+}

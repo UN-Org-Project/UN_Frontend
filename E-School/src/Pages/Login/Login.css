@@ -1,0 +1,18 @@
+.main-containerLogin {
+  position: relative;
+  background: linear-gradient(135.11deg, #025f80 25.49%, #26d0ce 105.87%);
+}
+
+.sec-container {
+  position: absolute;
+  background: #025f80;
+  width: 1020px;
+  height: 852px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}

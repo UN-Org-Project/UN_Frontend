@@ -1,0 +1,21 @@
+.button a {
+  font-size: 14px;
+  color: var(--color-light);
+  border-radius: var(--border-radius-primary);
+  padding: 12px 30px;
+  letter-spacing: 0.5px;
+  transition: all .3s;
+  margin: 50px -5px;
+
+}
+
+.primary-btn a {
+  background-color: rgb(91 198 88);
+  color: #fff;
+}
+
+.primary-btn a:hover {
+  background-color: #fff;
+  color: steelblue;
+
+}

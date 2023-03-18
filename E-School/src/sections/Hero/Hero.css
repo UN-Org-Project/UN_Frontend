@@ -1,0 +1,36 @@
+.hero-main {
+  background: url("../../components/assets/images/heroimg.png") no-repeat top
+    right/cover;
+  /* background-color: var(--color-dark); */
+  color: var(--color-light);
+  border-radius: calc(var(--border-radius-primary) / 2);
+  padding: calc(var(--padding-primary) / 2);
+  margin-bottom: 6rem;
+}
+
+.hero-text {
+  max-width: 500px;
+}
+
+.hero-title {
+  font-size: 60px;
+  text-transform: uppercase;
+  margin-bottom: calc(var(--margin-primary) / 2);
+  font-weight: var(--font-weight-bold);
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--color-primary);
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  color: var(--color-light);
+  font-weight: var(--font-weight-normal);
+  margin-bottom: calc(var(--margin-primary) / 2);
+}
+
+.title-hero {
+  color: rgb(91 198 88);
+}

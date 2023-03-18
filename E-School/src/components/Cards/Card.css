@@ -1,0 +1,31 @@
+.card-wrapper {
+  background-color: var(--color-primary);
+  padding: calc(var(--padding-primary) / 4);
+  border-radius: calc(var(--border-radius-primary));
+  margin-bottom: calc(var(--margin-primary) / 2);
+  width: 230px;
+}
+
+.most-popular-item {
+  flex: 1 25%;
+}
+
+.most-popular-item-image {
+  border-radius: calc(var(--border-radius-primary) / 4);
+  width: 70%;
+  margin-bottom: calc(var(--margin-primary) / 2);
+  margin-left: 40px;
+}
+
+.most-popular-item-titel {
+  text-align: center;
+  color: var(--color-dark);
+  font-size: 22px;
+  line-height: 1.5rem;
+}
+
+.arrow-icon {
+  color: var(--color-dark);
+  font-size: 20px;
+  justify-content: center;
+}
