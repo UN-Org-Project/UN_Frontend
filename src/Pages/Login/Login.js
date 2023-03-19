@@ -1,6 +1,6 @@
 import "./Login.css";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { json, Link } from "react-router-dom";
 import axios from "axios";
 import LoginP from "../../components/assets/images/Login.png";
 import LoginForm from "../../sections/Form/LoginForm";
@@ -16,26 +16,41 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const respons = await axios.post("http://localhost:3000/auth/login", {
+      const respons = await axios.post("http://localhost:8000/auth/login", {
         username,
-        password,
+        password
       });
+      //  console.log(respons.status);
+      if (respons.status === 200) {
+        let user_id;
+        // the data is  respons.data.loadedUser
+        //console.log(respons.data.loadedUser.state);
 
-      // the data is  respons.data.loadedUser
-      if (respons.data.loadedUser.state === "Teacher") {
-        window.location.href = "/dbTeacher";
-      } else if (respons.data.loadedUser.state === "Parent") {
-        // const id = respons.data.loadedUser._Id;
-        window.location.href = "/dbParent";
-      } else if (respons.data.loadeUser.state === "Admin") {
-        window.location.href = "/dbAdmin";
+        if (respons.data.state === "Teacher") {
+          user_id = respons.data.id;
+          console.log(respons.data);
+
+          // window.location.href = "/dbTeacher";
+        } else if (respons.data.state === "Parent") {
+          user_id = respons.data.id;
+          console.log(respons.data);
+          // const id = respons.data.loadedUser._Id;
+          // window.location.href = "/dbParent";
+        } else if (respons.data.state === "Admin") {
+          user_id = respons.data.id;
+          console.log(respons.data);
+          // window.location.href = "/dbAdmin";
+        }
       } else {
-        console.log(respons.data.loadeUser);
+        const err = new Error(respons.message);
+        throw err;
+
         // setErrorMessage("Invalid username or password");
       }
     } catch (error) {
       //! display an error message to the user and clear the userName and password input fields.
-      setErrorMessage("Invalid username or password");
+      console.log(error.response.data.message);
+      setErrorMessage(error.response.data.message);
       setUsername("");
       setPassword("");
     }
