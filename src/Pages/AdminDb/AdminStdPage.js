@@ -106,23 +106,23 @@ const AdminStd = () => {
       console.log("Invalid info");
     }
   };
-  if (!islogged) {
-    return (
-      <>
-        <p className="text">
-          the user is not loged please try again with login:
-        </p>
-        <Link to="/login" className="navlink right ">
-          <button className="logout-btn login">login</button>
-        </Link>
-      </>
-    );
-  }
+  // if (!islogged) {
+  //   return (
+  //     <>
+  //       <p className="text">
+  //         the user is not loged please try again with login:
+  //       </p>
+  //       <Link to="/login" className="navlink right ">
+  //         <button className="logout-btn login">login</button>
+  //       </Link>
+  //     </>
+  //   );
+  // }
 
   return (
     <>
       <Sidbar links={links}>
-        <CardSidbar name={adminName} role="Admin Dashboard" />
+        <CardSidbar name="mathMhawich" role="Admin Dashboard" />
       </Sidbar>
       <AdminContent titleTable="STUDENT INFORMATION FORM">
         {isLoading && <div className="spinner"> </div>}

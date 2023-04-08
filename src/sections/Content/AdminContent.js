@@ -18,7 +18,7 @@ const AdminContent = ({ titleTable, children }) => {
                 className="h-6 mr-3 sm:h-14 "
                 alt="Student Tracking System Logo"
               />
-              <span className="self-center text-xl mt-1 text-sky-600 font-semibold whitespace-nowrap ">
+              <span className="self-center text-xl mt-1 text-sky-600 font-semibold whitespace-nowrap text-blue-600 ">
                 Student Tracking System
               </span>
             </span>

@@ -4,6 +4,7 @@ import { Link, Navigate } from "react-router-dom";
 import LoginP from "../../components/assets/images/Login.png";
 import LoginForm from "./Form/LoginForm";
 import { NavItem } from "../../components/index";
+import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -19,11 +20,15 @@ const Login = () => {
         username,
         password
       });
-      // console.log(response);
+      console.log(response.data);
       setIsLoading(false);
+      localStorage.setItem("islogged", true);
+      localStorage.setItem("userData", response.data.id);
+      setUsername("");
+      setPassword("");
 
       if (response.data.state === "Teacher") {
-        window.location.href = "/dbTeacher";
+        window.location.href = "/teacher";
       } else if (response.data.state === "Parent") {
         window.location.href = "/dbParent";
       } else if (response.data.state === "Admin") {
@@ -34,8 +39,8 @@ const Login = () => {
         setErrorMessage("Invalid username or password");
       }
     } catch (error) {
-      console.log(error.response.data.message);
-      setErrorMessage(error.response.data.message);
+      console.log("error");
+      setErrorMessage("the userName or password is not correct");
       setUsername("");
       setPassword("");
       setIsLoading(false);
