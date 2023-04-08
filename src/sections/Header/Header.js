@@ -84,6 +84,52 @@ const Header = () => {
         </div>
       </div>
     </nav>
+
+    // <div className="navbar navbar-expand-md cybrog-navbar">
+    //   <div className="container">
+    //     <Link to="/" className="navbar-brand nameofschool">
+    //       <img src={logo} alt="" />
+    //       E-School
+    //     </Link>
+    //     <button
+    //       className="navbar-toggler"
+    //       type="button"
+    //       data-bs-toggle="collapse"
+    //       data-bs-target="#mainmenu"
+    //     >
+    //       <span className="navbar-toggler-icon"></span>
+    //     </button>
+    //     <div className="collapse navbar-collapse" id="mainmenu">
+    //       <ul className="navbar-nav ms-auto color-ul">
+    //         <NavItem>
+    //           <Link to="/" className="nav-link">
+    //             Home
+    //           </Link>
+    //         </NavItem>
+    //         <NavItem>
+    //           <Link to="/login" className="nav-link">
+    //             Login
+    //           </Link>
+    //         </NavItem>
+    //         <NavItem>
+    //           <a href="/#" className="nav-link">
+    //             About
+    //           </a>
+    //         </NavItem>
+    //         <NavItem>
+    //           <a href="/#" className="nav-link">
+    //             Services
+    //           </a>
+    //         </NavItem>
+    //         <NavItem>
+    //           <a href="/#" className="nav-link">
+    //             Contact us
+    //           </a>
+    //         </NavItem>
+    //       </ul>
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 
