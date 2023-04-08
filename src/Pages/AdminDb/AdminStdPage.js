@@ -45,7 +45,7 @@
           console.log(key, value);
         }
         
-        const response = await fetch("http://localhost:8000/teacherfg", {
+        const response = await fetch("http://localhost:8000/parent", {
           method: "POST",
           body: formData,
         })
