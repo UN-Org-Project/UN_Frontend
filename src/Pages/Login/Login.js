@@ -6,7 +6,6 @@ import LoginForm from "./Form/LoginForm";
 import { NavItem } from "../../components/index";
 
 const Login = () => {
-
   return (
     <div className=" h-screen w-full main-containerLogin">
       <div className="sec-container grid grid-cols-1 sm:grid-cols-2">
@@ -39,6 +38,7 @@ const Login = () => {
             </ul>
           </nav>
           {/* The Form that the user will input his name and password then send it to the back-end for the verfication */}
+
           <LoginForm />
         </div>
       </div>

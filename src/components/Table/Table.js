@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import TableRow from "./RowInfo/TableRow";
 
@@ -28,13 +28,21 @@ const Table = (props) => {
                   </th>
                 </tr>
               </thead>
-              <tbody>
-                {/* <TableRow name="Ahmad" id="1" />
-                <TableRow name="Mohammed" id="2" /> */}
-                {props.children}
-              </tbody>
+              <tbody>{props.children}</tbody>
             </table>
-            <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
+
+            {/* if the value is true then show the submit button */}
+            {props.isChanged && (
+              <div className=" flex justify-center items-center py-2">
+                <button
+                  className="text-sm text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500  font-semibold py-4 px-5 rounded"
+                  onClick={props.handleSubmit}
+                >
+                  Submit
+                </button>
+              </div>
+            )}
+            <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between ">
               <span className="text-xs xs:text-sm text-blue-400">
                 Showing 1 of 4 Entries
               </span>

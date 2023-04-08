@@ -63,62 +63,71 @@ const LoginForm = (props) => {
           default:
             // Handle unrecognized dashboard type
             console.log("Not Valied");
+            setError(error.response.data.message);
         }
       } else if (response.status === 404) {
         console.log("Error 404");
+        setIsLoading(true);
       }
     } catch (error) {
       //! Handle any error may occared
-      console.log("Error 404");
+      setError(error.response.data.message);
+      setIsLoading(true);
+      setUsername("");
+      setPassword("");
     }
   };
 
   return (
-    <form
-      onSubmit={handleSubmitt}
-      className="flex flex-col max-w-[400] w-full mx-auto  p-8 px-8 rounded-lg justify-center flex-1"
-    >
-      <h2 className=" text-4xl dark:text-white font-bold text-center">
-        SIGN IN
-      </h2>
-      <div className="flex flex-col text-white py-2">
-        <label>User Name:</label>
-        <input
-          className="rounded-lg  mt-2 p-3 focus:border-blue-500 focus:bg-teal-400 focus:outline-none"
-          type="text"
-          placeholder="Enter Your ID"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
-          required
-        />
-      </div>
+    <>
+      {isLoading && <div className="spinner" />}
 
-      <div className="flex flex-col text-white py-2">
-        <label>Password: </label>
-        <input
-          className="rounded-lg mt-2 p-3 focus:border-blue-500 focus:bg-teal-400 focus:outline-none"
-          type="password"
-          placeholder="Enter Password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          required
-        />
-      </div>
-
-      <div className="text-white py-2 ">
-        <a href="./Login.js" className="hover:text-teal-200 transition">
-          Forgot Password ?
-        </a>
-        <p className=" text-red-400">{error}</p>
-      </div>
-
-      <button
-        type="submit"
-        className=" mt-2 w-full py-3 bg-teal-400 shadow-lg shadow-teal-500/50 hover:shadow-teal-600/40 text-white font-semibold rounded-lg transition-shadow"
+      <form
+        onSubmit={handleSubmitt}
+        className="flex flex-col max-w-[400] w-full mx-auto  p-8 px-8 rounded-lg justify-center flex-1"
       >
-        Sign in
-      </button>
-    </form>
+        <h2 className=" text-4xl dark:text-white font-bold text-center">
+          SIGN IN
+        </h2>
+        <div className="flex flex-col text-white py-2">
+          <label>User Name:</label>
+          <input
+            className="rounded-lg  mt-2 p-3 focus:border-blue-500 focus:bg-teal-400 focus:outline-none"
+            type="text"
+            placeholder="Enter Your ID"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            required
+          />
+        </div>
+
+        <div className="flex flex-col text-white py-2">
+          <label>Password: </label>
+          <input
+            className="rounded-lg mt-2 p-3 focus:border-blue-500 focus:bg-teal-400 focus:outline-none"
+            type="password"
+            placeholder="Enter Password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            required
+          />
+        </div>
+
+        <div className="text-white py-2 ">
+          <a href="./Login.js" className="hover:text-teal-200 transition">
+            Forgot Password ?
+          </a>
+          <p className=" text-red-400">{error}</p>
+        </div>
+
+        <button
+          type="submit"
+          className=" mt-2 w-full py-3 bg-teal-400 shadow-lg shadow-teal-500/50 hover:shadow-teal-600/40 text-white font-semibold rounded-lg transition-shadow"
+        >
+          Sign in
+        </button>
+      </form>
+    </>
   );
 };
 

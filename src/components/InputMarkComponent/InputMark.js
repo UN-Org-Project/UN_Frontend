@@ -21,8 +21,32 @@ const ValidationTextField = styled(TextField)({
   },
 });
 
-const InputMark = () => {
-  return <div></div>;
+const InputMark = (props) => {
+  const handleChange = () => {
+    props.onChange(true);
+    console.log("Val changed");
+  };
+  return (
+    <Box
+      component="form"
+      noValidate
+      sx={{
+        display: "grid",
+        gridTemplateColumns: { sm: "1fr 1fr" },
+        gap: 2,
+        width: { md: "1fr" },
+      }}
+    >
+      <ValidationTextField
+        label="Enter Mark"
+        required
+        variant="outlined"
+        defaultValue=""
+        id="validation-outlined-input"
+        onChange={handleChange}
+      />
+    </Box>
+  );
 };
 
 export default InputMark;

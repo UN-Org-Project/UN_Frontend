@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Rating from "../../Rating/Rating";
 import Avatar from "@mui/material/Avatar";
 import RatingComp from "../../Rating/Rating";
+import InputMark from "../../InputMarkComponent/InputMark";
+
 const DashboardRow = (props) => {
+  // to handle if the value changed set it in the props function
+  const handleChange = (newValue) => {
+    props.onChange(newValue);
+    console.log(newValue);
+  };
+
   return (
     <tr>
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
@@ -32,6 +40,7 @@ const DashboardRow = (props) => {
               value=""
               name="colored-radio"
               className="w-4 h-4 cursor-pointer"
+              onChange={handleChange}
             />
             <label
               htmlFor={props.id + "Absent"}
@@ -47,6 +56,7 @@ const DashboardRow = (props) => {
               value=""
               name="colored-radio"
               className="w-4 h-4 cursor-pointer"
+              onChange={handleChange}
             />
             <label
               htmlFor={props.id + "Present"}
@@ -73,8 +83,14 @@ const DashboardRow = (props) => {
 };
 
 export const AddMarkRow = (props) => {
+  // to handle if the value changed set it in the props function
+  const handleChange = (newValue) => {
+    props.onChange(newValue);
+    console.log(newValue);
+  };
+
   return (
-    <tr>
+    <tr key={props.id}>
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
         <div className="flex items-center">
           <div className="flex-shrink-0 w-10 h-10">
@@ -94,38 +110,8 @@ export const AddMarkRow = (props) => {
         </button>
       </td>
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
-        <div className=" flex flex-wrap sm:gap-1">
-          <div className="flex items-center mr-4">
-            <input
-              id={props.id + "Absent"}
-              type="radio"
-              value=""
-              name="colored-radio"
-              className="w-4 h-4 cursor-pointer"
-            />
-            <label
-              htmlFor={props.id + "Absent"}
-              className="ml-2 text-sm font-medium text-blue-600 dark:text-gray-300 cursor-pointer"
-            >
-              Absent
-            </label>
-          </div>
-          <div className="flex items-center mr-4">
-            <input
-              id={props.id + "Present"}
-              type="radio"
-              value=""
-              name="colored-radio"
-              className="w-4 h-4 cursor-pointer"
-            />
-            <label
-              htmlFor={props.id + "Present"}
-              className="ml-2 text-sm font-medium text-blue-600 dark:text-gray-300 cursor-pointer"
-            >
-              Present
-            </label>
-          </div>
-        </div>
+        {/* when the user enter any marke change the value and send it to  */}
+        <InputMark onChange={handleChange} />
       </td>
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
         <button
