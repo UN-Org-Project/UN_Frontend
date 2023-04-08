@@ -3,8 +3,7 @@ const LoginForm = (props) => {
   return (
     <form
       onSubmit={props.handleSubmit}
-      className="flex flex-col max-w-[400] w-full mx-auto  p-8 px-8 rounded-lg justify-center flex-1"
-    >
+      className="flex flex-col max-w-[400] w-full mx-auto  p-8 px-8 rounded-lg justify-center flex-1">
       <h2 className=" text-4xl dark:text-white  text-white font-bold text-center">
         SIGN IN
       </h2>
@@ -41,14 +40,12 @@ const LoginForm = (props) => {
 
       <button
         type="submit"
-        className=" mt-2 w-full py-3 bg-teal-400 shadow-lg shadow-teal-500/50 hover:shadow-teal-600/40 text-white font-semibold rounded-lg transition-shadow"
-      >
+        className=" mt-2 w-full py-3 bg-teal-400 shadow-lg shadow-teal-500/50 hover:shadow-teal-600/40 text-white font-semibold rounded-lg transition-shadow">
         Sign in
       </button>
+      {props.isLoading && <p>Loading ...</p>}
     </form>
   );
 };
 
 export default LoginForm;
-
-
