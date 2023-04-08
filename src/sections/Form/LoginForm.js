@@ -1,12 +1,11 @@
 import React from "react";
-
 const LoginForm = (props) => {
   return (
     <form
       onSubmit={props.handleSubmit}
       className="flex flex-col max-w-[400] w-full mx-auto  p-8 px-8 rounded-lg justify-center flex-1"
     >
-      <h2 className=" text-4xl dark:text-white font-bold text-center">
+      <h2 className=" text-4xl dark:text-white  text-white font-bold text-center">
         SIGN IN
       </h2>
       <div className="flex flex-col text-white py-2">
@@ -51,3 +50,5 @@ const LoginForm = (props) => {
 };
 
 export default LoginForm;
+
+

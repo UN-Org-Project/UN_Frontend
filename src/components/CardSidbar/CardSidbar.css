@@ -1,0 +1,30 @@
+.like-inside {
+  border: none;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  transition: 0.25s ease;
+  border-radius: 8px;
+  box-shadow: inset 2px 2px 4px #6d90c9, inset -2px -2px 4px #3c4f99;
+}
+
+.photoimageoo {
+  background-color: #ddd;
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid black;
+  position: relative;
+
+}
+
+.photoimageoo::after {
+  content: "";
+  position: absolute;
+  background-color: rgb(13, 204, 96);
+  color: white;
+  padding: 8px;
+  border-radius: 50%;
+  font-weight: bold;
+  top: 5px;
+  left: 50px;
+
+}

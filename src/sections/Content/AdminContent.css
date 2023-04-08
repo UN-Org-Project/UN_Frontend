@@ -1,0 +1,68 @@
+.bg-color-nav {
+  background-color: white;
+  margin-bottom: 25px;
+}
+
+.containerS {
+  background-color: #6c9cc4;
+  width: 98%;
+  margin: 0 auto;
+  margin-top: 50px;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.title-form {
+  background-color: #3588cb;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  word-spacing: 5px;
+  letter-spacing: 2px;
+  transition: 0.25s ease;
+  border-radius: 8px;
+  box-shadow: inset 2px 2px 4px #7593c3, inset -2px -2px 4px #4b5b9b;
+
+}
+
+.logout-btn {
+  font-family: Hack, monospace;
+  background: rgb(108 156 196);
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.7em;
+  padding: 0.8rem 1.5rem;
+  border: 0;
+  transition: all 0.5s;
+  border-radius: 10px;
+  width: auto;
+  position: relative;
+}
+
+.logout-btn::after {
+  content: "";
+  font-weight: 400;
+  position: absolute;
+  left: 80%;
+  top: 54%;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+
+}
+
+.logout-btn:hover {
+  background: rgb(53 136 203);
+  transition: all 0.5s;
+  border-radius: 10px;
+  box-shadow: 5px 3px 5px rgb(110, 167, 246);
+  color: #ffffff;
+}
+
+.logout-btn::after {
+  opacity: 1;
+  transition: all 0.5s;
+  color: #ffffff;
+
+}

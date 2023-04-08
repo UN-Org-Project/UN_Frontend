@@ -20,31 +20,17 @@ const Login = () => {
         username,
         password
       });
-      //  console.log(respons.status);
-      if (respons.status === 200) {
-        let user_id;
-        // the data is  respons.data.loadedUser
-        //console.log(respons.data.loadedUser.state);
 
-        if (respons.data.state === "Teacher") {
-          user_id = respons.data.id;
-          console.log(respons.data);
-
-          // window.location.href = "/dbTeacher";
-        } else if (respons.data.state === "Parent") {
-          user_id = respons.data.id;
-          console.log(respons.data);
-          // const id = respons.data.loadedUser._Id;
-          // window.location.href = "/dbParent";
-        } else if (respons.data.state === "Admin") {
-          user_id = respons.data.id;
-          console.log(respons.data);
-          // window.location.href = "/dbAdmin";
-        }
+      // the data is  respons.data.loadedUser
+      if (respons.data.loadedUser.state === "Teacher") {
+        window.location.href = "/dbTeacher";
+      } else if (respons.data.loadedUser.state === "Parent") {
+        // const id = respons.data.loadedUser._Id;
+        window.location.href = "/dbParent";
+      } else if (respons.data.loadeUser.state === "Admin") {
+        window.location.href = "/dbAdmin";
       } else {
-        const err = new Error(respons.message);
-        throw err;
-
+        console.log(respons.data.loadeUser);
         // setErrorMessage("Invalid username or password");
       }
     } catch (error) {
@@ -65,7 +51,7 @@ const Login = () => {
             alt="Books Imgae"
             className="w-full h-full object-cover"
           />
-          <p className=" absolute top-2/4 left-2/4 -translate-x-1/2 -translate-y-1/2  text-8xl dark:text-white font-bold text-center">
+          <p className=" absolute top-2/4 left-2/4 -translate-x-1/2 -translate-y-1/2 text-white text-8xl dark:text-white font-bold text-center">
             Welcome to ESchool
           </p>
         </div>
@@ -87,7 +73,6 @@ const Login = () => {
               </NavItem>
             </ul>
           </nav>
-
           {/* The Form that the user will input his name and password then send it to the back-end for the verfication */}
           <LoginForm
             username={username}
