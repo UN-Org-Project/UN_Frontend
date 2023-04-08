@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import "./AdminContent.css";
 import logo from "../../components/assets/images/image-removebg-preview 1.png";
 const AdminContent = ({ titleTable, children }) => {
+  const logoutHandler = () => {
+    localStorage.removeItem("islogged"), localStorage.removeItem("userData");
+  };
   return (
     <>
       <div className="p-4 sm:ml-80 ">
@@ -21,7 +24,9 @@ const AdminContent = ({ titleTable, children }) => {
             </span>
           </a>
           <Link to="/login" className="navlink right">
-            <button className="logout-btn">Logout</button>
+            <button className="logout-btn" onClick={logoutHandler}>
+              Logout
+            </button>
           </Link>
         </nav>
         {/* <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700"> */}

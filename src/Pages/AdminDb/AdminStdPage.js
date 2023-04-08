@@ -4,18 +4,35 @@ import AdminContent from "../../sections/Content/AdminContent";
 import { CardSidbar } from "../../components";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./AdminDb.css";
 
 const AdminStd = () => {
   const id = localStorage.getItem("userData");
-  console.log(id);
-
-  // useEffect(async () => {
-  //   const response = await axios.get("http://localhost:8000/Admininfo/" + id);
-  //   console.log(response.data);
-  // }, []);
+  const islogged = localStorage.getItem("islogged");
+  const [adminName, setAdminName] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  console.log(id);
+  console.log(islogged);
+
+  const data = useEffect(() => {
+    async function fetch() {
+      const response = await axios.get(
+        "http://localhost:8000/getAdmininfo/" + id
+      );
+      //  console.log(response.data);
+      //    setAdminData(response.data.adminData);
+      setAdminName(response.data.adminName);
+    }
+    fetch();
+  }, []);
+
+  //console.log(adminName);
+
+  //console.log(adminData);
+
   const notify = (message, type) => {
     if (type === "Error") toast.error(message);
     else if (type === "Success") toast.success(message);
@@ -89,11 +106,23 @@ const AdminStd = () => {
       console.log("Invalid info");
     }
   };
+  if (!islogged) {
+    return (
+      <>
+        <p className="text">
+          the user is not loged please try again with login:
+        </p>
+        <Link to="/login" className="navlink right ">
+          <button className="logout-btn login">login</button>
+        </Link>
+      </>
+    );
+  }
 
   return (
     <>
       <Sidbar links={links}>
-        <CardSidbar name="Muath Hariri" role="Admin Dashboard" />
+        <CardSidbar name={adminName} role="Admin Dashboard" />
       </Sidbar>
       <AdminContent titleTable="STUDENT INFORMATION FORM">
         {isLoading && <div className="spinner"> </div>}

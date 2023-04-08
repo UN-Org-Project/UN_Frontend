@@ -23,12 +23,13 @@ const Login = () => {
       // console.log(response);
       setIsLoading(false);
 
+      localStorage.setItem("islogged", true);
+      localStorage.setItem("userData", response.data.id);
       if (response.data.state === "Teacher") {
         window.location.href = "/dbTeacher";
       } else if (response.data.state === "Parent") {
         window.location.href = "/dbParent";
       } else if (response.data.state === "Admin") {
-        localStorage.setItem("userData", response.data.id);
         window.location.href = "/Admin/AdminStudents";
       } else {
         console.log(response.data);
@@ -84,7 +85,6 @@ const Login = () => {
             errorMessage={errorMessage}
             setErrorMessage={setErrorMessage}
             handleSubmit={handleSubmit}
-            isloading={isLoading}
           />
         </div>
       </div>
