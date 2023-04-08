@@ -14,7 +14,7 @@ const News = () => {
           <div className="image-div">
             <img src={photo01} alt="" />
           </div>
-          <div className="text-div">
+          <div className="text-div" id="about">
             <SectionHeader>About Us</SectionHeader>
             <p>
               Parrots are intelligent birds. They have relatively large brains,
@@ -26,7 +26,7 @@ const News = () => {
         </div>
         <br />
         <br />
-        <h2 className="Services">
+        <h2 className="Services" id="services">
           <span>Services</span>
         </h2>
         <br />

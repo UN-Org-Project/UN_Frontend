@@ -55,28 +55,29 @@ const Header = () => {
                 </Link>
               </NavItem>
               <NavItem>
-                <Link
-                  to="/"
+                <a
+                  href="#about"
                   className="  hover:text-blue-800 font-medium text-lg py-2 px-3 lg:-ml-2"
                 >
                   About{" "}
-                </Link>
+                </a>
               </NavItem>
               <NavItem>
-                <Link
-                  to="/"
+                <a
+                  href="#services"
                   className="  hover:text-blue-800 font-medium text-lg py-2 px-3 lg:-ml-2"
                 >
                   Services{" "}
-                </Link>
+                </a>
               </NavItem>
               <NavItem>
-                <Link
-                  to="/"
-                  className="  hover:text-blue-800 font-medium text-lg py-2 px-3 lg:-ml-2"
+                <a
+                  href="mailto:someone@example.com"
+                  className=" hover:text-blue-800 font-medium text-lg py-2 px-3 lg:-ml-2"
                 >
+                  {" "}
                   Contact Us
-                </Link>
+                </a>
               </NavItem>
             </ul>
           </nav>

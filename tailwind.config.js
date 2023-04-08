@@ -8,7 +8,13 @@ module.exports = withMT({
     "path-to-your-node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "main-blue": "#3588cb",
+        "main-green": "rgb(138 197 62)",
+        "color-footer": " #025f80",
+      },
+    },
   },
   plugins: [],
 });
