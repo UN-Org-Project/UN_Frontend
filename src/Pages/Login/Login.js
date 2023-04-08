@@ -1,47 +1,11 @@
 import "./Login.css";
 import React, { useState } from "react";
-import { json, Link } from "react-router-dom";
-import axios from "axios";
+import { Link, Navigate } from "react-router-dom";
 import LoginP from "../../components/assets/images/Login.png";
-import LoginForm from "../../sections/Form/LoginForm";
+import LoginForm from "./Form/LoginForm";
 import { NavItem } from "../../components/index";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  // const history = useHistory();
-
-  // ! sends a POST request to /api/login with the username and password entered by the user
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const respons = await axios.post("http://localhost:8000/auth/login", {
-        username,
-        password
-      });
-
-      // the data is  respons.data.loadedUser
-      if (respons.data.loadedUser.state === "Teacher") {
-        window.location.href = "/dbTeacher";
-      } else if (respons.data.loadedUser.state === "Parent") {
-        // const id = respons.data.loadedUser._Id;
-        window.location.href = "/dbParent";
-      } else if (respons.data.loadeUser.state === "Admin") {
-        window.location.href = "/dbAdmin";
-      } else {
-        console.log(respons.data.loadeUser);
-        // setErrorMessage("Invalid username or password");
-      }
-    } catch (error) {
-      //! display an error message to the user and clear the userName and password input fields.
-      console.log(error.response.data.message);
-      setErrorMessage(error.response.data.message);
-      setUsername("");
-      setPassword("");
-    }
-  };
-
   return (
     <div className=" h-screen w-full main-containerLogin">
       <div className="sec-container grid grid-cols-1 sm:grid-cols-2">
@@ -74,15 +38,8 @@ const Login = () => {
             </ul>
           </nav>
           {/* The Form that the user will input his name and password then send it to the back-end for the verfication */}
-          <LoginForm
-            username={username}
-            setUserName={setUsername}
-            password={password}
-            setPassword={setPassword}
-            errorMessage={errorMessage}
-            setErrorMessage={setErrorMessage}
-            handleSubmit={handleSubmit}
-          />
+
+          <LoginForm />
         </div>
       </div>
     </div>

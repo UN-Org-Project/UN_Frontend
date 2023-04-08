@@ -1,19 +1,26 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 
-import { Home, Login, AdminStd, AdminTech } from "./Pages/index";
+import { Home, Login, Teacher ,NoMatch } from "./Pages/index";
+import AddMarks from "./Pages/TeacherDb/AddMarks/AddMarks";
+import Dashboard from "./Pages/TeacherDb/Dashboard/Dashboard";
+import AdminDb from "./Pages/AdminDb/AdminDb";
 
 const App = () => {
   return (
     <>
-      <Router>
+      {/* <Router> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/Admin/AdminStudents" element={<AdminStd />} />
-          <Route path="/Admin/AdminTeachers" element={<AdminTech />} />
+        <Route path="/admin" element={<AdminDb />} />
+        <Route path="/teacher" element={<Teacher />}>
+          <Route path="Dashboard" element={<Dashboard />} />
+          <Route path="Addmarks" element={<AddMarks />} />
+        </Route>
+        <Route path="*" element={<NoMatch />} />
         </Routes>
-      </Router>
+      {/* </Router> */}
     </>
   );
 };
