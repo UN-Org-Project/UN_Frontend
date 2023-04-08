@@ -10,35 +10,36 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  // const history = useHistory();
+  const [isLoading, setIsLoading] = useState(false);
 
-  // ! sends a POST request to /api/login with the username and password entered by the user
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
     try {
-      const respons = await axios.post("http://localhost:8000/auth/login", {
+      const response = await axios.put("http://localhost:8000/auth/login", {
         username,
         password
       });
+      // console.log(response);
+      setIsLoading(false);
 
-      // the data is  respons.data.loadedUser
-      if (respons.data.loadedUser.state === "Teacher") {
+      if (response.data.state === "Teacher") {
         window.location.href = "/dbTeacher";
-      } else if (respons.data.loadedUser.state === "Parent") {
-        // const id = respons.data.loadedUser._Id;
+      } else if (response.data.state === "Parent") {
         window.location.href = "/dbParent";
-      } else if (respons.data.loadeUser.state === "Admin") {
-        window.location.href = "/dbAdmin";
+      } else if (response.data.state === "Admin") {
+        localStorage.setItem("userData", response.data.id);
+        window.location.href = "/Admin/AdminStudents";
       } else {
-        console.log(respons.data.loadeUser);
-        // setErrorMessage("Invalid username or password");
+        console.log(response.data);
+        setErrorMessage("Invalid username or password");
       }
     } catch (error) {
-      //! display an error message to the user and clear the userName and password input fields.
       console.log(error.response.data.message);
       setErrorMessage(error.response.data.message);
       setUsername("");
       setPassword("");
+      setIsLoading(false);
     }
   };
 
@@ -74,6 +75,7 @@ const Login = () => {
             </ul>
           </nav>
           {/* The Form that the user will input his name and password then send it to the back-end for the verfication */}
+          {isLoading && <div className="spinner"> </div>}
           <LoginForm
             username={username}
             setUserName={setUsername}
@@ -82,6 +84,7 @@ const Login = () => {
             errorMessage={errorMessage}
             setErrorMessage={setErrorMessage}
             handleSubmit={handleSubmit}
+            isloading={isLoading}
           />
         </div>
       </div>
