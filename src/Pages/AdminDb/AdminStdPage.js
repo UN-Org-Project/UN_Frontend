@@ -39,44 +39,6 @@ const AdminStd = () => {
     setIsLoading(true);
     e.preventDefault();
 
-<<<<<<< HEAD
-    const handleSubmit = async(e) => {
-      e.preventDefault();
-      
-      try {
-        const formData = new FormData();
-        formData.append("studentName", studentName);
-        formData.append("gender", gender);
-        formData.append("ParentName", ParentName);
-        formData.append("dateOfBirth", dateOfBirth);
-        formData.append("email", email);
-        formData.append("classValue", classValue);
-        formData.append("phoneNumber", phoneNumber);
-        formData.append("StudentAddress", StudentAddress);
-        
-        // For see all input fields in form 
-        for (const [key, value] of formData.entries()) {
-          console.log(key, value);
-        }
-        
-        const response = await fetch("http://localhost:8000/parent", {
-          method: "POST",
-          body: formData,
-        })
-        if (response.ok) {
-          console.log (response)
-          notify("Added Sucessfuly ", "Success");
-        } 
-      } catch (error) {
-        notify("Added Error", "Error");
-        console.log("Invalid info");
-          setStudentName("");
-          setParentName("");
-          setDateOfBirth("");
-          setEmail("");
-          setPhoneNumber("");
-          setStudentAddress("");
-=======
     try {
       // const formData = new FormData();
       // formData.append("studentName", studentName);
@@ -120,7 +82,6 @@ const AdminStd = () => {
       } else {
         console.log(response);
         notify("Added Error", response.data.message);
->>>>>>> e6c642632236835917a2348119225e18056ea5d0
       }
     } catch (error) {
       setIsLoading(false);
