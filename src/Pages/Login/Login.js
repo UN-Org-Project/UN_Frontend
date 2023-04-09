@@ -4,8 +4,49 @@ import { Link, Navigate } from "react-router-dom";
 import LoginP from "../../components/assets/images/Login.png";
 import LoginForm from "./Form/LoginForm";
 import { NavItem } from "../../components/index";
+import axios from "axios";
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+    try {
+      const response = await axios.put("http://localhost:8000/auth/login", {
+        username,
+        password
+      });
+      console.log(response.data);
+      setIsLoading(false);
+      localStorage.setItem("islogged", true);
+      localStorage.setItem("userData", response.data.id);
+      setUsername("");
+      setPassword("");
+
+      if (response.data.state === "Teacher") {
+        window.location.href = "/teacher";
+      } else if (response.data.state === "Parent") {
+        window.location.href = "/dbParent";
+      } else if (response.data.state === "Admin") {
+        localStorage.setItem("userData", response.data.id);
+        window.location.href = "/Admin/AdminStudents";
+      } else {
+        console.log(response.data);
+        setErrorMessage("Invalid username or password");
+      }
+    } catch (error) {
+      console.log("error");
+      setErrorMessage("the userName or password is not correct");
+      setUsername("");
+      setPassword("");
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className=" h-screen w-full main-containerLogin">
       <div className="sec-container grid grid-cols-1 sm:grid-cols-2">
@@ -38,8 +79,17 @@ const Login = () => {
             </ul>
           </nav>
           {/* The Form that the user will input his name and password then send it to the back-end for the verfication */}
-
-          <LoginForm />
+          {isLoading && <div className="spinner"> </div>}
+          <LoginForm
+            username={username}
+            setUserName={setUsername}
+            password={password}
+            setPassword={setPassword}
+            errorMessage={errorMessage}
+            setErrorMessage={setErrorMessage}
+            handleSubmit={handleSubmit}
+            isloading={isLoading}
+          />
         </div>
       </div>
     </div>
