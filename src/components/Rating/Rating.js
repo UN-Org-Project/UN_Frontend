@@ -13,14 +13,14 @@ const labels = {
   3.5: "Good",
   4: "Good+",
   4.5: "Excellent",
-  5: "Excellent+",
+  5: "Excellent+"
 };
 
 function getLabelText(value) {
   return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
 }
 
-const RatingComp = () => {
+const RatingComp = (props) => {
   const [value, setValue] = React.useState(2);
   const [hover, setHover] = React.useState(-1);
 
@@ -29,16 +29,17 @@ const RatingComp = () => {
       sx={{
         width: 200,
         display: "flex",
-        alignItems: "center",
-      }}
-    >
+        alignItems: "center"
+      }}>
       <Rating
         name="hover-feedback"
         value={value}
         precision={0.5}
         getLabelText={getLabelText}
         onChange={(event, newValue) => {
+          props.onChangeRatng(event, newValue);
           setValue(newValue);
+          props.setrating(newValue);
         }}
         onChangeActive={(event, newHover) => {
           setHover(newHover);
