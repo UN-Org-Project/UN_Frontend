@@ -3,6 +3,7 @@ import Table from "../../../components/Table/Table";
 import SelectComp from "../../../components/SelectComponent/SelectComp";
 import { AddMarkRow } from "../../../components/Table/RowInfo/TableRow";
 import { useState } from "react";
+import StatisCard from "../../../components/StatisticsCard/StatisCard";
 
 const AddMarks = () => {
   const [isChanged, setIsChanged] = useState(false);
@@ -16,13 +17,13 @@ const AddMarks = () => {
     { id: "s1", name: "muath", parentid: "p2" },
     { id: "s2", name: "Ahmad", parentid: "p3" },
     { id: "s3", name: "Yassen", parentid: "p3" },
-    { id: "s4", name: "muhammad", parentid: "p4" }
+    { id: "s4", name: "muhammad", parentid: "p4" },
   ];
   /////////////////////Handling Change Data//////////////////////////
   const handleLevelChange = (id, value) => {
     setLevel((prevState) => ({
       ...prevState,
-      [id]: value
+      [id]: value,
     }));
     setIsChanged(true);
   };
@@ -41,7 +42,7 @@ const AddMarks = () => {
   const handleMarkChange = (id, value) => {
     setMarks((prevState) => ({
       ...prevState,
-      [id]: value
+      [id]: value,
     }));
     setIsChanged(true);
   };
@@ -50,7 +51,7 @@ const AddMarks = () => {
   const handleNoteChange = (id, value) => {
     setNote((prevState) => ({
       ...prevState,
-      [id]: value
+      [id]: value,
     }));
     setIsChanged(true);
   };
@@ -65,7 +66,7 @@ const AddMarks = () => {
         note: note[student.id] || "No note heve been add !",
         level: level[student.id] || 2,
         subject: subject,
-        exame: exame
+        exame: exame,
       };
 
       arrystudent.push(updatedStudent);
@@ -115,7 +116,7 @@ const AddMarks = () => {
               options={[
                 { value: "math", label: "Math" },
                 { value: "English", label: "English" },
-                { value: "Computer", label: "Computer" }
+                { value: "Computer", label: "Computer" },
               ]}
             />
             <SelectComp
@@ -124,7 +125,7 @@ const AddMarks = () => {
               options={[
                 { value: "First", label: "First" },
                 { value: "Second", label: "Second" },
-                { value: "Final", label: "Final" }
+                { value: "Final", label: "Final" },
               ]}
             />
           </div>
@@ -134,7 +135,8 @@ const AddMarks = () => {
             th2="Contact"
             th3="Add Marks"
             isChanged={isChanged}
-            onClick={handleSubmit}>
+            onClick={handleSubmit}
+          >
             {/* Render the sliced data on the current page */}
             {slicedData.map((student) => (
               <AddMarkRow
@@ -151,19 +153,24 @@ const AddMarks = () => {
             ))}
             {/* pass the function that will change the value if any action happend */}
           </Table>
+
           {/* Render the next and previous buttons */}
           <div className="flex justify-center">
             <button
               onClick={handlePrevPage}
-              className="text-sm text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500 font-semibold py-2 px-4 rounded-l">
+              className="text-sm text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500 font-semibold py-2 px-4 rounded-l"
+            >
               Prev
             </button>
             <button
               onClick={handleNextPage}
-              className="text-sm border-l-4 border-white text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500  font-semibold py-2 px-4 rounded-r">
+              className="text-sm border-l-4 border-white text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500  font-semibold py-2 px-4 rounded-r"
+            >
               Next
             </button>
           </div>
+
+          <StatisCard />
         </div>
       </div>
     </div>

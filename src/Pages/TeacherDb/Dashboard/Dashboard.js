@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Title from "../../../components/SectionTitle/Title";
 import Table from "../../../components/Table/Table";
 import DashboardRow from "../../../components/Table/RowInfo/TableRow";
+import StatisCard from "../../../components/StatisticsCard/StatisCard";
 
 const Dashboard = () => {
   // to handle if any action happened then show the submit button
@@ -15,7 +16,7 @@ const Dashboard = () => {
   const handleLevelChange = (id, value) => {
     setLevel((prevState) => ({
       ...prevState,
-      [id]: value
+      [id]: value,
     }));
     setIsChanged(true);
   };
@@ -23,7 +24,7 @@ const Dashboard = () => {
   const handleAbsenceChange = (id, value) => {
     setAbsence((prevState) => ({
       ...prevState,
-      [id]: value
+      [id]: value,
     }));
     setIsChanged(true);
   };
@@ -31,7 +32,7 @@ const Dashboard = () => {
   const handleNoteChange = (id, value) => {
     setNote((prevState) => ({
       ...prevState,
-      [id]: value
+      [id]: value,
     }));
     setIsChanged(true);
   };
@@ -42,7 +43,7 @@ const Dashboard = () => {
         ...student,
         absence: absence[student.id] || "present",
         note: note[student.id] || "No note heve been add !",
-        level: level[student.id] || 2
+        level: level[student.id] || 2,
       };
 
       arrystudent.push(updatedStudent);
@@ -64,7 +65,7 @@ const Dashboard = () => {
     { id: "s1", name: "muath", parentid: "p2" },
     { id: "s2", name: "Ahmad", parentid: "p3" },
     { id: "s3", name: "Yassen", parentid: "p3" },
-    { id: "s4", name: "muhammad", parentid: "p4" }
+    { id: "s4", name: "muhammad", parentid: "p4" },
   ];
   // Calculate the number of pages
   const totalPages = Math.ceil(students.length / itemsPerPage);
@@ -89,12 +90,16 @@ const Dashboard = () => {
       <div className="flex flex-col flex-1 ml-1 gap-5">
         <div>
           <Title h2="Student Information" />
+          {/* this Card to show the total student and the absence */}
+          <StatisCard />
+
           {/* pass the changed value to table to handle the submit button */}
           <Table
             th2="Contact"
             th3="Absence"
             isChanged={isChanged}
-            onClick={handleSubmit}>
+            onClick={handleSubmit}
+          >
             {/* pass the function that will change the value if any action happened */}
             {/* Render the sliced data on the current page */}
             {slicedData.map((student) => (
@@ -115,12 +120,14 @@ const Dashboard = () => {
           <div className="flex justify-center">
             <button
               onClick={handlePrevPage}
-              className="text-sm text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500 font-semibold py-2 px-4 rounded-l">
+              className="text-sm text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500 font-semibold py-2 px-4 rounded-l"
+            >
               Prev
             </button>
             <button
               onClick={handleNextPage}
-              className="text-sm border-l-4 border-white text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500  font-semibold py-2 px-4 rounded-r">
+              className="text-sm border-l-4 border-white text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500  font-semibold py-2 px-4 rounded-r"
+            >
               Next
             </button>
           </div>

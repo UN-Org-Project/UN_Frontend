@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useState, cloneElement } from "react";
 
 const Sidbar = (props) => {
+  const [activeButtonIndex, setActiveButtonIndex] = useState(0);
+
+  const handleButtonClick = (index) => {
+    setActiveButtonIndex(index);
+  };
+  // Map the children of the sidebar and create new React elements
+  // with modified or additional props, while preserving the original type and props of the elements.
+  const buttons = React.Children.map(props.children, (child, index) => {
+    // Add the active and onClick props to each child button component
+    return cloneElement(child, {
+      active: activeButtonIndex === index,
+      onClick: () => handleButtonClick(index),
+    });
+  });
   return (
     <div
       id="sidebar"
-      className="flex flex-col items-center bg-blue-600 md:block shadow-xl px-3  md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out "
+      className="flex flex-col items-center bg-blue-600 md:block shadow-xl px-3  md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out  min-h-screen"
     >
       <div
         id="profile"
@@ -27,7 +41,7 @@ const Sidbar = (props) => {
       </div>
 
       <div id="menu" className="flex flex-col space-y-2">
-        {props.children}
+        {buttons}
       </div>
     </div>
   );
