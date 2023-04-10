@@ -20,9 +20,6 @@ const DashboardRow = (props) => {
     props.onAbsenceChange(props.id, e.target.value);
     //
   };
-  const handlnoteInputChange = (e) => {
-    props.onNoteChange(props.id, e.target.value);
-  };
 
   //////// Handle Note text Area/////////////
   const handleCommentSubmit = (event) => {

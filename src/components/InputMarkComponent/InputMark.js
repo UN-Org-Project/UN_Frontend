@@ -36,6 +36,7 @@ const InputMark = (props) => {
         width: { md: "1fr" }
       }}>
       <ValidationTextField
+        type="number"
         label="Enter Mark"
         required
         variant="outlined"

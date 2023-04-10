@@ -2,10 +2,15 @@ import Title from "../../../components/SectionTitle/Title";
 import Table from "../../../components/Table/Table";
 import SelectComp from "../../../components/SelectComponent/SelectComp";
 import { AddMarkRow } from "../../../components/Table/RowInfo/TableRow";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import StatisCard from "../../../components/StatisticsCard/StatisCard";
-
+import { useOutletContext } from "react-router-dom";
+import axios from "axios";
+import "../TeacherDb.css";
 const AddMarks = () => {
+  // const [isLoading, setIsLoading] = useState(true);
+  const studentData = useOutletContext();
+  const students = studentData.students;
   const [isChanged, setIsChanged] = useState(false);
   const [marks, setMarks] = useState({});
   const [note, setNote] = useState({});
@@ -13,17 +18,11 @@ const AddMarks = () => {
   const [exame, setExame] = useState("");
   const [level, setLevel] = useState("");
 
-  const students = [
-    { id: "s1", name: "muath", parentid: "p2" },
-    { id: "s2", name: "Ahmad", parentid: "p3" },
-    { id: "s3", name: "Yassen", parentid: "p3" },
-    { id: "s4", name: "muhammad", parentid: "p4" },
-  ];
   /////////////////////Handling Change Data//////////////////////////
   const handleLevelChange = (id, value) => {
     setLevel((prevState) => ({
       ...prevState,
-      [id]: value,
+      [id]: value
     }));
     setIsChanged(true);
   };
@@ -42,7 +41,7 @@ const AddMarks = () => {
   const handleMarkChange = (id, value) => {
     setMarks((prevState) => ({
       ...prevState,
-      [id]: value,
+      [id]: value
     }));
     setIsChanged(true);
   };
@@ -51,12 +50,12 @@ const AddMarks = () => {
   const handleNoteChange = (id, value) => {
     setNote((prevState) => ({
       ...prevState,
-      [id]: value,
+      [id]: value
     }));
     setIsChanged(true);
   };
-  const handleSubmit = () => {
-    let arrystudent = [];
+  const handleSubmit = async () => {
+    let studentsMark = [];
     const updatedStudents = students.map((student) => {
       // يتم تحديث بيانات كل طالب في الجدول
 
@@ -66,17 +65,38 @@ const AddMarks = () => {
         note: note[student.id] || "No note heve been add !",
         level: level[student.id] || 2,
         subject: subject,
-        exame: exame,
+        exame: exame
       };
 
-      arrystudent.push(updatedStudent);
+      studentsMark.push(updatedStudent);
 
       // ويتم إرجاعه ككائن جديد لتحديث قيمة حالة الطلاب
       return updatedStudent;
     });
-    console.log(arrystudent);
-  };
+    //////////////////// send Data to Back End/////////////////////////////////////////////
+    try {
+      const response = await axios.post("http://localhost:8000/addtypeExam", {
+        studentsMark
+      });
 
+      console.log(response.data);
+      setExame("");
+      setSubject("");
+      setMarks({});
+      setNote({});
+      setLevel({});
+    } catch (error) {
+      console.log(error);
+    }
+
+    console.log(studentsMark);
+  };
+  // useEffect(() => {
+  //   const spinnerTimeout = setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 3000);
+  //   return () => clearTimeout(spinnerTimeout);
+  // }, [handleSubmit]);
   /////////////Paggination ///////////////////////////////////////////
   //For next and prev buttons.
   const [currentPage, setCurrentPage] = useState(0);
@@ -109,6 +129,7 @@ const AddMarks = () => {
         <div>
           <div className="flex items-center justify-between">
             <Title h2="Student Infromation" />
+            {/* {!isLoading && <div className="spinner"> </div>} */}
 
             <SelectComp
               onChange={handleSubjectChange}
@@ -116,7 +137,7 @@ const AddMarks = () => {
               options={[
                 { value: "math", label: "Math" },
                 { value: "English", label: "English" },
-                { value: "Computer", label: "Computer" },
+                { value: "Computer", label: "Computer" }
               ]}
             />
             <SelectComp
@@ -125,7 +146,7 @@ const AddMarks = () => {
               options={[
                 { value: "First", label: "First" },
                 { value: "Second", label: "Second" },
-                { value: "Final", label: "Final" },
+                { value: "Final", label: "Final" }
               ]}
             />
           </div>
@@ -135,13 +156,12 @@ const AddMarks = () => {
             th2="Contact"
             th3="Add Marks"
             isChanged={isChanged}
-            onClick={handleSubmit}
-          >
+            onClick={handleSubmit}>
             {/* Render the sliced data on the current page */}
             {slicedData.map((student) => (
               <AddMarkRow
                 key={student.id}
-                name={student.name}
+                name={student.studentName}
                 id={student.id}
                 marks={marks[student.id]}
                 note={note[student.id]}
@@ -158,14 +178,12 @@ const AddMarks = () => {
           <div className="flex justify-center">
             <button
               onClick={handlePrevPage}
-              className="text-sm text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500 font-semibold py-2 px-4 rounded-l"
-            >
+              className="text-sm text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500 font-semibold py-2 px-4 rounded-l">
               Prev
             </button>
             <button
               onClick={handleNextPage}
-              className="text-sm border-l-4 border-white text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500  font-semibold py-2 px-4 rounded-r"
-            >
+              className="text-sm border-l-4 border-white text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500  font-semibold py-2 px-4 rounded-r">
               Next
             </button>
           </div>

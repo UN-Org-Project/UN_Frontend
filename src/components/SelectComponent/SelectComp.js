@@ -3,7 +3,6 @@ import Select from "react-select";
 
 const SelectComp = (props) => {
   const onChangeHandler = (e) => {
-    setoption(e.value);
     props.onChange(e.value);
   };
   return (
