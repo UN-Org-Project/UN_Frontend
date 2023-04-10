@@ -2,9 +2,15 @@ import Title from "../../../components/SectionTitle/Title";
 import Table from "../../../components/Table/Table";
 import SelectComp from "../../../components/SelectComponent/SelectComp";
 import { AddMarkRow } from "../../../components/Table/RowInfo/TableRow";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import StatisCard from "../../../components/StatisticsCard/StatisCard";
+import { useOutletContext } from "react-router-dom";
+import axios from "axios";
+import "../TeacherDb.css";
 const AddMarks = () => {
+  // const [isLoading, setIsLoading] = useState(true);
+  const studentData = useOutletContext();
+  const students = studentData.students;
   const [isChanged, setIsChanged] = useState(false);
   const [marks, setMarks] = useState({});
   const [note, setNote] = useState({});
@@ -12,12 +18,6 @@ const AddMarks = () => {
   const [exame, setExame] = useState("");
   const [level, setLevel] = useState("");
 
-  const students = [
-    { id: "s1", name: "muath", parentid: "p2" },
-    { id: "s2", name: "Ahmad", parentid: "p3" },
-    { id: "s3", name: "Yassen", parentid: "p3" },
-    { id: "s4", name: "muhammad", parentid: "p4" }
-  ];
   /////////////////////Handling Change Data//////////////////////////
   const handleLevelChange = (id, value) => {
     setLevel((prevState) => ({
@@ -54,8 +54,8 @@ const AddMarks = () => {
     }));
     setIsChanged(true);
   };
-  const handleSubmit = () => {
-    let arrystudent = [];
+  const handleSubmit = async () => {
+    let studentsMark = [];
     const updatedStudents = students.map((student) => {
       // يتم تحديث بيانات كل طالب في الجدول
 
@@ -68,14 +68,35 @@ const AddMarks = () => {
         exame: exame
       };
 
-      arrystudent.push(updatedStudent);
+      studentsMark.push(updatedStudent);
 
       // ويتم إرجاعه ككائن جديد لتحديث قيمة حالة الطلاب
       return updatedStudent;
     });
-    console.log(arrystudent);
-  };
+    //////////////////// send Data to Back End/////////////////////////////////////////////
+    try {
+      const response = await axios.post("http://localhost:8000/addtypeExam", {
+        studentsMark
+      });
 
+      console.log(response.data);
+      setExame("");
+      setSubject("");
+      setMarks({});
+      setNote({});
+      setLevel({});
+    } catch (error) {
+      console.log(error);
+    }
+
+    console.log(studentsMark);
+  };
+  // useEffect(() => {
+  //   const spinnerTimeout = setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 3000);
+  //   return () => clearTimeout(spinnerTimeout);
+  // }, [handleSubmit]);
   /////////////Paggination ///////////////////////////////////////////
   //For next and prev buttons.
   const [currentPage, setCurrentPage] = useState(0);
@@ -108,6 +129,7 @@ const AddMarks = () => {
         <div>
           <div className="flex items-center justify-between">
             <Title h2="Student Infromation" />
+            {/* {!isLoading && <div className="spinner"> </div>} */}
 
             <SelectComp
               onChange={handleSubjectChange}
@@ -139,7 +161,7 @@ const AddMarks = () => {
             {slicedData.map((student) => (
               <AddMarkRow
                 key={student.id}
-                name={student.name}
+                name={student.studentName}
                 id={student.id}
                 marks={marks[student.id]}
                 note={note[student.id]}
@@ -151,6 +173,7 @@ const AddMarks = () => {
             ))}
             {/* pass the function that will change the value if any action happend */}
           </Table>
+
           {/* Render the next and previous buttons */}
           <div className="flex justify-center">
             <button
@@ -164,6 +187,8 @@ const AddMarks = () => {
               Next
             </button>
           </div>
+
+          <StatisCard />
         </div>
       </div>
     </div>

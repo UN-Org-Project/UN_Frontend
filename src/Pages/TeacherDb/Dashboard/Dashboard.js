@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import Title from "../../../components/SectionTitle/Title";
 import Table from "../../../components/Table/Table";
 import DashboardRow from "../../../components/Table/RowInfo/TableRow";
+import StatisCard from "../../../components/StatisticsCard/StatisCard";
+import { useOutletContext } from "react-router-dom";
+import axios from "axios";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   // to handle if any action happened then show the submit button
 
   /////////////////// Handling Students Data?////////////////
@@ -11,6 +14,13 @@ const Dashboard = () => {
   const [absence, setAbsence] = useState({});
   const [note, setNote] = useState({});
   const [level, setLevel] = useState({});
+
+  const studentData = useOutletContext();
+  const students = studentData.students;
+
+  useEffect(() => {
+    console.log(students);
+  }, []);
 
   const handleLevelChange = (id, value) => {
     setLevel((prevState) => ({
@@ -35,8 +45,8 @@ const Dashboard = () => {
     }));
     setIsChanged(true);
   };
-  const handleSubmit = () => {
-    let arrystudent = [];
+  const handleSubmit = async () => {
+    let studentsData = [];
     const updatedStudents = students.map((student) => {
       const updatedStudent = {
         ...student,
@@ -45,11 +55,19 @@ const Dashboard = () => {
         level: level[student.id] || 2
       };
 
-      arrystudent.push(updatedStudent);
+      studentsData.push(updatedStudent);
 
       return updatedStudent;
     });
-    console.log(arrystudent);
+    console.log(studentsData);
+    ////////////////////////// Send Data to Back End/////////////////////////////////
+    const response = await axios.post(
+      "http://localhost:8000/add_Abs_Note_Rate",
+      {
+        studentsData
+      }
+    );
+    const resopnse = response.data;
   };
 
   ////////////////////////////////////////
@@ -60,12 +78,13 @@ const Dashboard = () => {
   ////////////////////////////////////////
 
   // Assume data is an array of objects to be paginated
-  const students = [
-    { id: "s1", name: "muath", parentid: "p2" },
-    { id: "s2", name: "Ahmad", parentid: "p3" },
-    { id: "s3", name: "Yassen", parentid: "p3" },
-    { id: "s4", name: "muhammad", parentid: "p4" }
-  ];
+
+  // const students = [
+  //   { id: "s1", name: "muath", parentid: "p2" },
+  //   { id: "s2", name: "Ahmad", parentid: "p3" },
+  //   { id: "s3", name: "Yassen", parentid: "p3" },
+  //   { id: "s4", name: "muhammad", parentid: "p4" }
+  // ];
   // Calculate the number of pages
   const totalPages = Math.ceil(students.length / itemsPerPage);
 
@@ -89,6 +108,9 @@ const Dashboard = () => {
       <div className="flex flex-col flex-1 ml-1 gap-5">
         <div>
           <Title h2="Student Information" />
+          {/* this Card to show the total student and the absence */}
+          <StatisCard />
+
           {/* pass the changed value to table to handle the submit button */}
           <Table
             th2="Contact"
@@ -101,7 +123,7 @@ const Dashboard = () => {
               <DashboardRow
                 key={student.id}
                 id={student.id}
-                name={student.name}
+                name={student.studentName}
                 absence={absence[student.id]}
                 note={note[student.id]}
                 level={level[student.id]}
