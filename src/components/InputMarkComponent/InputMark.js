@@ -9,22 +9,21 @@ import FormControl from "@mui/material/FormControl";
 const ValidationTextField = styled(TextField)({
   "& input:valid + fieldset": {
     borderColor: "green",
-    borderWidth: 2,
+    borderWidth: 2
   },
   "& input:invalid + fieldset": {
     borderColor: "red",
-    borderWidth: 2,
+    borderWidth: 2
   },
   "& input:valid:focus + fieldset": {
     borderLeftWidth: 6,
-    padding: "4px !important", // override inline-style
-  },
+    padding: "4px !important" // override inline-style
+  }
 });
 
 const InputMark = (props) => {
-  const handleChange = () => {
-    props.onChange(true);
-    console.log("Val changed");
+  const handleChange = (e) => {
+    props.onChangeMark(e);
   };
   return (
     <Box
@@ -34,9 +33,8 @@ const InputMark = (props) => {
         display: "grid",
         gridTemplateColumns: { sm: "1fr 1fr" },
         gap: 2,
-        width: { md: "1fr" },
-      }}
-    >
+        width: { md: "1fr" }
+      }}>
       <ValidationTextField
         label="Enter Mark"
         required

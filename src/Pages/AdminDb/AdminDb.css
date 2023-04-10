@@ -14,3 +14,13 @@
     transform: rotate(360deg);
   }
 }
+
+.login {
+  margin: 200px;
+}
+
+.text {
+  margin-left: 200px;
+  color: red;
+  font-size: 40px;
+}
