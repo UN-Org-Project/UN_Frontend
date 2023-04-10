@@ -25,7 +25,7 @@ const LoginForm = (props) => {
     setIsValid(true);
     //Send the username and the password to "http://localhost:8000/auth/login" end point
     try {
-      const response = await axios.post("http://localhost:8000/auth/login", {
+      const response = await axios.put("http://localhost:8000/auth/login", {
         username,
         password,
       });
