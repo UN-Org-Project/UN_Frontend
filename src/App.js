@@ -15,7 +15,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/Admin/AdminStudents" element={<AdminStd />} />
-                  <Route path="/Admin/AdminTeachers" element={<AdminTech />} />
+        <Route path="/Admin/AdminTeachers" element={<AdminTech />} />
         <Route path="/teacher" element={<Teacher />}>
           <Route path="Dashboard" element={<Dashboard />} />
           <Route path="Addmarks" element={<AddMarks />} />
@@ -28,3 +28,4 @@ const App = () => {
 };
 
 export default App;
+
