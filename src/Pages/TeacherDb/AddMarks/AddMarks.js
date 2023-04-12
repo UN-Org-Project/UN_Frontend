@@ -5,10 +5,11 @@ import { AddMarkRow } from "../../../components/Table/RowInfo/TableRow";
 import { useState, useEffect } from "react";
 import StatisCard from "../../../components/StatisticsCard/StatisCard";
 import { useOutletContext } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import "../TeacherDb.css";
 const AddMarks = () => {
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const studentData = useOutletContext();
   const students = studentData.students;
   const [isChanged, setIsChanged] = useState(false);
@@ -24,7 +25,7 @@ const AddMarks = () => {
       ...prevState,
       [id]: value
     }));
-    setIsChanged(true);
+    // setIsChanged(true);
   };
   const handleSubjectChange = (value) => {
     setSubject(value);
@@ -34,8 +35,8 @@ const AddMarks = () => {
 
   const handleExameChange = (value) => {
     setExame(value);
-    setIsChanged(true);
-    console.log(value);
+    //setIsChanged(true);
+    // console.log(value);
   };
 
   const handleMarkChange = (id, value) => {
@@ -43,34 +44,40 @@ const AddMarks = () => {
       ...prevState,
       [id]: value
     }));
-    setIsChanged(true);
+    //setIsChanged(true);
   };
 
-  // دالة للتعامل مع تغييرات الملاحظات
   const handleNoteChange = (id, value) => {
     setNote((prevState) => ({
       ...prevState,
       [id]: value
     }));
-    setIsChanged(true);
+    // setIsChanged(true);
   };
-  const handleSubmit = async () => {
+  //////////////////////////notify fore Response//////////////////
+  const notify = (message, type) => {
+    if (type === "Error") toast.error(message);
+    else if (type === "Success") toast.success(message);
+  };
+
+  /////////////////Syubmited Data/////////////////////
+
+  const handleSubmit = async (e) => {
+    setIsLoading(true);
+    e.preventDefault();
     let studentsMark = [];
     const updatedStudents = students.map((student) => {
-      // يتم تحديث بيانات كل طالب في الجدول
-
       const updatedStudent = {
         ...student,
-        marks: marks[student.id] || 0,
-        note: note[student.id] || "No note heve been add !",
-        level: level[student.id] || 2,
+        marks: marks[student._id] || 0,
+        note: note[student._id] || "No note heve been add !",
+        level: level[student._id] || 2,
         subject: subject,
         exame: exame
       };
 
       studentsMark.push(updatedStudent);
 
-      // ويتم إرجاعه ككائن جديد لتحديث قيمة حالة الطلاب
       return updatedStudent;
     });
     //////////////////// send Data to Back End/////////////////////////////////////////////
@@ -78,14 +85,20 @@ const AddMarks = () => {
       const response = await axios.post("http://localhost:8000/addtypeExam", {
         studentsMark
       });
+      if (!response.ok) {
+        const data = response.data;
+        console.log(data);
+        notify(data, "Success");
+        setIsLoading(false);
+
+        setIsChanged(false);
+      }
 
       console.log(response.data);
-      setExame("");
-      setSubject("");
-      setMarks({});
-      setNote({});
-      setLevel({});
     } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+      notify("error", "Error");
       console.log(error);
     }
 
@@ -130,14 +143,17 @@ const AddMarks = () => {
           <div className="flex items-center justify-between">
             <Title h2="Student Infromation" />
             {/* {!isLoading && <div className="spinner"> </div>} */}
+            <ToastContainer />
 
             <SelectComp
               onChange={handleSubjectChange}
               lable="Select Subject"
               options={[
                 { value: "math", label: "Math" },
-                { value: "English", label: "English" },
-                { value: "Computer", label: "Computer" }
+                { value: "english", label: "English" },
+                { value: "arbic", label: "arbic" },
+                { value: "history", label: "history" },
+                { value: "science", label: "science" }
               ]}
             />
             <SelectComp
@@ -152,6 +168,8 @@ const AddMarks = () => {
           </div>
 
           {/* pass the changed value to table to handle the submit button */}
+          {isLoading && <div className="spinner"> </div>}
+          {!isChanged && <p> choise the Subject and type Exame please</p>}
           <Table
             th2="Contact"
             th3="Add Marks"
@@ -160,15 +178,16 @@ const AddMarks = () => {
             {/* Render the sliced data on the current page */}
             {slicedData.map((student) => (
               <AddMarkRow
-                key={student.id}
+                key={student._id}
                 name={student.studentName}
-                id={student.id}
-                marks={marks[student.id]}
-                note={note[student.id]}
-                level={level[student.id]}
+                id={student._id}
+                marks={marks[student._id]}
+                note={note[student._id]}
+                level={level[student._id]}
                 onMarkChange={handleMarkChange}
                 onNoteChange={handleNoteChange}
                 onLevelChange={handleLevelChange}
+                isChanged={isChanged}
               />
             ))}
             {/* pass the function that will change the value if any action happend */}

@@ -98,7 +98,7 @@ const AdminStd = () => {
         setStudentAddress("");
       } else {
         console.log(response);
-        notify("Added Error", response.data.message);
+        notify("Some thing Error !try again ", "Error");
       }
     } catch (error) {
       setIsLoading(false);

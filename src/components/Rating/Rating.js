@@ -23,6 +23,44 @@ function getLabelText(value) {
 const RatingComp = (props) => {
   const [value, setValue] = React.useState(2);
   const [hover, setHover] = React.useState(-1);
+  React.useEffect(() => {
+    if (!props.isChanged) {
+      setValue(2);
+    } else {
+      if (props.mark && props.mark !== "") {
+        if (props.mark < 50) {
+          setValue(2);
+          props.setrating(2);
+        } else if (props.mark >= 50 && props.mark < 80) {
+          setValue(3);
+
+          props.setrating(3);
+        } else if (props.mark >= 80 && props.mark < 90) {
+          setValue(4);
+          props.setrating(4);
+        } else {
+          setValue(5);
+          props.setrating(5);
+        }
+        console.log(value);
+      }
+    }
+    // if (props.mark && props.mark !== "") {
+    //   if (props.mark < 50) {
+    //     setValue(2);
+    //     props.setrating(2);
+    //   } else if (props.mark >= 50 && props.mark < 80) {
+    //     setValue(3);
+    //     props.setrating(3);
+    //   } else if (props.mark >= 80 && props.mark < 90) {
+    //     setValue(4);
+    //     props.setrating(4);
+    //   } else {
+    //     setValue(5);
+    //     props.setrating(5);
+    //   }
+    // }
+  }, [props]);
 
   return (
     <Box
@@ -37,7 +75,13 @@ const RatingComp = (props) => {
         precision={0.5}
         getLabelText={getLabelText}
         onChange={(event, newValue) => {
+          if (props.mark && props.mark !== "") {
+            props.onChangeRatng(event, newValue);
+            console.log(props.mark);
+          }
+          console.log(value);
           props.onChangeRatng(event, newValue);
+
           setValue(newValue);
           props.setrating(newValue);
         }}

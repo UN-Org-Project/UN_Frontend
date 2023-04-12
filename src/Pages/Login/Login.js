@@ -20,6 +20,7 @@ const Login = () => {
         username,
         password
       });
+      console.log(response.status);
       console.log(response.data);
       setIsLoading(false);
       localStorage.setItem("islogged", true);
@@ -32,7 +33,6 @@ const Login = () => {
       } else if (response.data.state === "Parent") {
         window.location.href = "/dbParent";
       } else if (response.data.state === "Admin") {
-        localStorage.setItem("userData", response.data.id);
         window.location.href = "/Admin/AdminStudents";
       } else {
         console.log(response.data);

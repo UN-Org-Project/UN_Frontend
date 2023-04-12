@@ -3,21 +3,47 @@ import Rating from "../../Rating/Rating";
 import Avatar from "@mui/material/Avatar";
 import RatingComp from "../../Rating/Rating";
 import InputMark from "../../InputMarkComponent/InputMark";
+//import DirectChatPage from "../../../Pages/chatting/chat";
 
 const DashboardRow = (props) => {
   const [rating, setrating] = useState(2);
   const [comment, setComment] = useState("");
   const [isCommentVisible, setIsCommentVisible] = useState(false);
+  const [checkedabsence, setcheckedabsence] = useState(false);
+  const [checkedpresent, setcheckedpresent] = useState(false);
   const [isButtonVisible, setIsButtonVisible] = useState(true);
+  //const [chating, setChating] = useState(false);
 
   //to handle if the value changed set it in the props function
+  //////// handling Chatting/////////////////////////
+  // const cahtingHandling = (e) => {
+  //   console.log(props.parentid);
+  //   setChating(true);
+  // };
+  React.useEffect(() => {
+    if (!props.isChanged) {
+      setrating(2);
+      setcheckedabsence(false);
+      setcheckedpresent(false);
+    }
+  }, [props]);
 
   const handleLevelInputChange = (e, value) => {
+    setrating(value);
     props.onLevelChange(props.id, value);
     console.log(value);
   };
   const handlabsenseInputChange = (e) => {
-    props.onAbsenceChange(props.id, e.target.value);
+    if (e.target.value === "absence") {
+      setcheckedabsence(true);
+      setcheckedpresent(false);
+      props.onAbsenceChange(props.id, e.target.value);
+    } else {
+      setcheckedpresent(true);
+      setcheckedabsence(false);
+      props.onAbsenceChange(props.id, e.target.value);
+    }
+
     //
   };
 
@@ -55,11 +81,13 @@ const DashboardRow = (props) => {
         </td>
         <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm  text-left">
           <button
+            id={props.parentid}
             type="button"
-            className="bg-blue-500  inline-block rounded bg-info px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]"
-          >
+            // onClick={cahtingHandling}
+            className="bg-blue-500  inline-block rounded bg-info px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]">
             Contact
           </button>
+          {/* {chating && <DirectChatPage parentid={props.parentid} />} */}
         </td>
         <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
           <div className=" flex flex-wrap sm:gap-1">
@@ -67,14 +95,14 @@ const DashboardRow = (props) => {
               <input
                 type="radio"
                 name={props.id}
+                checked={checkedabsence}
                 className="w-4 h-4 cursor-pointer"
                 value="absence"
                 onChange={handlabsenseInputChange}
               />
               <label
                 htmlFor={props.id + "Absent"}
-                className="ml-2 text-sm font-medium text-blue-600 dark:text-gray-300 cursor-pointer"
-              >
+                className="ml-2 text-sm font-medium text-blue-600 dark:text-gray-300 cursor-pointer">
                 Absent
               </label>
             </div>
@@ -82,6 +110,7 @@ const DashboardRow = (props) => {
               <input
                 id={props.id + "Present"}
                 type="radio"
+                checked={checkedpresent}
                 value="present"
                 name={props.id}
                 className="w-4 h-4 cursor-pointer"
@@ -89,8 +118,7 @@ const DashboardRow = (props) => {
               />
               <label
                 htmlFor={props.id + "Present"}
-                className="ml-2 text-sm font-medium text-blue-600 dark:text-gray-300 cursor-pointer"
-              >
+                className="ml-2 text-sm font-medium text-blue-600 dark:text-gray-300 cursor-pointer">
                 Present
               </label>
             </div>
@@ -110,22 +138,21 @@ const DashboardRow = (props) => {
                   placeholder="Write a comment..."
                   required
                   value={comment}
-                  onChange={(event) => setComment(event.target.value)}
-                ></textarea>
+                  onChange={(event) =>
+                    setComment(event.target.value)
+                  }></textarea>
               </div>
               <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
                 <button
                   type="submit"
                   className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-                  onClick={handleCommentSubmit}
-                >
+                  onClick={handleCommentSubmit}>
                   Send
                 </button>
                 <button
                   type="submit"
                   className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-                  onClick={handleCommentButtonClickSecendary}
-                >
+                  onClick={handleCommentButtonClickSecendary}>
                   Hide
                 </button>
               </div>
@@ -136,8 +163,7 @@ const DashboardRow = (props) => {
               type="button"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={handleCommentButtonClickMain}
-              style={{ order: isCommentVisible ? 2 : 1 }}
-            >
+              style={{ order: isCommentVisible ? 2 : 1 }}>
               Send
             </button>
           )}
@@ -145,6 +171,7 @@ const DashboardRow = (props) => {
         <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
           <Rating
             rating={rating}
+            isChanged={props.isChanged}
             setrating={setrating}
             onChangeRatng={handleLevelInputChange}
           />
@@ -161,11 +188,25 @@ export const AddMarkRow = (props) => {
   const [comment, setComment] = useState("");
   const [isCommentVisible, setIsCommentVisible] = useState(false);
   const [isButtonVisible, setIsButtonVisible] = useState(true);
+  const [mark, setmark] = useState("");
   ////////////////////// Handling Change data /////////////////////////////
+  React.useEffect(() => {
+    if (!props.isChanged) {
+      setrating(2);
+      setmark("");
+
+      // setcheckedabsence(false);
+      // setcheckedpresent(false);
+    }
+  }, [props]);
 
   const handleLevelInputChange = (e, value) => {
-    props.onLevelChange(props.id, value);
-    console.log(value);
+    console.log(rating);
+    if (!props.isChanged) {
+      setrating(2);
+    }
+    props.onLevelChange(props.id, rating);
+    //console.log(value);
   };
   const handlMarkInputChange = (e) => {
     props.onMarkChange(props.id, e.target.value);
@@ -209,14 +250,17 @@ export const AddMarkRow = (props) => {
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm  text-left">
         <button
           type="button"
-          className="bg-blue-500  inline-block rounded bg-info px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]"
-        >
+          className="bg-blue-500  inline-block rounded bg-info px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]">
           Contact
         </button>
       </td>
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
         {/* when the user enter any marke change the value and send it to  */}
-        <InputMark onChangeMark={handlMarkInputChange} />
+        <InputMark
+          setmark={setmark}
+          mark={mark}
+          onChangeMark={handlMarkInputChange}
+        />
       </td>
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
         {isCommentVisible && (
@@ -232,22 +276,19 @@ export const AddMarkRow = (props) => {
                 placeholder="Write a comment..."
                 required
                 value={comment}
-                onChange={(event) => setComment(event.target.value)}
-              ></textarea>
+                onChange={(event) => setComment(event.target.value)}></textarea>
             </div>
             <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
               <button
                 type="submit"
                 className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-                onClick={handleCommentSubmit}
-              >
+                onClick={handleCommentSubmit}>
                 Send
               </button>
               <button
                 type="submit"
                 className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-                onClick={handleCommentButtonClickSecendary}
-              >
+                onClick={handleCommentButtonClickSecendary}>
                 Hide
               </button>
             </div>
@@ -258,19 +299,20 @@ export const AddMarkRow = (props) => {
             type="button"
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
             onClick={handleCommentButtonClickMain}
-            style={{ order: isCommentVisible ? 2 : 1 }}
-          >
+            style={{ order: isCommentVisible ? 2 : 1 }}>
             Send
           </button>
         )}
       </td>
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
         <Rating
+          mark={mark}
           onChangeRatng={handleLevelInputChange}
+          isChanged={props.isChanged}
           rating={rating}
           setrating={setrating}
         />
-        <span> {rating}</span>
+        <span>{rating}</span>
       </td>
     </tr>
   );

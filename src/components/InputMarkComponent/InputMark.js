@@ -23,6 +23,7 @@ const ValidationTextField = styled(TextField)({
 
 const InputMark = (props) => {
   const handleChange = (e) => {
+    props.setmark(e.target.value);
     props.onChangeMark(e);
   };
   return (
@@ -42,6 +43,7 @@ const InputMark = (props) => {
         variant="outlined"
         defaultValue=""
         id="validation-outlined-input"
+        value={props.mark}
         onChange={handleChange}
       />
     </Box>

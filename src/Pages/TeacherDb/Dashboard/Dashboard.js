@@ -3,24 +3,36 @@ import Title from "../../../components/SectionTitle/Title";
 import Table from "../../../components/Table/Table";
 import DashboardRow from "../../../components/Table/RowInfo/TableRow";
 import StatisCard from "../../../components/StatisticsCard/StatisCard";
+import { ToastContainer, toast } from "react-toastify";
 import { useOutletContext } from "react-router-dom";
 import axios from "axios";
+import "../TeacherDb.css";
 
 const Dashboard = (props) => {
   // to handle if any action happened then show the submit button
 
   /////////////////// Handling Students Data?////////////////
-  const [isChanged, setIsChanged] = useState(false);
-  const [absence, setAbsence] = useState({});
-  const [note, setNote] = useState({});
-  const [level, setLevel] = useState({});
-
+  //////////////Students Data////////////////////////////
   const studentData = useOutletContext();
   const students = studentData.students;
+  /////////////////////////////////////////
+  const [isChanged, setIsChanged] = useState(false);
+  const [absence, setAbsence] = useState("");
+  const [note, setNote] = useState("");
+  const [level, setLevel] = useState(2);
+  const [isLoading, setIsLoading] = useState(false);
+  const [numberOfAbsence, setNumberofAbsence] = useState(0);
+  const [numberOfPresent, setNumberofPresent] = useState(students.length);
 
-  useEffect(() => {
-    console.log(students);
-  }, []);
+  //////////////////////////notify fore Response//////////////////
+  const notify = (message, type) => {
+    if (type === "Error") toast.error(message);
+    else if (type === "Success") toast.success(message);
+  };
+
+  // useEffect(() => {
+  //   console.log(students);
+  // }, []);
 
   const handleLevelChange = (id, value) => {
     setLevel((prevState) => ({
@@ -45,29 +57,53 @@ const Dashboard = (props) => {
     }));
     setIsChanged(true);
   };
-  const handleSubmit = async () => {
+
+  ////////////////Submited Data////////////////////////////////
+  const handleSubmit = async (e) => {
+    setIsLoading(true);
+    e.preventDefault();
     let studentsData = [];
     const updatedStudents = students.map((student) => {
       const updatedStudent = {
         ...student,
-        absence: absence[student.id] || "present",
-        note: note[student.id] || "No note heve been add !",
-        level: level[student.id] || 2
+        absence: absence[student._id] || "present",
+        note: note[student._id] || "No note heve been add !",
+        level: level[student._id] || 2
       };
 
       studentsData.push(updatedStudent);
 
       return updatedStudent;
     });
+    const numberabsence = studentsData.filter(
+      (student) => student.absence === "absence"
+    ).length;
+    setNumberofAbsence(numberabsence);
+    setNumberofPresent(students.length - numberabsence);
+    console.log(numberOfAbsence);
+    console.log(numberabsence);
     console.log(studentsData);
     ////////////////////////// Send Data to Back End/////////////////////////////////
-    const response = await axios.post(
-      "http://localhost:8000/add_Abs_Note_Rate",
-      {
-        studentsData
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/add_Abs_Note_Rate",
+        {
+          studentsData
+        }
+      );
+      if (!response.ok) {
+        const data = response.data;
+        console.log(data);
+        notify("success", "Success");
+        setIsLoading(false);
+        setIsChanged(false);
+        setLevel(2);
       }
-    );
-    const resopnse = response.data;
+    } catch (error) {
+      setIsLoading(false);
+      notify("error", "Error");
+      console.log(error);
+    }
   };
 
   ////////////////////////////////////////
@@ -79,12 +115,6 @@ const Dashboard = (props) => {
 
   // Assume data is an array of objects to be paginated
 
-  // const students = [
-  //   { id: "s1", name: "muath", parentid: "p2" },
-  //   { id: "s2", name: "Ahmad", parentid: "p3" },
-  //   { id: "s3", name: "Yassen", parentid: "p3" },
-  //   { id: "s4", name: "muhammad", parentid: "p4" }
-  // ];
   // Calculate the number of pages
   const totalPages = Math.ceil(students.length / itemsPerPage);
 
@@ -108,28 +138,39 @@ const Dashboard = (props) => {
       <div className="flex flex-col flex-1 ml-1 gap-5">
         <div>
           <Title h2="Student Information" />
+          <ToastContainer />
           {/* this Card to show the total student and the absence */}
-          <StatisCard />
+
+          {isLoading && <div className="spinner"> </div>}
+
+          <StatisCard
+            absenceNumber={numberOfAbsence}
+            presentNumber={numberOfPresent}
+          />
 
           {/* pass the changed value to table to handle the submit button */}
+
           <Table
             th2="Contact"
             th3="Absence"
             isChanged={isChanged}
-            onClick={handleSubmit}>
+            onClick={handleSubmit}
+            notify={notify}>
             {/* pass the function that will change the value if any action happened */}
             {/* Render the sliced data on the current page */}
             {slicedData.map((student) => (
               <DashboardRow
-                key={student.id}
-                id={student.id}
+                key={student._id}
+                id={student._id}
                 name={student.studentName}
-                absence={absence[student.id]}
-                note={note[student.id]}
-                level={level[student.id]}
+                absence={absence[student._id]}
+                note={note[student._id]}
+                level={level[student._id]}
                 onAbsenceChange={handleAbsenceChange}
                 onNoteChange={handleNoteChange}
                 onLevelChange={handleLevelChange}
+                parentid={student.parent_id}
+                isChanged={isChanged}
               />
             ))}
           </Table>

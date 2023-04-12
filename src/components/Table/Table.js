@@ -34,11 +34,13 @@ const Table = (props) => {
             {/* if the value is true then show the submit button */}
             {props.isChanged && (
               <div className=" flex justify-center items-center py-2">
-                <button
-                  className="text-sm text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500  font-semibold py-4 px-5 rounded"
-                  onClick={props.onClick}>
-                  Submit
-                </button>
+                <form onSubmit={props.onClick}>
+                  <button
+                    className="text-sm text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500  font-semibold py-4 px-5 rounded"
+                    type="submit">
+                    Submit
+                  </button>
+                </form>
               </div>
             )}
           </div>

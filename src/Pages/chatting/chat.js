@@ -1,4 +1,4 @@
-import "./AdminDb.css";
+import "./chat.css";
 // import { PrettyChatWindow } from "react-chat-engine-pretty";
 
 // const ChatsPage = (props) => {
