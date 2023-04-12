@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useOutletContext } from "react-router-dom";
 import axios from "axios";
 import "../TeacherDb.css";
+import Pagination from "@mui/material/Pagination";
 
 const Dashboard = (props) => {
   // to handle if any action happened then show the submit button
@@ -17,8 +18,8 @@ const Dashboard = (props) => {
   const students = studentData.students;
   /////////////////////////////////////////
   const [isChanged, setIsChanged] = useState(false);
-  const [absence, setAbsence] = useState("");
-  const [note, setNote] = useState("");
+  const [absence, setAbsence] = useState({});
+  const [note, setNote] = useState({});
   const [level, setLevel] = useState(2);
   const [isLoading, setIsLoading] = useState(false);
   const [numberOfAbsence, setNumberofAbsence] = useState(0);
@@ -108,30 +109,35 @@ const Dashboard = (props) => {
 
   ////////////////////////////////////////
   ///////paggination///////////////////////////////////////////////////////
-  //For next and prev buttons.
-  const [currentPage, setCurrentPage] = useState(0);
+  ///////paggination////////
+
   const itemsPerPage = 3;
-  ////////////////////////////////////////
 
-  // Assume data is an array of objects to be paginated
+  const [currentPage, setCurrentPage] = useState(1);
 
-  // Calculate the number of pages
+  const [slicedData, setSlicedData] = useState(students.slice(0, itemsPerPage)); // Calculate the number of pages
+
   const totalPages = Math.ceil(students.length / itemsPerPage);
 
-  // Function to go to the next page
-  const handleNextPage = () => {
-    setCurrentPage((currentPage + 1) % totalPages);
-  };
+  let startIndex = 0;
 
-  // Function to go to the previous page
-  const handlePrevPage = () => {
-    setCurrentPage((currentPage + totalPages - 1) % totalPages);
-  };
+  let endIndex = itemsPerPage; // handle with onChange if pagenation
 
-  // Slice the data based on the current page and number of items per page
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const slicedData = students.slice(startIndex, endIndex);
+  const HadlePagenation = (page) => {
+    console.log(page);
+
+    setCurrentPage(page);
+
+    startIndex = (page - 1) * 3;
+
+    console.log(startIndex);
+
+    endIndex = startIndex + 3;
+
+    console.log(endIndex);
+
+    setSlicedData(students.slice(startIndex, endIndex));
+  }; //////////////////////////
 
   return (
     <div id="view" className="flex">
@@ -175,18 +181,22 @@ const Dashboard = (props) => {
             ))}
           </Table>
           {/* Render the next and previous buttons */}
-          <div className="flex justify-center">
-            <button
-              onClick={handlePrevPage}
-              className="text-sm text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500 font-semibold py-2 px-4 rounded-l">
-              Prev
-            </button>
-            <button
-              onClick={handleNextPage}
-              className="text-sm border-l-4 border-white text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500  font-semibold py-2 px-4 rounded-r">
-              Next
-            </button>
-          </div>
+
+          <Pagination
+            className="flex justify-center"
+            color="primary"
+            count={totalPages}
+            page={currentPage}
+            onChange={(event, page) => {
+              HadlePagenation(page);
+            }}
+          />
+
+          <br />
+
+          <br />
+
+          <br />
         </div>
       </div>
     </div>

@@ -200,20 +200,32 @@ export const AddMarkRow = (props) => {
     }
   }, [props]);
 
-  const handleLevelInputChange = (e, value) => {
-    console.log(rating);
-    if (!props.isChanged) {
-      setrating(2);
-    }
-    props.onLevelChange(props.id, rating);
-    //console.log(value);
-  };
+  // const handleLevelInputChange = () => {
+  //   console.log(rating);
+
+  //   // props.onLevelChange(props.id, rating);
+  //   //console.log(value);
+  // };
   const handlMarkInputChange = (e) => {
+    // if (!props.isChanged) {
+    //   setrating(2);
+    // }
     props.onMarkChange(props.id, e.target.value);
+    props.onLevelChange(props.id, rating);
+    // if (mark < 50) {
+    //   setrating(2);
+    //   props.onLevelChange(props.id, rating);
+    // } else if (mark >= 50 && mark < 80) {
+    //   setrating(3);
+    //   props.onLevelChange(props.id, rating);
+    // } else if (mark >= 80 && mark < 90) {
+    //   setrating(4);
+    //   props.onLevelChange(props.id, rating);
+    // } else {
+    //   setrating(5);
+    //   props.onLevelChange(props.id, rating);
+    // }
     //
-  };
-  const handlnoteInputChange = (e) => {
-    props.onNoteChange(props.id, e.target.value);
   };
 
   //////////////////// Handling Note text Area /////////////////////////
@@ -307,7 +319,7 @@ export const AddMarkRow = (props) => {
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
         <Rating
           mark={mark}
-          onChangeRatng={handleLevelInputChange}
+          // onChangeRatng={handleLevelInputChange}
           isChanged={props.isChanged}
           rating={rating}
           setrating={setrating}

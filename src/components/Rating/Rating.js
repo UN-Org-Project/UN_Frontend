@@ -31,18 +31,21 @@ const RatingComp = (props) => {
         if (props.mark < 50) {
           setValue(2);
           props.setrating(2);
+          console.log(props.rating);
         } else if (props.mark >= 50 && props.mark < 80) {
           setValue(3);
 
           props.setrating(3);
+          console.log(props.rating);
         } else if (props.mark >= 80 && props.mark < 90) {
           setValue(4);
           props.setrating(4);
+          console.log(props.rating);
         } else {
           setValue(5);
           props.setrating(5);
+          console.log(props.rating);
         }
-        console.log(value);
       }
     }
     // if (props.mark && props.mark !== "") {
@@ -75,15 +78,15 @@ const RatingComp = (props) => {
         precision={0.5}
         getLabelText={getLabelText}
         onChange={(event, newValue) => {
-          if (props.mark && props.mark !== "") {
-            props.onChangeRatng(event, newValue);
-            console.log(props.mark);
-          }
+          // if (props.mark && props.mark !== "") {
+          //   props.onChangeRatng(event, newValue);
+          //   console.log(props.mark);
+          // }
           console.log(value);
           props.onChangeRatng(event, newValue);
 
           setValue(newValue);
-          props.setrating(newValue);
+          props.setrating(value);
         }}
         onChangeActive={(event, newHover) => {
           setHover(newHover);
