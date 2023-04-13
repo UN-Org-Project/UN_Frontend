@@ -19,6 +19,12 @@ const AddMarks = () => {
   const [subject, setSubject] = useState({});
   const [exame, setExame] = useState("");
   const [level, setLevel] = useState("");
+  const [RangeSubject, setRangeSubject] = useState(0);
+  const [numberOfStudent, setNumberOfStudent] = useState(students.length);
+  const [convertCart, setConvertCart] = useState(false);
+  useEffect(() => {
+    setConvertCart(true);
+  }, []);
 
   /////////////////////Handling Change Data//////////////////////////
   const handleLevelChange = (id, value) => {
@@ -81,6 +87,17 @@ const AddMarks = () => {
 
       return updatedStudent;
     });
+    const range = studentsMark.map((student) => student.marks);
+    const totalMarks = range.reduce(
+      (accumulator, currentValue) => +accumulator + +currentValue,
+      0
+    );
+    const average = totalMarks / range.length;
+    setRangeSubject(average);
+
+    console.log(totalMarks);
+    console.log(range);
+
     //////////////////// send Data to Back End/////////////////////////////////////////////
     try {
       const response = await axios.post("http://localhost:8000/addtypeExam", {
@@ -215,7 +232,11 @@ const AddMarks = () => {
 
           <br />
 
-          <StatisCard />
+          <StatisCard
+            absenceNumber={RangeSubject}
+            presentNumber={numberOfStudent}
+            convertCart={convertCart}
+          />
         </div>
       </div>
     </div>

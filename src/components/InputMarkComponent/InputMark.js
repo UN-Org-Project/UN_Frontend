@@ -37,6 +37,7 @@ const InputMark = (props) => {
         width: { md: "1fr" }
       }}>
       <ValidationTextField
+        onBlur={props.onChangeRate}
         type="number"
         label="Enter Mark"
         required

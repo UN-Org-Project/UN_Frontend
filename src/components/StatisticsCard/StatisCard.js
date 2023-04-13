@@ -18,7 +18,7 @@ const StatisCard = (props) => {
           </div>
           <div className="flex flex-row justify-between pb-3">
             <div className="flex flex-col">
-              <h3 className="text-base font-bold">Total Students</h3>
+              <h3 className="text-base font-bold">Number Of Students</h3>
             </div>
           </div>
           <div className="flex flex-row justify-between py-3">
@@ -55,7 +55,13 @@ const StatisCard = (props) => {
           </div>
           <div className="flex flex-row justify-between pb-3">
             <div className="flex flex-col">
-              <h3 className="text-base font-bold">Total Absence</h3>
+              <h3 className="text-base font-bold">
+                {props.convertCart ? (
+                  <p>Student Rate in Subject </p>
+                ) : (
+                  <p>Total Absence</p>
+                )}
+              </h3>
             </div>
           </div>
           <div className="flex flex-row justify-between py-3">
@@ -72,8 +78,9 @@ const StatisCard = (props) => {
             </div>
             <h1 className="self-center text-2xl font-bold">
               {props.absenceNumber}
+              {props.convertCart ? <span> %</span> : ""}
             </h1>
-            <p>Students</p>
+            {props.convertCart ? <p>Range</p> : <p>Students</p>}
           </div>
         </div>
       </div>

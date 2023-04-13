@@ -20,6 +20,8 @@ const DashboardRow = (props) => {
   //   console.log(props.parentid);
   //   setChating(true);
   // };
+
+  ///notation//////////////////////////////////////////////////////////////
   React.useEffect(() => {
     if (!props.isChanged) {
       setrating(2);
@@ -190,42 +192,22 @@ export const AddMarkRow = (props) => {
   const [isButtonVisible, setIsButtonVisible] = useState(true);
   const [mark, setmark] = useState("");
   ////////////////////// Handling Change data /////////////////////////////
+  let rate = 2;
   React.useEffect(() => {
     if (!props.isChanged) {
       setrating(2);
       setmark("");
-
-      // setcheckedabsence(false);
-      // setcheckedpresent(false);
+    } else {
     }
   }, [props]);
 
-  // const handleLevelInputChange = () => {
-  //   console.log(rating);
-
-  //   // props.onLevelChange(props.id, rating);
-  //   //console.log(value);
-  // };
-  const handlMarkInputChange = (e) => {
-    // if (!props.isChanged) {
-    //   setrating(2);
-    // }
-    props.onMarkChange(props.id, e.target.value);
+  const handleLevelInputChange = () => {
+    console.log(rating);
     props.onLevelChange(props.id, rating);
-    // if (mark < 50) {
-    //   setrating(2);
-    //   props.onLevelChange(props.id, rating);
-    // } else if (mark >= 50 && mark < 80) {
-    //   setrating(3);
-    //   props.onLevelChange(props.id, rating);
-    // } else if (mark >= 80 && mark < 90) {
-    //   setrating(4);
-    //   props.onLevelChange(props.id, rating);
-    // } else {
-    //   setrating(5);
-    //   props.onLevelChange(props.id, rating);
-    // }
-    //
+  };
+  const handlMarkInputChange = (e) => {
+    props.onMarkChange(props.id, e.target.value);
+    console.log(mark);
   };
 
   //////////////////// Handling Note text Area /////////////////////////
@@ -269,9 +251,11 @@ export const AddMarkRow = (props) => {
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
         {/* when the user enter any marke change the value and send it to  */}
         <InputMark
+          onChangeRate={handleLevelInputChange}
           setmark={setmark}
           mark={mark}
           onChangeMark={handlMarkInputChange}
+          on
         />
       </td>
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
@@ -319,7 +303,7 @@ export const AddMarkRow = (props) => {
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
         <Rating
           mark={mark}
-          // onChangeRatng={handleLevelInputChange}
+          // onChangeRate={handleLevelInputChange}
           isChanged={props.isChanged}
           rating={rating}
           setrating={setrating}

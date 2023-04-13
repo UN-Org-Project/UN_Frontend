@@ -115,6 +115,9 @@ const DirectChatPage = () => {
       projectID="
       b8ca72e8-1f9d-46b9-a3d7-18dcc011f59e"
       renderNewChatForm={(creds) => renderChatForm(creds)}
+      renderChatCard={(chat, index) => {
+        1;
+      }}
     />
   );
 };

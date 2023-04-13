@@ -6,6 +6,8 @@ import AddMarks from "./Pages/TeacherDb/AddMarks/AddMarks";
 import Dashboard from "./Pages/TeacherDb/Dashboard/Dashboard";
 import AdminStd from "./Pages/AdminDb/AdminStdPage";
 import AdminTech from "./Pages/AdminDb/AdminTechPage";
+import DirectChatPage from "./Pages/chatting/chat";
+import NotesAllStudent from "./Pages/TeacherDb/NotesAllparents";
 
 const App = () => {
   return (
@@ -19,6 +21,8 @@ const App = () => {
         <Route path="/teacher" element={<Teacher />}>
           <Route path="Dashboard" element={<Dashboard />} />
           <Route path="Addmarks" element={<AddMarks />} />
+          <Route path="ChattingTeacher" element={<DirectChatPage />} />
+          <Route path="SendNotesAndReports" element={<NotesAllStudent />} />
         </Route>
         <Route path="*" element={<NoMatch />} />
       </Routes>
@@ -28,4 +32,3 @@ const App = () => {
 };
 
 export default App;
-
