@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Logo } from "../../components/assets/index";
 const Header = (props) => {
   return (
-    <header className=" px-4 lg:px-6 py-2.5 flex flex-wrap justify-between  items-center mx-auto max-w-screen-xl w-full">
+    <header className= "ml-64 mb-14 px-4 lg:px-6 py-2.5 flex flex-wrap justify-between  items-center mx-auto max-w-screen-xl w-full">
       <Link to="/" className="flex items-center">
         <img src={Logo} className="mr-3 h-6 sm:h-9" alt="E-School Logo" />
         <span className="self-center text-xl font-semibold whitespace-nowrap dark: text-blue-500">

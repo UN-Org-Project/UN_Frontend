@@ -107,40 +107,25 @@ const Dashboard = (props) => {
     }
   };
 
-  ////////////////////////////////////////
-  ///////paggination///////////////////////////////////////////////////////
+  /////////////////////////////
   ///////paggination////////
-
   const itemsPerPage = 3;
-
   const [currentPage, setCurrentPage] = useState(1);
-
   const [slicedData, setSlicedData] = useState(students.slice(0, itemsPerPage)); // Calculate the number of pages
-
   const totalPages = Math.ceil(students.length / itemsPerPage);
-
   let startIndex = 0;
-
-  let endIndex = itemsPerPage; // handle with onChange if pagenation
-
+  let endIndex = itemsPerPage; 
+  // handle with onChange if pagenation
   const HadlePagenation = (page) => {
-    console.log(page);
-
     setCurrentPage(page);
-
-    startIndex = (page - 1) * 3;
-
-    console.log(startIndex);
-
-    endIndex = startIndex + 3;
-
-    console.log(endIndex);
-
+    startIndex = (page - 1) * itemsPerPage;
+    endIndex = startIndex + itemsPerPage;
     setSlicedData(students.slice(startIndex, endIndex));
-  }; //////////////////////////
+  };
+  //////////////////////////
 
   return (
-    <div id="view" className="flex">
+    <div id="view" className="flex ml-80">
       <div className="flex flex-col flex-1 ml-1 gap-5">
         <div>
           <Title h2="Student Information" />

@@ -6,7 +6,7 @@ const SelectComp = (props) => {
     props.onChange(e.value);
   };
   return (
-    <div className="flex flex-col items-start gap-3">
+    <div className="flex flex-col items-start gap-3 mr-12">
       <label className="text-blue-500">{props.lable}</label>
       <Select
         onChange={onChangeHandler}

@@ -27,14 +27,14 @@ const InputMark = (props) => {
     props.onChangeMark(e);
   };
   return (
-    <Box
+    <div>
+      <Box
+      className="w-40"
       component="form"
       noValidate
       sx={{
         display: "grid",
-        gridTemplateColumns: { sm: "1fr 1fr" },
         gap: 2,
-        width: { md: "1fr" }
       }}>
       <ValidationTextField
         type="number"
@@ -47,6 +47,7 @@ const InputMark = (props) => {
         onChange={handleChange}
       />
     </Box>
+    </div>
   );
 };
 
