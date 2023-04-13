@@ -8,6 +8,7 @@ import {
 } from "../../components//assets/index";
 import Sidbar from "../../components/SideBar/Sidbar";
 import Btn from "../../components/SideBar/MenuBtn/Btn";
+import TeacherContent from "../../sections/Content/TeacherContent";
 
 import Header from "../../components/HeaderDash/Header";
 import NotificationBtn from "../../components/NotificationBtn/NotificationBtn";
@@ -62,13 +63,12 @@ const TeacherDb = () => {
             />
             <Btn path="ChattingTeacher" icon={AddmarkIcon} btnName="Chating" />
           </Sidbar>
-          <div className="flex flex-col flex-1 ml-1 gap-5">
-            <Header>
+          <TeacherContent >
+            <Header >
               <NotificationBtn />
             </Header>
-
-            <Outlet context={{ students: studentData }} />
-          </div>
+            <Outlet  context={{ students: studentData }} />
+          </TeacherContent>
         </>
       )}
     </div>
