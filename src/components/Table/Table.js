@@ -12,7 +12,7 @@ const Table = (props) => {
               <thead>
                 <tr className="">
                   <th className="px-5 py-3 border-b-2 border-gray-100 bg-blue-500 text-left text-xs font-semibold text-white uppercase tracking-wider ">
-                    Student
+                    {props.th1}
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-100 bg-blue-500 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     {props.th2}
@@ -37,7 +37,8 @@ const Table = (props) => {
                 <form onSubmit={props.onClick}>
                   <button
                     className="text-sm text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500  font-semibold py-4 px-5 rounded"
-                    type="submit">
+                    type="submit"
+                  >
                     Submit
                   </button>
                 </form>
