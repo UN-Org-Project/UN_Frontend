@@ -164,7 +164,7 @@ const AddMarks = () => {
       <div className="flex flex-col flex-1 ml-1 gap-5">
         <div>
           <div className="flex items-center justify-between">
-            <Title h2="Student Infromation" />
+            <Title h2="Student Add Marks " />
             {/* {!isLoading && <div className="spinner"> </div>} */}
             <ToastContainer />
 
@@ -192,11 +192,14 @@ const AddMarks = () => {
 
           {/* pass the changed value to table to handle the submit button */}
           {isLoading && <div className="spinner"> </div>}
-          {!isChanged && 
-          <div class="p-4 mb-4  w-fit text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
-            <span class="font-medium">Info !</span> Choose the Subject and type Exame please.
-          </div>
-          }
+          {!isChanged && (
+            <div
+              class="p-4 mb-4  w-fit text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+              role="alert">
+              <span class="font-medium">Info !</span> Choose the Subject and
+              type Exame please.
+            </div>
+          )}
           <Table
             th2="Contact"
             th3="Add Marks"

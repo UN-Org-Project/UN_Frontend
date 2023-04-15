@@ -61,13 +61,19 @@ const TeacherDb = () => {
               icon={AddmarkIcon}
               btnName="Notes & Reports"
             />
+            <Btn
+              path="StudentsInfo"
+              icon={AddmarkIcon}
+              btnName="Students Info"
+            />
+
             <Btn path="ChattingTeacher" icon={AddmarkIcon} btnName="Chating" />
           </Sidbar>
-          <TeacherContent >
-            <Header >
+          <TeacherContent>
+            <Header>
               <NotificationBtn />
             </Header>
-            <Outlet  context={{ students: studentData }} />
+            <Outlet context={{ students: studentData }} />
           </TeacherContent>
         </>
       )}
