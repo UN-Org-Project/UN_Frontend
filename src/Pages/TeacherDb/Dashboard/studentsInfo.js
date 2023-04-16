@@ -20,7 +20,11 @@ const StudentInfo = (props) => {
       <div className="flex flex-col flex-1 ml-1 gap-5">
         <div>
           <Title h2="Student Information" />
-          <Table th2="Gender" th3="Date Of Barth" StudentInfo={StudentInfo}>
+          <Table
+            th1="Student"
+            th2="Gender"
+            th3="Date Of Barth"
+            StudentInfo={StudentInfo}>
             {students.map((student) => (
               <DashboardRow
                 key={student._id}

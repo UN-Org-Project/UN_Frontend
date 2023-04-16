@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { ParentAvatar } from "../assets";
 
@@ -6,12 +6,14 @@ import "react-circular-progressbar/dist/styles.css";
 import Progress from "../CircularProgressBar/Progress";
 
 const ChildInfo = (props) => {
-  const percentage = 60;
+  useEffect(() => {
+    console.log(props.childrenInfo);
+  }, [props]);
+
   return (
     <div
       className=" w-60 bg-white transition cursor-pointer border border-gray-200 rounded-xl shadow hover:shadow-xl dark:bg-gray-800 dark:border-gray-700"
-      onClick={props.handleNavigat}
-    >
+      onClick={props.handleNavigat}>
       <div className="flex justify-end px-4 pt-4"></div>
       <div className="flex flex-col items-center pb-10">
         <img
@@ -20,22 +22,24 @@ const ChildInfo = (props) => {
           alt="Child image"
         />
         <h5 className="mb-1 text-xl font-medium text-blue-600 dark:text-white">
-          Bonnie Green
+          {props.childrenInfo.studentName}
         </h5>
         <div className=" flex flex-col gap-1">
           <div className="flex items-center gap-3">
             <span className="text-sm text-blue-600 dark:text-gray-400">
-              ID Number:
+              Gender:
             </span>
             <span className="text-sm text-blue-600 dark:text-gray-400">
-              12345
+              {props.childrenInfo.gender}
             </span>
           </div>
           <div className="flex items-center gap-3">
             <span className="text-sm text-blue-600 dark:text-gray-400">
               Class:
             </span>
-            <span className="text-sm text-blue-600 dark:text-gray-400">3A</span>
+            <span className="text-sm text-blue-600 dark:text-gray-400">
+              {props.childrenInfo.class}
+            </span>
           </div>
           <div className="flex items-center gap-3">
             <span className="text-sm text-blue-600 font-bold dark:text-gray-400">
@@ -53,7 +57,7 @@ const ChildInfo = (props) => {
         </div> */}
       </div>
       {/* Progress Bar  */}
-      <Progress percentage={percentage} />
+      <Progress percentage={+props.childrenInfo.studentLevelRate} />
     </div>
 
     // <div classNameName="flex flex-col items-center justify-center gap-2">

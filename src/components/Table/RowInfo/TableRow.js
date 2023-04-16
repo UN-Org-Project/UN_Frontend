@@ -368,7 +368,7 @@ export const ShowMark = (props) => {
         <div className="flex items-center">
           <div className="ml-3">
             <p className="text-blue-400 whitespace-no-wrap">
-              {props.name} Math
+              {props.subject.name}
             </p>
           </div>
         </div>
@@ -383,11 +383,11 @@ export const ShowMark = (props) => {
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm ">
         {/* when the user enter any marke change the value and send it to  */}
         <span className="bg-yellow-400 w-fit text-blue-gray-900 px-4 py-2 rounded-md">
-          70
+          {props.subject.mrk}
         </span>
       </td>
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
-        Notes Form teacher
+        {props.subject.note}
       </td>
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
         <Rating />
@@ -397,6 +397,7 @@ export const ShowMark = (props) => {
 };
 
 export const AbsenceDetailsRow = (props) => {
+  const absenceDate = props.absence.abcenceDate.split("T")[0];
   return (
     <tr>
       <td className="py-3 px-5 border-b border-blue-gray-50">
@@ -411,19 +412,19 @@ export const AbsenceDetailsRow = (props) => {
           className="relative inline-block align-baseline font-sans uppercase center whitespace-nowrap rounded-lg select-none bg-gradient-to-tr from-green-600 to-green-400 text-white py-0.5 px-2 text-[11px] font-medium"
           data-projection-id="15"
           style={{ opacity: 1 }}>
-          <div className="  mt-px">Present</div>
+          <div className="  mt-px">{props.absence.absecnceState}</div>
         </div>
       </td>
       <td className="py-3 px-5 border-b border-blue-gray-50">
-        <Rating />
+        <Rating rate={props.rating} />
       </td>
       <td className="py-3 px-5 border-b border-blue-gray-50">
-        <span>Notes For this day</span>
+        <span>{props.note.note}</span>
       </td>
 
       <td className="py-3 px-5 border-b border-blue-gray-50">
         <p className="block antialiased font-sans text-xs font-semibold text-blue-gray-600">
-          23/04/18
+          {absenceDate}
         </p>
       </td>
     </tr>

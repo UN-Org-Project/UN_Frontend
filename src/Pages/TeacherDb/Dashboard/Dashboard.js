@@ -143,6 +143,7 @@ const Dashboard = (props) => {
           {/* pass the changed value to table to handle the submit button */}
 
           <Table
+            th1="student"
             th2="Contact"
             th3="Absence"
             isChanged={isChanged}

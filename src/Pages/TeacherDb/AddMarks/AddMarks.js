@@ -201,6 +201,7 @@ const AddMarks = () => {
             </div>
           )}
           <Table
+            th1="Student"
             th2="Contact"
             th3="Add Marks"
             isChanged={isChanged}

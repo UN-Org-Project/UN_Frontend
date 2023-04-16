@@ -43,6 +43,9 @@ const RatingComp = (props) => {
         }
       }
     }
+    if (props.rate) {
+      setValue(props.rate);
+    }
   }, [props]);
 
   return (
