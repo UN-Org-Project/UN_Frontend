@@ -1,0 +1,19 @@
+.container-a {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: 0.3fr 1.7fr;
+  grid-template-rows: 0.1fr 1.9fr;
+  gap: 0px 15px;
+  grid-template-areas:
+    "header header"
+    "dashboard content";
+}
+.dashboard {
+  grid-area: dashboard;
+}
+.header {
+  grid-area: header;
+}
+.content {
+  grid-area: content;
+}

@@ -24,7 +24,7 @@ const TeacherDb = () => {
   const [teacherData, setTeachertData] = useState("");
   const [studentData, setStudentData] = useState([]);
 
-  const [isLoading, setIsLoading] = useState(true); // حالة ثانوية للتحقق من ما إذا كانت البيانات تحمل
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     navigate("/teacher/Dashboard");
     async function fetchTeacherData() {
@@ -38,7 +38,7 @@ const TeacherDb = () => {
         setStudentData(data.allStudents);
         setTeachertData(data.name);
         console.log(studentData);
-        setIsLoading(false); // قم بتحديث الحالة إلى false بمجرد تحميل البيانات
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -56,12 +56,24 @@ const TeacherDb = () => {
             dashbordUser="Teacher Dashboard">
             <Btn path="Dashboard" icon={DashboardIcon} btnName="Dashboard" />
             <Btn path="Addmarks" icon={AddmarkIcon} btnName="Add Marks" />
+            <Btn
+              path="SendNotesAndReports"
+              icon={AddmarkIcon}
+              btnName="Notes & Reports"
+            />
+            <Btn
+              path="StudentsInfo"
+              icon={AddmarkIcon}
+              btnName="Students Info"
+            />
+
+            <Btn path="ChattingTeacher" icon={AddmarkIcon} btnName="Chating" />
           </Sidbar>
-          <TeacherContent >
-            <Header >
+          <TeacherContent>
+            <Header>
               <NotificationBtn />
             </Header>
-            <Outlet  context={{ students: studentData }} />
+            <Outlet context={{ students: studentData }} />
           </TeacherContent>
         </>
       )}

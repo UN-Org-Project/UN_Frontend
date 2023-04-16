@@ -37,6 +37,7 @@ const InputMark = (props) => {
         gap: 2,
       }}>
       <ValidationTextField
+        onBlur={props.onChangeRate}
         type="number"
         label="Enter Mark"
         required

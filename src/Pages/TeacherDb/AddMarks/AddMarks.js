@@ -19,6 +19,12 @@ const AddMarks = () => {
   const [subject, setSubject] = useState({});
   const [exame, setExame] = useState("");
   const [level, setLevel] = useState("");
+  const [RangeSubject, setRangeSubject] = useState(0);
+  const [numberOfStudent, setNumberOfStudent] = useState(students.length);
+  const [convertCart, setConvertCart] = useState(false);
+  useEffect(() => {
+    setConvertCart(true);
+  }, []);
 
   /////////////////////Handling Change Data//////////////////////////
   const handleLevelChange = (id, value) => {
@@ -81,6 +87,17 @@ const AddMarks = () => {
 
       return updatedStudent;
     });
+    const range = studentsMark.map((student) => student.marks);
+    const totalMarks = range.reduce(
+      (accumulator, currentValue) => +accumulator + +currentValue,
+      0
+    );
+    const average = totalMarks / range.length;
+    setRangeSubject(average);
+
+    console.log(totalMarks);
+    console.log(range);
+
     //////////////////// send Data to Back End/////////////////////////////////////////////
     try {
       const response = await axios.post("http://localhost:8000/addtypeExam", {
@@ -147,7 +164,7 @@ const AddMarks = () => {
       <div className="flex flex-col flex-1 ml-1 gap-5">
         <div>
           <div className="flex items-center justify-between">
-            <Title h2="Student Infromation" />
+            <Title h2="Student Add Marks " />
             {/* {!isLoading && <div className="spinner"> </div>} */}
             <ToastContainer />
 
@@ -175,12 +192,16 @@ const AddMarks = () => {
 
           {/* pass the changed value to table to handle the submit button */}
           {isLoading && <div className="spinner"> </div>}
-          {!isChanged && 
-          <div class="p-4 mb-4  w-fit text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
-            <span class="font-medium">Info !</span> Choose the Subject and type Exame please.
-          </div>
-          }
+          {!isChanged && (
+            <div
+              class="p-4 mb-4  w-fit text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+              role="alert">
+              <span class="font-medium">Info !</span> Choose the Subject and
+              type Exame please.
+            </div>
+          )}
           <Table
+            th1="Student"
             th2="Contact"
             th3="Add Marks"
             isChanged={isChanged}
@@ -219,7 +240,11 @@ const AddMarks = () => {
 
           <br />
 
-          <StatisCard />
+          <StatisCard
+            absenceNumber={RangeSubject}
+            presentNumber={numberOfStudent}
+            convertCart={convertCart}
+          />
         </div>
       </div>
     </div>

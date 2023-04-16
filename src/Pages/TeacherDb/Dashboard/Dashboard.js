@@ -24,6 +24,7 @@ const Dashboard = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [numberOfAbsence, setNumberofAbsence] = useState(0);
   const [numberOfPresent, setNumberofPresent] = useState(students.length);
+  const [StudentInfo, setStudentInfo] = useState(false);
 
   //////////////////////////notify fore Response//////////////////
   const notify = (message, type) => {
@@ -114,7 +115,7 @@ const Dashboard = (props) => {
   const [slicedData, setSlicedData] = useState(students.slice(0, itemsPerPage)); // Calculate the number of pages
   const totalPages = Math.ceil(students.length / itemsPerPage);
   let startIndex = 0;
-  let endIndex = itemsPerPage; 
+  let endIndex = itemsPerPage;
   // handle with onChange if pagenation
   const HadlePagenation = (page) => {
     setCurrentPage(page);
@@ -128,7 +129,7 @@ const Dashboard = (props) => {
     <div id="view" className="flex ml-80">
       <div className="flex flex-col flex-1 ml-1 gap-5">
         <div>
-          <Title h2="Student Information" />
+          <Title h2="Student Absence Note And Level" />
           <ToastContainer />
           {/* this Card to show the total student and the absence */}
 
@@ -142,6 +143,7 @@ const Dashboard = (props) => {
           {/* pass the changed value to table to handle the submit button */}
 
           <Table
+            th1="student"
             th2="Contact"
             th3="Absence"
             isChanged={isChanged}
@@ -162,6 +164,7 @@ const Dashboard = (props) => {
                 onLevelChange={handleLevelChange}
                 parentid={student.parent_id}
                 isChanged={isChanged}
+                StudentInfo={StudentInfo}
               />
             ))}
           </Table>
