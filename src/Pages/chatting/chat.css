@@ -10,35 +10,48 @@
 .created input {
   padding: 5px;
   margin: 10px;
+  margin-left: 15px;
   margin-left: 0;
   background-color: rgb(238, 227, 227);
   color: rgb(19, 18, 18);
-  width: 270px;
+  width: 210px;
   border-radius: 3px;
 }
+
 .created button {
   border: 1px solid rgb(217, 217, 230);
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px;
   color: rgb(224, 224, 235);
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 15px;
 }
 
 .created button:hover {
   background-color: rgb(76, 76, 228);
 }
+
 .ce-chat-feed-container {
   overflow: hidden auto !important;
   background-color: #680e0e !important;
 }
+
 .ce-chats-container,
 .ce-settings {
   background-color: #3498db !important;
   overflow: hidden auto !important;
 }
+
+.created {
+  margin-left: 10px;
+}
+
 .ce-chat-list {
   overflow: hidden auto !important;
+
+}
+
+.ce-chats-container {
+  border-radius: 0 !important;
 }
 
 .ce-chat-card-loading {
