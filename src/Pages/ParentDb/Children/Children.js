@@ -18,7 +18,7 @@ const Children = () => {
   };
   return (
     <div id="view" className="flex ml-80">
-      <div className="flex flex-col flex-1 ml-1 gap-5">
+      <div className="flex flex-col flex-1  gap-5">
         <div>
           <Title h2="Your Children" />
           {children.map((child) => (

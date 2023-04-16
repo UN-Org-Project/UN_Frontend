@@ -26,6 +26,8 @@ export { default as ParentLogin } from "./images/parents-img.png";
 export { default as AdminAvatar } from "./images/Adminavatar.png";
 export { default as TeacherAvatar } from "./images/Teacheravatar.png";
 export { default as ParentAvatar } from "./images/Parentavatar.png";
+export { default as notesandReports } from "./images/notesandReports.png"
+export { default as chattingImage } from "./images/chattingImage.gif"
 
 // For Image In The Section Tiltle In Dashboard
 export { default as SectionImg } from "./images/User-60.png";

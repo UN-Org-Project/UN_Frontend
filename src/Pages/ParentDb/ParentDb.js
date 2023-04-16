@@ -8,6 +8,7 @@ import Header from "../../components/HeaderDash/Header";
 import NotificationBtn from "../../components/NotificationBtn/NotificationBtn";
 import "./PreantDb.css";
 import axios from "axios";
+import TeacherContent from "../../sections/Content/TeacherContent";
 
 const ParentDb = () => {
   const id = localStorage.getItem("userData");
@@ -47,12 +48,14 @@ const ParentDb = () => {
             dashbordUser="Parent Dashboard">
             <Btn path="children" icon={DashboardIcon} btnName="Your Children" />
           </Sidbar>
-          <div className=" flex flex-col flex-1 ml-1 gap-5 w-full">
+          {/* <div className="flex flex-col flex-1  gap-5 w-full"> */}
             <Header>
               <NotificationBtn />
             </Header>
-            <Outlet context={{ childe: childData }} />
-          </div>
+            <TeacherContent >
+              <Outlet context={{ childe: childData }} />
+            </TeacherContent>
+          {/* </div> */}
         </>
       )}
     </div>

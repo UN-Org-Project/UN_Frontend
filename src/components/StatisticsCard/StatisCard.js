@@ -2,7 +2,7 @@ import React from "react";
 
 const StatisCard = (props) => {
   return (
-    <div className="flex flex-wrap flex-row justify-center mt-5">
+    <div className="flex flex-wrap flex-row justify-center ml-10 mt-5">
       <div className="flex-shrink -ml-64 px-4  mb-6">
         <div className="w-96  text-indigo-100 bg-indigo-500 rounded-lg shadow-lg h-full p-6 relative overflow-hidden">
           <div className="absolute ltr:-right-8 rtl:-left-8 -bottom-8 text-white">

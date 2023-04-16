@@ -123,7 +123,8 @@ const ChildDetails = (props) => {
                 )}
               </div>
 
-              <ParentCards>
+            <div >
+              <ParentCards >
                 <Card
                   cardName="Average"
                   statistics={child.studentLevelRate + " %"}
@@ -135,6 +136,7 @@ const ChildDetails = (props) => {
                   isGreen={true}
                 />
               </ParentCards>
+              </div>
             </div>
           </div>
         </div>
