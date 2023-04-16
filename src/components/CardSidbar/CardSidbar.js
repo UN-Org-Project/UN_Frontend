@@ -8,7 +8,9 @@ const CardSidbar = (props) => {
       {/* Header of sidbar */}
       <div className="w-full max-w-md like-inside p-1 mb-10 bg-main-blue  rounded-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700">
         <div className="flow-root">
-          <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
+          <ul
+            role="list"
+            className="divide-y divide-gray-200 dark:divide-gray-700">
             <li className="py-3 sm:py-4">
               <div className="flex items-center space-x-4">
                 <div className="flex-shrink-0 photoimageoo">

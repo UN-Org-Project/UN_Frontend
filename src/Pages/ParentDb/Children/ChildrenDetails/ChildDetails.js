@@ -19,45 +19,48 @@ import { useOutletContext } from "react-router-dom";
 
 const ChildDetails = (props) => {
   const { id } = useParams();
-  console.log("Child ID:", id);
   const childrenData = useOutletContext();
+  const [isChanged, setIsChanged] = useState(false);
+  const [subjects, setSubjects] = useState([]);
+  const [notification, setnotification] = useState(
+    "Choose the typeExame please to Show marks "
+  );
+
   const children = childrenData.childe.filter((child) => child._id === id);
   const child = children[0];
 
   const rating = child.dalyRate;
   const absence = child.absence;
   const notes = child.notes;
-  let Exame;
-  let subjects = [];
 
   const absenceNumber = absence.filter(
     (absence) => absence.absecnceState === "absence"
   ).length;
 
-  const [isChanged, setIsChanged] = useState(false);
-
   const handleExameChange = (value) => {
-    Exame = child.typeExam[value].subjects;
+    let Exame = child.typeExam[value].subjects;
     console.log(Exame);
     const numProperties = Object.keys(Exame).length;
+    let subject = [];
     if (numProperties === 3) {
       const math = Exame.math;
       math.name = "Math";
-      subjects.push(math);
+      subject.push(math);
       const English = Exame.english;
-      math.name = "English";
-      subjects.push(English);
+      English.name = "English";
+      subject.push(English);
       const Arabic = Exame.arbic;
-      math.name = "Arabic";
-      subjects.push(Arabic);
+      Arabic.name = "Arbic";
+      subject.push(Arabic);
+      setSubjects(subject);
 
       console.log(subjects);
 
       setIsChanged(true);
+    } else {
+      setIsChanged(false);
+      setnotification("Exam Marks not yet uploded !");
     }
-    console.log(numProperties);
-    setIsChanged(true);
-    console.log(value);
   };
   return (
     <>
@@ -91,7 +94,7 @@ const ChildDetails = (props) => {
               <div className="flex flex-col justify-center items-center">
                 <SelectComp
                   onChange={handleExameChange}
-                  lable="Select Exame"
+                  lable="Select Exam"
                   options={[
                     { value: "first", label: "First" },
                     { value: "second", label: "Second" },
@@ -101,15 +104,21 @@ const ChildDetails = (props) => {
                 <Table th1="Subject" th2="Contact" th3="Mark">
                   {isChanged &&
                     subjects.map((subject) => (
-                      <ShowMark key={subject.name} subject={subject} />
+                      <ShowMark
+                        key={subject.name}
+                        id={subject.name}
+                        name={subject.name}
+                        mark={subject.mark}
+                        note={subject.note}
+                        star={subject.star}
+                      />
                     ))}
                 </Table>
                 {!isChanged && (
                   <div
                     className="p-4 mb-4  w-fit text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
                     role="alert">
-                    <span className="font-medium">Info !</span> Choose the type
-                    Exame please to Show marks .
+                    <span className="font-medium">Info !</span> {notification}
                   </div>
                 )}
               </div>

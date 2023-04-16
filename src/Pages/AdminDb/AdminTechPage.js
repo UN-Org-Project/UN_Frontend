@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Sidbar } from "../../sections";
 import AdminContent from "../../sections/Content/AdminContent";
 import { CardSidbar } from "../../components";
@@ -27,7 +27,20 @@ const AdminTech = () => {
   const [classValue, setClassValue] = useState("class1");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [TeacherAddress, setTeacherAddress] = useState("");
-
+  let adminName;
+  const id = localStorage.getItem("userData");
+  const data = useEffect(() => {
+    async function fetch() {
+      const response = await axios.get(
+        "http://localhost:8000/getAdmininfo/" + id
+      );
+      //  console.log(response.data);
+      //    setAdminData(response.data.adminData);
+      adminName = response.data.adminName;
+      console.log(adminName);
+    }
+    fetch();
+  }, []);
   const handleSubmit = async (e) => {
     setIsLoading(true);
     e.preventDefault();
@@ -76,7 +89,7 @@ const AdminTech = () => {
   return (
     <>
       <Sidbar links={links}>
-        <CardSidbar name="Muath Hariri" role="Admin Dashboard" />
+        <CardSidbar name="muath Mhawich" role="Admin Dashboard" />
       </Sidbar>
 
       <AdminContent titleTable="TEACHER INFORMATION FORM">

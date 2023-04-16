@@ -33,22 +33,24 @@ const DashboardRow = (props) => {
   }, [props]);
 
   React.useEffect(() => {
-    const range = +props.range;
-    console.log(range);
-    if (range >= 90) {
-      setcolor(" bg-green-700");
-      console.log(color);
-    } else if (range < 90 && range >= 80) {
-      setcolor(" bg-blue-700");
-      console.log(color);
-    } else if (range < 80 && range >= 60) {
-      setcolor(" bg-yellow-700");
-      console.log(color);
-    } else {
-      setcolor(" bg-red-700");
+    if (props.range) {
+      const range = +props.range;
+      console.log(range);
+      if (range >= 90) {
+        setcolor(" bg-green-700");
+        console.log(color);
+      } else if (range < 90 && range >= 80) {
+        setcolor(" bg-blue-700");
+        console.log(color);
+      } else if (range < 80 && range >= 60) {
+        setcolor(" bg-yellow-700");
+        console.log(color);
+      } else {
+        setcolor(" bg-red-700");
+        console.log(color);
+      }
       console.log(color);
     }
-    console.log(color);
   }, [props.range, setcolor]);
 
   const handleLevelInputChange = (e, value) => {
@@ -362,14 +364,25 @@ export const AddMarkRow = (props) => {
 
 // this row for the marks table in parent page that includes the subject and the mark and the notes and the rating
 export const ShowMark = (props) => {
+  const [color, setcolor] = useState("");
+  React.useEffect(() => {
+    const range = +props.mark;
+    if (range >= 90) {
+      setcolor(" bg-green-700");
+    } else if (range < 90 && range >= 80) {
+      setcolor(" bg-blue-700");
+    } else if (range < 80 && range >= 60) {
+      setcolor(" bg-yellow-700");
+    } else {
+      setcolor(" bg-red-700");
+    }
+  }, [props.mark]);
   return (
-    <tr key={props.id}>
+    <tr key={props.name}>
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
         <div className="flex items-center">
           <div className="ml-3">
-            <p className="text-blue-400 whitespace-no-wrap">
-              {props.subject.name}
-            </p>
+            <p className="text-blue-400 whitespace-no-wrap">{props.name}</p>
           </div>
         </div>
       </td>
@@ -382,15 +395,16 @@ export const ShowMark = (props) => {
       </td>
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm ">
         {/* when the user enter any marke change the value and send it to  */}
-        <span className="bg-yellow-400 w-fit text-blue-gray-900 px-4 py-2 rounded-md">
-          {props.subject.mrk}
+        <span
+          className={`${color} w-fit text-blue-gray-900 px-4 py-2 rounded-md`}>
+          {props.mark}
         </span>
       </td>
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
-        {props.subject.note}
+        {props.note}
       </td>
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
-        <Rating />
+        <Rating star={props.star} />
       </td>
     </tr>
   );
