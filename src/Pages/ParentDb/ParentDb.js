@@ -49,12 +49,12 @@ const ParentDb = () => {
             <Btn path="children" icon={DashboardIcon} btnName="Your Children" />
           </Sidbar>
           {/* <div className="flex flex-col flex-1  gap-5 w-full"> */}
-            <Header>
-              <NotificationBtn />
-            </Header>
-            <TeacherContent >
-              <Outlet context={{ childe: childData }} />
-            </TeacherContent>
+          <Header>
+            <NotificationBtn />
+          </Header>
+          <TeacherContent>
+            <Outlet context={{ childe: childData }} />
+          </TeacherContent>
           {/* </div> */}
         </>
       )}

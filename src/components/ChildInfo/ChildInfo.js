@@ -46,7 +46,7 @@ const ChildInfo = (props) => {
               Teacher Name:
             </span>
             <span className="text-sm text-blue-600 font-bold dark:text-gray-400">
-              Muath
+              {props.childrenInfo.teacherName}
             </span>
           </div>
         </div>
@@ -57,7 +57,7 @@ const ChildInfo = (props) => {
         </div> */}
       </div>
       {/* Progress Bar  */}
-      <Progress percentage={+props.childrenInfo.studentLevelRate} />
+      <Progress percentage={+props.childrenInfo.studentLevelRate || 0} />
     </div>
 
     // <div classNameName="flex flex-col items-center justify-center gap-2">

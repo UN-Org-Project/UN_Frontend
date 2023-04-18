@@ -32,7 +32,7 @@
 
 .ce-chat-feed-container {
   overflow: hidden auto !important;
-  background-color: #680e0e !important;
+  background-color: #ebe5e5 !important;
 }
 
 .ce-chats-container,
@@ -47,7 +47,6 @@
 
 .ce-chat-list {
   overflow: hidden auto !important;
-
 }
 
 .ce-chats-container {

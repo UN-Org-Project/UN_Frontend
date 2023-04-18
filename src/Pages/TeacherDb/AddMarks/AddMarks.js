@@ -80,7 +80,7 @@ const AddMarks = () => {
         note: note[student._id] || "No note heve been add !",
         level: level[student._id] || 2,
         subject: subject,
-        exame: exame
+        exame: exame || "first"
       };
 
       studentsMark.push(updatedStudent);
@@ -169,6 +169,7 @@ const AddMarks = () => {
             <ToastContainer />
 
             <SelectComp
+              isChanged={isChanged}
               onChange={handleSubjectChange}
               lable="Select Subject"
               options={[
@@ -180,6 +181,7 @@ const AddMarks = () => {
               ]}
             />
             <SelectComp
+              isChanged={isChanged}
               onChange={handleExameChange}
               lable="Select Exame"
               options={[

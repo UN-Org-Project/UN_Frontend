@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 
 const SelectComp = (props) => {
   const onChangeHandler = (e) => {
     props.onChange(e.value);
   };
+
   return (
     <div className="flex flex-col items-start gap-3 mr-12">
       <label className="text-blue-500">{props.lable}</label>

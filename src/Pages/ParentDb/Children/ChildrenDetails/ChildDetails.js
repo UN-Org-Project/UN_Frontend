@@ -30,6 +30,7 @@ const ChildDetails = (props) => {
   const child = children[0];
 
   const rating = child.dalyRate;
+  const star = rating[rating.length - 1] ? rating[rating.length - 1].star : 0;
   const absence = child.absence;
   const notes = child.notes;
 
@@ -38,28 +39,39 @@ const ChildDetails = (props) => {
   ).length;
 
   const handleExameChange = (value) => {
-    let Exame = child.typeExam[value].subjects;
-    console.log(Exame);
-    const numProperties = Object.keys(Exame).length;
-    let subject = [];
-    if (numProperties === 3) {
-      const math = Exame.math;
-      math.name = "Math";
-      subject.push(math);
-      const English = Exame.english;
-      English.name = "English";
-      subject.push(English);
-      const Arabic = Exame.arbic;
-      Arabic.name = "Arbic";
-      subject.push(Arabic);
-      setSubjects(subject);
-
-      console.log(subjects);
-
-      setIsChanged(true);
-    } else {
+    if (!Object.keys(child.typeExam).includes(value)) {
       setIsChanged(false);
       setnotification("Exam Marks not yet uploded !");
+    } else {
+      let Exame = child.typeExam[value].subjects;
+      console.log(Exame);
+      const numProperties = Object.keys(Exame).length;
+      let subject = [];
+      if (numProperties === 5) {
+        const math = Exame.math;
+        math.name = "Math";
+        subject.push(math);
+        const English = Exame.english;
+        English.name = "English";
+        subject.push(English);
+        const Arabic = Exame.arbic;
+        Arabic.name = "Arbic";
+        subject.push(Arabic);
+        const history = Exame.history;
+        history.name = "History";
+        subject.push(history);
+        const science = Exame.science;
+        science.name = "Science";
+        subject.push(science);
+        setSubjects(subject);
+
+        console.log(subjects);
+
+        setIsChanged(true);
+      } else {
+        setIsChanged(false);
+        setnotification("Exam Marks not yet uploded !");
+      }
     }
   };
   return (
@@ -79,9 +91,9 @@ const ChildDetails = (props) => {
 
                 <AbsenceTable>
                   <AbsenceDetailsRow
-                    absence={absence[absence.length - 1]}
-                    rating={rating[rating.length - 1].star}
-                    note={notes[notes.length - 1]}
+                    absence={absence[absence.length - 1] || "not found yet"}
+                    rating={star}
+                    note={notes[notes.length - 1] || "not found yet"}
                     teaherId={child.teacher_id}
                   />
                 </AbsenceTable>
@@ -123,19 +135,19 @@ const ChildDetails = (props) => {
                 )}
               </div>
 
-            <div >
-              <ParentCards >
-                <Card
-                  cardName="Average"
-                  statistics={child.studentLevelRate + " %"}
-                  isGreen={false}
-                />
-                <Card
-                  cardName="Absence"
-                  statistics={absenceNumber}
-                  isGreen={true}
-                />
-              </ParentCards>
+              <div>
+                <ParentCards>
+                  <Card
+                    cardName="Average"
+                    statistics={child.studentLevelRate + " %"}
+                    isGreen={false}
+                  />
+                  <Card
+                    cardName="Absence"
+                    statistics={absenceNumber}
+                    isGreen={true}
+                  />
+                </ParentCards>
               </div>
             </div>
           </div>
