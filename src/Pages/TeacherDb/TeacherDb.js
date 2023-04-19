@@ -4,8 +4,10 @@ import "./TeacherDb.css";
 import {
   AddmarkIcon,
   TeacherAvatar,
-  DashboardIcon
-} from "../../components//assets/index";
+  DashboardIcon,
+  notesandReports,
+  chattingImage,
+} from "../../components/assets/index";
 import Sidbar from "../../components/SideBar/Sidbar";
 import Btn from "../../components/SideBar/MenuBtn/Btn";
 import TeacherContent from "../../sections/Content/TeacherContent";
@@ -46,10 +48,11 @@ const TeacherDb = () => {
     fetchTeacherData();
   }, []);
   return (
-    <div id="view" className="flex">
+    <div id="view">
       {isLoading && <div className="spinner"> </div>}
       {!isLoading && (
         <>
+        <div  className="flex">
           <Sidbar
             UserImg={TeacherAvatar}
             name={teacherData}
@@ -58,15 +61,21 @@ const TeacherDb = () => {
             <Btn path="Addmarks" icon={AddmarkIcon} btnName="Add Marks" />
             <Btn
               path="SendNotesAndReports"
-              icon={AddmarkIcon}
+              icon={notesandReports}
               btnName="Notes & Reports"
             />
-            <Btn path="ChattingTeacher" icon={AddmarkIcon} btnName="Chating" />
+            <Btn
+                path="StudentsInfo"
+                icon={AddmarkIcon}
+                btnName="Students Info"
+              />
+            <Btn path="ChattingTeacher" icon={chattingImage} btnName="Chating" />
           </Sidbar>
-          <TeacherContent >
-            <Header >
+          </div>
+          <Header >
               <NotificationBtn />
             </Header>
+          <TeacherContent >
             <Outlet  context={{ students: studentData }} />
           </TeacherContent>
         </>
@@ -76,3 +85,5 @@ const TeacherDb = () => {
 };
 
 export default TeacherDb;
+
+

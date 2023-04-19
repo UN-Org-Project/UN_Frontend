@@ -21,10 +21,10 @@ const Table = (props) => {
                     {props.th3}
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-100 bg-blue-500 text-left text-xs font-semibold text-white uppercase tracking-wider">
-                    Notes Board
+                    {props.StudentInfo ? <>absence</> : <>Notes Board</>}
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-100 bg-blue-500 text-left text-xs font-semibold text-white uppercase tracking-wider">
-                    rating
+                    {props.StudentInfo ? <>Level</> : <>Rating</>}
                   </th>
                 </tr>
               </thead>

@@ -43,6 +43,12 @@ const RatingComp = (props) => {
         }
       }
     }
+    if (props.rate) {
+      setValue(props.rate || 0);
+    }
+    if (props.star) {
+      setValue(props.star || 0);
+    }
   }, [props]);
 
   return (

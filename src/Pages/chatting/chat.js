@@ -108,8 +108,9 @@ const DirectChatPage = () => {
   }
 
   return (
-    <ChatEngine
-      height="100vh"
+    <div className="container mx-auto -mt-16 pl-6 pt-3  -mr-4 ">
+      <ChatEngine
+      height="92vh"
       userName="Ali"
       userSecret="mmm"
       projectID="
@@ -119,6 +120,7 @@ const DirectChatPage = () => {
         1;
       }}
     />
+    </div>
   );
 };
 
