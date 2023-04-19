@@ -14,7 +14,6 @@
   border-radius: calc(var(--border-radius-primary) / 4);
   width: 70%;
   margin-bottom: calc(var(--margin-primary) / 2);
-  margin-left: 40px;
 }
 
 .most-popular-item-titel {

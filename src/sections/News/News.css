@@ -1,11 +1,11 @@
 .about-us-section {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .image-div {
-  flex: 1 40%;
+  flex: 40%;
 }
 
 .image-div img {
@@ -13,15 +13,14 @@
   margin-top: var(--margin-primary);
 }
 
-
 .text-div {
   flex: 1 60%;
   padding: 0 20px;
-  margin-top: 170px;
+  /* margin-top: 170px; */
 }
 
 .text-div h3 {
-  font-size: 24px;
+  /* font-size: 24px; */
   margin-bottom: 10px;
 }
 
@@ -34,7 +33,7 @@ h4 {
   padding: 15px;
 }
 
-.Services {
+/* .Services {
   width: 100%;
   text-align: center;
   border-bottom: 1px solid #000;
@@ -47,8 +46,8 @@ h4 {
   font-weight: 600;
   background: #fff;
   padding: 0 10px;
-}
+} */
 
-.about-div {
+/* .about-div {
   margin-top: -200px;
-}
+} */

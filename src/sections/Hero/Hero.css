@@ -4,8 +4,6 @@
   /* background-color: var(--color-dark); */
   color: var(--color-light);
   border-radius: calc(var(--border-radius-primary) / 2);
-  padding: calc(var(--padding-primary) / 2);
-  margin-bottom: 6rem;
 }
 
 .hero-text {

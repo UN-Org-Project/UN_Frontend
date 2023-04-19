@@ -1,6 +1,6 @@
-.rootFooter {
+/* .rootFooter {
   background-color: #025f80;
-}
+} */
 
 .main-div-footer {
   display: flex;
@@ -32,7 +32,6 @@ div.vert-sep {
   width: 50%;
   font-size: 30px;
   padding: var(--padding-primary);
-
 }
 
 .span-2 {
@@ -57,7 +56,7 @@ footer p {
 }
 
 footer p a {
-  translate: all .3s;
+  translate: all 0.3s;
   color: rgb(91 198 88);
 }
 
