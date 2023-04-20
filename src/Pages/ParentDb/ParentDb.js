@@ -14,6 +14,7 @@ import NotificationBtn from "../../components/NotificationBtn/NotificationBtn";
 import "./PreantDb.css";
 import axios from "axios";
 import TeacherContent from "../../sections/Content/TeacherContent";
+import ParentContent from "../../sections/Content/ParentContent";
 
 const ParentDb = () => {
   const id = localStorage.getItem("userData");
@@ -97,11 +98,11 @@ const ParentDb = () => {
           <Header>
             <NotificationBtn />
           </Header>
-          <TeacherContent>
+          <ParentContent>
             <Outlet
               context={{ childe: childData, enterFunc: handleEnterChild }}
             />
-          </TeacherContent>
+          </ParentContent>
           {/* </div> */}
         </>
       )}

@@ -10,7 +10,7 @@ const MessagesLists = ({ Data, deleteOneItem }) => {
   };
   return (
     <>
-      <div class=" w-full">
+      <div className=" w-full">
         <Accordion className="mt-2  " alwaysOpen={true}>
           {localStorage.getItem("items") != null ? (
             Data.map((item, index) => {

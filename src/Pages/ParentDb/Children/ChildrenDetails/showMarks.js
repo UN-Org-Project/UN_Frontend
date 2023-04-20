@@ -51,7 +51,7 @@ const ShowMarks = (props) => {
     }
   };
   return (
-    <div id="view" className="flex ml-80">
+    <div id="view" className="flex ">
       <div className="flex flex-col flex-1 ml-1 gap-5">
         <div className="flex justify-between">
           <div className="flex flex-col justify-center items-center">

@@ -82,6 +82,7 @@ import "./chat.css";
 import { useParams } from "react-router-dom";
 import React, { useState } from "react";
 import { ChatEngine, getOrCreateChat } from "react-chat-engine";
+import TeacherContent from "../../sections/Content/TeacherContent";
 
 const DirectChatPage = (props) => {
   const [username, setUsername] = useState("muath");
@@ -118,7 +119,7 @@ const DirectChatPage = (props) => {
   }
 
   return (
-    <div className="container mx-auto -mt-16 pl-6 pt-3  -mr-4 ">
+    <div className="container mx-auto -mt-14  ">
       <ChatEngine
         height="92vh"
         userName="Ali"

@@ -161,7 +161,7 @@ const AddMarks = () => {
   }; //////////////////////////
 
   return (
-    <div id="view" className="flex ml-72">
+    <div id="view" className="flex ">
       <div className="flex flex-col flex-1 ml-1 gap-5">
         <div>
           <div className="flex items-center justify-between">
@@ -197,9 +197,9 @@ const AddMarks = () => {
           {isLoading && <div className="spinner"> </div>}
           {!isChanged && (
             <div
-              class="p-4 mb-4  w-fit text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+              className="p-4 mb-4  w-fit text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
               role="alert">
-              <span class="font-medium">Info !</span> Choose the Subject and
+              <span className="font-medium">Info !</span> Choose the Subject and
               type Exame please.
             </div>
           )}

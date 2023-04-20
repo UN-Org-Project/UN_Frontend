@@ -23,10 +23,11 @@ const Children = () => {
     enterChild(true, id);
   };
   return (
-    <div id="view" className="flex ml-80">
+    <div id="view" className="flex ">
       <div className="flex flex-col flex-1  gap-5">
         <div>
           <Title h2="Your Children" />
+        <div className="flex flex-wrap gap-5">
           {children.map((child) => (
             <ChildInfo
               key={child._id}
@@ -36,6 +37,7 @@ const Children = () => {
               handleNavigat={() => handleNavigat(child._id)}
             />
           ))}
+        </div>
         </div>
       </div>
     </div>
