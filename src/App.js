@@ -13,6 +13,8 @@ import ChildDetails from "./Pages/ParentDb/Children/ChildrenDetails/ChildDetails
 import Children from "./Pages/ParentDb/Children/Children";
 import ShowALlNotes from "./Pages/ParentDb/Children/ChildrenDetails/ShowALlNotes";
 import Note from "./Pages/ParentDb/Children/ChildrenDetails/Note";
+import ShowMarks from "./Pages/ParentDb/Children/ChildrenDetails/showMarks";
+import Events from "./Pages/ParentDb/Children/ChildrenDetails/Events";
 
 const App = () => {
   return (
@@ -26,7 +28,7 @@ const App = () => {
         <Route path="/teacher" element={<Teacher />}>
           <Route path="Dashboard" element={<Dashboard />} />
           <Route path="Addmarks" element={<AddMarks />} />
-          <Route path="ChattingTeacher" element={<DirectChatPage />} />
+          <Route path="ChattingTeacher/:id" element={<DirectChatPage />} />
           <Route path="SendNotesAndReports" element={<NotesAllStudent />} />
           <Route path="StudentsInfo" element={<StudentInfo />} />
         </Route>
@@ -34,8 +36,15 @@ const App = () => {
         <Route path="/parent" element={<Parent />}>
           <Route path="children" element={<Children />} />
           <Route path="childDetails/:id" element={<ChildDetails />} />
-          <Route path="/parent/showNotes" element={<ShowALlNotes />} />
-          <Route path="/parent/showNotes/Note/:id" element={<Note />} />
+          <Route path="childDetails/:id" element={<ChildDetails />} />
+
+          <Route path="Showmarks/:id" element={<ShowMarks />} />
+          <Route path="Events/:id" element={<Events />} />
+          <Route path="parentChating/:id" element={<DirectChatPage />} />
+
+          <Route path="showNotes" element={<ShowALlNotes />} />
+          <Route path="showNotes/Note/:id" element={<Note />} />
+
         </Route>
         <Route path="*" element={<NoMatch />} />
       </Routes>

@@ -4,6 +4,8 @@ import Avatar from "@mui/material/Avatar";
 import RatingComp from "../../Rating/Rating";
 import InputMark from "../../InputMarkComponent/InputMark";
 import { ParentAvatar } from "../../../components/assets";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 //import DirectChatPage from "../../../Pages/chatting/chat";
 
 const DashboardRow = (props) => {
@@ -15,7 +17,11 @@ const DashboardRow = (props) => {
   const [isButtonVisible, setIsButtonVisible] = useState(true);
   const [color, setcolor] = useState("");
   //const [chating, setChating] = useState(false);
-
+  let Navigate = useNavigate();
+  const handleNavigat = (id) => {
+    console.log("go to child details");
+    Navigate("/teacher/ChattingTeacher/" + id);
+  };
   //to handle if the value changed set it in the props function
   //////// handling Chatting/////////////////////////
   // const cahtingHandling = (e) => {
@@ -109,9 +115,8 @@ const DashboardRow = (props) => {
             <div id={props.id}>{props.gender}</div>
           ) : (
             <button
-              id={props.parentid}
               type="button"
-              // onClick={cahtingHandling}
+              onClick={() => handleNavigat(props.parentid)}
               className="bg-blue-500  inline-block rounded bg-info px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]">
               Contact
             </button>
@@ -240,6 +245,11 @@ export const AddMarkRow = (props) => {
   const [isButtonVisible, setIsButtonVisible] = useState(true);
   const [mark, setmark] = useState("");
   ////////////////////// Handling Change data /////////////////////////////
+  let Navigate = useNavigate();
+  const handleNavigat = (id) => {
+    console.log("go to child details");
+    Navigate("/teacher/ChattingTeacher/" + id);
+  };
   let rate = 2;
   React.useEffect(() => {
     if (!props.isChanged) {
@@ -291,6 +301,7 @@ export const AddMarkRow = (props) => {
       </td>
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm  text-left">
         <button
+          onClick={() => handleNavigat(props.parentid)}
           type="button"
           className="bg-blue-500  inline-block rounded bg-info px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]">
           Contact
@@ -386,13 +397,7 @@ export const ShowMark = (props) => {
           </div>
         </div>
       </td>
-      <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm  text-left">
-        <button
-          type="button"
-          className="bg-blue-500  inline-block rounded bg-info px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]">
-          Contact
-        </button>
-      </td>
+
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm ">
         {/* when the user enter any marke change the value and send it to  */}
         <span
@@ -416,13 +421,6 @@ export const AbsenceDetailsRow = (props) => {
     : "not found yet";
   return (
     <tr>
-      <td className="py-3 px-5 border-b border-blue-gray-50">
-        <button
-          type="button"
-          className="  bg-clip-border bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg inline-block rounded bg-info px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]">
-          Contact
-        </button>
-      </td>
       <td className="py-3 px-5 border-b border-blue-gray-50">
         <div
           className="relative inline-block align-baseline font-sans uppercase center whitespace-nowrap rounded-lg select-none bg-gradient-to-tr from-green-600 to-green-400 text-white py-0.5 px-2 text-[11px] font-medium"

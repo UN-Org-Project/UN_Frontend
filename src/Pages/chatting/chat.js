@@ -79,18 +79,28 @@ import "./chat.css";
 //   );
 // };
 // export default AdminDb;
+import { useParams } from "react-router-dom";
 import React, { useState } from "react";
 import { ChatEngine, getOrCreateChat } from "react-chat-engine";
 import TeacherContent from "../../sections/Content/TeacherContent";
 
-const DirectChatPage = () => {
+const DirectChatPage = (props) => {
   const [username, setUsername] = useState("muath");
+  const { id } = useParams();
+  React.useEffect(() => {
+    if (id === "6431b22ca8514ea551212e27") {
+      setUsername("");
+    } else {
+      setUsername(id);
+    }
+    console.log(username);
+  }, [id]);
 
   function createDirectChat(creds) {
     getOrCreateChat(
       creds,
       { is_direct_chat: true, usernames: [username] },
-      () => setUsername("muath")
+      () => setUsername(username)
     );
   }
 
@@ -99,7 +109,7 @@ const DirectChatPage = () => {
       <div className="created">
         <input
           type="text"
-          placeholder="muath"
+          placeholder="id"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
@@ -109,18 +119,18 @@ const DirectChatPage = () => {
   }
 
   return (
-    <div className="container mx-auto   ">
+    <div className="container mx-auto -mt-14  ">
       <ChatEngine
-      height="92vh"
-      userName="Ali"
-      userSecret="mmm"
-      projectID="
+        height="92vh"
+        userName="Ali"
+        userSecret="mmm"
+        projectID="
       b8ca72e8-1f9d-46b9-a3d7-18dcc011f59e"
-      renderNewChatForm={(creds) => renderChatForm(creds)}
-      renderChatCard={(chat, index) => {
-        1;
-      }}
-    />
+        renderNewChatForm={(creds) => renderChatForm(creds)}
+        renderChatCard={(chat, index) => {
+          1;
+        }}
+      />
     </div>
   );
 };

@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate, Link } from "react-router-dom";
-import { ParentAvatar } from "../../components/assets";
+import {
+  AddUserIcon,
+  AddmarkIcon,
+  AdminAvatar,
+  ParentAvatar
+} from "../../components/assets";
 import { DashboardIcon } from "../../components/assets";
 import Sidbar from "../../components/SideBar/Sidbar";
 import Btn from "../../components/SideBar/MenuBtn/Btn";
@@ -16,6 +21,15 @@ const ParentDb = () => {
   const [parnetData, setparenttData] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [childData, setChildData] = useState([]);
+  const [isEntered, setIsEntered] = useState(false);
+  const [idchiled, setIdchiled] = useState("");
+
+  const handleEnterChild = (value, id) => {
+    setIsEntered(value);
+    setIdchiled(id);
+    console.log(id);
+  };
+
   let navigate = useNavigate();
   useEffect(() => {
     navigate("/parent/children");
@@ -47,14 +61,47 @@ const ParentDb = () => {
             UserImg={ParentAvatar}
             name={parnetData}
             dashbordUser="Parent Dashboard">
-            <Btn path="children" icon={DashboardIcon} btnName="Your Children" />
+            <Btn
+              path="children"
+              icon={DashboardIcon}
+              btnName="Your Children "
+              isEnteredn={true}
+            />
+            <Btn
+              path={"childDetails/" + idchiled}
+              icon={AddUserIcon}
+              btnName="Show Absences"
+              isEnteredn={isEntered}
+            />
+
+            <Btn
+              path={"Showmarks/" + idchiled}
+              icon={AddmarkIcon}
+              btnName="Show Marks"
+              isEnteredn={isEntered}
+            />
+
+            <Btn
+              path={"Events/" + idchiled}
+              icon={DashboardIcon}
+              btnName="Events"
+              isEnteredn={isEntered}
+            />
+            <Btn
+              path={"parentChating/" + idchiled}
+              icon={AdminAvatar}
+              btnName="Chating"
+              isEnteredn={isEntered}
+            />
           </Sidbar>
           {/* <div className="flex flex-col flex-1  gap-5 w-full"> */}
           <Header>
             <NotificationBtn />
           </Header>
           <ParentContent>
-            <Outlet context={{ childe: childData }} />
+            <Outlet
+              context={{ childe: childData, enterFunc: handleEnterChild }}
+            />
           </ParentContent>
           {/* </div> */}
         </>

@@ -21,11 +21,6 @@ import { SectionHeader, SectionWrapper } from "../../../../components";
 const ChildDetails = (props) => {
   const { id } = useParams();
   const childrenData = useOutletContext();
-  const [isChanged, setIsChanged] = useState(false);
-  const [subjects, setSubjects] = useState([]);
-  const [notification, setnotification] = useState(
-    "Choose the typeExame please to Show marks "
-  );
 
   const children = childrenData.childe.filter((child) => child._id === id);
   const child = children[0];
@@ -39,54 +34,19 @@ const ChildDetails = (props) => {
     (absence) => absence.absecnceState === "absence"
   ).length;
 
-  const handleExameChange = (value) => {
-    if (!Object.keys(child.typeExam).includes(value)) {
-      setIsChanged(false);
-      setnotification("Exam Marks not yet uploded !");
-    } else {
-      let Exame = child.typeExam[value].subjects;
-      console.log(Exame);
-      const numProperties = Object.keys(Exame).length;
-      let subject = [];
-      if (numProperties === 5) {
-        const math = Exame.math;
-        math.name = "Math";
-        subject.push(math);
-        const English = Exame.english;
-        English.name = "English";
-        subject.push(English);
-        const Arabic = Exame.arbic;
-        Arabic.name = "Arbic";
-        subject.push(Arabic);
-        const history = Exame.history;
-        history.name = "History";
-        subject.push(history);
-        const science = Exame.science;
-        science.name = "Science";
-        subject.push(science);
-        setSubjects(subject);
-
-        console.log(subjects);
-
-        setIsChanged(true);
-      } else {
-        setIsChanged(false);
-        setnotification("Exam Marks not yet uploded !");
-      }
-    }
-  };
   return (
     <>
       <div id="view" className="flex ">
         <div className="flex flex-col flex-1 ml-1 gap-5">
           <div>
             <Title h2="Child Information" />
+            <button
+              type="button"
+              className="  bg-clip-border bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg inline-block rounded bg-info px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]">
+              Contact with Teacher
+            </button>
 
-                  <Link to="/parent/showNotes">
-                  <button className="border border-green-300 bg-teal-300 px-5 py-2 rounded-lg text-white">
-                    show all notes 
-                  </button>
-                  </Link>
+                  
 
 
                               <div className="flex justify-between items-center">
@@ -116,42 +76,6 @@ const ChildDetails = (props) => {
 
 
             <div className="flex justify-between">
-              
-              <div className="flex flex-col justify-center items-center">
-                
-                <SelectComp
-                  onChange={handleExameChange}
-                  lable="Select Exam"
-                  options={[
-                    { value: "first", label: "First" },
-                    { value: "second", label: "Second" },
-                    { value: "final", label: "Final" }
-                  ]}
-                />
-                
-                <Table th1="Subject" th2="Contact" th3="Mark">
-                  {isChanged &&
-                    subjects.map((subject) => (
-                      <ShowMark
-                        key={subject.name}
-                        id={subject.name}
-                        name={subject.name}
-                        mark={subject.mark}
-                        note={subject.note}
-                        star={subject.star}
-                      />
-                    ))}
-                </Table>
-                
-                {!isChanged && (
-                  <div
-                    className="p-4 mb-4  w-fit text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
-                    role="alert">
-                    <span className="font-medium">Info !</span> {notification}
-                  </div>
-                )}
-              </div>
-
               <div>
                 <ParentCards>
                   <Card
