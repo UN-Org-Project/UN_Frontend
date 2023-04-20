@@ -4,6 +4,7 @@ import { useOutletContext } from "react-router-dom";
 import Table from "../../../../components/Table/Table";
 import SelectComp from "../../../../components/SelectComponent/SelectComp";
 import { ShowMark } from "../../../../components/Table/RowInfo/TableRow";
+import Title from "../../../../components/SectionTitle/Title";
 const ShowMarks = (props) => {
   const { id } = useParams();
   const childrenData = useOutletContext();
@@ -54,6 +55,10 @@ const ShowMarks = (props) => {
     <div id="view" className="flex ">
       <div className="flex flex-col flex-1 ml-1 gap-5">
         <div className="flex justify-between">
+          <Title
+            h2="Marks Your child  "
+            className="flex flex-col justify-center items-center"
+          />
           <div className="flex flex-col justify-center items-center">
             <SelectComp
               onChange={handleExameChange}

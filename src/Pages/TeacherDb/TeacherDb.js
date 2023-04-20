@@ -57,19 +57,32 @@ const TeacherDb = () => {
               UserImg={TeacherAvatar}
               name={teacherData}
               dashbordUser="Teacher Dashboard">
-              <Btn path="Dashboard" icon={DashboardIcon} btnName="Dashboard" />
-              <Btn path="Addmarks" icon={AddmarkIcon} btnName="Add Marks" />
               <Btn
+                path="Dashboard"
+                icon={DashboardIcon}
+                btnName="Dashboard"
+                isEnteredn={true}
+              />
+              <Btn
+                path="Addmarks"
+                icon={AddmarkIcon}
+                btnName="Add Marks"
+                isEnteredn={true}
+              />
+              <Btn
+                isEnteredn={true}
                 path="SendNotesAndReports"
                 icon={notesandReports}
                 btnName="Notes & Reports"
               />
               <Btn
+                isEnteredn={true}
                 path="StudentsInfo"
                 icon={AddmarkIcon}
                 btnName="Students Info"
               />
               <Btn
+                isEnteredn={true}
                 path="ChattingTeacher/6431b22ca8514ea551212e27"
                 icon={chattingImage}
                 btnName="Chating"
