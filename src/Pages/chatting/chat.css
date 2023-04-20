@@ -66,7 +66,8 @@
 }
 
 .ce-wrapper {
-  margin-bottom: 70rem;
+  margin-bottom: 70rem !important;
+  margin-left: 1rem !important;
 }
 
 .ce-chat-engine {

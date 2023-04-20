@@ -95,7 +95,7 @@ const DirectChatPage = (props) => {
     //   setUsername(id);
     // }
     // console.log(username);
-  }, [id]);
+  }, []);
 
   function createDirectChat(creds) {
     getOrCreateChat(
@@ -123,14 +123,10 @@ const DirectChatPage = (props) => {
     <div className="container mx-auto -mt-14  ">
       <ChatEngine
         height="92vh"
-        userName="Ali"
-        userSecret="mmm"
-        projectID="
-      b8ca72e8-1f9d-46b9-a3d7-18dcc011f59e"
+        projectID="3d65a74f-ff33-4d31-bc09-edf06decc0d5"
+        userName="641719a4f762f9578985b773"
+        userSecret="1234"
         renderNewChatForm={(creds) => renderChatForm(creds)}
-        renderChatCard={(chat, index) => {
-          1;
-        }}
       />
     </div>
   );

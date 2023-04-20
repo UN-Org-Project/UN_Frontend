@@ -38,7 +38,7 @@ const ParentDb = () => {
       try {
         //6431b22ca8514ea551212e27
         const response = await axios.get(
-          "http://localhost:8000/parentInfo/6431df1911ba3d23a1546314"
+          "http://localhost:8000/parentInfo/6441be62095a5be216f94466"
         );
         const data = response.data.parentInfo;
         console.log(data);

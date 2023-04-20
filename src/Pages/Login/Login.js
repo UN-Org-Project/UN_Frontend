@@ -33,7 +33,8 @@ const Login = () => {
       } else if (response.data.state === "Parent") {
         window.location.href = "/parent";
       } else if (response.data.state === "Admin") {
-        window.location.href = "/Admin/AdminStudents";
+        //  window.location.href = "/Admin/AdminStudents";
+        console.log("admin");
       } else {
         console.log(response.data);
         setErrorMessage("Invalid username or password");
