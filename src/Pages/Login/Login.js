@@ -31,7 +31,7 @@ const Login = () => {
       if (response.data.state === "Teacher") {
         window.location.href = "/teacher";
       } else if (response.data.state === "Parent") {
-        window.location.href = "/dbParent";
+        window.location.href = "/parent";
       } else if (response.data.state === "Admin") {
         window.location.href = "/Admin/AdminStudents";
       } else {

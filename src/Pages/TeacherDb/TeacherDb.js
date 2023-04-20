@@ -51,34 +51,44 @@ const TeacherDb = () => {
     <div id="view">
       {isLoading && <div className="spinner"> </div>}
       {!isLoading && (
-        <>
-        <div  className="flex">
-          <Sidbar
-            UserImg={TeacherAvatar}
-            name={teacherData}
-            dashbordUser="Teacher Dashboard">
-            <Btn path="Dashboard" icon={DashboardIcon} btnName="Dashboard" />
-            <Btn path="Addmarks" icon={AddmarkIcon} btnName="Add Marks" />
-            <Btn
-              path="SendNotesAndReports"
-              icon={notesandReports}
-              btnName="Notes & Reports"
-            />
-            <Btn
-                path="StudentsInfo"
-                icon={AddmarkIcon}
-                btnName="Students Info"
-              />
-            <Btn path="ChattingTeacher" icon={chattingImage} btnName="Chating" />
-          </Sidbar>
-          </div>
-          <Header >
-              <NotificationBtn />
-            </Header>
-          <TeacherContent >
-            <Outlet  context={{ students: studentData }} />
-          </TeacherContent>
-        </>
+                  <>
+                <div className="grid grid-cols-5 h-screen">
+                  <div className="col-span-1 bg-gray-800 text-white">
+                    <div  className="flex">
+                      <Sidbar
+                        UserImg={TeacherAvatar}
+                        name={teacherData}
+                        dashbordUser="Teacher Dashboard">
+                        <Btn path="Dashboard" icon={DashboardIcon} btnName="Dashboard" />
+                        <Btn path="Addmarks" icon={AddmarkIcon} btnName="Add Marks" />
+                        <Btn
+                          path="SendNotesAndReports"
+                          icon={notesandReports}
+                          btnName="Notes & Reports"
+                        />
+                        <Btn
+                            path="StudentsInfo"
+                            icon={AddmarkIcon}
+                            btnName="Students Info"
+                          />
+                        <Btn path="ChattingTeacher" icon={chattingImage} btnName="Chating" />
+                      </Sidbar>
+                      </div>
+                    </div>
+                    <div className="col-span-4 grid grid-cols-1 grid-rows-6">
+                      <div className="bg-blue-500 h-16 flex items-center justify-center">
+                        <Header >
+                            <NotificationBtn />
+                        </Header>
+                      </div>
+                      <div className="-mt-10 ">
+                        {/* <TeacherContent > */}
+                          <Outlet  context={{ students: studentData }} />
+                        {/* </TeacherContent> */}
+                      </div>
+                    </div>
+                  </div>
+                  </>
       )}
     </div>
   );

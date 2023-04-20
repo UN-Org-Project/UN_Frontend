@@ -16,7 +16,7 @@ const StudentInfo = (props) => {
   );
   console.log(students);
   return (
-    <div id="view" className="flex ml-80">
+    <div id="view" className="flex mt-14">
       <div className="flex flex-col flex-1 ml-1 gap-5">
         <div>
           <Title h2="Student Information" />

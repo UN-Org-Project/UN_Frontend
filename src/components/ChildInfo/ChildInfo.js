@@ -12,7 +12,7 @@ const ChildInfo = (props) => {
 
   return (
     <div
-      className=" w-60 bg-white transition cursor-pointer border border-gray-200 rounded-xl shadow hover:shadow-xl dark:bg-gray-800 dark:border-gray-700"
+      className="pb-7 w-60 bg-white transition cursor-pointer border border-gray-200 rounded-xl shadow hover:shadow-xl dark:bg-gray-800 dark:border-gray-700"
       onClick={props.handleNavigat}>
       <div className="flex justify-end px-4 pt-4"></div>
       <div className="flex flex-col items-center pb-10">

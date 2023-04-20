@@ -64,10 +64,10 @@ const NotesAllStudent = (props) => {
   };
   return (
     // Body
-    <div className=" container ml-32 ">
+    <div className=" container ">
       <ToastContainer />
       <div className="container ">
-        <h1 class="mb-4 flex justify-center -ml-28  text-4xl leading-none tracking-tight text-gray-600 md:text-5xl lg:text-3xl dark:text-white">
+        <h1 className="mb-4 flex justify-center -ml-28  text-4xl leading-none tracking-tight text-gray-600 md:text-5xl lg:text-3xl dark:text-white">
           Write Note For All Parents
         </h1>
       </div>
@@ -75,8 +75,8 @@ const NotesAllStudent = (props) => {
       <div className="container  mx-auto pl-40  ">
         <br />
         {/* Start-Row */}
-        <div class="grid grid-cols-12 gap-10">
-          <div class="col-span-6 mt-2">
+        <div className="grid grid-cols-12 gap-10">
+          <div className="col-span-6 mt-2">
             {/* Item-1  -->  form */}
             <FormInput
               notify={notify}
@@ -84,7 +84,7 @@ const NotesAllStudent = (props) => {
               onClick={SendReportHandler}
             />
           </div>
-          <div class="col-span-6 ">
+          <div className="col-span-6 ">
             {/* Item-2 --> list QA*/}
             <MessagesLists Data={data} deleteOneItem={deleteOneItem} />
           </div>

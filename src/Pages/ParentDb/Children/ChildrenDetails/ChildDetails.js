@@ -14,8 +14,9 @@ import AbsenceTable from "../../../../components/Table/AbsenceTable";
 import "./ChildDetails.css";
 import ParentCards from "../../../../components/StatisticsCard/ParentCards";
 import Card from "../../../../components/StatisticsCard/Card/Card";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
+import { SectionHeader, SectionWrapper } from "../../../../components";
 
 const ChildDetails = (props) => {
   const { id } = useParams();
@@ -76,19 +77,24 @@ const ChildDetails = (props) => {
   };
   return (
     <>
-      <div id="view" className="flex ml-80">
+      <div id="view" className="flex ">
         <div className="flex flex-col flex-1 ml-1 gap-5">
           <div>
             <Title h2="Child Information" />
 
-            <div className="flex justify-between items-center">
-              <div className=" relative">
-                <div className=" relative -top-59 bg-clip-border  rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg -mt-6 mb-8 p-5">
-                  <h6 className="  block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white">
-                    Child Absence
-                  </h6>
-                </div>
+                  <Link to="/parent/showNotes">
+                  <button className="border border-green-300 bg-teal-300 px-5 py-2 rounded-lg text-white">
+                    show all notes 
+                  </button>
+                  </Link>
 
+
+                              <div className="flex justify-between items-center">
+                  <div className=" relative">
+                    
+                      <span className="text-transparent text-2xl bg-clip-text bg-gradient-to-r to-main-blue from-main-green">
+                      Child Absence 
+                      </span>
                 <AbsenceTable>
                   <AbsenceDetailsRow
                     absence={absence[absence.length - 1] || "not found yet"}
@@ -99,11 +105,20 @@ const ChildDetails = (props) => {
                 </AbsenceTable>
               </div>
 
-              <ChildInfo childrenInfo={child} />
+
+              <div className="">
+                <ChildInfo childrenInfo={child} />
+              </div>
+
+            
+
             </div>
 
+
             <div className="flex justify-between">
+              
               <div className="flex flex-col justify-center items-center">
+                
                 <SelectComp
                   onChange={handleExameChange}
                   lable="Select Exam"
@@ -113,6 +128,7 @@ const ChildDetails = (props) => {
                     { value: "final", label: "Final" }
                   ]}
                 />
+                
                 <Table th1="Subject" th2="Contact" th3="Mark">
                   {isChanged &&
                     subjects.map((subject) => (
@@ -126,6 +142,7 @@ const ChildDetails = (props) => {
                       />
                     ))}
                 </Table>
+                
                 {!isChanged && (
                   <div
                     className="p-4 mb-4  w-fit text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"

@@ -1,5 +1,5 @@
 .section-wrapper {
-  background-color: var(--color-darkest);
+  background-color: gainsboro;
   border-radius: var(--border-radius-primary);
   margin-top: calc(var(--margin-primary) / 2);
   padding: calc(var(--padding-primary) / 3);
