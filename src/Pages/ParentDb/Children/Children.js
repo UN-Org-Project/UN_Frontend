@@ -20,7 +20,7 @@ const Children = () => {
   const handleNavigat = (id) => {
     console.log("go to child details");
     Navigate("/parent/childDetails/" + id);
-    enterChild(true);
+    enterChild(true, id);
   };
   return (
     <div id="view" className="flex ml-80">

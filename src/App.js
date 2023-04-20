@@ -11,6 +11,8 @@ import NotesAllStudent from "./Pages/TeacherDb/NotesAllparents";
 import StudentInfo from "./Pages/TeacherDb/Dashboard/studentsInfo";
 import ChildDetails from "./Pages/ParentDb/Children/ChildrenDetails/ChildDetails";
 import Children from "./Pages/ParentDb/Children/Children";
+import ShowMarks from "./Pages/ParentDb/Children/ChildrenDetails/showMarks";
+import Events from "./Pages/ParentDb/Children/ChildrenDetails/Events";
 
 const App = () => {
   return (
@@ -32,6 +34,9 @@ const App = () => {
         <Route path="/parent" element={<Parent />}>
           <Route path="children" element={<Children />} />
           <Route path="childDetails/:id" element={<ChildDetails />} />
+          <Route path="Showmarks/:id" element={<ShowMarks />} />
+          <Route path="Events/:id" element={<Events />} />
+          <Route path="parentChating/:id" element={<DirectChatPage />} />
         </Route>
         <Route path="*" element={<NoMatch />} />
       </Routes>

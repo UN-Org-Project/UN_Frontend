@@ -4,7 +4,7 @@ import {
   AddUserIcon,
   AddmarkIcon,
   AdminAvatar,
-  ParentAvatar,
+  ParentAvatar
 } from "../../components/assets";
 import { DashboardIcon } from "../../components/assets";
 import Sidbar from "../../components/SideBar/Sidbar";
@@ -21,9 +21,12 @@ const ParentDb = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [childData, setChildData] = useState([]);
   const [isEntered, setIsEntered] = useState(false);
+  const [idchiled, setIdchiled] = useState("");
 
-  const handleEnterChild = (value) => {
+  const handleEnterChild = (value, id) => {
     setIsEntered(value);
+    setIdchiled(id);
+    console.log(id);
   };
 
   let navigate = useNavigate();
@@ -56,35 +59,35 @@ const ParentDb = () => {
           <Sidbar
             UserImg={ParentAvatar}
             name={parnetData}
-            dashbordUser="Parent Dashboard"
-          >
+            dashbordUser="Parent Dashboard">
             <Btn
               path="children"
               icon={DashboardIcon}
               btnName="Your Children "
               isEnteredn={true}
             />
-
             <Btn
-              path="children"
-              icon={AddmarkIcon}
-              btnName="Show Marks"
-              isEnteredn={isEntered}
-            />
-            <Btn
-              path="children"
+              path={"childDetails/" + idchiled}
               icon={AddUserIcon}
               btnName="Show Absences"
               isEnteredn={isEntered}
             />
+
             <Btn
-              path="children"
+              path={"Showmarks/" + idchiled}
+              icon={AddmarkIcon}
+              btnName="Show Marks"
+              isEnteredn={isEntered}
+            />
+
+            <Btn
+              path={"Events/" + idchiled}
               icon={DashboardIcon}
               btnName="Events"
               isEnteredn={isEntered}
             />
             <Btn
-              path="children"
+              path={"parentChating/" + idchiled}
               icon={AdminAvatar}
               btnName="Chating"
               isEnteredn={isEntered}
