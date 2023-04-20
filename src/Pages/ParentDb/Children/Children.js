@@ -7,14 +7,20 @@ import { useOutletContext } from "react-router-dom";
 const Children = () => {
   const childrenData = useOutletContext();
   const children = childrenData.childe;
+  const enterChild = childrenData.enterFunc;
 
   useEffect(() => {
     console.log(children);
+    console.log(enterChild);
+    enterChild(false);
   }, []);
+
   let Navigate = useNavigate();
+
   const handleNavigat = (id) => {
     console.log("go to child details");
     Navigate("/parent/childDetails/" + id);
+    enterChild(true);
   };
   return (
     <div id="view" className="flex ml-80">
