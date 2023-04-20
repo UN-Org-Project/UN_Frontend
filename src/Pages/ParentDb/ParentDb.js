@@ -23,11 +23,12 @@ const ParentDb = () => {
   const [childData, setChildData] = useState([]);
   const [isEntered, setIsEntered] = useState(false);
   const [idchiled, setIdchiled] = useState("");
+  const [idTeacher, setIdTeacher] = useState("");
 
-  const handleEnterChild = (value, id) => {
+  const handleEnterChild = (value, id, teacherid) => {
     setIsEntered(value);
     setIdchiled(id);
-    console.log(id);
+    setIdTeacher(teacherid);
   };
 
   let navigate = useNavigate();
@@ -88,7 +89,7 @@ const ParentDb = () => {
               isEnteredn={isEntered}
             />
             <Btn
-              path={"parentChating/" + idchiled}
+              path={"parentChating/" + idTeacher}
               icon={AdminAvatar}
               btnName="Chating"
               isEnteredn={isEntered}

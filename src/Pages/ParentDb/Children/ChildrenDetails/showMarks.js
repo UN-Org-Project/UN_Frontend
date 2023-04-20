@@ -55,11 +55,8 @@ const ShowMarks = (props) => {
     <div id="view" className="flex ">
       <div className="flex flex-col flex-1 ml-1 gap-5">
         <div className="flex justify-between">
-          <Title
-            h2="Marks Your child  "
-            className="flex flex-col justify-center items-center"
-          />
           <div className="flex flex-col justify-center items-center">
+            <Title h2="Marks Your child  " />
             <SelectComp
               onChange={handleExameChange}
               lable="Select Exam"

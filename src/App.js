@@ -37,14 +37,10 @@ const App = () => {
           <Route path="children" element={<Children />} />
           <Route path="childDetails/:id" element={<ChildDetails />} />
           <Route path="childDetails/:id" element={<ChildDetails />} />
-
-          <Route path="Showmarks/:id" element={<ShowMarks />} />
-          <Route path="Events/:id" element={<Events />} />
-          <Route path="parentChating/:id" element={<DirectChatPage />} />
-
-          <Route path="showNotes" element={<ShowALlNotes />} />
-          <Route path="showNotes/Note/:id" element={<Note />} />
-
+                    <Route path="Showmarks/:id" element={<ShowMarks />} />
+                    <Route path="Events/:id" element={<Events />} />
+                   {" "}
+          <Route path="parentChating/:id" element={<DirectChatPage />} />
         </Route>
         <Route path="*" element={<NoMatch />} />
       </Routes>

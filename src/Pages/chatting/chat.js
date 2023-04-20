@@ -88,12 +88,13 @@ const DirectChatPage = (props) => {
   const [username, setUsername] = useState("muath");
   const { id } = useParams();
   React.useEffect(() => {
-    if (id === "6431b22ca8514ea551212e27") {
-      setUsername("");
-    } else {
-      setUsername(id);
-    }
-    console.log(username);
+    setUsername(id);
+    // if (id === "6431b22ca8514ea551212e27") {
+    //   setUsername("");
+    // } else {
+    //   setUsername(id);
+    // }
+    // console.log(username);
   }, [id]);
 
   function createDirectChat(creds) {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ChildInfo from "../../../../components/ChildInfo/ChildInfo";
 import Title from "../../../../components/SectionTitle/Title";
 import Pagination from "@mui/material/Pagination";
@@ -62,15 +62,11 @@ const ChildDetails = (props) => {
               Contact with Teacher
             </button>
 
-                  
-
-
-                              <div className="flex justify-between items-center">
-                  <div className=" relative">
-                    
-                      <span className="text-transparent text-2xl bg-clip-text bg-gradient-to-r to-main-blue from-main-green">
-                      Child Absence 
-                      </span>
+            <div className="flex justify-between items-center">
+              <div className=" relative">
+                <span className="text-transparent text-2xl bg-clip-text bg-gradient-to-r to-main-blue from-main-green">
+                  Child Absence
+                </span>
                 <AbsenceTable>
                   {slicedData.map((absence, index) => (
                     <AbsenceDetailsRow
@@ -99,15 +95,10 @@ const ChildDetails = (props) => {
                 <br />
               </div>
 
-
               <div className="">
                 <ChildInfo childrenInfo={child} />
               </div>
-
-            
-
             </div>
-
 
             <div className="flex justify-between">
               <div>
