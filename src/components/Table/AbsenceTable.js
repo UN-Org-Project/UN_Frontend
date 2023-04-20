@@ -9,11 +9,6 @@ const AbsenceTable = (props) => {
             <tr>
               <th className="border-b border-blue-gray-50 py-3 px-5 text-left">
                 <p className="block antialiased font-sans text-[11px] font-bold uppercase text-blue-gray-400">
-                  Teacher
-                </p>
-              </th>
-              <th className="border-b border-blue-gray-50 py-3 px-5 text-left">
-                <p className="block antialiased font-sans text-[11px] font-bold uppercase text-blue-gray-400">
                   Attendance
                 </p>
               </th>

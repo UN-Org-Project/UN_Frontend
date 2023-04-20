@@ -24,7 +24,7 @@ const App = () => {
         <Route path="/teacher" element={<Teacher />}>
           <Route path="Dashboard" element={<Dashboard />} />
           <Route path="Addmarks" element={<AddMarks />} />
-          <Route path="ChattingTeacher" element={<DirectChatPage />} />
+          <Route path="ChattingTeacher/:id" element={<DirectChatPage />} />
           <Route path="SendNotesAndReports" element={<NotesAllStudent />} />
           <Route path="StudentsInfo" element={<StudentInfo />} />
         </Route>

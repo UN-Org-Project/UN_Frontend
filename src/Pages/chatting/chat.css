@@ -6,6 +6,9 @@
   background-color: #3498db7a;
   border-radius: 5px;
 }
+.ce-wrapper {
+  margin-left: -60px !important;
+}
 
 .created input {
   padding: 5px;

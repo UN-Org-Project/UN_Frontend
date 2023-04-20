@@ -80,6 +80,11 @@ const ChildDetails = (props) => {
         <div className="flex flex-col flex-1 ml-1 gap-5">
           <div>
             <Title h2="Child Information" />
+            <button
+              type="button"
+              className="  bg-clip-border bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg inline-block rounded bg-info px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]">
+              Contact with Teacher
+            </button>
 
             <div className="flex justify-between items-center">
               <div className=" relative">

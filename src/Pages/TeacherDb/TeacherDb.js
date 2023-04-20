@@ -6,7 +6,7 @@ import {
   TeacherAvatar,
   DashboardIcon,
   notesandReports,
-  chattingImage,
+  chattingImage
 } from "../../components/assets/index";
 import Sidbar from "../../components/SideBar/Sidbar";
 import Btn from "../../components/SideBar/MenuBtn/Btn";
@@ -52,31 +52,35 @@ const TeacherDb = () => {
       {isLoading && <div className="spinner"> </div>}
       {!isLoading && (
         <>
-        <div  className="flex">
-          <Sidbar
-            UserImg={TeacherAvatar}
-            name={teacherData}
-            dashbordUser="Teacher Dashboard">
-            <Btn path="Dashboard" icon={DashboardIcon} btnName="Dashboard" />
-            <Btn path="Addmarks" icon={AddmarkIcon} btnName="Add Marks" />
-            <Btn
-              path="SendNotesAndReports"
-              icon={notesandReports}
-              btnName="Notes & Reports"
-            />
-            <Btn
+          <div className="flex">
+            <Sidbar
+              UserImg={TeacherAvatar}
+              name={teacherData}
+              dashbordUser="Teacher Dashboard">
+              <Btn path="Dashboard" icon={DashboardIcon} btnName="Dashboard" />
+              <Btn path="Addmarks" icon={AddmarkIcon} btnName="Add Marks" />
+              <Btn
+                path="SendNotesAndReports"
+                icon={notesandReports}
+                btnName="Notes & Reports"
+              />
+              <Btn
                 path="StudentsInfo"
                 icon={AddmarkIcon}
                 btnName="Students Info"
               />
-            <Btn path="ChattingTeacher" icon={chattingImage} btnName="Chating" />
-          </Sidbar>
+              <Btn
+                path="ChattingTeacher/6431b22ca8514ea551212e27"
+                icon={chattingImage}
+                btnName="Chating"
+              />
+            </Sidbar>
           </div>
-          <Header >
-              <NotificationBtn />
-            </Header>
-          <TeacherContent >
-            <Outlet  context={{ students: studentData }} />
+          <Header>
+            <NotificationBtn />
+          </Header>
+          <TeacherContent>
+            <Outlet context={{ students: studentData }} />
           </TeacherContent>
         </>
       )}
@@ -85,5 +89,3 @@ const TeacherDb = () => {
 };
 
 export default TeacherDb;
-
-
