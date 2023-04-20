@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ChildInfo from "../../../../components/ChildInfo/ChildInfo";
 import Title from "../../../../components/SectionTitle/Title";
-
+import Pagination from "@mui/material/Pagination";
 import { ParentAvatar } from "../../../../components/assets";
 import SelectComp from "../../../../components/SelectComponent/SelectComp";
 import Table from "../../../../components/Table/Table";
@@ -24,14 +24,30 @@ const ChildDetails = (props) => {
   const children = childrenData.childe.filter((child) => child._id === id);
   const child = children[0];
 
-  const rating = child.dalyRate;
-  const star = rating[rating.length - 1] ? rating[rating.length - 1].star : 0;
-  const absence = child.absence;
-  const notes = child.notes;
+  const rating = child.dalyRate.reverse();
+
+  const absence = child.absence.reverse();
+  const notes = child.notes.reverse();
 
   const absenceNumber = absence.filter(
     (absence) => absence.absecnceState === "absence"
   ).length;
+
+  ///////paggination////////
+  const itemsPerPage = 5;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [slicedData, setSlicedData] = useState(absence.slice(0, itemsPerPage)); // Calculate the number of pages
+  const totalPages = Math.ceil(absence.length / itemsPerPage);
+  let startIndex = 0;
+  let endIndex = itemsPerPage;
+  // handle with onChange if pagenation
+  const HadlePagenation = (page) => {
+    setCurrentPage(page);
+    startIndex = (page - 1) * itemsPerPage;
+    endIndex = startIndex + itemsPerPage;
+    setSlicedData(absence.slice(startIndex, endIndex));
+  };
+  //////////////////////////
 
   return (
     <>
@@ -54,13 +70,31 @@ const ChildDetails = (props) => {
                 </div>
 
                 <AbsenceTable>
-                  <AbsenceDetailsRow
-                    absence={absence[absence.length - 1] || "not found yet"}
-                    rating={star}
-                    note={notes[notes.length - 1] || "not found yet"}
-                    teaherId={child.teacher_id}
-                  />
+                  {slicedData.map((absence, index) => (
+                    <AbsenceDetailsRow
+                      key={Math.random()}
+                      id={Math.random()}
+                      absence={absence}
+                      note={notes[index]}
+                      rating={rating[index]}
+                    />
+                  ))}
                 </AbsenceTable>
+                <Pagination
+                  className="flex justify-center"
+                  color="primary"
+                  count={totalPages}
+                  page={currentPage}
+                  onChange={(event, page) => {
+                    HadlePagenation(page);
+                  }}
+                />
+
+                <br />
+
+                <br />
+
+                <br />
               </div>
 
               <ChildInfo childrenInfo={child} />

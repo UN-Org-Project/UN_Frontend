@@ -416,14 +416,22 @@ export const ShowMark = (props) => {
 };
 
 export const AbsenceDetailsRow = (props) => {
+  const [colorabsence, setcolorabsence] = useState(
+    " bg-gradient-to-tr from-green-600 to-green-400"
+  );
+  React.useEffect(() => {
+    if (props.absence.absecnceState === "absence") {
+      setcolorabsence(" bg-gradient-to-tr from-red-600 to-red-400");
+    }
+  }, [props.absence]);
   const absenceDate = props.absence.abcenceDate
     ? props.absence.abcenceDate.split("T")[0]
     : "not found yet";
   return (
-    <tr>
+    <tr key={props.id}>
       <td className="py-3 px-5 border-b border-blue-gray-50">
         <div
-          className="relative inline-block align-baseline font-sans uppercase center whitespace-nowrap rounded-lg select-none bg-gradient-to-tr from-green-600 to-green-400 text-white py-0.5 px-2 text-[11px] font-medium"
+          className={`relative inline-block align-baseline font-sans uppercase center whitespace-nowrap rounded-lg select-none ${colorabsence} text-white py-0.5 px-2 text-[11px] font-medium`}
           data-projection-id="15"
           style={{ opacity: 1 }}>
           <div className="  mt-px">
@@ -432,7 +440,7 @@ export const AbsenceDetailsRow = (props) => {
         </div>
       </td>
       <td className="py-3 px-5 border-b border-blue-gray-50">
-        <Rating rate={props.rating} />
+        <Rating rate={props.rating.star} />
       </td>
       <td className="py-3 px-5 border-b border-blue-gray-50">
         <span>{props.note.note || "not found yet"}</span>
