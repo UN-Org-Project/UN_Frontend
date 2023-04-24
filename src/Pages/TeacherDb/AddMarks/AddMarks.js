@@ -61,9 +61,9 @@ const AddMarks = () => {
 
       const updatedStudent = {
         ...student,
-        marks: marks[student.id] || 0,
-        note: note[student.id] || "No note heve been add !",
-        level: level[student.id] || 2,
+        marks: marks[student._id] || 0,
+        note: note[student._id] || "No note heve been add !",
+        level: level[student._id] || 2,
         subject: subject,
         exame: exame
       };
@@ -160,12 +160,12 @@ const AddMarks = () => {
             {/* Render the sliced data on the current page */}
             {slicedData.map((student) => (
               <AddMarkRow
-                key={student.id}
+                key={student._id}
                 name={student.studentName}
-                id={student.id}
-                marks={marks[student.id]}
-                note={note[student.id]}
-                level={level[student.id]}
+                id={student._id}
+                marks={marks[student._id]}
+                note={note[student._id]}
+                level={level[student._id]}
                 onMarkChange={handleMarkChange}
                 onNoteChange={handleNoteChange}
                 onLevelChange={handleLevelChange}

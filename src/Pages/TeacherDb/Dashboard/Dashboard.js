@@ -50,9 +50,9 @@ const Dashboard = (props) => {
     const updatedStudents = students.map((student) => {
       const updatedStudent = {
         ...student,
-        absence: absence[student.id] || "present",
-        note: note[student.id] || "No note heve been add !",
-        level: level[student.id] || 2
+        absence: absence[student._id] || "present",
+        note: note[student._id] || "No note heve been add !",
+        level: level[student._id] || 2
       };
 
       studentsData.push(updatedStudent);
@@ -121,12 +121,12 @@ const Dashboard = (props) => {
             {/* Render the sliced data on the current page */}
             {slicedData.map((student) => (
               <DashboardRow
-                key={student.id}
-                id={student.id}
+                key={student._id}
+                id={student._id}
                 name={student.studentName}
-                absence={absence[student.id]}
-                note={note[student.id]}
-                level={level[student.id]}
+                absence={absence[student._id]}
+                note={note[student._id]}
+                level={level[student._id]}
                 onAbsenceChange={handleAbsenceChange}
                 onNoteChange={handleNoteChange}
                 onLevelChange={handleLevelChange}
