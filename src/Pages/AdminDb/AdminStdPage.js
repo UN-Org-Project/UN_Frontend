@@ -11,7 +11,7 @@ import "./AdminDb.css";
 const AdminStd = () => {
   const id = localStorage.getItem("userData");
   const islogged = localStorage.getItem("islogged");
-  const [adminName, setAdminName] = useState(null);
+  let adminName;
   const [isLoading, setIsLoading] = useState(false);
 
   console.log(id);
@@ -24,7 +24,7 @@ const AdminStd = () => {
       );
       //  console.log(response.data);
       //    setAdminData(response.data.adminData);
-      setAdminName(response.data.adminName);
+      adminName = response.data.adminName;
     }
     fetch();
   }, []);
@@ -98,7 +98,7 @@ const AdminStd = () => {
         setStudentAddress("");
       } else {
         console.log(response);
-        notify("Added Error", response.data.message);
+        notify("Some thing Error !try again ", "Error");
       }
     } catch (error) {
       setIsLoading(false);
@@ -122,7 +122,7 @@ const AdminStd = () => {
   return (
     <>
       <Sidbar links={links}>
-        <CardSidbar name="mathMhawich" role="Admin Dashboard" />
+        <CardSidbar name="math Mhawich" role="Admin Dashboard" />
       </Sidbar>
       <AdminContent titleTable="STUDENT INFORMATION FORM">
         {isLoading && <div className="spinner"> </div>}

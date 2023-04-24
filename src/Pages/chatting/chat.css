@@ -1,34 +1,79 @@
-.created{
-    font-family: 'Times New Roman', Times, serif;
-    margin: 10px;
-    padding: 20px;
-    display: block;
-    background-color: rgb(79, 79, 184);
-    border-radius: 5px;
-
+.created {
+  font-family: "Times New Roman", Times, serif;
+  margin: auto;
+  padding: auto;
+  display: block;
+  background-color: #3498db7a;
+  border-radius: 5px;
 }
-.created input{
-    padding: 5px;
-    margin: 10px;
-    margin-left: 0;
-    background-color: rgb(238, 227, 227);
-    color: rgb(19, 18, 18);
-    width: 270px;
-    border-radius: 3px;
-
-}
-.created button{
-    border: 1px solid rgb(217, 217, 230);
-    border-radius: 5px;
-    padding: 10px;
-    color: rgb(224, 224, 235);
-    font-size: 20px;
-    font-weight: bold;
-}
-.created button:hover{
-    background-color: rgb(76, 76, 228);
+.ce-wrapper {
+  margin-left: -60px !important;
 }
 
-.ce-chats-container ,.ce-settings{
-    background-color: rgb(52, 52, 247) !important;
+.created input {
+  padding: 5px;
+  margin: 10px;
+  margin-left: 15px;
+  margin-left: 0;
+  background-color: rgb(238, 227, 227);
+  color: rgb(19, 18, 18);
+  width: 210px;
+  border-radius: 3px;
+}
+
+.created button {
+  border: 1px solid rgb(217, 217, 230);
+  border-radius: 5px;
+  padding: 5px;
+  color: rgb(224, 224, 235);
+  font-size: 15px;
+}
+
+.created button:hover {
+  background-color: rgb(76, 76, 228);
+}
+
+.ce-chat-feed-container {
+  overflow: hidden auto !important;
+  background-color: #ebe5e5 !important;
+}
+
+.ce-chats-container,
+.ce-settings {
+  background-color: #3498db !important;
+  overflow: hidden auto !important;
+}
+
+.created {
+  margin-left: 10px;
+}
+
+.ce-chat-list {
+  overflow: hidden auto !important;
+}
+
+.ce-chats-container {
+  border-radius: 0 !important;
+}
+
+.ce-chat-card-loading {
+  border-radius: 10px;
+  background-color: rgb(226, 226, 226);
+  height: 50px;
+  display: inline-block;
+  margin-bottom: 8px;
+  width: 50%;
+}
+
+.ce-wrapper {
+  margin-bottom: 70rem !important;
+  margin-left: 1rem !important;
+}
+
+.ce-chat-engine {
+  height: 10rem !important;
+}
+
+.ce-chat-title-container {
+  background-color: #3498db7a !important;
 }

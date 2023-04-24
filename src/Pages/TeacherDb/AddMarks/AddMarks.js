@@ -5,10 +5,12 @@ import { AddMarkRow } from "../../../components/Table/RowInfo/TableRow";
 import { useState, useEffect } from "react";
 import StatisCard from "../../../components/StatisticsCard/StatisCard";
 import { useOutletContext } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import "../TeacherDb.css";
+import Pagination from "@mui/material/Pagination";
 const AddMarks = () => {
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const studentData = useOutletContext();
   const students = studentData.students;
   const [isChanged, setIsChanged] = useState(false);
@@ -17,6 +19,12 @@ const AddMarks = () => {
   const [subject, setSubject] = useState({});
   const [exame, setExame] = useState("");
   const [level, setLevel] = useState("");
+  const [RangeSubject, setRangeSubject] = useState(0);
+  const [numberOfStudent, setNumberOfStudent] = useState(students.length);
+  const [convertCart, setConvertCart] = useState(false);
+  useEffect(() => {
+    setConvertCart(true);
+  }, []);
 
   /////////////////////Handling Change Data//////////////////////////
   const handleLevelChange = (id, value) => {
@@ -24,7 +32,7 @@ const AddMarks = () => {
       ...prevState,
       [id]: value
     }));
-    setIsChanged(true);
+    // setIsChanged(true);
   };
   const handleSubjectChange = (value) => {
     setSubject(value);
@@ -34,8 +42,8 @@ const AddMarks = () => {
 
   const handleExameChange = (value) => {
     setExame(value);
-    setIsChanged(true);
-    console.log(value);
+    //setIsChanged(true);
+    // console.log(value);
   };
 
   const handleMarkChange = (id, value) => {
@@ -43,49 +51,73 @@ const AddMarks = () => {
       ...prevState,
       [id]: value
     }));
-    setIsChanged(true);
+    //setIsChanged(true);
   };
 
-  // دالة للتعامل مع تغييرات الملاحظات
   const handleNoteChange = (id, value) => {
     setNote((prevState) => ({
       ...prevState,
       [id]: value
     }));
-    setIsChanged(true);
+    // setIsChanged(true);
   };
-  const handleSubmit = async () => {
+  //////////////////////////notify fore Response//////////////////
+  const notify = (message, type) => {
+    if (type === "Error") toast.error(message);
+    else if (type === "Success") toast.success(message);
+  };
+
+  /////////////////Syubmited Data/////////////////////
+
+  const handleSubmit = async (e) => {
+    setIsLoading(true);
+    e.preventDefault();
     let studentsMark = [];
     const updatedStudents = students.map((student) => {
-      // يتم تحديث بيانات كل طالب في الجدول
-
       const updatedStudent = {
         ...student,
         marks: marks[student._id] || 0,
         note: note[student._id] || "No note heve been add !",
         level: level[student._id] || 2,
         subject: subject,
-        exame: exame
+        exame: exame || "first"
       };
 
       studentsMark.push(updatedStudent);
 
-      // ويتم إرجاعه ككائن جديد لتحديث قيمة حالة الطلاب
       return updatedStudent;
     });
+    const range = studentsMark.map((student) => student.marks);
+    const totalMarks = range.reduce(
+      (accumulator, currentValue) => +accumulator + +currentValue,
+      0
+    );
+    const average = totalMarks / range.length;
+    setRangeSubject(average);
+
+    console.log(totalMarks);
+    console.log(range);
+
     //////////////////// send Data to Back End/////////////////////////////////////////////
     try {
       const response = await axios.post("http://localhost:8000/addtypeExam", {
         studentsMark
       });
+      if (!response.ok) {
+        const data = response.data;
+        console.log(data);
+        notify(data, "Success");
+        setIsLoading(false);
+        setSlicedData(students.slice(0, itemsPerPage));
+        setCurrentPage(1);
+        setIsChanged(false);
+      }
 
       console.log(response.data);
-      setExame("");
-      setSubject("");
-      setMarks({});
-      setNote({});
-      setLevel({});
     } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+      notify("error", "Error");
       console.log(error);
     }
 
@@ -98,49 +130,59 @@ const AddMarks = () => {
   //   return () => clearTimeout(spinnerTimeout);
   // }, [handleSubmit]);
   /////////////Paggination ///////////////////////////////////////////
-  //For next and prev buttons.
-  const [currentPage, setCurrentPage] = useState(0);
+  ///////paggination////////
+
   const itemsPerPage = 3;
-  ////////////////////////////////////////
 
-  // Assume data is an array of objects to be paginated
+  const [currentPage, setCurrentPage] = useState(1);
 
-  // Calculate the number of pages
+  const [slicedData, setSlicedData] = useState(students.slice(0, itemsPerPage)); // Calculate the number of pages
+
   const totalPages = Math.ceil(students.length / itemsPerPage);
 
-  // Function to go to the next page
-  const handleNextPage = () => {
-    setCurrentPage((currentPage + 1) % totalPages);
-  };
+  let startIndex = 0;
 
-  // Function to go to the previous page
-  const handlePrevPage = () => {
-    setCurrentPage((currentPage + totalPages - 1) % totalPages);
-  };
+  let endIndex = itemsPerPage; // handle with onChange if pagenation
 
-  // Slice the data based on the current page and number of items per page
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const slicedData = students.slice(startIndex, endIndex);
+  const HadlePagenation = (page) => {
+    console.log(page);
+
+    setCurrentPage(page);
+
+    startIndex = (page - 1) * 3;
+
+    console.log(startIndex);
+
+    endIndex = startIndex + 3;
+
+    console.log(endIndex);
+
+    setSlicedData(students.slice(startIndex, endIndex));
+  }; //////////////////////////
 
   return (
-    <div id="view" className="flex">
+    <div id="view" className="flex ">
       <div className="flex flex-col flex-1 ml-1 gap-5">
         <div>
           <div className="flex items-center justify-between">
-            <Title h2="Student Infromation" />
+            <Title h2="Student Add Marks " />
             {/* {!isLoading && <div className="spinner"> </div>} */}
+            <ToastContainer />
 
             <SelectComp
+              isChanged={isChanged}
               onChange={handleSubjectChange}
               lable="Select Subject"
               options={[
                 { value: "math", label: "Math" },
-                { value: "English", label: "English" },
-                { value: "Computer", label: "Computer" }
+                { value: "english", label: "English" },
+                { value: "arbic", label: "arbic" },
+                { value: "history", label: "history" },
+                { value: "science", label: "science" }
               ]}
             />
             <SelectComp
+              isChanged={isChanged}
               onChange={handleExameChange}
               lable="Select Exame"
               options={[
@@ -152,7 +194,17 @@ const AddMarks = () => {
           </div>
 
           {/* pass the changed value to table to handle the submit button */}
+          {isLoading && <div className="spinner"> </div>}
+          {!isChanged && (
+            <div
+              className="p-4 mb-4  w-fit text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+              role="alert">
+              <span className="font-medium">Info !</span> Choose the Subject and
+              type Exame please.
+            </div>
+          )}
           <Table
+            th1="Student"
             th2="Contact"
             th3="Add Marks"
             isChanged={isChanged}
@@ -169,26 +221,34 @@ const AddMarks = () => {
                 onMarkChange={handleMarkChange}
                 onNoteChange={handleNoteChange}
                 onLevelChange={handleLevelChange}
+                isChanged={isChanged}
+                parentid={student.parent_id}
               />
             ))}
             {/* pass the function that will change the value if any action happend */}
           </Table>
 
-          {/* Render the next and previous buttons */}
-          <div className="flex justify-center">
-            <button
-              onClick={handlePrevPage}
-              className="text-sm text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500 font-semibold py-2 px-4 rounded-l">
-              Prev
-            </button>
-            <button
-              onClick={handleNextPage}
-              className="text-sm border-l-4 border-white text-indigo-50 transition duration-150 hover:bg-green-400 bg-green-500  font-semibold py-2 px-4 rounded-r">
-              Next
-            </button>
-          </div>
+          <Pagination
+            className="flex justify-center"
+            color="primary"
+            count={totalPages}
+            page={currentPage}
+            onChange={(event, page) => {
+              HadlePagenation(page);
+            }}
+          />
 
-          <StatisCard />
+          <br />
+
+          <br />
+
+          <br />
+
+          <StatisCard
+            absenceNumber={RangeSubject}
+            presentNumber={numberOfStudent}
+            convertCart={convertCart}
+          />
         </div>
       </div>
     </div>

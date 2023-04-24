@@ -9,7 +9,7 @@ const InfoTeacherForm = (props) => {
       <ToastContainer />
       <form onSubmit={props.handleSubmit}>
         
-        <div class="grid gap-6 mb-6 md:grid-cols-2">
+        <div className="grid gap-6 mb-6 md:grid-cols-2">
           <div>
             <label
               htmlFor="teacherName"
@@ -35,7 +35,7 @@ const InfoTeacherForm = (props) => {
               Gender
             </label>
             <select
-              class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               name="gender"
               type="text"
               id="gender"
@@ -58,7 +58,7 @@ const InfoTeacherForm = (props) => {
             <input
               type="text"
               id="Experience"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Teacher Experience"
               value={props.experience}
               onChange={(e) => props.setExperience(e.target.value)}
@@ -68,14 +68,14 @@ const InfoTeacherForm = (props) => {
           <div>
             <label
               htmlFor="date"
-              class="block mb-2 text-sm font-medium text-white dark:text-white"
+              className="block mb-2 text-sm font-medium text-white dark:text-white"
             >
               Date of Breath
             </label>
             <input
               type="date"
               id="date"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               name="arrive"
               value={props.dateOfBirth}
               onChange={(e) => props.setDateOfBirth(e.target.value)}
@@ -91,7 +91,7 @@ const InfoTeacherForm = (props) => {
             <input
               type="email"
               id="email"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="o@gmail.com"
               value={props.email}
               onChange={(e) => props.setEmail(e.target.value)}
@@ -101,12 +101,12 @@ const InfoTeacherForm = (props) => {
           <div>
             <label
               htmlFor="class"
-              class="block mb-2 text-sm font-medium text-white dark:text-white"
+              className="block mb-2 text-sm font-medium text-white dark:text-white"
             >
               Class
             </label>
             <select
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               id="class"
               defaultValue={props.classValue}
               value={props.classValue}
@@ -124,14 +124,14 @@ const InfoTeacherForm = (props) => {
           <div>
             <label
               htmlFor="phone"
-              class="block mb-2 text-sm font-medium text-white dark:text-white"
+              className="block mb-2 text-sm font-medium text-white dark:text-white"
             >
               Phone number
             </label>
             <input
               type="tel"
               id="phone"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="+962-790-641-545"
               value={props.phoneNumber}
               onChange={(e) => props.setPhoneNumber(e.target.value)}
@@ -160,10 +160,10 @@ const InfoTeacherForm = (props) => {
           <div>
             <button
               type="submit"
-              class="text-white bg-main-green hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white bg-main-green hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               style={{ display: "flex", alignItems: "center" }}
             >
-              ADD STUDENT
+              ADD TEACHER
               <span>
                 <BsPlusLg />
               </span>

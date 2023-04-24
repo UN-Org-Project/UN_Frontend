@@ -2,7 +2,7 @@ import React from "react";
 import { SectionImg } from "../assets";
 const Title = (props) => {
   return (
-    <div className=" px-4 lg:px-6 py-2.5 flex flex-wrap ">
+    <div className=" px-4 lg:px-6 py-2.5 flex flex-wrap  -mt-8">
       <img
         src={SectionImg}
         alt="Section Title Logo"

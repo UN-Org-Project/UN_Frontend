@@ -4,10 +4,13 @@ import "./TeacherDb.css";
 import {
   AddmarkIcon,
   TeacherAvatar,
-  DashboardIcon
-} from "../../components//assets/index";
+  DashboardIcon,
+  notesandReports,
+  chattingImage
+} from "../../components/assets/index";
 import Sidbar from "../../components/SideBar/Sidbar";
 import Btn from "../../components/SideBar/MenuBtn/Btn";
+import TeacherContent from "../../sections/Content/TeacherContent";
 
 import Header from "../../components/HeaderDash/Header";
 import NotificationBtn from "../../components/NotificationBtn/NotificationBtn";
@@ -23,11 +26,12 @@ const TeacherDb = () => {
   const [teacherData, setTeachertData] = useState("");
   const [studentData, setStudentData] = useState([]);
 
-  const [isLoading, setIsLoading] = useState(true); // حالة ثانوية للتحقق من ما إذا كانت البيانات تحمل
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     navigate("/teacher/Dashboard");
     async function fetchTeacherData() {
       try {
+        //6431b22ca8514ea551212e27
         const response = await axios.get(
           "http://localhost:8000/sendInfo/6431b22ca8514ea551212e27"
         );
@@ -36,7 +40,7 @@ const TeacherDb = () => {
         setStudentData(data.allStudents);
         setTeachertData(data.name);
         console.log(studentData);
-        setIsLoading(false); // قم بتحديث الحالة إلى false بمجرد تحميل البيانات
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -44,24 +48,53 @@ const TeacherDb = () => {
     fetchTeacherData();
   }, []);
   return (
-    <div id="view" className="flex">
+    <div id="view">
       {isLoading && <div className="spinner"> </div>}
       {!isLoading && (
         <>
-          <Sidbar
-            UserImg={TeacherAvatar}
-            name={teacherData}
-            dashbordUser="Teacher Dashboard">
-            <Btn path="Dashboard" icon={DashboardIcon} btnName="Dashboard" />
-            <Btn path="Addmarks" icon={AddmarkIcon} btnName="Add Marks" />
-          </Sidbar>
-          <div className="flex flex-col flex-1 ml-1 gap-5">
-            <Header>
-              <NotificationBtn />
-            </Header>
-
-            <Outlet context={{ students: studentData }} />
+          <div className="flex">
+            <Sidbar
+              UserImg={TeacherAvatar}
+              name={teacherData}
+              dashbordUser="Teacher Dashboard">
+              <Btn
+                path="Dashboard"
+                icon={DashboardIcon}
+                btnName="Dashboard"
+                isEnteredn={true}
+              />
+              <Btn
+                path="Addmarks"
+                icon={AddmarkIcon}
+                btnName="Add Marks"
+                isEnteredn={true}
+              />
+              <Btn
+                isEnteredn={true}
+                path="SendNotesAndReports"
+                icon={notesandReports}
+                btnName="Notes & Reports"
+              />
+              <Btn
+                isEnteredn={true}
+                path="StudentsInfo"
+                icon={AddmarkIcon}
+                btnName="Students Info"
+              />
+              <Btn
+                isEnteredn={true}
+                path="ChattingTeacher/6431b22ca8514ea551212e27"
+                icon={chattingImage}
+                btnName="Chating"
+              />
+            </Sidbar>
           </div>
+          <Header>
+            <NotificationBtn />
+          </Header>
+          <TeacherContent>
+            <Outlet context={{ students: studentData }} />
+          </TeacherContent>
         </>
       )}
     </div>
