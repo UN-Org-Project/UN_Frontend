@@ -15,6 +15,8 @@ import ShowALlNotes from "./Pages/ParentDb/Children/ChildrenDetails/ShowALlNotes
 import Note from "./Pages/ParentDb/Children/ChildrenDetails/Note";
 import ShowMarks from "./Pages/ParentDb/Children/ChildrenDetails/showMarks";
 import Events from "./Pages/ParentDb/Children/ChildrenDetails/Events";
+import InfoStudents from "./Pages/AdminDb/InfoStudents";
+import InfoTeachers from "./Pages/AdminDb/InfoTeachers";
 
 const App = () => {
   return (
@@ -25,6 +27,8 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/Admin/AdminStudents" element={<AdminStd />} />
         <Route path="/Admin/AdminTeachers" element={<AdminTech />} />
+        <Route path="/Admin/InfoStudents" element={<InfoStudents />} />
+        <Route path="/Admin/InfoTeachers" element={<InfoTeachers />} />
         <Route path="/teacher" element={<Teacher />}>
           <Route path="Dashboard" element={<Dashboard />} />
           <Route path="Addmarks" element={<AddMarks />} />
