@@ -16,7 +16,9 @@ const AdminTech = () => {
 
   const links = [
     { url: "/Admin/AdminStudents", text: "Add Students" },
-    { url: "/Admin/AdminTeachers", text: "Add Teacher" }
+    { url: "/Admin/AdminTeachers", text: "Add Teacher" },
+    { url: "/Admin/InfoStudents", text: "Info Students" },
+    { url: "/Admin/InfoTeachers", text: "Info Teachers" },
   ];
 
   const [teacherName, setTeacherName] = useState("");
@@ -92,28 +94,36 @@ const AdminTech = () => {
         <CardSidbar name="muath Mhawich" role="Admin Dashboard" />
       </Sidbar>
 
-      <AdminContent titleTable="TEACHER INFORMATION FORM">
+      <AdminContent>
         {isLoading && <div className="spinner"> </div>}
-        <InfoTeacherForm
-          teacherName={teacherName}
-          setTeacherName={setTeacherName}
-          gender={gender}
-          setGender={setGender}
-          experience={experience}
-          setExperience={setExperience}
-          dateOfBirth={dateOfBirth}
-          setDateOfBirth={setDateOfBirth}
-          email={email}
-          setEmail={setEmail}
-          classValue={classValue}
-          setClassValue={setClassValue}
-          phoneNumber={phoneNumber}
-          TeacherAddress={TeacherAddress}
-          setTeacherAddress={setTeacherAddress}
-          notify={notify}
-          setPhoneNumber={setPhoneNumber}
-          handleSubmit={handleSubmit}
-        />
+      <div className="p-4  border-gray-200  rounded-lg dark:border-gray-700">
+          <div className=" bg-blue-600 rounded-t-lg text-white text-2xl mt-5 p-7 ">
+                <h1>TEACHER INFORMATION FORM</h1>
+            </div>
+          <div className=" bg-blue-300 p-7 rounded-b-lg ">
+              
+              <InfoTeacherForm
+                teacherName={teacherName}
+                setTeacherName={setTeacherName}
+                gender={gender}
+                setGender={setGender}
+                experience={experience}
+                setExperience={setExperience}
+                dateOfBirth={dateOfBirth}
+                setDateOfBirth={setDateOfBirth}
+                email={email}
+                setEmail={setEmail}
+                classValue={classValue}
+                setClassValue={setClassValue}
+                phoneNumber={phoneNumber}
+                TeacherAddress={TeacherAddress}
+                setTeacherAddress={setTeacherAddress}
+                notify={notify}
+                setPhoneNumber={setPhoneNumber}
+                handleSubmit={handleSubmit}
+              />
+            </div>
+          </div>
       </AdminContent>
     </>
   );
