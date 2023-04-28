@@ -1,10 +1,19 @@
 import React from 'react'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Sidbar } from '../../sections'
 import { CardSidbar } from '../../components'
 import AdminContent from '../../sections/Content/AdminContent';
+import { Link, useNavigate } from "react-router-dom";
+import FormStdPage, { Modal } from './FormForEdit/Modal';
+import { Table } from './FormForEdit/Table';
+import { Pagination } from '@mui/material';
+import ReactPaginate from "react-paginate";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { BsChevronRight, BsChevronLeft, BsPersonCircle } from "react-icons/bs";
 
-const InfoStudents = () => {
+import './pagination.css';
+
+function InfoStudents () {
 
 const links = [
     { url: "/Admin/AdminStudents", text: "Add Students" },
@@ -13,100 +22,183 @@ const links = [
     { url: "/Admin/InfoTeachers", text: "Info Teachers" },
 ];
 
-const infoStdI = [
-    {id:"0", name: "mohammad" , username: "P-mohammad"},
-    {id:"1", name: "Yassen" , username: "P-Yassen"},
-    {id:"2", name: "muath" , username: "P-muath"},
-    {id:"3", name: "ahmad" , username: "P-ahmad"},
-    {id:"4", name: "amjad" , username: "P-amjad"},
-    {id:"5", name: "yazan" , username: "P-yazan"},
-]
+const [modalOpen, setModalOpen] = useState(false);
+const [rows, setRows] = useState([
+{
+    id:"0",
+    studentName: "Mohammad",
+    gender: "Male",
+    dateOfBirth : "20/6/2010",
+    class: "class1",
+    adress: "zarqaa",
+    name: "ahmad",
+    emailAdress: "mohammad@gmial.com",
+    telepohoneNumber: '0123456789',
+},
+{
+    id:"1",
+    studentName: "Mohammad",
+    gender: "Male",
+    dateOfBirth : "20/6/2010",
+    class: "class1",
+    adress: "zarqaa",
+    name: "ahmad",
+    emailAdress: "mohammad@gmial.com",
+    telepohoneNumber: '0123456789',
+},
+{
+    id:"2",
+    studentName: "Mohammad",
+    gender: "Male",
+    dateOfBirth : "20/6/2010",
+    class: "class1",
+    adress: "zarqaa",
+    name: "ahmad",
+    emailAdress: "mohammad@gmial.com",
+    telepohoneNumber: '0123456789',
+},
+{
+    id:"3",
+    studentName: "Mohammad",
+    gender: "Male",
+    dateOfBirth : "20/6/2010",
+    class: "class1",
+    adress: "zarqaa",
+    name: "ahmad",
+    emailAdress: "mohammad@gmial.com",
+    telepohoneNumber: '0123456789',
+},
+{
+    id:"4",
+    studentName: "Mohammad",
+    gender: "Male",
+    dateOfBirth : "20/6/2010",
+    class: "class1",
+    adress: "zarqaa",
+    name: "ahmad",
+    emailAdress: "mohammad@gmial.com",
+    telepohoneNumber: '0123456789',
+},
+{
+    id:"5",
+    studentName: "Mohammad",
+    gender: "Male",
+    dateOfBirth : "20/6/2010",
+    class: "class1",
+    adress: "zarqaa",
+    name: "ahmad",
+    emailAdress: "mohammad@gmial.com",
+    telepohoneNumber: '0123456789',
+},
+{
+    id:"6",
+    studentName: "Mohammad",
+    gender: "Male",
+    dateOfBirth : "20/6/2010",
+    class: "class1",
+    adress: "zarqaa",
+    name: "ahmad",
+    emailAdress: "mohammad@gmial.com",
+    telepohoneNumber: '0123456789',
+},
+{
+    id:"7",
+    studentName: "Mohammad",
+    gender: "Male",
+    dateOfBirth : "20/6/2010",
+    class: "class1",
+    adress: "zarqaa",
+    name: "ahmad",
+    emailAdress: "mohammad@gmial.com",
+    telepohoneNumber: '0123456789',
+},
+]);
 
-const [infoStd, setinfoStd] = useState(infoStdI);
+
+const [rowToEdit, setRowToEdit] = useState(null);
+const [pageNumber, setPageNumber] = useState(0);
+////Pagenation/////
+const rowsPerPage = 5;
+const pagesVisited = pageNumber * rowsPerPage;
+//////////////////
+
+const handleDeleteRow = (targetIndex) => {
+    const newItems = [...rows];
+    newItems.splice(targetIndex, 1);
+    setRows(newItems);
+    // window.location.reload();
+};
 
 
-const handleDelete  = (id) => {
-    console.log("Delete")
-    const newItems = infoStd.filter(item => item.id !== id);
-    setinfoStd(newItems);
+const handleEditRow = (idx) => {
+    setRowToEdit(idx);
+    
+    setModalOpen(true);
+};
+
+/////////////////////
+function getObjectIndex (arr, ObjId ) {
+    for (let i = 0 ; i < arr.length ; i++){
+        if (arr[i].id === ObjId ) {
+            return i;
+        }
+    }
+    return null;
 }
+/////////////////////
+const handleSubmit = (newRow) => {
+    setRows(
+        rows.map((currRow, idx) => {
+            if (currRow.id !== rowToEdit) return currRow;
+            return newRow;
+        })
+        );
+};
 
+
+////Pagenation/////
+const pageCount = Math.ceil(rows.length / rowsPerPage);
+
+const changePage = ({ selected }) => {
+    setPageNumber(selected);
+};
+//////////////////
 return (
     <>
     <Sidbar links={links}>
-        <CardSidbar name="math Mhawich" role="Admin Dashboard" />
+        <CardSidbar name="muath Mhawich" role="Admin Dashboard" />
     </Sidbar>
     <AdminContent>
-
-
-{
-    infoStd.length > 0 ? (
-        <div class="relative overflow-x-auto p-20">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Student name
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Username
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Delete
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Edit 
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            {
-            infoStd.map((item)=> {
-                return (
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {item.name}
-                        </th>
-                        <td class="px-6 py-4">
-                            {item.username}
-                        </td>
-                        <td class="px-2 pt-2">
-                            <button 
-                            type="button" 
-                            class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
-                            onClick={() => handleDelete (item.id)}
-                            >
-                                Delete
-                            </button>
-
-                        </td>
-                        <td class="px-2 pt-2">
-                            <button 
-                            type="button" 
-                            class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
-                            onClick={() => handleNavigat(item)}
-                            >
-                                Edit
-                            </button>
-
-                        </td>
-                    </tr>
-                )
-            })
-            }
-            
-        </tbody>
-    </table>
-</div>
-    ) : (
-        <div className='m-14'>
-            <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
-                <span class="font-medium">Info alert!</span> There is no students.
-            </div>
+        <div className="App">
+        <Table
+            rows={rows.slice(pagesVisited, pagesVisited + rowsPerPage)}
+            deleteRow={handleDeleteRow}
+            editRow={handleEditRow}
+        />
+        <ReactPaginate
+            previousLabel={<BsChevronLeft/>}
+            nextLabel={<BsChevronRight/>}
+            pageCount={pageCount}
+            onPageChange={changePage}
+            containerClassName={"paginationBttns"}
+            pageClassName={"backBttns"}
+            previousLinkClassName={"previousBttn"}
+            nextLinkClassName={"nextBttn"}
+            disabledClassName={"paginationDisabled"}
+            activeClassName={"paginationActive"}
+            />
+        {modalOpen && (
+            <Modal
+            closeModal={() => {
+                setModalOpen(false);
+                setRowToEdit(null);
+            }}
+            onSubmit={handleSubmit}
+            //For show values of inputs in white box.
+            defaultValue={rowToEdit !== null && rows[rowToEdit]}
+            />
+        )}
         </div>
-    )
-}
-
     </AdminContent>
 </>
 )
