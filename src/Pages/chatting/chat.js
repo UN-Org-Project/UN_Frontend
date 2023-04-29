@@ -81,7 +81,7 @@ import "./chat.css";
 // export default AdminDb;
 import { useParams } from "react-router-dom";
 import React, { useState } from "react";
-import { ChatEngine, getOrCreateChat } from "react-chat-engine";
+import { ChatEngine, getOrCreateChat, ChatHeader } from "react-chat-engine";
 import TeacherContent from "../../sections/Content/TeacherContent";
 
 const DirectChatPage = (props) => {
@@ -127,6 +127,14 @@ const DirectChatPage = (props) => {
         userName="641719a4f762f9578985b773"
         userSecret="1234"
         renderNewChatForm={(creds) => renderChatForm(creds)}
+        renderChatHeader={(chat) => (
+          <div className="ce-feed-container-top">
+            <p>Muath mhawich</p>
+          </div>
+        )}
+        renderChatSettingsTop={(creds, chat) => (
+          <div className="SettingTop">muath mhawich</div>
+        )}
       />
     </div>
   );

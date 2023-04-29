@@ -12,7 +12,7 @@ const MessagesLists = ({ Data, deleteOneItem }) => {
     <>
       <div className=" w-full">
         <Accordion className="mt-2  " alwaysOpen={true}>
-          {localStorage.getItem("items") != null ? (
+          {Data.length != 0 ? (
             Data.map((item, index) => {
               return (
                 <Accordion.Panel key={index}>

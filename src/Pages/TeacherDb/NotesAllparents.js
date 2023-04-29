@@ -14,6 +14,7 @@ const NotesAllStudent = (props) => {
         "http://localhost:8000/getnotes/6431b22ca8514ea551212e27"
       );
       const notesArray = response.data.notes;
+      console.log(notesArray);
       setData(notesArray);
     }
     getnotesArray();
