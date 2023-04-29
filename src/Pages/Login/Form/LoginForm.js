@@ -22,14 +22,14 @@ const LoginForm = (props) => {
   //     return;
   //   }
 
-  //   setIsValid(true);
-  //Send the username and the password to "http://localhost:8000/auth/login" end point
-  //   try {
-  //     const response = await axios.put("http://localhost:8000/auth/login", {
-  //       username,
-  //       password
-  //     });
-  //     console.log(response.status);
+    // setIsValid(true);
+    // //Send the username and the password to "http://localhost:8000/auth/login" end point
+    // try {
+    //   const response = await axios.post("http://localhost:8000/auth/login", {
+    //     username,
+    //     password,
+    //   });
+    //   console.log(response.status);
 
   //     console.log(response.data);
   //     //Check if the response is OK
@@ -125,6 +125,6 @@ const LoginForm = (props) => {
       </form>
     </>
   );
-};
+  };
 
 export default LoginForm;

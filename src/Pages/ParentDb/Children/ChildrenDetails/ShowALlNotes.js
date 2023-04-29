@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Note from "./Note";
 const ShowALlNotes = (props) => {
+  
   const [allnotes, setAllnotes] = useState([]);
   const [shownoteBody, setShownoteBody] = useState(false);
   const [conentNote, setContentNote] = useState({});
