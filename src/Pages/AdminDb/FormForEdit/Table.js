@@ -7,6 +7,7 @@ import Avatar from "@mui/material/Avatar";
 import "./Table.css";
 
 export const Table = ({ rows, deleteRow, editRow }) => {
+  // console.log(rows);
   return (
     <div className="table-wrapper">
       <table className="table">
@@ -22,15 +23,13 @@ export const Table = ({ rows, deleteRow, editRow }) => {
           {rows.map((row, idx) => {
             return (
               <tr key={idx}>
-                <td className="expand text-center"> 
-                <div className="flex items-center">
-                  <div className="flex-shrink-0 w-10 h-10">
-                    <Avatar alt={"kkk"}  />
+                <td className="expand text-center">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0 w-10 h-10">
+                      <Avatar alt={"kkk"} />
+                    </div>
+                    <div className="ml-2">{row.studentName}</div>
                   </div>
-                  <div className="ml-2">
-                    {row.studentName}
-                  </div>
-                </div>
                 </td>
                 <td className="expand text-center">{row.adress}</td>
                 <td className="expand text-center">{row.class}</td>
@@ -41,9 +40,10 @@ export const Table = ({ rows, deleteRow, editRow }) => {
                       onClick={() => deleteRow(row._id)}
                     />
                     <FaEdit
+                      id={row._id}
                       className="edit-btn text-xl text-blue-400"
                       onClick={() => {
-                        editRow(row._id)
+                        editRow(row._id);
                         console.log(row._id);
                       }}
                     />

@@ -20,7 +20,7 @@ function InfoStudents() {
     { url: "/Admin/AdminStudents", text: "Add Students" },
     { url: "/Admin/AdminTeachers", text: "Add Teacher" },
     { url: "/Admin/InfoStudents", text: "Info Students" },
-    { url: "/Admin/InfoTeachers", text: "Info Teachers" },
+    { url: "/Admin/InfoTeachers", text: "Info Teachers" }
   ];
 
   const [infoStd, setinfoStd] = useState([]);
@@ -51,7 +51,7 @@ function InfoStudents() {
 
   const arr = [
     {
-      _id: '0',
+      _id: "0",
       studentName: "Mohammad",
       gender: "Male",
       dateOfBirth: "20/6/2010",
@@ -59,7 +59,7 @@ function InfoStudents() {
       adress: "zarqaa",
       name: "ahmad",
       emailAdress: "mohammad@gmial.com",
-      telepohoneNumber: "0123456788",
+      telepohoneNumber: "0123456788"
     },
     {
       _id: "1",
@@ -70,7 +70,7 @@ function InfoStudents() {
       adress: "zarqaa",
       name: "ahmad",
       emailAdress: "mohammad@gmial.com",
-      telepohoneNumber: "0123456789",
+      telepohoneNumber: "0123456789"
     },
     {
       _id: "0",
@@ -81,8 +81,8 @@ function InfoStudents() {
       adress: "zarqaa",
       name: "ahmad",
       emailAdress: "mohammad@gmial.com",
-      telepohoneNumber: "0123456788",
-    },
+      telepohoneNumber: "0123456788"
+    }
   ];
   // console.log(arr);
 
@@ -102,6 +102,7 @@ function InfoStudents() {
 
   const handleEditRow = (idx) => {
     setRowToEdit(idx);
+    console.log(idx);
 
     setModalOpen(true);
   };
@@ -167,7 +168,10 @@ function InfoStudents() {
               }}
               onSubmit={handleSubmit}
               //For show values of inputs in white box.
-              defaultValue={rowToEdit !== null && rows[rowToEdit]}
+              defaultValue={
+                rowToEdit !== null &&
+                rows.filter((row) => rowToEdit === row._id)
+              }
             />
           )}
         </div>
