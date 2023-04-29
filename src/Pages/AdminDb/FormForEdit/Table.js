@@ -38,13 +38,13 @@ export const Table = ({ rows, deleteRow, editRow }) => {
                   <span className="actions">
                     <BsFillTrashFill
                       className="delete-btn text-xl"
-                      onClick={() => deleteRow(row.id)}
+                      onClick={() => deleteRow(row._id)}
                     />
                     <FaEdit
                       className="edit-btn text-xl text-blue-400"
                       onClick={() => {
-                        editRow(row.id)
-                        console.log(row.id);
+                        editRow(row._id)
+                        console.log(row._id);
                       }}
                     />
                   </span>
