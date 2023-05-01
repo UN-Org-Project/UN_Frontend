@@ -44,7 +44,6 @@ export const Table = ({ rows, deleteRow, editRow }) => {
                       className="edit-btn text-xl text-blue-400"
                       onClick={() => {
                         editRow(row._id);
-                        console.log(row._id);
                       }}
                     />
                   </span>

@@ -20,10 +20,10 @@ function InfoStudents() {
     { url: "/Admin/AdminStudents", text: "Add Students" },
     { url: "/Admin/AdminTeachers", text: "Add Teacher" },
     { url: "/Admin/InfoStudents", text: "Info Students" },
-    { url: "/Admin/InfoTeachers", text: "Info Teachers" }
+    { url: "/Admin/InfoTeachers", text: "Info Teachers" },
   ];
 
-  const [infoStd, setinfoStd] = useState([]);
+  // const [infoStd, setinfoStd] = useState([]);
   const [rows, setRows] = useState([]);
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -35,10 +35,6 @@ function InfoStudents() {
           "http://localhost:8000/getAllStudents"
         );
         const data = response.data;
-        //wtf
-        // for (let i = 0; i < data.length; i++) {
-        //   data[i]._id = i.toString();
-        // }
         setRows(data);
       } catch (error) {
         console.log(error);
@@ -46,45 +42,6 @@ function InfoStudents() {
     }
     fetchStudentData();
   }, []);
-  //the problem is when you put _id=0 or not
-  //const rows = infoStd;
-
-  const arr = [
-    {
-      _id: "0",
-      studentName: "Mohammad",
-      gender: "Male",
-      dateOfBirth: "20/6/2010",
-      class: "class1",
-      adress: "zarqaa",
-      name: "ahmad",
-      emailAdress: "mohammad@gmial.com",
-      telepohoneNumber: "0123456788"
-    },
-    {
-      _id: "1",
-      studentName: "Mohammad",
-      gender: "Male",
-      dateOfBirth: "20/6/2010",
-      class: "class1",
-      adress: "zarqaa",
-      name: "ahmad",
-      emailAdress: "mohammad@gmial.com",
-      telepohoneNumber: "0123456789"
-    },
-    {
-      _id: "0",
-      studentName: "Mohammad",
-      gender: "Male",
-      dateOfBirth: "20/6/2010",
-      class: "class1",
-      adress: "zarqaa",
-      name: "ahmad",
-      emailAdress: "mohammad@gmial.com",
-      telepohoneNumber: "0123456788"
-    }
-  ];
-  // console.log(arr);
 
   const [rowToEdit, setRowToEdit] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
@@ -97,21 +54,19 @@ function InfoStudents() {
     const newItems = [...rows];
     newItems.splice(targetIndex, 1);
     setRows(newItems);
-    // window.location.reload();
+    axios.get(
+      `http://localhost:8000/deleteStudent/${targetIndex}`
+    );
   };
 
   const handleEditRow = (idx) => {
     setRowToEdit(idx);
-    console.log(idx);
-
     setModalOpen(true);
   };
 
   /////////////////////
   function getObjectIndex(arr, ObjId) {
     for (let i = 0; i < arr.length; i++) {
-      // console.log(arr);
-      // console.log(ObjId);
       if (arr[i]._id === ObjId) {
         return i;
       }
@@ -121,8 +76,7 @@ function InfoStudents() {
   /////////////////////
   const handleSubmit = (newRow) => {
     setRows(
-      rows.map((currRow, idx) => {
-        //console.log(currRow);
+      rows.map((currRow) => {
         if (currRow._id !== rowToEdit) return currRow;
         return newRow;
       })
