@@ -8,21 +8,18 @@
 
   --padding-primary: var(--distance-primary);
   --margin-primary: var(--distance-primary);
-  --border-radius-primary: calc(var(--distance-primary)/2);
+  --border-radius-primary: calc(var(--distance-primary) / 2);
 
   --font-weight-bold: 900;
   --font-weight-normal: 400;
-  --font-family-primary: 'Poppins', sans-serif;
-
-
+  --font-family-primary: "Poppins", sans-serif;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,300&display=swap");
 
 body {
-  background-color: var(--color-bg-body);
+  background-color: #f8f9fa;
   font-family: var(--font-family-primary);
-
 }
 
 ul {

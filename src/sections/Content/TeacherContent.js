@@ -5,15 +5,7 @@ const TeacherContent = ({ titleTable, children }) => {
   const logoutHandler = () => {
     localStorage.removeItem("islogged"), localStorage.removeItem("userData");
   };
-  return (
-    <>
-      <div className="p-4 mt-24">
-        {/* <div className="p-4 border-2 w-full  border-gray-200 border-dashed rounded-lg dark:border-gray-700">  */}
-        {children}
-        {/* </div> */}
-      </div>
-    </>
-  );
+  return <>{children}</>;
 };
 
 export default TeacherContent;

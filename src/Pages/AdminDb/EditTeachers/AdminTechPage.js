@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { Sidbar } from "../../sections";
-import AdminContent from "../../sections/Content/AdminContent";
-import { CardSidbar } from "../../components";
-import InfoTeacherForm from "../../sections/Form/InfoTeacherForm";
+// import { Sidbar } from "../../../sections";
+// import AdminContent from "../../../sections/Content/AdminContent";
+// import { CardSidbar } from "../../../components";
+import InfoTeacherForm from "../../../sections/Form/InfoTeacherForm";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./AdminDb.css";
+import "./../AdminDb.css";
 import axios from "axios";
+import Layout from "../../../Layout/Layout";
+import { AdminAvatar } from "../../../components/assets";
+import {
+  FaChalkboardTeacher,
+  FaUserEdit,
+  FaUserGraduate,
+} from "react-icons/fa";
+import AdminContent from "../../../sections/Content/AdminContent";
+import Btn from "../../../components/SideBar/MenuBtn/Btn";
+import MainTitle from "../../../components/SectionTitle/MainTitle";
+import { Edit } from "@mui/icons-material";
+
 const AdminTech = () => {
   const [isLoading, setIsLoading] = useState(false);
   const notify = (message, type) => {
     if (type === "Error") toast.error(message);
     else if (type === "Success") toast.success(message);
   };
-
-  const links = [
-    { url: "/Admin/AdminStudents", text: "Add Students" },
-    { url: "/Admin/AdminTeachers", text: "Add Teacher" }
-  ];
 
   const [teacherName, setTeacherName] = useState("");
   const [gender, setGender] = useState("Male");
@@ -54,7 +61,7 @@ const AdminTech = () => {
         _class: classValue,
         telepohoneNumber: phoneNumber,
         adress: TeacherAddress,
-        emailAdress: email
+        emailAdress: email,
       };
 
       // For see all input fields in form
@@ -63,7 +70,7 @@ const AdminTech = () => {
       // }
 
       const response = await axios.post("http://localhost:8000/teacher", {
-        Data
+        Data,
       });
       setIsLoading(false);
       if (!response.ok) {
@@ -86,13 +93,43 @@ const AdminTech = () => {
     }
   };
 
+  const buttons = [
+    {
+      name: "Add Student",
+      path: "/Admin/AdminStudents",
+      icon: <FaUserGraduate style={{ width: "18", height: "18" }} />,
+    },
+    {
+      name: "Edit Students",
+      path: "/Admin/InfoStudents",
+      icon: <Edit style={{ width: "18", height: "18" }} />,
+    },
+    {
+      name: "Add Teachers",
+      path: "/Admin/AdminTeachers",
+      icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />,
+    },
+    {
+      name: "Edit Teachers",
+      path: "/Admin/InfoTeachers",
+      icon: <FaUserEdit style={{ width: "18", height: "18" }} />,
+    },
+  ];
+
   return (
     <>
-      <Sidbar links={links}>
-        <CardSidbar name="muath Mhawich" role="Admin Dashboard" />
-      </Sidbar>
-
-      <AdminContent titleTable="TEACHER INFORMATION FORM">
+      <Layout
+        userImg={AdminAvatar}
+        userName="Ahmad Alhariri"
+        userRoll="Admin"
+        sidebarChildren={buttons.map((item, index) => (
+          <Btn key={index} name={item.name} path={item.path}>
+            {" "}
+            {item.icon}{" "}
+          </Btn>
+        ))}
+      >
+        <MainTitle title="Add Teacher Form" />
         {isLoading && <div className="spinner"> </div>}
         <InfoTeacherForm
           teacherName={teacherName}
@@ -114,7 +151,10 @@ const AdminTech = () => {
           setPhoneNumber={setPhoneNumber}
           handleSubmit={handleSubmit}
         />
-      </AdminContent>
+      </Layout>
+      {/* <Sidbar links={links}>
+        <CardSidbar name="muath Mhawich" role="Admin Dashboard" />
+      </Sidbar> */}
     </>
   );
 };

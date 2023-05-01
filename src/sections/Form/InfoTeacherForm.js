@@ -1,14 +1,201 @@
 import React from "react";
 import { BsPlusLg, BsCheck2All } from "react-icons/bs";
-  import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
-  
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const InfoTeacherForm = (props) => {
   return (
     <div>
       <ToastContainer />
-      <form onSubmit={props.handleSubmit}>
-        
+      <ToastContainer />
+      <div className="rounded-lg border border-stroke bg-clip-border bg-gradient-to-br from-blue-600 to-blue-400 placeholder:text-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+          <h3 className="font-medium text-white dark:text-white">
+            Teacher Info Form
+          </h3>
+        </div>
+
+        <div className="p-6.5">
+          <form onSubmit={props.handleSubmit}>
+            {/* !----- START TEACHER INFO FORM */}
+            <div className="grid gap-6 mb-6 md:grid-cols-2">
+              {/* !----- TEACHER NAME INPUT  -----! */}
+              <div>
+                <label
+                  htmlFor="teacher-name"
+                  className="mb-2.5 block text-white dark:text-white"
+                >
+                  Teacher Name <span className="text-meta-1">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="teacherName"
+                  placeholder="Enter Teacher Name"
+                  className=" bg-white w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-gradientTo active:border-gradientTo disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary placeholder:text-slate-200"
+                  value={props.teacherName}
+                  onChange={(e) => props.setTeacherName(e.target.value)}
+                  required
+                />
+              </div>
+
+              {/* !----- TEACHER EXPERINECES  -----! */}
+              <div>
+                <label
+                  htmlFor="Experience"
+                  className="mb-2.5 block text-white dark:text-white"
+                >
+                  Experience <span className="text-meta-1">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="Experience"
+                  placeholder="Enter The Experience Of The Teacher"
+                  className=" bg-white w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-gradientTo active:border-gradientTo disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary placeholder:text-slate-200"
+                  value={props.experience}
+                  onChange={(e) => props.setExperience(e.target.value)}
+                  required
+                />
+              </div>
+
+              {/* !----- EMAIL ADDRESS  INPUT  -----! */}
+              <div>
+                <label
+                  htmlFor="email-address"
+                  className="mb-2.5 block text-white dark:text-white"
+                >
+                  Email <span className="text-meta-1">*</span>
+                </label>
+                <input
+                  id="email-address"
+                  type="email"
+                  className="bg-white w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-gradientTo active:border-gradientTo  disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary placeholder:text-slate-200"
+                  placeholder="o@gmail.com"
+                  value={props.email}
+                  onChange={(e) => props.setEmail(e.target.value)}
+                  required
+                />
+              </div>
+
+              {/* !----- PHONE NUMBER INPUT  -----! */}
+              <div>
+                <label
+                  htmlFor="phone-num"
+                  className="mb-2.5 block text-white dark:text-white"
+                >
+                  Phone <span className="text-meta-1">*</span>
+                </label>
+                <input
+                  id="phone-num"
+                  type="email"
+                  className="bg-white w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-gradientTo active:border-gradientTo  disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary placeholder:text-slate-200 "
+                  placeholder="+962-790-641-545"
+                  value={props.phoneNumber}
+                  onChange={(e) => props.setPhoneNumber(e.target.value)}
+                  required
+                />
+              </div>
+
+              {/* !-----  TEACHER'S LOCATION INPUT  -----! */}
+              <div>
+                <label
+                  htmlFor="location"
+                  className="mb-2.5 block text-white dark:text-white"
+                >
+                  Teacher Location <span className="text-meta-1">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="location"
+                  className="bg-white w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-gradientTo active:border-gradientTo  disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary placeholder:text-slate-200  "
+                  placeholder="Enter Teacher's Location"
+                  value={props.TeacherAddress}
+                  onChange={(e) => props.setTeacherAddress(e.target.value)}
+                  required
+                />
+              </div>
+
+              {/* !-----  TEACHER'S GENDER INPUT  -----! */}
+              <div>
+                <label
+                  htmlFor="gender"
+                  className="mb-2.5 block text-white dark:text-white"
+                >
+                  Gender <span className="text-meta-1">*</span>
+                </label>
+
+                <select
+                  name="gender"
+                  type="text"
+                  id="gender"
+                  className="bg-white w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-gradientTo active:border-gradientTo  disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary  placeholder:text-slate-200  "
+                  value={props.gender}
+                  onChange={(e) => props.setGender(e.target.value)}
+                  required
+                >
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+
+              {/* !-----  TEACHER'S BARETH DATE INPUT  -----! */}
+              <div>
+                <label
+                  htmlFor="date"
+                  className="mb-2.5 block text-white dark:text-white"
+                >
+                  Date of Breath <span className="text-meta-1">*</span>
+                </label>
+                <input
+                  type="date"
+                  id="date"
+                  className="bg-white w-full  rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-gradientTo active:border-gradientTo dark:border-form-strokedark dark:bg-form-input dark:focus:border-gradientTo placeholder:text-slate-200"
+                  name="arrive"
+                  value={props.dateOfBirth}
+                  onChange={(e) => props.setDateOfBirth(e.target.value)}
+                />
+              </div>
+
+              {/* !-----  TEACHER'S CLASS  INPUT  -----! */}
+              <div>
+                <label
+                  htmlFor="class"
+                  className="mb-2.5 block text-white dark:text-white"
+                >
+                  Class <span className="text-meta-1">*</span>
+                </label>
+                <select
+                  id="class"
+                  className="bg-white w-full  rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-gradientTo active:border-gradientTo dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary placeholder:text-slate-200"
+                  // defaultValue="class1"
+                  value={props.classValue}
+                  onChange={(e) => props.setClassValue(e.target.value)}
+                  required
+                >
+                  <option value="class1">CLASS 1 </option>
+                  <option value="class2">CLASS 2 </option>
+                  <option value="class3">CLASS 3 </option>
+                  <option value="class4">CLASS 4 </option>
+                  <option value="class5">CLASS 5 </option>
+                  <option value="class6">CLASS 6 </option>
+                </select>
+              </div>
+            </div>
+            {/* !----- END STUDENT INFO FORM */}
+
+            <button
+              type="SUBMIT"
+              className="flex items-center w-fit m-auto gap-1 justify-center rounded bg-clip-border bg-gradient-to-tr from-gradientFrom to-gradientTo p-3 font-medium text-gray"
+            >
+              ADD TEACHER{" "}
+              <span>
+                <BsPlusLg style={{ color: "white", fontSize: "20px" }} />
+              </span>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {/* <form onSubmit={props.handleSubmit}>
         <div class="grid gap-6 mb-6 md:grid-cols-2">
           <div>
             <label
@@ -48,6 +235,7 @@ const InfoTeacherForm = (props) => {
               <option value="Female">Female</option>
             </select>
           </div>
+
           <div className="-mt-4">
             <label
               htmlFor="Experience"
@@ -155,7 +343,7 @@ const InfoTeacherForm = (props) => {
               required
             />
           </div>
-        </div> 
+        </div>
         <div style={{ display: "flex", alignItems: "center", gap: "55px" }}>
           <div>
             <button
@@ -170,7 +358,7 @@ const InfoTeacherForm = (props) => {
             </button>
           </div>
         </div>
-      </form>
+      </form> */}
     </div>
   );
 };

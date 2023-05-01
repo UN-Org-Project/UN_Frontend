@@ -4,6 +4,8 @@ import Avatar from "@mui/material/Avatar";
 import RatingComp from "../../Rating/Rating";
 import InputMark from "../../InputMarkComponent/InputMark";
 import { ParentAvatar } from "../../../components/assets";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 //import DirectChatPage from "../../../Pages/chatting/chat";
 
 const DashboardRow = (props) => {
@@ -15,7 +17,11 @@ const DashboardRow = (props) => {
   const [isButtonVisible, setIsButtonVisible] = useState(true);
   const [color, setcolor] = useState("");
   //const [chating, setChating] = useState(false);
-
+  let Navigate = useNavigate();
+  const handleNavigat = (id) => {
+    console.log("go to child details");
+    Navigate("/teacher/ChattingTeacher/" + id);
+  };
   //to handle if the value changed set it in the props function
   //////// handling Chatting/////////////////////////
   // const cahtingHandling = (e) => {
@@ -109,10 +115,10 @@ const DashboardRow = (props) => {
             <div id={props.id}>{props.gender}</div>
           ) : (
             <button
-              id={props.parentid}
               type="button"
-              // onClick={cahtingHandling}
-              className="bg-blue-500  inline-block rounded bg-info px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]">
+              onClick={() => handleNavigat(props.parentid)}
+              className="  bg-clip-border bg-gradient-to-br from-gradientFrom to-gradientTo  inline-block rounded bg-info px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]"
+            >
               Contact
             </button>
           )}
@@ -136,7 +142,8 @@ const DashboardRow = (props) => {
                 />
                 <label
                   htmlFor={props.id + "Absent"}
-                  className="ml-2 text-sm font-medium text-blue-600 dark:text-gray-300 cursor-pointer">
+                  className="ml-2 text-sm font-medium text-blue-500 dark:text-gray-300 cursor-pointer"
+                >
                   Absent
                 </label>
               </div>
@@ -147,18 +154,20 @@ const DashboardRow = (props) => {
                   checked={checkedpresent}
                   value="present"
                   name={props.id}
-                  className="w-4 h-4 cursor-pointer"
+                  className="w-4 h-4 cursor-pointer border-blue-500"
                   onChange={handlabsenseInputChange}
                 />
                 <label
                   htmlFor={props.id + "Present"}
-                  className="ml-2 text-sm font-medium text-blue-600 dark:text-gray-300 cursor-pointer">
+                  className="ml-2 text-sm font-medium text-blue-500 dark:text-gray-300 cursor-pointer"
+                >
                   Present
                 </label>
               </div>
             </div>
           )}
         </td>
+
         <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
           {props.StudentInfo ? (
             <>{props.absence}</>
@@ -176,21 +185,22 @@ const DashboardRow = (props) => {
                     placeholder="Write a comment..."
                     required
                     value={comment}
-                    onChange={(event) =>
-                      setComment(event.target.value)
-                    }></textarea>
+                    onChange={(event) => setComment(event.target.value)}
+                  ></textarea>
                 </div>
                 <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
                   <button
                     type="submit"
                     className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-                    onClick={handleCommentSubmit}>
+                    onClick={handleCommentSubmit}
+                  >
                     Send
                   </button>
                   <button
                     type="submit"
                     className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-                    onClick={handleCommentButtonClickSecendary}>
+                    onClick={handleCommentButtonClickSecendary}
+                  >
                     Hide
                   </button>
                 </div>
@@ -200,9 +210,10 @@ const DashboardRow = (props) => {
           {isButtonVisible && !props.StudentInfo ? (
             <button
               type="button"
-              className="mx-20 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+              className=" text-white bg-clip-border bg-gradient-to-tr from-blue-600 to-blue-400 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={handleCommentButtonClickMain}
-              style={{ order: isCommentVisible ? 2 : 1 }}>
+              style={{ order: isCommentVisible ? 2 : 1 }}
+            >
               Send
             </button>
           ) : (
@@ -240,6 +251,11 @@ export const AddMarkRow = (props) => {
   const [isButtonVisible, setIsButtonVisible] = useState(true);
   const [mark, setmark] = useState("");
   ////////////////////// Handling Change data /////////////////////////////
+  let Navigate = useNavigate();
+  const handleNavigat = (id) => {
+    console.log("go to child details");
+    Navigate("/teacher/ChattingTeacher/" + id);
+  };
   let rate = 2;
   React.useEffect(() => {
     if (!props.isChanged) {
@@ -279,7 +295,12 @@ export const AddMarkRow = (props) => {
 
   return (
     <tr key={props.id}>
-      <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
+      {/* <td class="py-3 px-5 border-b border-blue-gray-50">
+        <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">
+          {props.event}
+        </p>
+      </td> */}
+      <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm text-left">
         <div className="flex items-center">
           <div className="flex-shrink-0 w-10 h-10">
             <Avatar alt={props.name} src={props.imgSrc} />
@@ -289,13 +310,19 @@ export const AddMarkRow = (props) => {
           </div>
         </div>
       </td>
+
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm  text-left">
         <button
           type="button"
-          className="bg-blue-500  inline-block rounded bg-info px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]">
+          onClick={() => handleNavigat(props.parentid)}
+          className="  bg-clip-border bg-gradient-to-br from-gradientFrom to-gradientTo  inline-block rounded bg-info px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]"
+        >
           Contact
         </button>
+
+        {/* {chating && <DirectChatPage parentid={props.parentid} />} */}
       </td>
+
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
         {/* when the user enter any marke change the value and send it to  */}
         <InputMark
@@ -306,7 +333,7 @@ export const AddMarkRow = (props) => {
           on
         />
       </td>
-      <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm">
+      <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm text-left">
         {isCommentVisible && (
           <div className=" w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
             <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
@@ -320,19 +347,22 @@ export const AddMarkRow = (props) => {
                 placeholder="Write a comment..."
                 required
                 value={comment}
-                onChange={(event) => setComment(event.target.value)}></textarea>
+                onChange={(event) => setComment(event.target.value)}
+              ></textarea>
             </div>
             <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
               <button
                 type="submit"
                 className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-                onClick={handleCommentSubmit}>
+                onClick={handleCommentSubmit}
+              >
                 Send
               </button>
               <button
                 type="submit"
                 className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-                onClick={handleCommentButtonClickSecendary}>
+                onClick={handleCommentButtonClickSecendary}
+              >
                 Hide
               </button>
             </div>
@@ -341,9 +371,10 @@ export const AddMarkRow = (props) => {
         {isButtonVisible && (
           <button
             type="button"
-            className="mx-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            className=" text-white bg-clip-border bg-gradient-to-tr from-blue-600 to-blue-400 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
             onClick={handleCommentButtonClickMain}
-            style={{ order: isCommentVisible ? 2 : 1 }}>
+            style={{ order: isCommentVisible ? 2 : 1 }}
+          >
             Send
           </button>
         )}
@@ -386,17 +417,12 @@ export const ShowMark = (props) => {
           </div>
         </div>
       </td>
-      <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm  text-left">
-        <button
-          type="button"
-          className="bg-blue-500  inline-block rounded bg-info px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]">
-          Contact
-        </button>
-      </td>
+
       <td className="px-5 py-5 border-b border-gray-100 bg-white text-sm ">
         {/* when the user enter any marke change the value and send it to  */}
         <span
-          className={`${color} w-fit text-blue-gray-900 px-4 py-2 rounded-md`}>
+          className={`${color} w-fit text-blue-gray-900 px-4 py-2 rounded-md`}
+        >
           {props.mark}
         </span>
       </td>
@@ -411,30 +437,32 @@ export const ShowMark = (props) => {
 };
 
 export const AbsenceDetailsRow = (props) => {
+  const [colorabsence, setcolorabsence] = useState(
+    " bg-gradient-to-tr from-green-600 to-green-400"
+  );
+  React.useEffect(() => {
+    if (props.absence.absecnceState === "absence") {
+      setcolorabsence(" bg-gradient-to-tr from-red-600 to-red-400");
+    }
+  }, [props.absence]);
   const absenceDate = props.absence.abcenceDate
     ? props.absence.abcenceDate.split("T")[0]
     : "not found yet";
   return (
-    <tr>
-      <td className="py-3 px-5 border-b border-blue-gray-50">
-        <button
-          type="button"
-          className="  bg-clip-border bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg inline-block rounded bg-info px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]">
-          Contact
-        </button>
-      </td>
+    <tr key={props.id}>
       <td className="py-3 px-5 border-b border-blue-gray-50">
         <div
-          className="relative inline-block align-baseline font-sans uppercase center whitespace-nowrap rounded-lg select-none bg-gradient-to-tr from-green-600 to-green-400 text-white py-0.5 px-2 text-[11px] font-medium"
+          className={`relative inline-block align-baseline font-sans uppercase center whitespace-nowrap rounded-lg select-none ${colorabsence} text-white py-0.5 px-2 text-[11px] font-medium`}
           data-projection-id="15"
-          style={{ opacity: 1 }}>
+          style={{ opacity: 1 }}
+        >
           <div className="  mt-px">
             {props.absence.absecnceState || "Not found yet"}
           </div>
         </div>
       </td>
       <td className="py-3 px-5 border-b border-blue-gray-50">
-        <Rating rate={props.rating} />
+        <Rating rate={props.rating.star} />
       </td>
       <td className="py-3 px-5 border-b border-blue-gray-50">
         <span>{props.note.note || "not found yet"}</span>
@@ -449,4 +477,29 @@ export const AbsenceDetailsRow = (props) => {
   );
 };
 
+export const EventsRow = (props) => {
+  return (
+    <tr key={props.id}>
+      <td class="py-3 px-5 border-b border-blue-gray-50">
+        <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">
+          {props.event}
+        </p>
+      </td>
+
+      <td class="py-3 px-5 border-b border-blue-gray-50">
+        <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">
+          {props.sender}
+        </p>
+      </td>
+
+      <td class="py-3 px-5 border-b border-blue-gray-50">
+        <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">
+          {props.date}
+        </p>
+      </td>
+
+      <td class="py-3 px-5 border-b border-blue-gray-50">{props.display}</td>
+    </tr>
+  );
+};
 export default DashboardRow;

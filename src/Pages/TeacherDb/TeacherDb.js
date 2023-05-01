@@ -1,23 +1,45 @@
-// import AddMarks from "./AddMarks/AddMarks";
-// import Dashboard from "./Dashboard/Dashboard";
 import "./TeacherDb.css";
-import {
-  AddmarkIcon,
-  TeacherAvatar,
-  DashboardIcon,
-  notesandReports,
-  chattingImage,
-} from "../../components/assets/index";
-import Sidbar from "../../components/SideBar/Sidbar";
+import { TeacherAvatar } from "../../components/assets/index";
+
 import Btn from "../../components/SideBar/MenuBtn/Btn";
 import TeacherContent from "../../sections/Content/TeacherContent";
+import Layout from "../../Layout/Layout";
 
-import Header from "../../components/HeaderDash/Header";
-import NotificationBtn from "../../components/NotificationBtn/NotificationBtn";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Outlet, useNavigate } from "react-router-dom";
-import { conte } from "react";
+
+import { Dashboard, Message, NoteAltSharp } from "@mui/icons-material";
+import { AiFillFileMarkdown } from "react-icons/ai";
+import { BsPersonVcard } from "react-icons/bs";
+
+const buttons = [
+  {
+    name: "Dashboard",
+    path: "Dashboard",
+    icon: <Dashboard style={{ width: "18", height: "18" }} />,
+  },
+  {
+    name: "Add Marks",
+    path: "Addmarks",
+    icon: <AiFillFileMarkdown style={{ width: "18", height: "18" }} />,
+  },
+  {
+    name: "Notes & Reports",
+    path: "SendNotesAndReports",
+    icon: <NoteAltSharp style={{ width: "18", height: "18" }} />,
+  },
+  {
+    name: "Students Info",
+    path: "StudentsInfo",
+    icon: <BsPersonVcard style={{ width: "18", height: "18" }} />,
+  },
+  {
+    name: "Messages",
+    path: "ChattingTeacher",
+    icon: <Message style={{ width: "18", height: "18" }} />,
+  },
+];
 
 const TeacherDb = () => {
   const id = localStorage.getItem("userData");
@@ -47,43 +69,32 @@ const TeacherDb = () => {
     }
     fetchTeacherData();
   }, []);
+
   return (
-    <div id="view">
-      {isLoading && <div className="spinner"> </div>}
-      {!isLoading && (
-        <>
-        <div  className="flex">
-          <Sidbar
-            UserImg={TeacherAvatar}
-            name={teacherData}
-            dashbordUser="Teacher Dashboard">
-            <Btn path="Dashboard" icon={DashboardIcon} btnName="Dashboard" />
-            <Btn path="Addmarks" icon={AddmarkIcon} btnName="Add Marks" />
-            <Btn
-              path="SendNotesAndReports"
-              icon={notesandReports}
-              btnName="Notes & Reports"
-            />
-            <Btn
-                path="StudentsInfo"
-                icon={AddmarkIcon}
-                btnName="Students Info"
-              />
-            <Btn path="ChattingTeacher" icon={chattingImage} btnName="Chating" />
-          </Sidbar>
-          </div>
-          <Header >
-              <NotificationBtn />
-            </Header>
-          <TeacherContent >
-            <Outlet  context={{ students: studentData }} />
-          </TeacherContent>
-        </>
+    <>
+      {isLoading ? (
+        <div className="spinner"> </div>
+      ) : (
+        !isLoading && (
+          <Layout
+            userImg={TeacherAvatar}
+            userName={teacherData}
+            userRoll="Teacher Dashboard"
+            sidebarChildren={buttons.map((item, index) => (
+              <Btn key={index} name={item.name} path={item.path}>
+                {" "}
+                {item.icon}{" "}
+              </Btn>
+            ))}
+          >
+            <TeacherContent>
+              <Outlet context={{ students: studentData }} />
+            </TeacherContent>
+          </Layout>
+        )
       )}
-    </div>
+    </>
   );
 };
 
 export default TeacherDb;
-
-

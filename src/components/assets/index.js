@@ -15,7 +15,7 @@ export { default as ServiceImg3 } from "./images/discussion.png";
 // For Buttons Icon In Dashboards
 export { default as DashboardIcon } from "./images/DashboardIcon.png";
 export { default as AddmarkIcon } from "./images/Addmark.png";
-export { default as AddUserIcon } from "./images/AddUsericon.png";
+export { default as AddUserIcon } from "./images/icons8-add-administrator-32.png";
 
 // For the log in section in home page
 export { default as AdminLogin } from "./images/Admin-img.png";
@@ -26,8 +26,8 @@ export { default as ParentLogin } from "./images/parents-img.png";
 export { default as AdminAvatar } from "./images/Adminavatar.png";
 export { default as TeacherAvatar } from "./images/Teacheravatar.png";
 export { default as ParentAvatar } from "./images/Parentavatar.png";
-export { default as notesandReports } from "./images/notesandReports.png"
-export { default as chattingImage } from "./images/chattingImage.gif"
+export { default as notesandReports } from "./images/notesandReports.png";
+export { default as chattingImage } from "./images/chattingImage.gif";
 
 // For Image In The Section Tiltle In Dashboard
 export { default as SectionImg } from "./images/User-60.png";

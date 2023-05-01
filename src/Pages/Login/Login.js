@@ -18,7 +18,7 @@ const Login = () => {
     try {
       const response = await axios.put("http://localhost:8000/auth/login", {
         username,
-        password
+        password,
       });
       console.log(response.status);
       console.log(response.data);

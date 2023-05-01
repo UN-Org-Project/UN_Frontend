@@ -1,13 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { InfoStudentsForm, Sidbar } from "../../sections";
-import AdminContent from "../../sections/Content/AdminContent";
-import { CardSidbar } from "../../components";
+import { InfoStudentsForm } from "../../../sections";
+import AdminContent from "../../../sections/Content/AdminContent";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import "./AdminDb.css";
 
+import axios from "axios";
+import "./../AdminDb.css";
+import Layout from "../../../Layout/Layout";
+
+import Btn from "../../../components/SideBar/MenuBtn/Btn";
+import { AdminAvatar } from "../../../components/assets";
+import {
+  FaChalkboardTeacher,
+  FaUserEdit,
+  FaUserGraduate,
+} from "react-icons/fa";
+import MainTitle from "../../../components/SectionTitle/MainTitle";
+
+import { Edit } from "@mui/icons-material";
 const AdminStd = () => {
   const id = localStorage.getItem("userData");
   const islogged = localStorage.getItem("islogged");
@@ -29,19 +40,10 @@ const AdminStd = () => {
     fetch();
   }, []);
 
-  //console.log(adminName);
-
-  //console.log(adminData);
-
   const notify = (message, type) => {
     if (type === "Error") toast.error(message);
     else if (type === "Success") toast.success(message);
   };
-
-  const links = [
-    { url: "/Admin/AdminStudents", text: "Add Students" },
-    { url: "/Admin/AdminTeachers", text: "Add Teacher" }
-  ];
 
   const [studentName, setStudentName] = useState("");
   const [gender, setGender] = useState("Male");
@@ -75,7 +77,7 @@ const AdminStd = () => {
         className: classValue,
         parentName: ParentName,
         emailAdress: email,
-        telephonNumber: phoneNumber
+        telephonNumber: phoneNumber,
       };
 
       // // For see all input fields in form
@@ -84,7 +86,7 @@ const AdminStd = () => {
       // }
 
       const response = await axios.post("http://localhost:8000/parent", {
-        Data
+        Data,
       });
       setIsLoading(false);
       if (!response.ok) {
@@ -106,6 +108,7 @@ const AdminStd = () => {
       console.log("Invalid info");
     }
   };
+
   // if (!islogged) {
   //   return (
   //     <>
@@ -119,12 +122,47 @@ const AdminStd = () => {
   //   );
   // }
 
+  const buttons = [
+    {
+      name: "Add Student",
+      path: "/Admin/AdminStudents",
+      icon: <FaUserGraduate style={{ width: "18", height: "18" }} />,
+    },
+    {
+      name: "Edit Students",
+      path: "/Admin/InfoStudents",
+      icon: <Edit style={{ width: "18", height: "18" }} />,
+    },
+    {
+      name: "Add Teachers",
+      path: "/Admin/AdminTeachers",
+      icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />,
+    },
+    {
+      name: "Edit Teachers",
+      path: "/Admin/InfoTeachers",
+      icon: <FaUserEdit style={{ width: "18", height: "18" }} />,
+    },
+  ];
+
   return (
     <>
-      <Sidbar links={links}>
-        <CardSidbar name="math Mhawich" role="Admin Dashboard" />
-      </Sidbar>
-      <AdminContent titleTable="STUDENT INFORMATION FORM">
+      {/* // <Sidbar links={links}>
+      //   <CardSidbar name="math Mhawich" role="Admin Dashboard" />
+      // </Sidbar> */}
+
+      <Layout
+        userImg={AdminAvatar}
+        userName="Ahmad Alhariri"
+        userRoll="Admin"
+        sidebarChildren={buttons.map((item, index) => (
+          <Btn key={index} name={item.name} path={item.path}>
+            {" "}
+            {item.icon}{" "}
+          </Btn>
+        ))}
+      >
+        <MainTitle title="Add Student Form" />
         {isLoading && <div className="spinner"> </div>}
         <InfoStudentsForm
           studentName={studentName}
@@ -146,7 +184,7 @@ const AdminStd = () => {
           notify={notify}
           handleSubmit={handleSubmit}
         />
-      </AdminContent>
+      </Layout>
     </>
   );
 };

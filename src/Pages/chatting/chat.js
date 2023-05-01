@@ -79,49 +79,44 @@ import "./chat.css";
 //   );
 // };
 // export default AdminDb;
-import React, { useState } from "react";
-import { ChatEngine, getOrCreateChat } from "react-chat-engine";
+// import React, { useState } from "react";
+// import { ChatEngine, getOrCreateChat } from "react-chat-engine";
 
-const DirectChatPage = () => {
-  const [username, setUsername] = useState("muath");
+// const DirectChatPage = () => {
+//   const [username, setUsername] = useState("muath");
 
-  function createDirectChat(creds) {
-    getOrCreateChat(
-      creds,
-      { is_direct_chat: true, usernames: [username] },
-      () => setUsername("muath")
-    );
-  }
+//   function createDirectChat(creds) {
+//     getOrCreateChat(
+//       creds,
+//       { is_direct_chat: true, usernames: [username] },
+//       () => setUsername("muath")
+//     );
+//   }
 
-  function renderChatForm(creds) {
-    return (
-      <div className="created">
-        <input
-          type="text"
-          placeholder="muath"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <button onClick={() => createDirectChat(creds)}>Create</button>
-      </div>
-    );
-  }
+//   function renderChatForm(creds) {
+//     return (
+//       <div className="created">
+//         <input
+//           type="text"
+//           placeholder="muath"
+//           value={username}
+//           onChange={(e) => setUsername(e.target.value)}
+//         />
+//         <button onClick={() => createDirectChat(creds)}>Create</button>
+//       </div>
+//     );
+//   }
 
-  return (
-    <div className="container mx-auto -mt-16 pl-6 pt-3  -mr-4 ">
-      <ChatEngine
-      height="92vh"
-      userName="Ali"
-      userSecret="mmm"
-      projectID="
-      b8ca72e8-1f9d-46b9-a3d7-18dcc011f59e"
-      renderNewChatForm={(creds) => renderChatForm(creds)}
-      renderChatCard={(chat, index) => {
-        1;
-      }}
-    />
-    </div>
-  );
-};
+//   return (
+//     <ChatEngine
+//       height="92vh"
+//       userName="641719a4f762f9578985b773"
+//       userSecret="1234"
+//       projectID="
+//       3d65a74f-ff33-4d31-bc09-edf06decc0d5"
+//       renderNewChatForm={(creds) => renderChatForm(creds)}
+//     />
+//   );
+// };
 
-export default DirectChatPage;
+// export default DirectChatPage;

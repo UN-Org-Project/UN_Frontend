@@ -7,12 +7,14 @@ const SelectComp = (props) => {
   };
 
   return (
-    <div className="flex flex-col items-start gap-3 mr-12">
-      <label className="text-blue-500">{props.lable}</label>
+    <div className="relative flex flex-col items-center gap-3 mr-12 w-full justify-center">
+      <label className="text-white text-lg uppercase font-medium  ">
+        {props.lable}
+      </label>
       <Select
         onChange={onChangeHandler}
         options={props.options}
-        className=" min-w-[13rem] text-blue-500 "
+        className=" min-w-[16rem] text-blue-500 "
       />
     </div>
   );

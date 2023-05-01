@@ -3,7 +3,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 
 const Progress = (props) => {
   return (
-    <div className=" w-2/5 m-auto">
+    <div className=" w-1/3">
       <CircularProgressbar
         value={props.percentage}
         text={`${props.percentage}%`}
@@ -13,7 +13,7 @@ const Progress = (props) => {
           // Customize the path, i.e. the "completed progress"
           path: {
             // Path color
-            stroke: `rgba(30, 136, 229, ${props.percentage / 100})`,
+            stroke: `rgba(30 ,136 ,229, ${props.percentage / 100})`,
             // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
             strokeLinecap: "butt",
             // Customize transition animation
@@ -25,7 +25,7 @@ const Progress = (props) => {
           // Customize the circle behind the path, i.e. the "total progress"
           trail: {
             // Trail color
-            stroke: "#d6d6d6",
+            stroke: "rgb(255 255 255)",
             // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
             strokeLinecap: "butt",
             // Rotate the trail
@@ -41,7 +41,7 @@ const Progress = (props) => {
           },
           // Customize background - only used when the `background` prop is true
           background: {
-            fill: "#1e88e5",
+            fill: "rgb(255 255 255)",
           },
         }}
       />

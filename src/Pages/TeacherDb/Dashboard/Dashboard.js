@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Title from "../../../components/SectionTitle/Title";
+// import Title from "../../../components/SectionTitle/Title";
 import Table from "../../../components/Table/Table";
 import DashboardRow from "../../../components/Table/RowInfo/TableRow";
 import StatisCard from "../../../components/StatisticsCard/StatisCard";
@@ -8,6 +8,9 @@ import { useOutletContext } from "react-router-dom";
 import axios from "axios";
 import "../TeacherDb.css";
 import Pagination from "@mui/material/Pagination";
+import ParentCards from "../../../components/StatisticsCard/ParentCards";
+import Card from "../../../components/StatisticsCard/Card/Card";
+import MainTitle from "../../../components/SectionTitle/MainTitle";
 
 const Dashboard = (props) => {
   // to handle if any action happened then show the submit button
@@ -39,7 +42,7 @@ const Dashboard = (props) => {
   const handleLevelChange = (id, value) => {
     setLevel((prevState) => ({
       ...prevState,
-      [id]: value
+      [id]: value,
     }));
     setIsChanged(true);
   };
@@ -47,7 +50,7 @@ const Dashboard = (props) => {
   const handleAbsenceChange = (id, value) => {
     setAbsence((prevState) => ({
       ...prevState,
-      [id]: value
+      [id]: value,
     }));
     setIsChanged(true);
   };
@@ -55,7 +58,7 @@ const Dashboard = (props) => {
   const handleNoteChange = (id, value) => {
     setNote((prevState) => ({
       ...prevState,
-      [id]: value
+      [id]: value,
     }));
     setIsChanged(true);
   };
@@ -70,7 +73,7 @@ const Dashboard = (props) => {
         ...student,
         absence: absence[student._id] || "present",
         note: note[student._id] || "No note heve been add !",
-        level: level[student._id] || 2
+        level: level[student._id] || 2,
       };
 
       studentsData.push(updatedStudent);
@@ -90,7 +93,7 @@ const Dashboard = (props) => {
       const response = await axios.post(
         "http://localhost:8000/add_Abs_Note_Rate",
         {
-          studentsData
+          studentsData,
         }
       );
       if (!response.ok) {
@@ -126,68 +129,80 @@ const Dashboard = (props) => {
   //////////////////////////
 
   return (
-    <div id="view" className="flex ml-80">
-      <div className="flex flex-col flex-1 ml-1 gap-5">
-        <div>
-          <Title h2="Student Absence Note And Level" />
-          <ToastContainer />
-          {/* this Card to show the total student and the absence */}
+    <>
+      {isLoading && <div className="spinner"> </div>}
+      {/* !-- THE TITLE OF THIS SECTION --! */}
+      <MainTitle title="Student Absence Note And Level" />
 
-          {isLoading && <div className="spinner"> </div>}
+      {/* COMPONTENT TO DISPLAY IF THE FUNCTION SUCCESSED OR FAILD */}
+      <ToastContainer />
 
-          <StatisCard
-            absenceNumber={numberOfAbsence}
-            presentNumber={numberOfPresent}
-          />
-
-          {/* pass the changed value to table to handle the submit button */}
-
-          <Table
-            th1="student"
-            th2="Contact"
-            th3="Absence"
-            isChanged={isChanged}
-            onClick={handleSubmit}
-            notify={notify}>
-            {/* pass the function that will change the value if any action happened */}
-            {/* Render the sliced data on the current page */}
-            {slicedData.map((student) => (
-              <DashboardRow
-                key={student._id}
-                id={student._id}
-                name={student.studentName}
-                absence={absence[student._id]}
-                note={note[student._id]}
-                level={level[student._id]}
-                onAbsenceChange={handleAbsenceChange}
-                onNoteChange={handleNoteChange}
-                onLevelChange={handleLevelChange}
-                parentid={student.parent_id}
-                isChanged={isChanged}
-                StudentInfo={StudentInfo}
-              />
-            ))}
-          </Table>
-          {/* Render the next and previous buttons */}
-
-          <Pagination
-            className="flex justify-center"
-            color="primary"
-            count={totalPages}
-            page={currentPage}
-            onChange={(event, page) => {
-              HadlePagenation(page);
-            }}
-          />
-
-          <br />
-
-          <br />
-
-          <br />
-        </div>
+      {/* !-- START THE TABLE FOR TAKE THE ATTENDANCE OF THE SUDENTS AND SEND NOTES AND RATE THEM --! */}
+      <div className="my-4 grid grid-cols-1 gap-6 ">
+        {/* TABLE HEADER */}
+        <Table
+          tableName="Attendance of Students"
+          th1="student"
+          th2="Contact"
+          th3="Absence"
+          th4="Notes Board"
+          th5="Rating"
+          isChanged={isChanged}
+          onClick={handleSubmit}
+          notify={notify}
+          pagination={
+            <Pagination
+              className="flex justify-center"
+              color="primary"
+              count={totalPages}
+              page={currentPage}
+              onChange={(event, page) => {
+                HadlePagenation(page);
+              }}
+            />
+          }
+        >
+          {/* TABLE BODY */}
+          {/* pass the function that will change the value if any action happened */}
+          {/* Render the sliced data on the current page */}
+          {slicedData.map((student) => (
+            <DashboardRow
+              key={student._id}
+              id={student._id}
+              name={student.studentName}
+              absence={absence[student._id]}
+              note={note[student._id]}
+              level={level[student._id]}
+              onAbsenceChange={handleAbsenceChange}
+              onNoteChange={handleNoteChange}
+              onLevelChange={handleLevelChange}
+              parentid={student.parent_id}
+              isChanged={isChanged}
+              StudentInfo={StudentInfo}
+            />
+          ))}
+        </Table>
       </div>
-    </div>
+      {/* !-- END THE TABLE FOR TAKE THE ATTENDANCE OF THE SUDENTS AND SEND NOTES AND RATE THEM --! */}
+
+      {/* --! START STATISTICES CARDS THAT DISPLAY NUMBER OF STUDENT AND TOTAL ABSINCES --!   */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 4 2xl:gap-7.5">
+        <ParentCards>
+          <Card
+            cardName="Number of Attendance "
+            statistics={numberOfPresent}
+            isGreen={true}
+          />
+          <Card
+            cardName="Total Absences "
+            statistics={numberOfAbsence}
+            isGreen={false}
+          />
+        </ParentCards>
+      </div>
+      {/* --! END STATISTICES CARDS THAT DISPLAY NUMBER OF STUDENT AND TOTAL ABSINCES --!   */}
+      {/* pass the changed value to table to handle the submit button */}
+    </>
   );
 };
 

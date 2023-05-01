@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import FormInput from "../../sections/Form/FormInput";
-import MessagesLists from "../../components/Lists/MessagesLists";
-import { MessageToAll } from "../../Data/MessageToAll";
+import FormInput from "../../../sections/Form/FormInput";
+import MessagesLists from "../../../components/Lists/MessagesLists";
+import { MessageToAll } from "../../../Data/MessageToAll";
 //react toastify
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import GenerateReporte from "../../../sections/Form/GeneratReporte/GenerateReporte";
 const NotesAllStudent = (props) => {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -64,33 +65,29 @@ const NotesAllStudent = (props) => {
   };
   return (
     // Body
-    <div className=" container ml-32 ">
+    <>
       <ToastContainer />
-      <div className="container ">
-        <h1 class="mb-4 flex justify-center -ml-28  text-4xl leading-none tracking-tight text-gray-600 md:text-5xl lg:text-3xl dark:text-white">
+      {/* HEADER FOR THE SECTION */}
+      <div className="mb-8 flex justify-center items-center ">
+        <h2 className="sm:text-title-md2 font-semibold text-blue-400 dark:text-white text-title-md">
           Write Note For All Parents
-        </h1>
+        </h2>
       </div>
-      {/* Container  */}
-      <div className="container  mx-auto pl-40  ">
-        <br />
-        {/* Start-Row */}
-        <div class="grid grid-cols-12 gap-10">
-          <div class="col-span-6 mt-2">
-            {/* Item-1  -->  form */}
-            <FormInput
-              notify={notify}
-              onAdd={addItem}
-              onClick={SendReportHandler}
-            />
-          </div>
-          <div class="col-span-6 ">
-            {/* Item-2 --> list QA*/}
-            <MessagesLists Data={data} deleteOneItem={deleteOneItem} />
-          </div>
-        </div>
+
+      {/* BODY OF THIS SECTION  */}
+      <div className="mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        {/* MESSAGE NOTE FORM TO SEND IT TO ALL PARENTS */}
+        <FormInput notify={notify} onAdd={addItem} />
+
+        {/* LIST OF MESSAGE NOTES */}
+        <MessagesLists Data={data} deleteOneItem={deleteOneItem} />
       </div>
-    </div>
+
+      <div className="flex justify-center items-center">
+        {/* GENERAT REPORTE AND SEND IT TO PARENTS */}
+        <GenerateReporte onClick={SendReportHandler} />
+      </div>
+    </>
   );
 };
 export default NotesAllStudent;
