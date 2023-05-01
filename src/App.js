@@ -40,7 +40,7 @@ const App = () => {
 
         <Route path="/parent" element={<Parent />}>
           <Route path="children" element={<Children />} />
-
+          {/* <Route path="childDetails" element={<ChildDetails />} /> */}
           <Route path="childDetails/:id" element={<ChildDetails />} />
           <Route path="Showmarks/:id" element={<ShowMarks />} />
           <Route path="Events/:id" element={<Events />} />

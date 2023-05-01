@@ -103,6 +103,10 @@ const Dashboard = (props) => {
         setIsLoading(false);
         setIsChanged(false);
         setLevel(2);
+        setSlicedData(students.slice(0, itemsPerPage));
+        setCurrentPage(1);
+        setAbsence({});
+        setNote({});
       }
     } catch (error) {
       setIsLoading(false);

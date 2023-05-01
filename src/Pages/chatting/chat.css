@@ -6,6 +6,9 @@
   background-color: #3498db7a;
   border-radius: 5px;
 }
+.ce-wrapper {
+  margin-left: -60px !important;
+}
 
 .created input {
   padding: 5px;
@@ -34,7 +37,24 @@
   overflow: hidden auto !important;
   background-color: #ebe5e5 !important;
 }
-
+.ce-feed-container-top {
+  background-color: ivory !important;
+  height: 40px !important;
+}
+.ce-feed-container-top p {
+  text-align: center;
+  color: black;
+}
+.SettingTop {
+  color: white;
+  padding-top: 55px;
+  padding-bottom: 7px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  border: 0px solid white;
+  width: 100%;
+}
 .ce-chats-container,
 .ce-settings {
   background-color: #3498db !important;
@@ -63,7 +83,8 @@
 }
 
 .ce-wrapper {
-  margin-bottom: 70rem;
+  margin-bottom: 70rem !important;
+  margin-left: 1rem !important;
 }
 
 .ce-chat-engine {

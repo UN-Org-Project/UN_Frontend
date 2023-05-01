@@ -109,7 +109,8 @@ const AddMarks = () => {
         console.log(data);
         notify(data, "Success");
         setIsLoading(false);
-
+        setSlicedData(students.slice(0, itemsPerPage));
+        setCurrentPage(1);
         setIsChanged(false);
       }
 
@@ -268,6 +269,7 @@ const AddMarks = () => {
                 onNoteChange={handleNoteChange}
                 onLevelChange={handleLevelChange}
                 isChanged={isChanged}
+                parentid={student.parent_id}
               />
             ))}
           </Table>
