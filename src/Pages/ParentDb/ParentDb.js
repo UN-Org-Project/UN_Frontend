@@ -18,15 +18,18 @@ const ParentDb = () => {
   const [parnetData, setparenttData] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [childData, setChildData] = useState([]);
+  const [isEntered, setIsEntered] = useState(false);
+  const [idchiled, setIdchiled] = useState("");
+  const [idTeacher, setIdTeacher] = useState("");
 
   let navigate = useNavigate();
   useEffect(() => {
     navigate("/parent/children");
-    async function fetchTeacherData() {
+    async function fetchParentData() {
       try {
         //6431b22ca8514ea551212e27
         const response = await axios.get(
-          "http://localhost:8000/parentInfo/6441be62095a5be216f94466"
+          "http://localhost:8000/parentInfo/64503b446a91908b5565500a"
         );
         const data = response.data.parentInfo;
         console.log(data);
@@ -37,56 +40,60 @@ const ParentDb = () => {
         console.log(error);
       }
     }
-    fetchTeacherData();
+    fetchParentData();
     console.log("this is the child Data");
     // console.log(childData[0]._id);
   }, []);
+  const handleEnterChild = (value, id, teacherid) => {
+    setIsEntered(value);
+    setIdchiled(id);
+    console.log(id);
+    setIdTeacher(teacherid);
+  };
 
   const buttons = [
     {
       name: "My Children",
       path: "children",
-      icon: <FaChild style={{ width: "18", height: "18" }} />,
-    },
+      icon: <FaChild style={{ width: "18", height: "18" }} />
+    }
   ];
   const childDetailsButtons = [
     {
       name: "My Children",
       path: "children",
-      icon: <FaChild style={{ width: "18", height: "18" }} />,
+      icon: <FaChild style={{ width: "18", height: "18" }} />
     },
     {
       name: "Attendance",
-      path: "childDetails/644e7e7faa0e7103fd1a8434",
-      icon: <FaRegCalendarTimes style={{ width: "18", height: "18" }} />,
+      path: "childDetails/" + idchiled,
+      icon: <FaRegCalendarTimes style={{ width: "18", height: "18" }} />
     },
     {
       name: "Child Marks",
-      path: "Showmarks/644e7e7faa0e7103fd1a8434",
-      icon: <GradeOutlined style={{ width: "18", height: "18" }} />,
+      path: "Showmarks/" + idchiled,
+      icon: <GradeOutlined style={{ width: "18", height: "18" }} />
     },
     {
       name: "Events",
-      path: "Events/644e7e7faa0e7103fd1a8434",
-      icon: <EventNote style={{ width: "18", height: "18" }} />,
+      path: "Events/" + idchiled,
+      icon: <EventNote style={{ width: "18", height: "18" }} />
     },
     {
       name: "Messages",
-      path: "parentChating/",
-      icon: <Message style={{ width: "18", height: "18" }} />,
-    },
+      path: "parentChating/" + idTeacher,
+      icon: <Message style={{ width: "18", height: "18" }} />
+    }
   ];
   const parentButtons = buttons.map((item, index) => (
     <Btn key={index} name={item.name} path={item.path}>
-      {" "}
-      {item.icon}{" "}
+      {item.icon}
     </Btn>
   ));
 
   const childButtons = childDetailsButtons.map((item, index) => (
     <Btn key={index} name={item.name} path={item.path}>
-      {" "}
-      {item.icon}{" "}
+      {item.icon}
     </Btn>
   ));
   return (
@@ -100,10 +107,11 @@ const ParentDb = () => {
           userRoll="Parent Dashboard"
           sidebarChildren={
             pathname.includes("children") ? parentButtons : childButtons
-          }
-        >
+          }>
           <TeacherContent>
-            <Outlet context={{ childe: childData }} />
+            <Outlet
+              context={{ childe: childData, enterFunc: handleEnterChild }}
+            />
           </TeacherContent>
         </Layout>
       )}

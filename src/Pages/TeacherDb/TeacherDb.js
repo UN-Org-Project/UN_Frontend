@@ -17,28 +17,28 @@ const buttons = [
   {
     name: "Dashboard",
     path: "Dashboard",
-    icon: <Dashboard style={{ width: "18", height: "18" }} />,
+    icon: <Dashboard style={{ width: "18", height: "18" }} />
   },
   {
     name: "Add Marks",
     path: "Addmarks",
-    icon: <AiFillFileMarkdown style={{ width: "18", height: "18" }} />,
+    icon: <AiFillFileMarkdown style={{ width: "18", height: "18" }} />
   },
   {
     name: "Notes & Reports",
     path: "SendNotesAndReports",
-    icon: <NoteAltSharp style={{ width: "18", height: "18" }} />,
+    icon: <NoteAltSharp style={{ width: "18", height: "18" }} />
   },
   {
     name: "Students Info",
     path: "StudentsInfo",
-    icon: <BsPersonVcard style={{ width: "18", height: "18" }} />,
+    icon: <BsPersonVcard style={{ width: "18", height: "18" }} />
   },
   {
     name: "Messages",
-    path: "ChattingTeacher",
-    icon: <Message style={{ width: "18", height: "18" }} />,
-  },
+    path: "ChattingTeacher/64503c4d6a91908b55655014",
+    icon: <Message style={{ width: "18", height: "18" }} />
+  }
 ];
 
 const TeacherDb = () => {
@@ -55,7 +55,7 @@ const TeacherDb = () => {
       try {
         //6431b22ca8514ea551212e27
         const response = await axios.get(
-          "http://localhost:8000/sendInfo/6431b22ca8514ea551212e27"
+          "http://localhost:8000/sendInfo/64503c4d6a91908b55655014"
         );
         const data = response.data;
         console.log(data.allStudents);
@@ -85,8 +85,7 @@ const TeacherDb = () => {
                 {" "}
                 {item.icon}{" "}
               </Btn>
-            ))}
-          >
+            ))}>
             <TeacherContent>
               <Outlet context={{ students: studentData }} />
             </TeacherContent>

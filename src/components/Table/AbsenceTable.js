@@ -3,7 +3,7 @@ import React from "react";
 const AbsenceTable = (props) => {
   return (
     <div class="relative flex flex-col bg-clip-border rounded-xl bg-gradient-to-br from-blue-600 to-blue-400 text-white text-gray-700 shadow-md lg:col-span-2 lg:mt-0 mt-4">
-      <div class="relative bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg -mt-6 mb-8 p-5">
+      <div class="relative bg-clip-border mx-0 rounded-l overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg -mt-6 mb-8 p-5">
         <h6 class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white">
           Child Attendance
         </h6>

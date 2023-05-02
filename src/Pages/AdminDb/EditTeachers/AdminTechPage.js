@@ -12,7 +12,7 @@ import { AdminAvatar } from "../../../components/assets";
 import {
   FaChalkboardTeacher,
   FaUserEdit,
-  FaUserGraduate,
+  FaUserGraduate
 } from "react-icons/fa";
 import AdminContent from "../../../sections/Content/AdminContent";
 import Btn from "../../../components/SideBar/MenuBtn/Btn";
@@ -34,16 +34,17 @@ const AdminTech = () => {
   const [classValue, setClassValue] = useState("class1");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [TeacherAddress, setTeacherAddress] = useState("");
-  let adminName;
+  const [adminName, setAdminData] = useState("");
   const id = localStorage.getItem("userData");
   const data = useEffect(() => {
     async function fetch() {
       const response = await axios.get(
-        "http://localhost:8000/getAdmininfo/" + id
+        "http://localhost:8000/getAdmininfo/64138fc1aced1a0ffacfe0b0"
       );
-      //  console.log(response.data);
-      //    setAdminData(response.data.adminData);
-      adminName = response.data.adminName;
+      console.log(response.data);
+
+      const adminname = response.data.adminName;
+      setAdminData(adminname);
       console.log(adminName);
     }
     fetch();
@@ -61,7 +62,7 @@ const AdminTech = () => {
         _class: classValue,
         telepohoneNumber: phoneNumber,
         adress: TeacherAddress,
-        emailAdress: email,
+        emailAdress: email
       };
 
       // For see all input fields in form
@@ -70,7 +71,7 @@ const AdminTech = () => {
       // }
 
       const response = await axios.post("http://localhost:8000/teacher", {
-        Data,
+        Data
       });
       setIsLoading(false);
       if (!response.ok) {
@@ -97,38 +98,37 @@ const AdminTech = () => {
     {
       name: "Add Student",
       path: "/Admin/AdminStudents",
-      icon: <FaUserGraduate style={{ width: "18", height: "18" }} />,
+      icon: <FaUserGraduate style={{ width: "18", height: "18" }} />
     },
     {
       name: "Edit Students",
       path: "/Admin/InfoStudents",
-      icon: <Edit style={{ width: "18", height: "18" }} />,
+      icon: <Edit style={{ width: "18", height: "18" }} />
     },
     {
       name: "Add Teachers",
       path: "/Admin/AdminTeachers",
-      icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />,
+      icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />
     },
     {
       name: "Edit Teachers",
       path: "/Admin/InfoTeachers",
-      icon: <FaUserEdit style={{ width: "18", height: "18" }} />,
-    },
+      icon: <FaUserEdit style={{ width: "18", height: "18" }} />
+    }
   ];
 
   return (
     <>
       <Layout
         userImg={AdminAvatar}
-        userName="Ahmad Alhariri"
+        userName={adminName}
         userRoll="Admin"
         sidebarChildren={buttons.map((item, index) => (
           <Btn key={index} name={item.name} path={item.path}>
             {" "}
             {item.icon}{" "}
           </Btn>
-        ))}
-      >
+        ))}>
         <MainTitle title="Add Teacher Form" />
         {isLoading && <div className="spinner"> </div>}
         <InfoTeacherForm

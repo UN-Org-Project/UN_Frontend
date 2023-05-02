@@ -20,7 +20,7 @@ const Progress = (props) => {
             transition: "stroke-dashoffset 0.5s ease 0s",
             // Rotate the path
             transform: "rotate(0.25turn)",
-            transformOrigin: "center center",
+            transformOrigin: "center center"
           },
           // Customize the circle behind the path, i.e. the "total progress"
           trail: {
@@ -30,19 +30,19 @@ const Progress = (props) => {
             strokeLinecap: "butt",
             // Rotate the trail
             transform: "rotate(0.25turn)",
-            transformOrigin: "center center",
+            transformOrigin: "center center"
           },
           // Customize the text
           text: {
             // Text color
-            fill: "#f88",
+            fill: "white",
             // Text size
-            fontSize: "16px",
+            fontSize: "16px"
           },
           // Customize background - only used when the `background` prop is true
           background: {
-            fill: "rgb(255 255 255)",
-          },
+            fill: "rgb(255 255 255)"
+          }
         }}
       />
     </div>

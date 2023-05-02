@@ -23,8 +23,7 @@ const InfoTeacherForm = (props) => {
               <div>
                 <label
                   htmlFor="teacher-name"
-                  className="mb-2.5 block text-white dark:text-white"
-                >
+                  className="mb-2.5 block text-white dark:text-white">
                   Teacher Name <span className="text-meta-1">*</span>
                 </label>
                 <input
@@ -42,8 +41,7 @@ const InfoTeacherForm = (props) => {
               <div>
                 <label
                   htmlFor="Experience"
-                  className="mb-2.5 block text-white dark:text-white"
-                >
+                  className="mb-2.5 block text-white dark:text-white">
                   Experience <span className="text-meta-1">*</span>
                 </label>
                 <input
@@ -61,8 +59,7 @@ const InfoTeacherForm = (props) => {
               <div>
                 <label
                   htmlFor="email-address"
-                  className="mb-2.5 block text-white dark:text-white"
-                >
+                  className="mb-2.5 block text-white dark:text-white">
                   Email <span className="text-meta-1">*</span>
                 </label>
                 <input
@@ -80,13 +77,12 @@ const InfoTeacherForm = (props) => {
               <div>
                 <label
                   htmlFor="phone-num"
-                  className="mb-2.5 block text-white dark:text-white"
-                >
+                  className="mb-2.5 block text-white dark:text-white">
                   Phone <span className="text-meta-1">*</span>
                 </label>
                 <input
                   id="phone-num"
-                  type="email"
+                  type="phone"
                   className="bg-white w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-gradientTo active:border-gradientTo  disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary placeholder:text-slate-200 "
                   placeholder="+962-790-641-545"
                   value={props.phoneNumber}
@@ -99,8 +95,7 @@ const InfoTeacherForm = (props) => {
               <div>
                 <label
                   htmlFor="location"
-                  className="mb-2.5 block text-white dark:text-white"
-                >
+                  className="mb-2.5 block text-white dark:text-white">
                   Teacher Location <span className="text-meta-1">*</span>
                 </label>
                 <input
@@ -118,8 +113,7 @@ const InfoTeacherForm = (props) => {
               <div>
                 <label
                   htmlFor="gender"
-                  className="mb-2.5 block text-white dark:text-white"
-                >
+                  className="mb-2.5 block text-white dark:text-white">
                   Gender <span className="text-meta-1">*</span>
                 </label>
 
@@ -130,8 +124,7 @@ const InfoTeacherForm = (props) => {
                   className="bg-white w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-gradientTo active:border-gradientTo  disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary  placeholder:text-slate-200  "
                   value={props.gender}
                   onChange={(e) => props.setGender(e.target.value)}
-                  required
-                >
+                  required>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
@@ -141,8 +134,7 @@ const InfoTeacherForm = (props) => {
               <div>
                 <label
                   htmlFor="date"
-                  className="mb-2.5 block text-white dark:text-white"
-                >
+                  className="mb-2.5 block text-white dark:text-white">
                   Date of Breath <span className="text-meta-1">*</span>
                 </label>
                 <input
@@ -159,8 +151,7 @@ const InfoTeacherForm = (props) => {
               <div>
                 <label
                   htmlFor="class"
-                  className="mb-2.5 block text-white dark:text-white"
-                >
+                  className="mb-2.5 block text-white dark:text-white">
                   Class <span className="text-meta-1">*</span>
                 </label>
                 <select
@@ -169,8 +160,7 @@ const InfoTeacherForm = (props) => {
                   // defaultValue="class1"
                   value={props.classValue}
                   onChange={(e) => props.setClassValue(e.target.value)}
-                  required
-                >
+                  required>
                   <option value="class1">CLASS 1 </option>
                   <option value="class2">CLASS 2 </option>
                   <option value="class3">CLASS 3 </option>
@@ -184,8 +174,7 @@ const InfoTeacherForm = (props) => {
 
             <button
               type="SUBMIT"
-              className="flex items-center w-fit m-auto gap-1 justify-center rounded bg-clip-border bg-gradient-to-tr from-gradientFrom to-gradientTo p-3 font-medium text-gray"
-            >
+              className="flex items-center w-fit m-auto gap-1 justify-center rounded bg-clip-border bg-gradient-to-tr from-gradientFrom to-gradientTo p-3 font-medium text-gray">
               ADD TEACHER{" "}
               <span>
                 <BsPlusLg style={{ color: "white", fontSize: "20px" }} />

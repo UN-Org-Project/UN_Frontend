@@ -14,28 +14,27 @@ import { AdminAvatar } from "../../../components/assets";
 import {
   FaChalkboardTeacher,
   FaUserEdit,
-  FaUserGraduate,
+  FaUserGraduate
 } from "react-icons/fa";
 import MainTitle from "../../../components/SectionTitle/MainTitle";
 
 import { Edit } from "@mui/icons-material";
 const AdminStd = () => {
-  const id = localStorage.getItem("userData");
+  //  const id = localStorage.getItem("userData");
   const islogged = localStorage.getItem("islogged");
-  let adminName;
-  const [isLoading, setIsLoading] = useState(false);
+  const [adminName, setAdminData] = useState("");
 
-  console.log(id);
-  console.log(islogged);
+  const [isLoading, setIsLoading] = useState(false);
 
   const data = useEffect(() => {
     async function fetch() {
       const response = await axios.get(
-        "http://localhost:8000/getAdmininfo/" + id
+        "http://localhost:8000/getAdmininfo/64138fc1aced1a0ffacfe0b0"
       );
-      //  console.log(response.data);
+      console.log(response.data);
       //    setAdminData(response.data.adminData);
-      adminName = response.data.adminName;
+      const adminName = response.data.adminName;
+      setAdminData(adminName);
     }
     fetch();
   }, []);
@@ -77,7 +76,7 @@ const AdminStd = () => {
         className: classValue,
         parentName: ParentName,
         emailAdress: email,
-        telephonNumber: phoneNumber,
+        telephonNumber: phoneNumber
       };
 
       // // For see all input fields in form
@@ -86,7 +85,7 @@ const AdminStd = () => {
       // }
 
       const response = await axios.post("http://localhost:8000/parent", {
-        Data,
+        Data
       });
       setIsLoading(false);
       if (!response.ok) {
@@ -126,23 +125,23 @@ const AdminStd = () => {
     {
       name: "Add Student",
       path: "/Admin/AdminStudents",
-      icon: <FaUserGraduate style={{ width: "18", height: "18" }} />,
+      icon: <FaUserGraduate style={{ width: "18", height: "18" }} />
     },
     {
       name: "Edit Students",
       path: "/Admin/InfoStudents",
-      icon: <Edit style={{ width: "18", height: "18" }} />,
+      icon: <Edit style={{ width: "18", height: "18" }} />
     },
     {
       name: "Add Teachers",
       path: "/Admin/AdminTeachers",
-      icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />,
+      icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />
     },
     {
       name: "Edit Teachers",
       path: "/Admin/InfoTeachers",
-      icon: <FaUserEdit style={{ width: "18", height: "18" }} />,
-    },
+      icon: <FaUserEdit style={{ width: "18", height: "18" }} />
+    }
   ];
 
   return (
@@ -153,15 +152,14 @@ const AdminStd = () => {
 
       <Layout
         userImg={AdminAvatar}
-        userName="Ahmad Alhariri"
+        userName={adminName}
         userRoll="Admin"
         sidebarChildren={buttons.map((item, index) => (
           <Btn key={index} name={item.name} path={item.path}>
             {" "}
             {item.icon}{" "}
           </Btn>
-        ))}
-      >
+        ))}>
         <MainTitle title="Add Student Form" />
         {isLoading && <div className="spinner"> </div>}
         <InfoStudentsForm

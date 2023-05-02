@@ -13,8 +13,7 @@ const ChildInfo = (props) => {
   return (
     <div
       className="bg-white bg-gradient-to-bl from-gradientFrom to-gradientTo text-white cursor-pointer bg-clip-border rounded-xl transition-shadow duration-500  shadow-md hover:shadow-2xl hover:shadow-slate-400 py-2"
-      onClick={props.handleNavigat}
-    >
+      onClick={props.handleNavigat}>
       <div className="photo-wrapper p-2">
         <img
           className="w-24 h-24 rounded-full mx-auto"
@@ -33,15 +32,17 @@ const ChildInfo = (props) => {
           <tbody>
             <tr>
               <td className="px-2 py-2 text-gray-500 font-semibold">Address</td>
-              <td className="px-2 py-2">Chatakpur-3, Dhangadhi Kailali</td>
+              <td className="px-2 py-2">{props.childrenInfo.adress}</td>
             </tr>
             <tr>
-              <td className="px-2 py-2 text-gray-500 font-semibold">Phone</td>
-              <td className="px-2 py-2">+977 9955221114</td>
+              <td className="px-2 py-2 text-gray-500 font-semibold">
+                Date Of Birth{" "}
+              </td>
+              <td className="px-2 py-2">{props.childrenInfo.dateOfBirth}</td>
             </tr>
             <tr>
-              <td className="px-2 py-2 text-gray-500 font-semibold">Email</td>
-              <td className="px-2 py-2">john@exmaple.com</td>
+              <td className="px-2 py-2 text-gray-500 font-semibold">Teacher</td>
+              <td className="px-2 py-2">{props.childrenInfo.teacherName}</td>
             </tr>
           </tbody>
         </table>

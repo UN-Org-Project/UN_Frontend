@@ -33,7 +33,7 @@ const App = () => {
           <Route path="Dashboard" element={<Dashboard />} />
           <Route path="Addmarks" element={<AddMarks />} />
           {/* <Route path="ChattingTeacher/:id" element={<DirectChatPage />} /> */}
-          <Route path="ChattingTeacher" element={<ChatEngineComp />} />
+          <Route path="ChattingTeacher/:id" element={<ChatEngineComp />} />
           <Route path="SendNotesAndReports" element={<NotesAllStudent />} />
           <Route path="StudentsInfo" element={<StudentInfo />} />
         </Route>
@@ -44,7 +44,7 @@ const App = () => {
           <Route path="childDetails/:id" element={<ChildDetails />} />
           <Route path="Showmarks/:id" element={<ShowMarks />} />
           <Route path="Events/:id" element={<Events />} />
-          {/* <Route path="parentChating/:id" element={<DirectChatPage />} /> */}
+          <Route path="parentChating/:id" element={<ChatEngineComp />} />
         </Route>
         <Route path="*" element={<NoMatch />} />
       </Routes>

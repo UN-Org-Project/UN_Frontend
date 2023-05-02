@@ -8,9 +8,12 @@ import MainTitle from "../../../components/SectionTitle/MainTitle";
 const Children = () => {
   const childrenData = useOutletContext();
   const children = childrenData.childe;
+  const enterChild = childrenData.enterFunc;
 
   useEffect(() => {
     console.log(children);
+    console.log(enterChild);
+    enterChild(false);
   }, []);
 
   let Navigate = useNavigate();
@@ -18,8 +21,8 @@ const Children = () => {
   const handleNavigat = (id, idTeacher) => {
     console.log("go to child details");
     // Navigate("/parent/childDetails");
-    Navigate("/parent/childDetails/644e7e7faa0e7103fd1a8434");
-    // enterChild(true, id, idTeacher);
+    Navigate("/parent/childDetails/" + id);
+    enterChild(true, id, idTeacher);
   };
   return (
     <>

@@ -68,7 +68,7 @@ const ShowMarks = (props) => {
             options={[
               { value: "first", label: "First" },
               { value: "second", label: "Second" },
-              { value: "final", label: "Final" },
+              { value: "final", label: "Final" }
             ]}
           />
         </div>
@@ -77,12 +77,11 @@ const ShowMarks = (props) => {
       <div class="mb-4 grid grid-cols-1 gap-6 ">
         {isChanged ? (
           <Table
-            tableName="Exams Marks"
+            tableName="Exam Marks"
             th1="Subject"
             th2="Marks"
             th3="Notes"
-            th4="Rateing"
-          >
+            th4="Rateing">
             {subjects.map((subject) => (
               <ShowMark
                 key={subject.name}
@@ -98,8 +97,7 @@ const ShowMarks = (props) => {
           <div className="w-full flex justify-center items-center">
             <div
               className="p-4 mb-4 w-fit text-sm text-white rounded-lg bg-clip-border bg-gradient-to-br from-blue-500 to-blue-400  dark:bg-gray-800 dark:text-blue-400"
-              role="alert"
-            >
+              role="alert">
               <span className="font-medium">Info !</span> {notification}
             </div>
           </div>

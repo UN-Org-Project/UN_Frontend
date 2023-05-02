@@ -4,7 +4,7 @@ const Table = (props) => {
   return (
     <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md pb-2">
       {/* !----- THIS FOR THE NAME OF THE TABLE -----! */}
-      <div className="relative bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg -mt-6 mb-8 p-5">
+      <div className="relative bg-clip-border mx-0 rounded-l overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg -mt-6 mb-8 p-5">
         <h6 className="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white">
           {props.tableName}
         </h6>
@@ -64,8 +64,7 @@ const Table = (props) => {
             <form onSubmit={props.onClick}>
               <button
                 className="text-sm text-indigo-50 bg-clip-border bg-gradient-to-br from-gradientFrom to-gradientTo  transition duration-150 hover:bg-green-400  font-semibold py-3 px-5 rounded"
-                type="submit"
-              >
+                type="submit">
                 Submit
               </button>
             </form>

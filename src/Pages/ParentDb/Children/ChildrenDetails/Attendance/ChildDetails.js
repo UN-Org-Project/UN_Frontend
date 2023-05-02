@@ -7,7 +7,7 @@ import SelectComp from "../../../../../components/SelectComponent/SelectComp";
 import Table from "../../../../../components/Table/Table";
 import DashboardRow, {
   AbsenceDetailsRow,
-  ShowMark,
+  ShowMark
 } from "../../../../../components/Table/RowInfo/TableRow";
 import AbsenceTable from "../../../../../components/Table/AbsenceTable";
 
@@ -65,8 +65,7 @@ const ChildDetails = (props) => {
         </h2>
         <NavLink
           className="inline-flex items-center justify-center gap-2.5 rounded-md bg-gradient-to-tr from-gradientFrom to-gradientTo py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-6 xl:px-7"
-          to="parentChating"
-        >
+          to={"/parent/parentChating/" + child.teacher_id}>
           Contact with Teacher
           <ContactEmergency />
         </NavLink>
@@ -79,7 +78,7 @@ const ChildDetails = (props) => {
         </button>{" "} */}
       </div>
 
-      <div className="mb-4 grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <div className="mb-4 grid grid-cols-1 gap-6 lg:grid-cols-3 height-auto">
         {/* <div className=" relative flex flex-col text-white rounded-xl bg-clip-border bg-gradient-to-r to-blue-400 from-blue-500 text-gray-700 shadow-md overflow-hidden lg:col-span-2 xl:col-span-2"> */}
         {/* <span className="px-6 antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white">
             Child Absence
@@ -103,8 +102,7 @@ const ChildDetails = (props) => {
                 HadlePagenation(page);
               }}
             />
-          }
-        >
+          }>
           {slicedData.map((absence, index) => (
             <AbsenceDetailsRow
               key={Math.random()}

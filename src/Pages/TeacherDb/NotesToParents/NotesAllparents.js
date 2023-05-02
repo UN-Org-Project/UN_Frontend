@@ -12,7 +12,7 @@ const NotesAllStudent = (props) => {
   useEffect(() => {
     async function getnotesArray() {
       const response = await axios.get(
-        "http://localhost:8000/getnotes/6431b22ca8514ea551212e27"
+        "http://localhost:8000/getnotes/64503c4d6a91908b55655014"
       );
       const notesArray = response.data.notes;
       setData(notesArray);
@@ -25,7 +25,7 @@ const NotesAllStudent = (props) => {
     setData([...MessageToAll]);
 
     const response = await axios.post(
-      "http://localhost:8000/addNotes/6431b22ca8514ea551212e27",
+      "http://localhost:8000/addNotes/64503c4d6a91908b55655014",
       { note: MessageToAll }
     );
     const updateNote = response.data.notes;
@@ -40,7 +40,7 @@ const NotesAllStudent = (props) => {
     /////// print////////////////////////
 
     const response = await axios.post(
-      "http://localhost:8000/deletNotes/6431b22ca8514ea551212e27",
+      "http://localhost:8000/deletNotes/64503c4d6a91908b55655014",
       { id: ID }
     );
     const updateNote = response.data.notes;
@@ -56,10 +56,9 @@ const NotesAllStudent = (props) => {
     console.log("Reports");
     // notify("Send Reports For All Parents successfully", "Error");
     const response = await axios.post(
-      "http://localhost:8000/getPdfDoc/6431b22ca8514ea551212e27",
-      { id: "6431b22ca8514ea551212e27" }
+      "http://localhost:8000/getPdfDoc/64503c4d6a91908b55655014"
     );
-    console.log(response.data);
+    console.log(response);
 
     notify("Send Reports For All Parents successfully", "Success");
   };
