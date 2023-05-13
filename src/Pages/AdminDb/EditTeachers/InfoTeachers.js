@@ -49,7 +49,7 @@ const InfoTeachers = () => {
     async function fetchStudentData() {
       try {
         const response = await axios.get(
-          "http://localhost:8000/getAllStudents"
+          "http://localhost:8000/getAllTeachers"
         );
         const data = response.data;
         setRows(data);
@@ -71,7 +71,7 @@ const InfoTeachers = () => {
     const newItems = [...rows];
     newItems.splice(targetIndex, 1);
     setRows(newItems);
-    axios.get(`http://localhost:8000/deleteStudent/${targetIndex}`);
+    axios.get(`http://localhost:8000/deleteTeacher/${targetIndex}`);
   };
 
   const handleEditRow = (idx) => {
@@ -120,6 +120,7 @@ const InfoTeachers = () => {
         <MainTitle title="Edit Teacher Form" />
 
         <Table
+          state="teacher"
           tableName="Edit Teacher"
           rows={rows.slice(pagesVisited, pagesVisited + rowsPerPage)}
           deleteRow={handleDeleteRow}
@@ -139,6 +140,7 @@ const InfoTeachers = () => {
         />
         {modalOpen && (
           <Modal
+          state = 'teacher'
             closeModal={() => {
               setModalOpen(false);
               setRowToEdit(null);

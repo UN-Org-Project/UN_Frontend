@@ -122,6 +122,7 @@ function InfoStudents() {
         <MainTitle title="Edit Students Form" />
 
         <Table
+        state= 'student'
           tableName="Edit Students"
           rows={rows.slice(pagesVisited, pagesVisited + rowsPerPage)}
           deleteRow={handleDeleteRow}
@@ -141,6 +142,7 @@ function InfoStudents() {
         />
         {modalOpen && (
           <Modal
+            state = 'student'
             closeModal={() => {
               setModalOpen(false);
               setRowToEdit(null);
