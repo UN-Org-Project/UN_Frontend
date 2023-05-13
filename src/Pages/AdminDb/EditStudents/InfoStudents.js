@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { Modal } from "../FormForEdit/Modal";
 import { Table } from "../FormForEdit/Table";
 import ReactPaginate from "react-paginate";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 import axios from "axios";
 import ".././pagination.css";
@@ -18,6 +20,13 @@ import MainTitle from "../../../components/SectionTitle/MainTitle";
 import { Edit } from "@mui/icons-material";
 
 function InfoStudents() {
+
+  const notify = (message, type) => {
+    if (type === "Error") toast.error(message);
+    else if (type === "Success") toast.success(message);
+  };
+
+
   // const [infoStd, setinfoStd] = useState([]);
   const [rows, setRows] = useState([]);
 
@@ -45,27 +54,32 @@ function InfoStudents() {
   const pagesVisited = pageNumber * rowsPerPage;
   //////////////////
 
-  const handleDeleteRow = (targetIndex) => {
+  // const handleDeleteRow = (targetIndex) => {
+  //   const newItems = [...rows];
+  //   newItems.splice(targetIndex, 1);
+  //   setRows(newItems);
+  //   axios.get(`http://localhost:8000/deleteStudent/${targetIndex}`);
+  //   notify("Deleted Successfully", "Success");
+  // };
+
+    const handleDeleteRow = (studentId) => {
     const newItems = [...rows];
-    newItems.splice(targetIndex, 1);
-    setRows(newItems);
-    axios.get(`http://localhost:8000/deleteStudent/${targetIndex}`);
+    const targetIndex = newItems.findIndex((row) => row._id === studentId);
+    if (targetIndex >= 0) {
+      newItems.splice(targetIndex, 1);
+      setRows(newItems);
+      axios.get(`http://localhost:8000/deleteStudent/${studentId}`);
+      notify("Deleted Successfully", "Success");
+    }
   };
 
   const handleEditRow = (idx) => {
     setRowToEdit(idx);
     setModalOpen(true);
+    
   };
 
-  /////////////////////
-  function getObjectIndex(arr, ObjId) {
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i]._id === ObjId) {
-        return i;
-      }
-    }
-    return null;
-  }
+
   /////////////////////
   const handleSubmit = (newRow) => {
     setRows(
@@ -73,7 +87,8 @@ function InfoStudents() {
         if (currRow._id !== rowToEdit) return currRow;
         return newRow;
       })
-    );
+      );
+      notify("Modified Successfully", "Success");
   };
 
   ////Pagenation/////
@@ -120,9 +135,8 @@ function InfoStudents() {
         ))}
       >
         <MainTitle title="Edit Students Form" />
-
         <Table
-        state= 'student'
+          state= 'student'
           tableName="Edit Students"
           rows={rows.slice(pagesVisited, pagesVisited + rowsPerPage)}
           deleteRow={handleDeleteRow}

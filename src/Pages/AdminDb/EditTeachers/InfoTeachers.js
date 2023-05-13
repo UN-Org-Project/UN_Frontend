@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { Modal } from "../FormForEdit/Modal";
 import { Table } from "../FormForEdit/Table";
 import ReactPaginate from "react-paginate";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 import axios from "axios";
 import ".././pagination.css";
@@ -40,6 +42,12 @@ const buttons = [
   },
 ];
 const InfoTeachers = () => {
+
+  const notify = (message, type) => {
+    if (type === "Error") toast.error(message);
+    else if (type === "Success") toast.success(message);
+  };
+
   // const [infoStd, setinfoStd] = useState([]);
   const [rows, setRows] = useState([]);
 
@@ -53,6 +61,7 @@ const InfoTeachers = () => {
         );
         const data = response.data;
         setRows(data);
+        notify(response.data.message, "Success");
       } catch (error) {
         console.log(error);
       }
@@ -67,28 +76,30 @@ const InfoTeachers = () => {
   const pagesVisited = pageNumber * rowsPerPage;
   //////////////////
 
-  const handleDeleteRow = (targetIndex) => {
-    const newItems = [...rows];
+  // const handleDeleteRow = (targetIndex) => {
+  //   const newItems = [...rows];
+  //   newItems.splice(targetIndex, 1);
+  //   setRows(newItems);
+  //   axios.get(`http://localhost:8000/deleteTeacher/${targetIndex}`);
+  //   notify("Deleted Successfully", "Success");
+  // };
+  
+  const handleDeleteRow = (teacherId) => {
+  const newItems = [...rows];
+  const targetIndex = newItems.findIndex((row) => row._id === teacherId);
+  if (targetIndex >= 0) {
     newItems.splice(targetIndex, 1);
     setRows(newItems);
-    axios.get(`http://localhost:8000/deleteTeacher/${targetIndex}`);
-  };
+    axios.get(`http://localhost:8000/deleteTeacher/${teacherId}`);
+    notify("Deleted Successfully", "Success");
+  }
+};
 
   const handleEditRow = (idx) => {
     setRowToEdit(idx);
     setModalOpen(true);
   };
 
-  /////////////////////
-  function getObjectIndex(arr, ObjId) {
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i]._id === ObjId) {
-        return i;
-      }
-    }
-    return null;
-  }
-  /////////////////////
   const handleSubmit = (newRow) => {
     setRows(
       rows.map((currRow) => {
@@ -96,6 +107,7 @@ const InfoTeachers = () => {
         return newRow;
       })
     );
+    notify("Modified Successfully", "Success");
   };
 
   ////Pagenation/////
@@ -106,6 +118,7 @@ const InfoTeachers = () => {
   };
   return (
     <>
+    
       <Layout
         userImg={AdminAvatar}
         userName="Ahmad Alhariri"
@@ -121,6 +134,7 @@ const InfoTeachers = () => {
 
         <Table
           state="teacher"
+          notify={notify}
           tableName="Edit Teacher"
           rows={rows.slice(pagesVisited, pagesVisited + rowsPerPage)}
           deleteRow={handleDeleteRow}
@@ -141,6 +155,7 @@ const InfoTeachers = () => {
         {modalOpen && (
           <Modal
           state = 'teacher'
+          notify={notify}
             closeModal={() => {
               setModalOpen(false);
               setRowToEdit(null);
