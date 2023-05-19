@@ -8,7 +8,7 @@ const Btn = ({ path, children, name }) => {
     <li>
       <NavLink
         to={path}
-        className={` font-sans text-center align-middle  flex items-center gap-4 w-full px-4 py-3 rounded-lg font-bold text-xs text-white center capitalize hover:shadow-lg  hover:bg-alterColor  transition-all duration-300 disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none active:opacity-[0.85]  dark:hover:bg-meta-4 ${
+        className={` font-sans text-center align-middle  flex items-center gap-4 w-full px-4 py-3 rounded-lg font-bold text-xs text-white center capitalize hover:shadow-lg  hover:bg-mainColor  transition-all duration-300 disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none active:opacity-[0.85]  dark:hover:bg-meta-4 ${
           (pathname === "/" || pathname.includes(path)) &&
           " bg-gradient-to-tr from-gradientFrom to-gradientTo shadow-md shadow-green-500/40   dark:bg-meta-4"
         }`}

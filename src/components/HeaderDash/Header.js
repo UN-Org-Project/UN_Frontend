@@ -6,7 +6,7 @@ import LogoutButton from "../Buttons/Buttons";
 const Header = (props) => {
   return (
     <>
-      <header className=" bg-clip-border bg-gradient-to-tr from-blue-600 to-blue-400 block w-full  max-w-full my-4 text-white shadow-none rounded-xl transition-all px-0 py-1 ">
+      <header className=" bg-clip-border bg-gradient-to-br from-blue-600 to-blue-400 block w-full  max-w-full my-4 text-white shadow-blue-500/40 shadow-lg rounded-xl px-0 py-1 ">
         <div className="flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11">
           {/* !----- THIS FOR THE LOGO AND THE BUTTON THAT DISPLAYS  THE SIDBAR WHEN THE SCREEN < 780PX -----! */}
           <div className="flex items-center gap-2 sm:gap-4 ">
@@ -47,8 +47,9 @@ const Header = (props) => {
 
           {/* !----- THIS IS THE NAME OF THE WEBSITE -----! */}
           <div className="hidden md:block sm:hidden lg:block">
-            <h1 className="block antialiased text-white tracking-normal leading-relaxed font-semibold text-lg ">
-              Student Tracking <span className="  text-gradientTo">System</span>
+            <h1 className="block antialiased text-white tracking-normal leading-relaxed font-semibold text-xl font-sans">
+              Student Tracking{" "}
+              <span className="  text-gradientTo font-sans">System</span>
             </h1>
           </div>
 

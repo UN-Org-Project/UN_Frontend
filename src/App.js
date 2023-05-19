@@ -18,10 +18,11 @@ import InfoTeachers from "./Pages/AdminDb/EditTeachers/InfoTeachers";
 import React, { useEffect } from "react";
 
 import ChatEngineComp from "./Pages/chatting/ChatEngine";
+import { News } from "./sections";
 
 const App = () => {
   return (
-    <>
+    <div className=" font-sans">
       {/* <Router> */}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -50,7 +51,7 @@ const App = () => {
         <Route path="*" element={<NoMatch />} />
       </Routes>
       {/* </Router> */}
-    </>
+    </div>
   );
 };
 

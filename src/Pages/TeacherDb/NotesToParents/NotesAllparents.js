@@ -43,6 +43,7 @@ const NotesAllStudent = (props) => {
       "http://localhost:8000/deletNotes/64503c4d6a91908b55655014",
       { id: ID }
     );
+
     const updateNote = response.data.notes;
     setData(updateNote);
     notify("Note deleted successfully", "Success");

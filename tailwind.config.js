@@ -1,29 +1,3 @@
-// /** @type {import('tailwindcss').Config} */
-// const withMT = require("@material-tailwind/react/utils/withMT");
-
-// module.exports = withMT({
-//   content: [
-//     "./src/**/*.{js,jsx,ts,tsx}",
-//     "path-to-your-node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
-//     "path-to-your-node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
-//   ],
-//   theme: {
-//     extend: {
-//       colors: {
-//         "main-blue": "#3588cb",
-//         "main-green": "rgb(138 197 62)",
-//         "color-footer": " #025f80",
-//       },
-//     },
-//   },
-//   plugins: [],
-// });
-
-// ! Possible colors:
-// "#0CAFFF"
-// "#3a86ff" the main one
-
-const { green } = require("@mui/material/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
@@ -37,7 +11,7 @@ module.exports = {
   darkMode: "class",
   theme: {
     fontFamily: {
-      sans: ["Roboto", "sans-serif"],
+      sans: ["Mogra", "cursive"],
     },
 
     screens: {
@@ -50,11 +24,13 @@ module.exports = {
     },
     extend: {
       colors: {
-        mainColor: "#3c50e0",
-        alterColor: "#2878f7",
+        "blue-600": "#1e88e5",
+        "blue-400": "#00bfff",
+        mainColor: "#1e88e5",
+        alterColor: "#00bfff",
         secondaryColor: "#00E632",
-        gradientFrom: "#00b708",
-        gradientTo: "#00e10b",
+        gradientFrom: "#17ad37",
+        gradientTo: "#98ec2d",
         current: "currentColor",
         transparent: "transparent",
         white: "#FFFFFF",
@@ -68,6 +44,7 @@ module.exports = {
         secondary: "#80CAEE",
         stroke: "#E2E8F0",
         gray: "#EFF4FB",
+        "blue-gray-700": "#b0bec5 ",
         graydark: "#333A48",
         "gray-2": "#F7F9FC",
         "gray-3": "#FAFAFA",
@@ -92,6 +69,9 @@ module.exports = {
         warning: "#FFA70B",
       },
       fontSize: {
+        "font-size-17": "17px",
+        "font-size-24": "24px",
+        "font-size-160": "160px",
         "title-xxl": ["44px", "55px"],
         "title-xl": ["36px", "45px"],
         "title-xl2": ["33px", "45px"],
@@ -279,6 +259,12 @@ module.exports = {
           "0%, 100%": { transform: "rotate(360deg)" },
           "50%": { transform: "rotate(0deg)" },
         },
+        spinSq: {
+          "0%": {
+            transform: "rotate(0deg)",
+          },
+          "100%": { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "ping-once": "ping 5s cubic-bezier(0, 0, 0.2, 1)",
@@ -286,6 +272,7 @@ module.exports = {
         "spin-1.5": "spin 1.5s linear infinite",
         "spin-2": "spin 2s linear infinite",
         "spin-3": "spin 3s linear infinite",
+        spinSq: " spinSq 6s linear infinite ",
       },
     },
   },
