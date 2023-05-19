@@ -6,7 +6,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
   const [studentid, setstudentid] = useState("");
   const [formState, setFormState] = useState({});
   React.useEffect(() => {
-    console.log(defaultValue[0]._id);
+    console.log(defaultValue[0]);
     setstudentid(defaultValue[0]._id);
     setFormState({ ...defaultValue[0], ...defaultValue[0].parent_id });
   }, []);

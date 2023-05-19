@@ -33,7 +33,7 @@ const ChatEngineComp = () => {
       projectID=" a28d11b3-d55a-4061-9d75-02ddfaa1d311"
       userName="ahmad"
       userSecret="123123"
-      //   renderNewChatForm={(creds) => renderChatForm(creds)}
+      renderNewChatForm={(creds) => renderChatForm(creds)}
     />
   );
 };

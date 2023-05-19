@@ -1,37 +1,9 @@
-/* .created {
-  font-family: "Times New Roman", Times, serif;
-  margin: auto;
-  padding: auto;
-  display: block;
-  background-color: #3498db7a;
-  border-radius: 5px;
-}
+/* 
 .ce-wrapper {
   margin-left: -60px !important;
 }
 
-.created input {
-  padding: 5px;
-  margin: 10px;
-  margin-left: 15px;
-  margin-left: 0;
-  background-color: rgb(238, 227, 227);
-  color: rgb(19, 18, 18);
-  width: 210px;
-  border-radius: 3px;
-}
 
-.created button {
-  border: 1px solid rgb(217, 217, 230);
-  border-radius: 5px;
-  padding: 5px;
-  color: rgb(224, 224, 235);
-  font-size: 15px;
-}
-
-.created button:hover {
-  background-color: rgb(76, 76, 228);
-}
 
 .ce-chat-feed-container {
   overflow: hidden auto !important;
@@ -361,4 +333,38 @@
 .ce-autocomplete-close {
   background-color: white !important;
   border-radius: 0px !important;
+}
+
+.created {
+  font-family: "Times New Roman", Times, serif;
+  margin: auto;
+  padding: auto;
+  display: block;
+  margin-left: 10px;
+  margin-bottom: 30px;
+  background-color: rgb(37, 99, 235);
+  border-radius: 5px;
+}
+
+.created input {
+  padding: 5px;
+  margin: 10px;
+  margin-left: 15px;
+  margin-left: 0;
+  background-color: white;
+  color: rgb(19, 18, 18);
+  width: 210px;
+  border-radius: 3px;
+}
+
+.created button {
+  border: 1px solid rgb(217, 217, 230);
+  border-radius: 5px;
+  padding: 5px;
+  color: rgb(224, 224, 235);
+  font-size: 15px;
+}
+
+.created button:hover {
+  background-color: rgb(76, 76, 228);
 }

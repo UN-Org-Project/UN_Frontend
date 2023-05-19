@@ -12,13 +12,13 @@ const buttons = [
   {
     name: "Add Student",
     path: "/admin",
-    icon: <FaUserGraduate style={{ width: "18", height: "18" }} />,
+    icon: <FaUserGraduate style={{ width: "18", height: "18" }} />
   },
   {
     name: "Add Teachers",
     path: "/Admin/AdminTeachers",
-    icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />,
-  },
+    icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />
+  }
 ];
 const AdminDb = () => {
   return (
@@ -28,11 +28,9 @@ const AdminDb = () => {
       userRoll="Admin"
       sidebarChildren={buttons.map((item, index) => (
         <Btn key={index} name={item.name} path={item.path}>
-          {" "}
-          {item.icon}{" "}
+          {item.icon}
         </Btn>
-      ))}
-    >
+      ))}>
       <AdminStd />
     </Layout>
   );

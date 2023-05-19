@@ -10,7 +10,7 @@ const Events = (props) => {
   const child = children[0];
   return (
     <div className="mb-4 grid grid-cols-1 gap-6 relative top-1/2 translate-y-1/2">
-      <ShowAllNotes allNote={child.allNotes} sender={child.teacherName} />
+      <ShowAllNotes allNote={child.allevents} sender={child.teacherName} />
     </div>
   );
 };

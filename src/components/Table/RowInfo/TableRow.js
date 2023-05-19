@@ -449,7 +449,7 @@ export const AbsenceDetailsRow = (props) => {
         </div>
       </td>
       <td className="py-3 px-5 border-b border-blue-gray-50">
-        <Rating rate={props.rating.star} />
+        <Rating rate={props.rating ? props.rating.star : 0} />
       </td>
       <td className="py-3 px-5 border-b border-blue-gray-50">
         <span>{props.note.note || "not found yet"}</span>
