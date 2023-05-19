@@ -3,12 +3,14 @@ import React, { useState } from "react";
 import "./Modal.css";
 import axios from "axios";
 export const Modal = ({ notify , state, closeModal, onSubmit, defaultValue }) => {
-  const [studentid, setstudentid] = useState("");
+  const [studentid, setstudentid] = useState(defaultValue[0]._id);
   const [formState, setFormState] = useState({});
   React.useEffect(() => {
-    console.log(defaultValue[0]._id);
-    setstudentid(defaultValue[0]._id);
-    setFormState({ ...defaultValue[0], ...defaultValue[0].parent_id });
+    console.log(studentid);
+   // setstudentid(defaultValue[0]._id);
+    // defaultValue[0].parent_id._id = studentid;
+    setFormState({  ...defaultValue[0].parent_id, ...defaultValue[0] });
+    //formState._id= studentid;
   }, []);
 
   // console.log(formState);
