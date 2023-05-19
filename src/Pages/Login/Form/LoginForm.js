@@ -1,130 +1,58 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { Link, Navigate } from "react-router-dom";
-
+import React from "react";
+import "./LoginForm.css";
 const LoginForm = (props) => {
-  // states: to manage the POST
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isValid, setIsValid] = useState(false);
-  const [error, setError] = useState("");
-
-  // This Function Will work when the form submited
-  // const handleSubmitt = async (e) => {
-  //   e.preventDefault();
-
-  //   if (username.trim() === "") {
-  //     setIsValid(false);
-  //     return;
-  //   }
-  //   if (password.trim() === "") {
-  //     return;
-  //   }
-
-    // setIsValid(true);
-    // //Send the username and the password to "http://localhost:8000/auth/login" end point
-    // try {
-    //   const response = await axios.post("http://localhost:8000/auth/login", {
-    //     username,
-    //     password,
-    //   });
-    //   console.log(response.status);
-
-  //     console.log(response.data);
-  //     //Check if the response is OK
-  //     if (response.status === 200) {
-  //       console.log(response.data.state);
-  //       // Assign the type of the dashboard state ("Admin , Parent , Teacher")
-  //       const dashboardType = response.data.state;
-  //       // according to the "dashboardType" navigate the user to his own dashboard
-  //       switch (dashboardType) {
-  //         case "Admin":
-  //           console.log("Admin Dashboard id :" + response.data.id);
-
-  //           // ! its important to Use the "router" and "Cookies" library instade of BOM
-  //           window.localStorage.setItem("token", response.data.id);
-  //           window.location.href = "./admin/Adminstudents";
-  //           break;
-  //         case "Parent":
-  //           console.log("Parent Dashboard id :" + response.data.id);
-
-  //           // ! its important to Use the "router" and "Cookies" library instade of BOM
-  //           window.localStorage.setItem("token", response.data.id);
-  //           window.location.href = "./parent";
-  //           break;
-  //         case "Teacher":
-  //           console.log("Teacher Dashboard id :" + response.data.id);
-
-  //           // ! its important to Use the "router" and "Cookies" library instade of BOM
-  //           window.localStorage.setItem("token", response.data.id);
-  //           window.location.href = "./teacher";
-  //           break;
-  //         default:
-  //           // Handle unrecognized dashboard type
-  //           console.log("Not Valied");
-  //           setError(error.response.data.message);
-  //       }
-  //     } else if (response.status === 404) {
-  //       console.log("Error 404");
-  //       setIsLoading(true);
-  //     }
-  //   } catch (error) {
-  //     //! Handle any error may occared
-  //     setError(error.response.data.message);
-  //     setIsLoading(true);
-  //     setUsername("");
-  //     setPassword("");
-  //   }
-  // };
-
   return (
-    <>
-      <form
-        onSubmit={props.handleSubmit}
-        className="flex flex-col max-w-[400] w-full mx-auto  p-8 px-8 rounded-lg justify-center flex-1">
-        <h2 className=" text-4xl dark:text-white font-bold text-center">
-          SIGN IN
-        </h2>
-        <div className="flex flex-col text-white py-2">
-          <label>User Name:</label>
-          <input
-            className="rounded-lg  mt-2 p-3 focus:border-blue-500 focus:bg-teal-400 focus:outline-none"
-            type="text"
-            placeholder="Enter Your ID"
-            value={props.username}
-            onChange={(event) => props.setUserName(event.target.value)}
-            required
-          />
-        </div>
+    <div className="container mx-auto p-4  ">
+      <div className="flex flex-col bg-clip-border rounded-xl blure absolute top-2/4 left-2/4 w-full max-w-[27rem] h-[25rem] -translate-y-2/4 -translate-x-2/4   ">
+        <div className=" relative inset-[2px] flex flex-col rounded-xl h-full  ">
+          <div className="relative mx-4 mb-4 grid h-28 place-items-center ">
+            <h3 className="block antialiased tracking-normal font-sans text-3xl font-semibold leading-snug text-white">
+              Sign In
+            </h3>
+          </div>
+          <form
+            onSubmit={props.handleSubmit}
+            className="p-7 flex flex-col gap-4 z-10 inset-[2px]"
+          >
+            <div className=" relative w-full min-w-[200px] h-11">
+              <input
+                type="text"
+                className="peer w-full h-full bg-transparent font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-700 placeholder-shown:border-t-blue-gray-700 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-3 rounded-md  focus:border-blue-500"
+                placeholder=" "
+                value={props.username}
+                onChange={(event) => props.setUserName(event.target.value)}
+                required
+              />
+              <label className=" text-white flex w-full h-full select-none pointer-events-none absolute left-0 font-normal peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[4.1] text-blue-gray-400 peer-focus:text-blue-500 before:border-blue-gray-200 peer-focus:before:border-blue-500 after:border-blue-gray-200 peer-focus:after:border-blue-500">
+                Your ID
+              </label>
+            </div>
 
-        <div className="flex flex-col text-white py-2">
-          <label>Password: </label>
-          <input
-            className="rounded-lg mt-2 p-3 focus:border-blue-500 focus:bg-teal-400 focus:outline-none"
-            type="password"
-            placeholder="Enter Password"
-            value={props.password}
-            onChange={(event) => props.setPassword(event.target.value)}
-            required
-          />
-        </div>
+            <div className=" relative w-full min-w-[200px] h-11">
+              <input
+                type="password"
+                className="peer w-full h-full bg-transparent font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-700 placeholder-shown:border-t-blue-gray-700 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-3 rounded-md  focus:border-blue-500"
+                placeholder=" "
+                value={props.password}
+                onChange={(event) => props.setPassword(event.target.value)}
+                required
+              />
+              <label className="text-white flex w-full h-full select-none pointer-events-none absolute left-0 font-normal peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[4.1] text-blue-gray-400 peer-focus:text-blue-500 before:border-blue-gray-200 peer-focus:before:border-blue-500 after:border-blue-gray-200 peer-focus:after:border-blue-500">
+                Password
+              </label>
+            </div>
 
-        <div className="text-white py-2 ">
-          <a href="./Login.js" className="hover:text-teal-200 transition">
-            Forgot Password ?
-          </a>
-          <p className=" text-red-400">{props.errorMessage}</p>
+            <button
+              type="submit"
+              className=" mt-13 w-full py-3 bg-gradient-to-tl from-mainColor to-alterColor shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 text-white font-semibold rounded-lg transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none active:opacity-[0.75]"
+            >
+              Sign in
+            </button>
+          </form>
         </div>
-
-        <button
-          type="submit"
-          className=" mt-2 w-full py-3 bg-teal-400 shadow-lg shadow-teal-500/50 hover:shadow-teal-600/40 text-white font-semibold rounded-lg transition-shadow">
-          Sign in
-        </button>
-      </form>
-    </>
+      </div>
+    </div>
   );
-  };
+};
 
 export default LoginForm;

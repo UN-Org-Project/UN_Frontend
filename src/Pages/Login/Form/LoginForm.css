@@ -13,3 +13,11 @@
     transform: rotate(360deg);
   }
 }
+.blure {
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  border: 1px solid #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  border-right: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+}

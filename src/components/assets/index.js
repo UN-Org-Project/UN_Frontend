@@ -1,8 +1,10 @@
 // The Logo of the websit
 export { default as Logo } from "./images/image-removebg-preview 1.png";
+export { default as Books } from "./images/books.jpg";
 
 // For the Hero section In Home page
 export { default as HeroImg } from "./images/heroimg.png";
+export { default as VidBg } from "./images/students-hero-background.mp4";
 
 // For About section in Home Page
 export { default as AboutImg } from "./images/education.png";

@@ -4,17 +4,12 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer aria-label="Site Footer" class=" bg-blue-500">
+    <footer id="contact" aria-label="Site Footer" class=" bg-blue-500">
       <div class="max-w-screen-xl px-4 pt-16 pb-8 mx-auto sm:px-6 lg:px-8 lg:pt-24">
         <div class="text-center">
           <h2 class="text-3xl font-extrabol  text-white sm:text-5xl">
             Student Tracking System
           </h2>
-
-          {/* <p class="max-w-sm mx-auto mt-4 text-gray-500 dark:text-gray-400">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum
-            maiores ipsum eos temporibus ea nihil.
-          </p> */}
 
           <a
             href="#"
@@ -29,7 +24,7 @@ const Footer = () => {
             <ul class="flex flex-wrap justify-center gap-4 text-xs lg:justify-end">
               <li>
                 <a
-                  href="#"
+                  href="/"
                   class="text-white transition hover:opacity-75 dark:text-gray-400"
                 >
                   Home
@@ -38,7 +33,7 @@ const Footer = () => {
 
               <li>
                 <a
-                  href="#"
+                  href="#about"
                   class="text-white transition hover:opacity-75 dark:text-gray-400"
                 >
                   About
@@ -47,10 +42,19 @@ const Footer = () => {
 
               <li>
                 <a
-                  href="#"
+                  href="#services"
                   class="text-white transition hover:opacity-75 dark:text-gray-400"
                 >
                   Services
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#login"
+                  class="text-white transition hover:opacity-75 dark:text-gray-400"
+                >
+                  Login
                 </a>
               </li>
             </ul>
