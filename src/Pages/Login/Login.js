@@ -1,16 +1,26 @@
 import "./Login.css";
 import React, { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
-import LoginP from "../../components/assets/images/Login.png";
+import { Link, useNavigate } from "react-router-dom";
 import LoginForm from "./Form/LoginForm";
-import { NavItem } from "../../components/index";
 import axios from "axios";
+import { Books } from "../../components/assets";
+import { VidBg } from "../../components/assets";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  const navigateTo = (section) => {
+    navigate("/");
+    setTimeout(() => {
+      const aboutSection = document.getElementById(section);
+      aboutSection.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -48,52 +58,82 @@ const Login = () => {
     }
   };
 
-  return (
-    <div className=" h-screen w-full main-containerLogin">
-      <div className="sec-container grid grid-cols-1 sm:grid-cols-2">
-        <div className="hidden sm:block relative">
-          <img
-            src={LoginP}
-            alt="Books Imgae"
-            className="w-full h-full object-cover"
-          />
-          <p className=" absolute top-2/4 left-2/4 -translate-x-1/2 -translate-y-1/2 text-white text-8xl dark:text-white font-bold text-center">
-            Welcome to ESchool
-          </p>
-        </div>
+  // !----- THIS FOR BACGROUND ANIMATION -----!
+  // const numberOfColorBoxes = 400;
 
-        <div className=" flex flex-col ">
-          <nav className="hidden sm:block self-end">
-            <ul className="flex text-white text-lg justify-between">
-              <NavItem>
-                <Link to="/">Home</Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/">About</Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/">Services</Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/">Contact Us</Link>
-              </NavItem>
+  // const colorBoxes = Array.from({ length: numberOfColorBoxes }, (_, index) => (
+  //   <div
+  //     key={index}
+  //     className="colorBox hover:bg-alterColor hover:duration-[0s]"
+  //   ></div>
+  // ));
+
+  return (
+    <>
+      {/* !----- START MOUSE HOVER ANIMATION* -----!/}
+      {/* <div className="bgAnimation z-1" id="bgAnimation">
+        <div className="backgroundAmim"></div>
+        {colorBoxes}
+      </div> */}
+      {/* !----- END MOUSE HOVER ANIMATION* -----!*/}
+
+      <div className="test relative min-h-screen w-full">
+        <video autoPlay loop muted playsInline className="back-video ">
+          <source src={VidBg} type="video/mp4" />
+        </video>
+        <div className="container relative z-40 mx-auto p-4">
+          <nav>
+            <h1 className=" xl:text-title-xl text-title-lg">
+              <span>STUDENT</span> Tracking System
+            </h1>
+            <ul>
+              <li>
+                <Link to="/"> Home </Link>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    navigateTo("about");
+                  }}
+                >
+                  About
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    navigateTo("services");
+                  }}
+                >
+                  Services
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    navigateTo("contact");
+                  }}
+                >
+                  Contact
+                </button>
+              </li>
             </ul>
           </nav>
-          {/* The Form that the user will input his name and password then send it to the back-end for the verfication */}
-          {isLoading && <div className="spinner"> </div>}
-          <LoginForm
-            username={username}
-            setUserName={setUsername}
-            password={password}
-            setPassword={setPassword}
-            errorMessage={errorMessage}
-            setErrorMessage={setErrorMessage}
-            handleSubmit={handleSubmit}
-            isloading={isLoading}
-          />
         </div>
+
+        {isLoading && <div className="spinner "> </div>}
+        <LoginForm
+          username={username}
+          setUserName={setUsername}
+          password={password}
+          setPassword={setPassword}
+          errorMessage={errorMessage}
+          setErrorMessage={setErrorMessage}
+          handleSubmit={handleSubmit}
+          isloading={isLoading}
+        />
       </div>
-    </div>
+    </>
   );
 };
 

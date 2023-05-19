@@ -3,6 +3,9 @@
   background: linear-gradient(135.11deg, #025f80 25.49%, #26d0ce 105.87%);
 }
 
+.test {
+  background-image: linear-gradient(rgba(13, 3, 51, 0.3), rgba(13, 3, 51, 0.3));
+}
 .sec-container {
   position: absolute;
   background: #025f80;
@@ -32,3 +35,120 @@
     transform: rotate(360deg);
   }
 }
+
+.container nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 40px;
+  height: 100px;
+  align-items: center;
+}
+
+.container nav h1 {
+  /* font-size: 2em; */
+  color: #fff;
+  position: relative;
+  cursor: pointer;
+  pointer-events: all;
+  letter-spacing: 4px;
+}
+
+.container nav h1:hover {
+  color: #00bfff;
+}
+
+.container nav h1 span {
+  position: relative;
+  color: #00bfff;
+}
+
+.container nav ul {
+  display: flex;
+}
+
+.container nav ul li {
+  color: #fff;
+  position: relative;
+  list-style: none;
+  font-size: 1.5em;
+  font-weight: 400;
+  padding: 12px 18px;
+  cursor: pointer;
+  pointer-events: all;
+  overflow: hidden;
+}
+
+.container nav ul li::after,
+.container nav h1 span::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  width: 0%;
+  height: 3px;
+  left: 50%;
+  background: #17ad37;
+  transform: translateX(-50%);
+  transition: 0.3s;
+}
+
+.container nav li:hover,
+.container nav h1:hover span {
+  color: #17ad37;
+}
+
+.container nav li:hover::after {
+  width: 80%;
+}
+.container nav h1:hover span::after {
+  width: 100%;
+}
+
+/* .bgAnimation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  background: #1d1d1d;
+  filter: saturate(2);
+  overflow: hidden;
+}
+
+.colorBox {
+  z-index: 999;
+  filter: brightness(1.1);
+  transition: 2s ease;
+  position: relative;
+  margin: 2px;
+  background: #1d1d1d;
+}
+
+/* .colorBox:hover {
+  background: #00bfff;
+  transition-duration: 0s;
+} */
+
+/* .backgroundAmim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: #00bfff;
+  filter: blur(60px);
+  animation: animBack 6s linear infinite;
+} */
+
+/* @keyframes animBack {
+  0% {
+    top: -60px;
+  }
+  100% {
+    top: 120%;
+  }
+} */
