@@ -6,7 +6,9 @@ const LogoutButton = ({ name, path, py, px, color }) => {
     /* !----- ON CLICK ON THE LOGOUT BTN DELETE HIS DATA FROM THE LOCALSTOAGE -----! */
   }
   const logoutHandler = () => {
-    localStorage.removeItem("islogged"), localStorage.removeItem("userData");
+    localStorage.removeItem("islogged");
+    localStorage.removeItem("userData");
+    localStorage.removeItem("nameOfuser");
   };
 
   return (
@@ -18,8 +20,7 @@ const LogoutButton = ({ name, path, py, px, color }) => {
           ? "bg-danger"
           : "bg-gradient-to-tr from-gradientFrom to-gradientTo shadow-md shadow-green-500/40 "
       }  px-4 py-4 md:px-5 text-center font-medium text-white hover:bg-opacity-90 lg:px-6 xl:px-7`}
-      // to={path}
-    >
+      to={path}>
       <span className=" hidden md:block">{name}</span>
       <LogoutOutlined />
     </NavLink>

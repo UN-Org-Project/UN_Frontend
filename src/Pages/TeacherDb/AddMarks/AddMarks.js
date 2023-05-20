@@ -11,6 +11,7 @@ import MainTitle from "../../../components/SectionTitle/MainTitle";
 import ParentCards from "../../../components/StatisticsCard/ParentCards";
 import Card from "../../../components/StatisticsCard/Card/Card";
 const AddMarks = () => {
+  const id = localStorage.getItem("userData");
   const [isLoading, setIsLoading] = useState(false);
   const studentData = useOutletContext();
   const students = studentData.students;
@@ -22,16 +23,16 @@ const AddMarks = () => {
   const [level, setLevel] = useState("");
   const [RangeSubject, setRangeSubject] = useState(0);
   const [numberOfStudent, setNumberOfStudent] = useState(students.length);
-  const [convertCart, setConvertCart] = useState(false);
-  useEffect(() => {
-    setConvertCart(true);
-  }, []);
+  // const [convertCart, setConvertCart] = useState(false);
+  // useEffect(() => {
+  //   setConvertCart(true);
+  // }, []);
 
   /////////////////////Handling Change Data//////////////////////////
   const handleLevelChange = (id, value) => {
     setLevel((prevState) => ({
       ...prevState,
-      [id]: value,
+      [id]: value
     }));
     // setIsChanged(true);
   };
@@ -50,7 +51,7 @@ const AddMarks = () => {
   const handleMarkChange = (id, value) => {
     setMarks((prevState) => ({
       ...prevState,
-      [id]: value,
+      [id]: value
     }));
     //setIsChanged(true);
   };
@@ -58,7 +59,7 @@ const AddMarks = () => {
   const handleNoteChange = (id, value) => {
     setNote((prevState) => ({
       ...prevState,
-      [id]: value,
+      [id]: value
     }));
     // setIsChanged(true);
   };
@@ -81,7 +82,7 @@ const AddMarks = () => {
         note: note[student._id] || "No note heve been add !",
         level: level[student._id] || 2,
         subject: subject,
-        exame: exame || "first",
+        exame: exame || "first"
       };
 
       studentsMark.push(updatedStudent);
@@ -101,9 +102,12 @@ const AddMarks = () => {
 
     //////////////////// send Data to Back End/////////////////////////////////////////////
     try {
-      const response = await axios.post("http://localhost:8000/addtypeExam", {
-        studentsMark,
-      });
+      const response = await axios.post(
+        "http://localhost:8000/addtypeExam" / id,
+        {
+          studentsMark
+        }
+      );
       if (!response.ok) {
         const data = response.data;
         console.log(data);
@@ -204,15 +208,14 @@ const AddMarks = () => {
               { value: "english", label: "English" },
               { value: "arbic", label: "arbic" },
               { value: "history", label: "history" },
-              { value: "science", label: "science" },
+              { value: "science", label: "science" }
             ]}
           />
         </div>
         <div
           className={`  md:block ${
             isChanged ? "block" : "hidden"
-          } bg-clip-border rounded-xl bg-gradient-to-tr from-blue-500 to-blue-400 w-80 p-4 justify-self-end`}
-        >
+          } bg-clip-border rounded-xl bg-gradient-to-tr from-blue-500 to-blue-400 w-80 p-4 justify-self-end`}>
           <SelectComp
             isChanged={isChanged}
             onChange={handleExameChange}
@@ -220,7 +223,7 @@ const AddMarks = () => {
             options={[
               { value: "First", label: "First" },
               { value: "Second", label: "Second" },
-              { value: "Final", label: "Final" },
+              { value: "Final", label: "Final" }
             ]}
           />
         </div>
@@ -252,8 +255,7 @@ const AddMarks = () => {
                   HadlePagenation(page);
                 }}
               />
-            }
-          >
+            }>
             {/* TABLE BODY */}
             {/* pass the function that will change the value if any action happened */}
             {/* Render the sliced data on the current page */}
@@ -277,8 +279,7 @@ const AddMarks = () => {
           <div className="w-full flex justify-center items-center">
             <div
               className="p-4 mb-4 w-fit text-sm text-white rounded-lg bg-clip-border bg-gradient-to-br from-blue-500 to-blue-400  dark:bg-gray-800 dark:text-blue-400"
-              role="alert"
-            >
+              role="alert">
               <span className="font-medium">Info !</span> Choose the Subject and
               type Exame please.
             </div>

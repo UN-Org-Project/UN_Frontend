@@ -82,11 +82,18 @@ const InfoTeacherForm = (props) => {
                 </label>
                 <input
                   id="phone-num"
-                  type="phone"
-                  className="bg-white w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-gradientTo active:border-gradientTo  disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary placeholder:text-slate-200 "
+                  type="text"
+                  maxLength="10"
+                  className="bg-white w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-gradientTo active:border-gradientTo  disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary placeholder:text-slate-200"
                   placeholder="+962-790-641-545"
                   value={props.phoneNumber}
-                  onChange={(e) => props.setPhoneNumber(e.target.value)}
+                  onChange={(e) => {
+                    const inputValue = e.target.value;
+                    const numbersOnly = inputValue.replace(/[^0-9]/g, "");
+                    if (/^[0-9]{0,10}$/.test(numbersOnly)) {
+                      props.setPhoneNumber(numbersOnly);
+                    }
+                  }}
                   required
                 />
               </div>

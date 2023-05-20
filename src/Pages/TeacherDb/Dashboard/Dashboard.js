@@ -13,6 +13,7 @@ import Card from "../../../components/StatisticsCard/Card/Card";
 import MainTitle from "../../../components/SectionTitle/MainTitle";
 
 const Dashboard = (props) => {
+  const id = localStorage.getItem("userData");
   // to handle if any action happened then show the submit button
 
   /////////////////// Handling Students Data?////////////////
@@ -42,7 +43,7 @@ const Dashboard = (props) => {
   const handleLevelChange = (id, value) => {
     setLevel((prevState) => ({
       ...prevState,
-      [id]: value,
+      [id]: value
     }));
     setIsChanged(true);
   };
@@ -50,7 +51,7 @@ const Dashboard = (props) => {
   const handleAbsenceChange = (id, value) => {
     setAbsence((prevState) => ({
       ...prevState,
-      [id]: value,
+      [id]: value
     }));
     setIsChanged(true);
   };
@@ -58,7 +59,7 @@ const Dashboard = (props) => {
   const handleNoteChange = (id, value) => {
     setNote((prevState) => ({
       ...prevState,
-      [id]: value,
+      [id]: value
     }));
     setIsChanged(true);
   };
@@ -73,7 +74,7 @@ const Dashboard = (props) => {
         ...student,
         absence: absence[student._id] || "present",
         note: note[student._id] || "No note heve been add !",
-        level: level[student._id] || 2,
+        level: level[student._id] || 2
       };
 
       studentsData.push(updatedStudent);
@@ -85,15 +86,13 @@ const Dashboard = (props) => {
     ).length;
     setNumberofAbsence(numberabsence);
     setNumberofPresent(students.length - numberabsence);
-    console.log(numberOfAbsence);
-    console.log(numberabsence);
-    console.log(studentsData);
+
     ////////////////////////// Send Data to Back End/////////////////////////////////
     try {
       const response = await axios.post(
-        "http://localhost:8000/add_Abs_Note_Rate",
+        "http://localhost:8000/add_Abs_Note_Rate/" + id,
         {
-          studentsData,
+          studentsData
         }
       );
       if (!response.ok) {
@@ -164,8 +163,7 @@ const Dashboard = (props) => {
                 HadlePagenation(page);
               }}
             />
-          }
-        >
+          }>
           {/* TABLE BODY */}
           {/* pass the function that will change the value if any action happened */}
           {/* Render the sliced data on the current page */}

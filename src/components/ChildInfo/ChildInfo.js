@@ -6,9 +6,9 @@ import "react-circular-progressbar/dist/styles.css";
 import Progress from "../CircularProgressBar/Progress";
 
 const ChildInfo = (props) => {
-  useEffect(() => {
-    console.log(props.childrenInfo);
-  }, [props]);
+  // useEffect(() => {
+  //   // console.log(props.childrenInfo);
+  // }, [props]);
 
   return (
     <div

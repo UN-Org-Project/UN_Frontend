@@ -20,6 +20,7 @@ import MainTitle from "../../../components/SectionTitle/MainTitle";
 import { Edit } from "@mui/icons-material";
 
 const AdminTech = () => {
+  const id = localStorage.getItem("userData");
   const [isLoading, setIsLoading] = useState(false);
   const notify = (message, type) => {
     if (type === "Error") toast.error(message);
@@ -35,11 +36,11 @@ const AdminTech = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [TeacherAddress, setTeacherAddress] = useState("");
   const [adminName, setAdminData] = useState("");
-  const id = localStorage.getItem("userData");
+
   const data = useEffect(() => {
     async function fetch() {
       const response = await axios.get(
-        "http://localhost:8000/getAdmininfo/64138fc1aced1a0ffacfe0b0"
+        "http://localhost:8000/getAdmininfo/" + id
       );
       console.log(response.data);
 
@@ -70,7 +71,7 @@ const AdminTech = () => {
       //   console.log(key, value);
       // }
 
-      const response = await axios.post("http://localhost:8000/teacher", {
+      const response = await axios.put("http://localhost:8000/teacher", {
         Data
       });
       setIsLoading(false);

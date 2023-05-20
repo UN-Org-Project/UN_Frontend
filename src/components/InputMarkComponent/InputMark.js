@@ -9,16 +9,16 @@ import FormControl from "@mui/material/FormControl";
 const ValidationTextField = styled(TextField)({
   "& input:valid + fieldset": {
     borderColor: "green",
-    borderWidth: 2,
+    borderWidth: 2
   },
   "& input:invalid + fieldset": {
     borderColor: "red",
-    borderWidth: 2,
+    borderWidth: 2
   },
   "& input:valid:focus + fieldset": {
     borderLeftWidth: 6,
-    padding: "4px !important", // override inline-style
-  },
+    padding: "4px !important" // override inline-style
+  }
 });
 
 const InputMark = (props) => {
@@ -43,10 +43,14 @@ const InputMark = (props) => {
           label="Enter Mark"
           required
           variant="outlined"
-          defaultValue=""
           id="validation-outlined-input"
           value={props.mark}
-          onChange={handleChange}
+          onChange={(e) => {
+            const inputValue = e.target.value;
+            if (inputValue >= 0) {
+              handleChange(e);
+            }
+          }}
         />
       </Box>
     </div>

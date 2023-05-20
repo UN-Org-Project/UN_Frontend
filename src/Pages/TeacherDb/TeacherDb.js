@@ -7,12 +7,12 @@ import Layout from "../../Layout/Layout";
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, Link } from "react-router-dom";
 
 import { Dashboard, Message, NoteAltSharp } from "@mui/icons-material";
 import { AiFillFileMarkdown } from "react-icons/ai";
 import { BsPersonVcard } from "react-icons/bs";
-
+const id = localStorage.getItem("userData");
 const buttons = [
   {
     name: "Dashboard",
@@ -36,32 +36,44 @@ const buttons = [
   },
   {
     name: "Messages",
-    path: "ChattingTeacher/64503c4d6a91908b55655014",
+    path: "ChattingTeacher/" + id,
     icon: <Message style={{ width: "18", height: "18" }} />
   }
 ];
 
 const TeacherDb = () => {
-  const id = localStorage.getItem("userData");
+  const islogged = localStorage.getItem("islogged");
   const navigate = useNavigate();
 
   const [teacherData, setTeachertData] = useState("");
   const [studentData, setStudentData] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
+
+  if (!islogged) {
+    return (
+      <>
+        <p className="text">
+          the user is not loged please try again with login:
+        </p>
+        <Link to="/login" className="navlink right ">
+          <button className="logout-btn login">login</button>
+        </Link>
+      </>
+    );
+  }
   useEffect(() => {
     navigate("/teacher/Dashboard");
     async function fetchTeacherData() {
       try {
         //6431b22ca8514ea551212e27
         const response = await axios.get(
-          "http://localhost:8000/sendInfo/64503c4d6a91908b55655014"
+          "http://localhost:8000/sendInfo/" + id
         );
         const data = response.data;
         console.log(data.allStudents);
         setStudentData(data.allStudents);
         setTeachertData(data.name);
-        console.log(studentData);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -82,8 +94,7 @@ const TeacherDb = () => {
             userRoll="Teacher Dashboard"
             sidebarChildren={buttons.map((item, index) => (
               <Btn key={index} name={item.name} path={item.path}>
-                {" "}
-                {item.icon}{" "}
+                {item.icon}
               </Btn>
             ))}>
             <TeacherContent>

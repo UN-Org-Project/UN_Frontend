@@ -48,7 +48,7 @@ const Header = (props) => {
           {/* !----- THIS IS THE NAME OF THE WEBSITE -----! */}
           <div className="hidden md:block sm:hidden lg:block">
             <h1 className="block antialiased text-white tracking-normal leading-relaxed font-semibold text-xl font-sans">
-              Student Tracking{" "}
+              Student Tracking
               <span className="  text-gradientTo font-sans">System</span>
             </h1>
           </div>
