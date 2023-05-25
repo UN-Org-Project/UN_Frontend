@@ -149,6 +149,9 @@
 .ce-chat-unread-dot {
   background-color: white !important;
 }
+.ce-chat-card-loading-bar {
+  height: 0 !important;
+}
 
 .ce-chat-list {
   border: none !important;

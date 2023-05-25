@@ -19,8 +19,9 @@ import {
 import MainTitle from "../../../components/SectionTitle/MainTitle";
 
 import { Edit } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 const AdminStd = () => {
-  //  const id = localStorage.getItem("userData");
+  const id = localStorage.getItem("userData");
   const islogged = localStorage.getItem("islogged");
   const [adminName, setAdminData] = useState("");
 
@@ -29,7 +30,7 @@ const AdminStd = () => {
   const data = useEffect(() => {
     async function fetch() {
       const response = await axios.get(
-        "http://localhost:8000/getAdmininfo/64138fc1aced1a0ffacfe0b0"
+        "http://localhost:8000/getAdmininfo/" + id
       );
       console.log(response.data);
       //    setAdminData(response.data.adminData);
@@ -83,8 +84,20 @@ const AdminStd = () => {
       // for (const [key, value] of formData.entries()) {
       //   console.log(key, value);
       // }
+      if (!islogged) {
+        return (
+          <>
+            <p className="text">
+              the user is not loged please try again with login:
+            </p>
+            <Link to="/login" className="navlink right ">
+              <button className="logout-btn login">login</button>
+            </Link>
+          </>
+        );
+      }
 
-      const response = await axios.post("http://localhost:8000/parent", {
+      const response = await axios.put("http://localhost:8000/parent", {
         Data
       });
       setIsLoading(false);
@@ -107,19 +120,6 @@ const AdminStd = () => {
       console.log("Invalid info");
     }
   };
-
-  // if (!islogged) {
-  //   return (
-  //     <>
-  //       <p className="text">
-  //         the user is not loged please try again with login:
-  //       </p>
-  //       <Link to="/login" className="navlink right ">
-  //         <button className="logout-btn login">login</button>
-  //       </Link>
-  //     </>
-  //   );
-  // }
 
   const buttons = [
     {
@@ -156,8 +156,7 @@ const AdminStd = () => {
         userRoll="Admin"
         sidebarChildren={buttons.map((item, index) => (
           <Btn key={index} name={item.name} path={item.path}>
-            {" "}
-            {item.icon}{" "}
+            {item.icon}
           </Btn>
         ))}>
         <MainTitle title="Add Student Form" />

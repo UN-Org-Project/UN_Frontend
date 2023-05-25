@@ -4,7 +4,7 @@ import {
   Dialog,
   DialogHeader,
   DialogBody,
-  DialogFooter,
+  DialogFooter
 } from "@material-tailwind/react";
 
 export default function MessageDialog(props) {
@@ -28,22 +28,13 @@ export default function MessageDialog(props) {
           handler={handleOpen}
           animate={{
             mount: { scale: 1, y: 0 },
-            unmount: { scale: 0.9, y: -100 },
-          }}
-        >
+            unmount: { scale: 0.9, y: -100 }
+          }}>
           <DialogHeader>{props.title}</DialogHeader>
           <DialogBody>{props.body}</DialogBody>
           <DialogFooter>
-            <Button
-              variant="text"
-              color="red"
-              onClick={handleOpen}
-              className="mr-1"
-            >
-              <span>Cancel</span>
-            </Button>
             <Button variant="gradient" color="green" onClick={handleOpen}>
-              <span>Confirm</span>
+              <span>OK</span>
             </Button>
           </DialogFooter>
         </Dialog>

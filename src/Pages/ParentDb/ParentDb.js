@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Outlet, useNavigate, useLocation, Link } from "react-router-dom";
 import axios from "axios";
 
 import Layout from "../../Layout/Layout";
@@ -13,6 +13,7 @@ import { EventNote, GradeOutlined, Message } from "@mui/icons-material";
 
 const ParentDb = () => {
   const location = useLocation();
+  const islogged = localStorage.getItem("islogged");
   const { pathname } = location;
   const id = localStorage.getItem("userData");
   const [parnetData, setparenttData] = useState("");
@@ -21,6 +22,18 @@ const ParentDb = () => {
   const [isEntered, setIsEntered] = useState(false);
   const [idchiled, setIdchiled] = useState("");
   const [idTeacher, setIdTeacher] = useState("");
+  if (!islogged) {
+    return (
+      <>
+        <p className="text">
+          the user is not loged please try again with login:
+        </p>
+        <Link to="/login" className="navlink right ">
+          <button className="logout-btn login">login</button>
+        </Link>
+      </>
+    );
+  }
 
   let navigate = useNavigate();
   useEffect(() => {
@@ -29,7 +42,7 @@ const ParentDb = () => {
       try {
         //6431b22ca8514ea551212e27
         const response = await axios.get(
-          "http://localhost:8000/parentInfo/64503b446a91908b5565500a"
+          "http://localhost:8000/parentInfo/" + id
         );
         const data = response.data.parentInfo;
         console.log(data);
@@ -47,7 +60,6 @@ const ParentDb = () => {
   const handleEnterChild = (value, id, teacherid) => {
     setIsEntered(value);
     setIdchiled(id);
-    console.log(id);
     setIdTeacher(teacherid);
   };
 
@@ -96,6 +108,7 @@ const ParentDb = () => {
       {item.icon}
     </Btn>
   ));
+
   return (
     <>
       {isLoading ? (

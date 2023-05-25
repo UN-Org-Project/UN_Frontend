@@ -1,6 +1,6 @@
 import React from "react";
 import { AdminAvatar } from "../../components/assets";
-
+import { useEffect } from "react";
 import AdminStd from "./EditStudents/AdminStdPage";
 import Btn from "../../components/SideBar/MenuBtn/Btn";
 
@@ -24,7 +24,7 @@ const AdminDb = () => {
   return (
     <Layout
       userImg={AdminAvatar}
-      userName="Ahmad Alhariri"
+      userName="muath"
       userRoll="Admin"
       sidebarChildren={buttons.map((item, index) => (
         <Btn key={index} name={item.name} path={item.path}>

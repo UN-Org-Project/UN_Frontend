@@ -17,7 +17,10 @@ const ShowMarks = (props) => {
   const children = childrenData.childe.filter((child) => child._id === id);
   const child = children[0];
   const handleExameChange = (value) => {
-    if (!Object.keys(child.typeExam).includes(value)) {
+    if (
+      child.typeExam === undefined ||
+      !Object.keys(child.typeExam).includes(value)
+    ) {
       setIsChanged(false);
       setnotification("Exam Marks not yet uploded !");
     } else {
@@ -54,7 +57,7 @@ const ShowMarks = (props) => {
   };
   return (
     <>
-      <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-title-md2 font-semibold text-mainColor dark:text-white">
           <Title h2="Marks Your child  " />
         </h2>

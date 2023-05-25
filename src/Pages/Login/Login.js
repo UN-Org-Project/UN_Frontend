@@ -28,13 +28,15 @@ const Login = () => {
     try {
       const response = await axios.put("http://localhost:8000/auth/login", {
         username,
-        password,
+        password
       });
       console.log(response.status);
       console.log(response.data);
       setIsLoading(false);
       localStorage.setItem("islogged", true);
       localStorage.setItem("userData", response.data.id);
+      localStorage.setItem("nameOfuser", response.data.nameOfuser);
+      localStorage.setItem("userState", response.data.state);
       setUsername("");
       setPassword("");
 
@@ -43,7 +45,7 @@ const Login = () => {
       } else if (response.data.state === "Parent") {
         window.location.href = "/parent";
       } else if (response.data.state === "Admin") {
-        //  window.location.href = "/Admin/AdminStudents";
+        window.location.href = "/Admin/AdminStudents";
         console.log("admin");
       } else {
         console.log(response.data);
@@ -94,8 +96,7 @@ const Login = () => {
                 <button
                   onClick={() => {
                     navigateTo("about");
-                  }}
-                >
+                  }}>
                   About
                 </button>
               </li>
@@ -103,8 +104,7 @@ const Login = () => {
                 <button
                   onClick={() => {
                     navigateTo("services");
-                  }}
-                >
+                  }}>
                   Services
                 </button>
               </li>
@@ -112,8 +112,7 @@ const Login = () => {
                 <button
                   onClick={() => {
                     navigateTo("contact");
-                  }}
-                >
+                  }}>
                   Contact
                 </button>
               </li>

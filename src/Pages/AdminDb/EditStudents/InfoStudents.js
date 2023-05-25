@@ -14,23 +14,25 @@ import { AdminAvatar } from "../../../components/assets";
 import {
   FaChalkboardTeacher,
   FaUserEdit,
-  FaUserGraduate,
+  FaUserGraduate
 } from "react-icons/fa";
 import MainTitle from "../../../components/SectionTitle/MainTitle";
 import { Edit } from "@mui/icons-material";
+import "./../AdminDb.css";
 
 function InfoStudents() {
-
+  const id = localStorage.getItem("userData");
   const notify = (message, type) => {
     if (type === "Error") toast.error(message);
     else if (type === "Success") toast.success(message);
   };
-
+  const [isLoading, setIsLoading] = useState(false);
 
   // const [infoStd, setinfoStd] = useState([]);
   const [rows, setRows] = useState([]);
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [adminName, setAdminData] = useState("");
 
   useEffect(() => {
     async function fetchStudentData() {
@@ -40,6 +42,18 @@ function InfoStudents() {
         );
         const data = response.data;
         setRows(data);
+        async function fetch() {
+          setIsLoading(true);
+          const response = await axios.get(
+            "http://localhost:8000/getAdmininfo/" + id
+          );
+          console.log(response.data);
+          //    setAdminData(response.data.adminData);
+          setIsLoading(false);
+          const adminName = response.data.adminName;
+          setAdminData(adminName);
+        }
+        fetch();
       } catch (error) {
         console.log(error);
       }
@@ -62,7 +76,7 @@ function InfoStudents() {
   //   notify("Deleted Successfully", "Success");
   // };
 
-    const handleDeleteRow = (studentId) => {
+  const handleDeleteRow = (studentId) => {
     const newItems = [...rows];
     const targetIndex = newItems.findIndex((row) => row._id === studentId);
     if (targetIndex >= 0) {
@@ -76,9 +90,7 @@ function InfoStudents() {
   const handleEditRow = (idx) => {
     setRowToEdit(idx);
     setModalOpen(true);
-    
   };
-
 
   /////////////////////
   const handleSubmit = (newRow) => {
@@ -87,8 +99,8 @@ function InfoStudents() {
         if (currRow._id !== rowToEdit) return currRow;
         return newRow;
       })
-      );
-      notify("Modified Successfully", "Success");
+    );
+    notify("Modified Successfully", "Success");
   };
 
   ////Pagenation/////
@@ -102,41 +114,42 @@ function InfoStudents() {
     {
       name: "Add Student",
       path: "/Admin/AdminStudents",
-      icon: <FaUserGraduate style={{ width: "18", height: "18" }} />,
+      icon: <FaUserGraduate style={{ width: "18", height: "18" }} />
     },
     {
       name: "Edit Students",
       path: "/Admin/InfoStudents",
-      icon: <Edit style={{ width: "18", height: "18" }} />,
+      icon: <Edit style={{ width: "18", height: "18" }} />
     },
     {
       name: "Add Teachers",
       path: "/Admin/AdminTeachers",
-      icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />,
+      icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />
     },
     {
       name: "Edit Teachers",
       path: "/Admin/InfoTeachers",
-      icon: <FaUserEdit style={{ width: "18", height: "18" }} />,
-    },
+      icon: <FaUserEdit style={{ width: "18", height: "18" }} />
+    }
   ];
   //////////////////
   return (
     <>
       <Layout
         userImg={AdminAvatar}
-        userName="Ahmad Alhariri"
+        userName={adminName}
         userRoll="Admin"
         sidebarChildren={buttons.map((item, index) => (
           <Btn key={index} name={item.name} path={item.path}>
             {" "}
             {item.icon}{" "}
           </Btn>
-        ))}
-      >
+        ))}>
+        {isLoading && <div className="spinner"> </div>}
         <MainTitle title="Edit Students Form" />
+
         <Table
-          state= 'student'
+          state="student"
           tableName="Edit Students"
           rows={rows.slice(pagesVisited, pagesVisited + rowsPerPage)}
           deleteRow={handleDeleteRow}
@@ -156,7 +169,7 @@ function InfoStudents() {
         />
         {modalOpen && (
           <Modal
-            state = 'student'
+            state="student"
             closeModal={() => {
               setModalOpen(false);
               setRowToEdit(null);

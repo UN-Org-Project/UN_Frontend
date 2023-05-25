@@ -7,13 +7,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import GenerateReporte from "../../../sections/Form/GeneratReporte/GenerateReporte";
+import "../TeacherDb.css";
 const NotesAllStudent = (props) => {
+  const id = localStorage.getItem("userData");
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   useEffect(() => {
     async function getnotesArray() {
-      const response = await axios.get(
-        "http://localhost:8000/getnotes/64503c4d6a91908b55655014"
-      );
+      const response = await axios.get("http://localhost:8000/getnotes/" + id);
       const notesArray = response.data.notes;
       setData(notesArray);
     }
@@ -24,10 +25,9 @@ const NotesAllStudent = (props) => {
   const addItem = async () => {
     setData([...MessageToAll]);
 
-    const response = await axios.post(
-      "http://localhost:8000/addNotes/64503c4d6a91908b55655014",
-      { note: MessageToAll }
-    );
+    const response = await axios.post("http://localhost:8000/addNotes/" + id, {
+      note: MessageToAll
+    });
     const updateNote = response.data.notes;
     setData(updateNote);
     notify("Added Successfully", "Success");
@@ -40,7 +40,7 @@ const NotesAllStudent = (props) => {
     /////// print////////////////////////
 
     const response = await axios.post(
-      "http://localhost:8000/deletNotes/64503c4d6a91908b55655014",
+      "http://localhost:8000/deletNotes/" + id,
       { id: ID }
     );
 
@@ -55,11 +55,10 @@ const NotesAllStudent = (props) => {
   };
   const SendReportHandler = async () => {
     console.log("Reports");
+    setIsLoading(true);
     // notify("Send Reports For All Parents successfully", "Error");
-    const response = await axios.post(
-      "http://localhost:8000/getPdfDoc/64503c4d6a91908b55655014"
-    );
-    console.log(response);
+    const response = await axios.post("http://localhost:8000/getPdfDoc/" + id);
+    if (!response.ok) setIsLoading(false);
 
     notify("Send Reports For All Parents successfully", "Success");
   };
@@ -82,7 +81,7 @@ const NotesAllStudent = (props) => {
         {/* LIST OF MESSAGE NOTES */}
         <MessagesLists Data={data} deleteOneItem={deleteOneItem} />
       </div>
-
+      {isLoading && <div className="spinner"> </div>}
       <div className="flex justify-center items-center">
         {/* GENERAT REPORTE AND SEND IT TO PARENTS */}
         <GenerateReporte onClick={SendReportHandler} />

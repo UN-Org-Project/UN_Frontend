@@ -14,35 +14,36 @@ import { AdminAvatar } from "../../../components/assets";
 import {
   FaChalkboardTeacher,
   FaUserEdit,
-  FaUserGraduate,
+  FaUserGraduate
 } from "react-icons/fa";
 import MainTitle from "../../../components/SectionTitle/MainTitle";
 import { Edit } from "@mui/icons-material";
+import "./../AdminDb.css";
 
 const buttons = [
   {
     name: "Add Student",
     path: "/Admin/AdminStudents",
-    icon: <FaUserGraduate style={{ width: "18", height: "18" }} />,
+    icon: <FaUserGraduate style={{ width: "18", height: "18" }} />
   },
   {
     name: "Edit Students",
     path: "/Admin/InfoStudents",
-    icon: <Edit style={{ width: "18", height: "18" }} />,
+    icon: <Edit style={{ width: "18", height: "18" }} />
   },
   {
     name: "Add Teachers",
     path: "/Admin/AdminTeachers",
-    icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />,
+    icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />
   },
   {
     name: "Edit Teachers",
     path: "/Admin/InfoTeachers",
-    icon: <FaUserEdit style={{ width: "18", height: "18" }} />,
-  },
+    icon: <FaUserEdit style={{ width: "18", height: "18" }} />
+  }
 ];
 const InfoTeachers = () => {
-
+  const id = localStorage.getItem("userData");
   const notify = (message, type) => {
     if (type === "Error") toast.error(message);
     else if (type === "Success") toast.success(message);
@@ -50,8 +51,9 @@ const InfoTeachers = () => {
 
   // const [infoStd, setinfoStd] = useState([]);
   const [rows, setRows] = useState([]);
-
+  const [adminName, setAdminData] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function fetchStudentData() {
@@ -61,7 +63,19 @@ const InfoTeachers = () => {
         );
         const data = response.data;
         setRows(data);
-        notify(response.data.message, "Success");
+        async function fetch() {
+          setIsLoading(true);
+          const response = await axios.get(
+            "http://localhost:8000/getAdmininfo/" + id
+          );
+          console.log(response.data);
+          setIsLoading(false);
+          //    setAdminData(response.data.adminData);
+          const adminName = response.data.adminName;
+          setAdminData(adminName);
+        }
+        fetch();
+        // notify(response.data.message, "Success");
       } catch (error) {
         console.log(error);
       }
@@ -83,17 +97,17 @@ const InfoTeachers = () => {
   //   axios.get(`http://localhost:8000/deleteTeacher/${targetIndex}`);
   //   notify("Deleted Successfully", "Success");
   // };
-  
+
   const handleDeleteRow = (teacherId) => {
-  const newItems = [...rows];
-  const targetIndex = newItems.findIndex((row) => row._id === teacherId);
-  if (targetIndex >= 0) {
-    newItems.splice(targetIndex, 1);
-    setRows(newItems);
-    axios.get(`http://localhost:8000/deleteTeacher/${teacherId}`);
-    notify("Deleted Successfully", "Success");
-  }
-};
+    const newItems = [...rows];
+    const targetIndex = newItems.findIndex((row) => row._id === teacherId);
+    if (targetIndex >= 0) {
+      newItems.splice(targetIndex, 1);
+      setRows(newItems);
+      axios.get(`http://localhost:8000/deleteTeacher/${teacherId}`);
+      notify("Deleted Successfully", "Success");
+    }
+  };
 
   const handleEditRow = (idx) => {
     setRowToEdit(idx);
@@ -118,18 +132,17 @@ const InfoTeachers = () => {
   };
   return (
     <>
-    
       <Layout
         userImg={AdminAvatar}
-        userName="Ahmad Alhariri"
+        userName={adminName}
         userRoll="Admin"
         sidebarChildren={buttons.map((item, index) => (
           <Btn key={index} name={item.name} path={item.path}>
             {" "}
             {item.icon}{" "}
           </Btn>
-        ))}
-      >
+        ))}>
+        {isLoading && <div className="spinner"> </div>}
         <MainTitle title="Edit Teacher Form" />
 
         <Table
@@ -152,10 +165,11 @@ const InfoTeachers = () => {
           disabledClassName={"paginationDisabled"}
           activeClassName={"paginationActive"}
         />
+
         {modalOpen && (
           <Modal
-          state = 'teacher'
-          notify={notify}
+            state="teacher"
+            notify={notify}
             closeModal={() => {
               setModalOpen(false);
               setRowToEdit(null);

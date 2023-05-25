@@ -22,20 +22,17 @@ import { ContactEmergency } from "@mui/icons-material";
 const ChildDetails = (props) => {
   const { id } = useParams();
   const childrenData = useOutletContext();
+  const children = childrenData.childe.filter((child) => child._id === id);
+  const child = children[0];
+  const [absence, setabsence] = useState(child.absence.reverse());
+  const [rating, setarating] = useState(child.dalyRate.reverse());
+  const [notes, setnotes] = useState(child.notes.reverse());
 
   useEffect(() => {
     console.log("Hello form child details");
-    console.log(childrenData);
+    console.log(children);
     console.log("This childrenData");
   }, []);
-
-  const children = childrenData.childe.filter((child) => child._id === id);
-  const child = children[0];
-
-  const rating = child.dalyRate.reverse();
-
-  const absence = child.absence.reverse();
-  const notes = child.notes.reverse();
 
   const absenceNumber = absence.filter(
     (absence) => absence.absecnceState === "absence"
@@ -51,15 +48,21 @@ const ChildDetails = (props) => {
 
   // // handle with onChange if pagenation
   const HadlePagenation = (page) => {
-    setCurrentPage(page);
-    startIndex = (page - 1) * itemsPerPage;
-    endIndex = startIndex + itemsPerPage;
-    setSlicedData(absence.slice(startIndex, endIndex));
+    if (page === 1) {
+      setCurrentPage(1);
+      setabsence(child.absence.reverse());
+      setSlicedData(absence.slice(0, itemsPerPage));
+    } else {
+      setCurrentPage(page);
+      startIndex = (page - 1) * itemsPerPage;
+      endIndex = startIndex + itemsPerPage;
+      setSlicedData(absence.slice(startIndex, endIndex));
+    }
   };
   //////////////////////////
   return (
     <>
-      <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-title-md2 font-semibold text-mainColor dark:text-white">
           <Title h2="Child Information" />
         </h2>
@@ -79,18 +82,6 @@ const ChildDetails = (props) => {
       </div>
 
       <div className="mb-4 grid grid-cols-1 gap-6 lg:grid-cols-3 height-auto">
-        {/* <div className=" relative flex flex-col text-white rounded-xl bg-clip-border bg-gradient-to-r to-blue-400 from-blue-500 text-gray-700 shadow-md overflow-hidden lg:col-span-2 xl:col-span-2"> */}
-        {/* <span className="px-6 antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white">
-            Child Absence
-          </span> */}
-        {/* <h6 class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white">
-            Child Attendance
-          </h6> */}
-        {/* <div class="relative bg-clip-border mx-4 rounded-xl overflow-hidden bg-white text-blue-500 shadow-blue-500/40 shadow-lg  mb-5 p-3">
-            <h6 class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed ">
-              Child Attendance
-            </h6>
-          </div> */}
         <AbsenceTable
           Pagination={
             <Pagination
