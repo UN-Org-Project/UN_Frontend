@@ -35,9 +35,9 @@ const StudentInfo = (props) => {
           th5="Level Rate"
           StudentInfo={StudentInfo}
         >
-          {students.map((student) => (
+          {students.map((student, index) => (
             <DashboardRow
-              generateRandomImage={generateRandomImage()}
+              generateRandomImage={imageUrls[index]}
               key={student._id}
               id={student._id}
               name={student.studentName}

@@ -15,14 +15,17 @@ import {
 } from "../../../components/assets";
 
 export const Table = (props) => {
-  // !----- Generat Random Images For Students
+  const [profileImage, setProfileImage] = useState("");
 
+  // !----- Generat Random Images For Students
   if (props.state == "student") {
     const imageUrls = [boy, boy1, boy2, boy3];
-    const generateRandomImage = () => {
+
+    useEffect(() => {
       const randomIndex = Math.floor(Math.random() * imageUrls.length);
-      return imageUrls[randomIndex];
-    };
+      setProfileImage(imageUrls[randomIndex]);
+    });
+
     return (
       <>
         <ToastContainer />
@@ -61,7 +64,7 @@ export const Table = (props) => {
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 w-10 h-10">
-                            <img src={generateRandomImage()} alt="profile" />
+                            <img src={imageUrls[idx]} alt="profile" />
                           </div>
                           <div className="ml-3">
                             <p className="block antialiased font-sans text-title-sm font-medium text-alterColor">
@@ -116,10 +119,10 @@ export const Table = (props) => {
     );
   } else if (props.state == "teacher") {
     const imageUrls = [teacher, teacher1];
-    const generateRandomImage = () => {
-      const randomIndex = Math.floor(Math.random() * imageUrls.length);
-      return imageUrls[randomIndex];
-    };
+    // const generateRandomImage = () => {
+    //   const randomIndex = Math.floor(Math.random() * imageUrls.length);
+    //   return imageUrls[randomIndex];
+    // };
 
     return (
       <>
@@ -159,7 +162,7 @@ export const Table = (props) => {
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 w-10 h-10">
-                            <img src={generateRandomImage()} alt="profile" />
+                            <img src={imageUrls[idx]} alt="profile" />
                           </div>
                           <div className="ml-3">
                             <p className="block antialiased font-sans text-title-sm font-medium text-alterColor">

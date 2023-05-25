@@ -167,9 +167,9 @@ const Dashboard = (props) => {
           {/* TABLE BODY */}
           {/* pass the function that will change the value if any action happened */}
           {/* Render the sliced data on the current page */}
-          {slicedData.map((student) => (
+          {slicedData.map((student, index) => (
             <DashboardRow
-              generateRandomImage={generateRandomImage()}
+              generateRandomImage={imageUrls[index]}
               key={student._id}
               id={student._id}
               name={student.studentName}

@@ -169,7 +169,7 @@ const AddMarks = () => {
 
   const imageUrls = [boy, boy1, boy2, boy3];
   const generateRandomImage = () => {
-    const randomIndex = Math.floor(Math.random() * imageUrls.length);
+    // const randomIndex = Math.floor(Math.random() * imageUrls.length);
     return imageUrls[randomIndex];
   };
   return (
@@ -268,9 +268,9 @@ const AddMarks = () => {
             {/* TABLE BODY */}
             {/* pass the function that will change the value if any action happened */}
             {/* Render the sliced data on the current page */}
-            {slicedData.map((student) => (
+            {slicedData.map((student, index) => (
               <AddMarkRow
-                generateRandomImage={generateRandomImage()}
+                generateRandomImage={imageUrls[index]}
                 key={student._id}
                 name={student.studentName}
                 id={student._id}
