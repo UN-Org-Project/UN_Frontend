@@ -93,7 +93,7 @@ const ParentDb = () => {
     },
     {
       name: "Messages",
-      path: "parentChating/" + idTeacher,
+      path: "parentChating/" + id,
       icon: <Message style={{ width: "18", height: "18" }} />,
     },
   ];

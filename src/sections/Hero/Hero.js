@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { VidBg } from "../../components/assets";
 import close_icon from "../../components/assets/images/close_icon.svg";
 
-import Bounce from 'react-reveal/Bounce';
+import Bounce from "react-reveal/Bounce";
 
 import React, { useState, useEffect, useRef } from "react";
 
@@ -100,7 +100,7 @@ const Hero = () => {
                 </a>
                 <a
                   onClick={() => setOpenNav(false)}
-                  href="/login"
+                  href="login"
                   className="text-lg font-semibold text-blue-800 transition-all hover:text-orange-500"
                 >
                   Login
@@ -122,7 +122,7 @@ const Hero = () => {
               <a href="#contact">Contact Us</a>
             </li>
             <li>
-              <a href="/login">Login</a>
+              <a href="login">Login</a>
             </li>
           </ul>
           {/* !----- Start Disktop Nav-----!  */}
@@ -131,12 +131,11 @@ const Hero = () => {
 
         {/* Start Content of the hero section that contain a Login button and headline and video in background  */}
         <div className=" text-center">
-
-<Bounce left>
-          <h1 className=" text-title-xxl text-alterColor font-semibold duration-[0.5s] hover:text-gradientFrom">
-            Student Tracking System 
-          </h1>
-</Bounce>
+          <Bounce left>
+            <h1 className=" text-title-xxl text-alterColor font-semibold duration-[0.5s] hover:text-gradientFrom">
+              Student Tracking System
+            </h1>
+          </Bounce>
           <a
             href="#contact"
             className=" transition-colors duration-1000  inline-block text-white font-size-24 border-2 border-solid border-white px-[70px] py-[14px] rounded-[50px] mt-5 bg-gradient-to-tr from-mainColor to-alterColor hover:bg-gradient-to-tl hover:from-gradientFrom hover:to-gradientTo "

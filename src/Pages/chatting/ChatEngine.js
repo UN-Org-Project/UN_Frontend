@@ -34,7 +34,7 @@ const ChatEngineComp = () => {
     getOrCreateChat(
       creds,
       { is_direct_chat: true, usernames: [username] },
-      () => setUsername("muath")
+      () => setUsername("")
     );
   }
 
