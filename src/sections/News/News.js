@@ -2,7 +2,7 @@ import "./News.css";
 import {
   SectionHeader,
   SectionWrapper,
-  SubSectionHeader,
+  SubSectionHeader
 } from "../../components/index";
 
 import photo01 from "./../../components/assets/images/img01.png";
@@ -15,12 +15,10 @@ const News = () => {
     <>
       <div
         id="divider"
-        class="rounded-full ring-2 ring-blue-600 lg:w-1/2 lg:mx-auto mt-15"
-      ></div>
+        className="rounded-full ring-2 ring-blue-600 lg:w-1/2 lg:mx-auto mt-15"></div>
       <div
         id="about"
-        className="pt-20 mb-20 text-3xl font-semibold text-center text-mainColor lg:font-bold uppercase"
-      >
+        className="pt-20 mb-20 text-3xl font-semibold text-center text-mainColor lg:font-bold uppercase">
         who we are ?{" "}
       </div>
 
@@ -47,12 +45,10 @@ const News = () => {
 
       <div
         id="divider"
-        class="rounded-full ring-2 ring-blue-600 lg:w-1/2 lg:mx-auto mt-15 "
-      ></div>
+        className="rounded-full ring-2 ring-blue-600 lg:w-1/2 lg:mx-auto mt-15 "></div>
       <div
         id="about"
-        className="pt-20 mb-20 text-3xl font-semibold text-center text-mainColor lg:font-bold uppercase"
-      >
+        className="pt-20 mb-20 text-3xl font-semibold text-center text-mainColor lg:font-bold uppercase">
         Our Services{" "}
       </div>
 
@@ -140,15 +136,14 @@ const News = () => {
           <div className="grow-0 shrink-0 basis-auto w-full lg:w-6/12 lg:pr-6 mb-6 lg:mb-0 md:flex-1 sm:flex-none">
             <div
               className="relative overflow-hidden bg-no-repeat bg-cover rounded-lg"
-              style={{ backgroundPosition: 50 + "%" }}
-            >
+              style={{ backgroundPosition: 50 + "%" }}>
               <img src={photo02} className="sm:w-full md:w-3/4 " alt="Louvre" />
             </div>
           </div>
-          <div class="grow-0 shrink-0 basis-auto w-full lg:w-6/12 lg:pl-6 md:flex-1 sm:flex-none">
+          <div className="grow-0 shrink-0 basis-auto w-full lg:w-6/12 lg:pl-6 md:flex-1 sm:flex-none">
             <SubSectionHeader>User data management.</SubSectionHeader>
 
-            <p class="text-gray-500 mb-6">
+            <p className="text-gray-500 mb-6">
               This system provides administrators with all the tools they need
               for effective data management, including the ability to assign and
               enroll users in classes.
@@ -160,15 +155,14 @@ const News = () => {
           <div className="grow-0 shrink-0 basis-auto w-full lg:w-6/12 lg:pr-6 mb-6 lg:mb-0 md:flex-1 sm:flex-none">
             <div
               className="relative overflow-hidden bg-no-repeat bg-cover rounded-lg"
-              style={{ backgroundPosition: 50 + "%" }}
-            >
+              style={{ backgroundPosition: 50 + "%" }}>
               <img src={photo03} className="sm:w-full md:w-3/4 " alt="Louvre" />
             </div>
           </div>
-          <div class="grow-0 shrink-0 basis-auto w-full lg:w-6/12 lg:pl-6 md:flex-1 sm:flex-none">
+          <div className="grow-0 shrink-0 basis-auto w-full lg:w-6/12 lg:pl-6 md:flex-1 sm:flex-none">
             <SubSectionHeader>The continuous follow-up.</SubSectionHeader>
 
-            <p class="text-gray-500 mb-6">
+            <p className="text-gray-500 mb-6">
               You always have the ability to track your children's academic
               performance. Our system helps parents to know their children's
               level of academic progress, exam grades, and more.
@@ -180,15 +174,14 @@ const News = () => {
           <div className="grow-0 shrink-0 basis-auto w-full lg:w-6/12 lg:pr-6 mb-6 lg:mb-0 md:flex-1 sm:flex-none">
             <div
               className="relative overflow-hidden bg-no-repeat bg-cover rounded-lg"
-              style={{ backgroundPosition: 50 + "%" }}
-            >
+              style={{ backgroundPosition: 50 + "%" }}>
               <img src={photo04} className="sm:w-full md:w-3/4 " alt="Louvre" />
             </div>
           </div>
-          <div class="grow-0 shrink-0 basis-auto w-full lg:w-6/12 lg:pl-6 md:flex-1 sm:flex-none">
+          <div className="grow-0 shrink-0 basis-auto w-full lg:w-6/12 lg:pl-6 md:flex-1 sm:flex-none">
             <SubSectionHeader>Effective parental involvement.</SubSectionHeader>
 
-            <p class="text-gray-500 mb-6">
+            <p className="text-gray-500 mb-6">
               Teachers can also send messages, behavior and grade reports,
               memos, and more to parents so that they can keep track of their
               children's performance and academic progress

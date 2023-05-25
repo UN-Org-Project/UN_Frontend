@@ -22,11 +22,25 @@ import { Edit } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 const AdminStd = () => {
   const id = localStorage.getItem("userData");
-  const islogged = localStorage.getItem("islogged");
+
   const [adminName, setAdminData] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
+  const islogged = localStorage.getItem("islogged");
+  if (!islogged) {
+    console.log("log in");
 
+    return (
+      <>
+        <p className="text">
+          the user is not loged please try again with login:
+        </p>
+        <Link to="/login" className="navlink right ">
+          <button className="logout-btn login">login</button>
+        </Link>
+      </>
+    );
+  }
   const data = useEffect(() => {
     async function fetch() {
       const response = await axios.get(
@@ -84,18 +98,6 @@ const AdminStd = () => {
       // for (const [key, value] of formData.entries()) {
       //   console.log(key, value);
       // }
-      if (!islogged) {
-        return (
-          <>
-            <p className="text">
-              the user is not loged please try again with login:
-            </p>
-            <Link to="/login" className="navlink right ">
-              <button className="logout-btn login">login</button>
-            </Link>
-          </>
-        );
-      }
 
       const response = await axios.put("http://localhost:8000/parent", {
         Data

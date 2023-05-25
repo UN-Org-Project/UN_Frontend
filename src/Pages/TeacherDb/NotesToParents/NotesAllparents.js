@@ -58,8 +58,9 @@ const NotesAllStudent = (props) => {
     setIsLoading(true);
     // notify("Send Reports For All Parents successfully", "Error");
     const response = await axios.post("http://localhost:8000/getPdfDoc/" + id);
-    if (!response.ok) setIsLoading(false);
 
+    const res = response.data;
+    setIsLoading(false);
     notify("Send Reports For All Parents successfully", "Success");
   };
   return (
