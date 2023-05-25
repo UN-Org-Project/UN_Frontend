@@ -18,7 +18,10 @@ const Footer = () => {
           </a>
         </div>
 
-        <div className="pt-8 mt-16 border-t border-gray-100 dark:border-gray-800 sm:flex sm:items-center sm:justify-between lg:mt-24">
+        <div className="mt-16 mb-5 px-20 text-center">
+          Developed with Love ❤️ By Muath | Ahmad | Yaseen | Mohammad
+        </div>
+        <div class="pt-8 border-t border-gray-100 dark:border-gray-800 sm:flex sm:items-center sm:justify-between">
           <nav aria-label="Footer Navigation - Support">
             <ul className="flex flex-wrap justify-center gap-4 text-xs lg:justify-end">
               <li>
