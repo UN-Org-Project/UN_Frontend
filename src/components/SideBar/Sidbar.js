@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, cloneElement } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const Sidbar = (props) => {
   const trigger = useRef(null);
@@ -60,10 +60,10 @@ const Sidbar = (props) => {
         />
 
         <div>
-          <span className="block text-sm font-medium text-white font-sans">
+          <span className="block text-lg font-bold text-white font-sans ">
             {props.userName}
           </span>
-          <span className="block text-xs text-gray font-sans">
+          <span className="block text-md text-gray font-sans">
             {props.userRoll}
           </span>
         </div>

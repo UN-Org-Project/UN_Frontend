@@ -2,21 +2,17 @@ import React, { useEffect, useState } from "react";
 import ChildInfo from "../../../../../components/ChildInfo/ChildInfo";
 import Title from "../../../../../components/SectionTitle/Title";
 import Pagination from "@mui/material/Pagination";
-import { ParentAvatar } from "../../../../../components/assets";
-import SelectComp from "../../../../../components/SelectComponent/SelectComp";
-import Table from "../../../../../components/Table/Table";
-import DashboardRow, {
-  AbsenceDetailsRow,
-  ShowMark
-} from "../../../../../components/Table/RowInfo/TableRow";
+import { Info } from "../../../../../components/assets";
+
+import { AbsenceDetailsRow } from "../../../../../components/Table/RowInfo/TableRow";
 import AbsenceTable from "../../../../../components/Table/AbsenceTable";
 
 import "./ChildDetails.css";
 import ParentCards from "../../../../../components/StatisticsCard/ParentCards";
 import Card from "../../../../../components/StatisticsCard/Card/Card";
-import { Link, NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
-import { SectionHeader, SectionWrapper } from "../../../../../components";
+
 import { ContactEmergency } from "@mui/icons-material";
 
 const ChildDetails = (props) => {
@@ -64,21 +60,15 @@ const ChildDetails = (props) => {
     <>
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-title-md2 font-semibold text-mainColor dark:text-white">
-          <Title h2="Child Information" />
+          <Title img={Info} h2="Child Information" />
         </h2>
         <NavLink
-          className="inline-flex items-center justify-center gap-2.5 rounded-md bg-gradient-to-tr from-gradientFrom to-gradientTo py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-6 xl:px-7"
-          to={"/parent/parentChating/" + child.teacher_id}>
+          className=" shadow-gradientFrom/50 shadow-lg hover:shadow-green-500/50 hover:shadow-xl transition-all duration-[0.5s] hover:scale-105 inline-flex items-center justify-center gap-2.5 rounded-md bg-gradient-to-tr from-gradientFrom to-gradientTo py-4 px-10 text-center font-semibold text-lg text-white hover:bg-opacity-90 lg:px-6 xl:px-7"
+          to={"/parent/parentChating/" + child.teacher_id}
+        >
           Contact with Teacher
           <ContactEmergency />
         </NavLink>
-
-        {/* <button
-          type="button"
-          className=" bg-clip-border bg-gradient-to-tr from-gradientFrom to-gradientTo  text-white shadow-blue-500/40 shadow-lg inline-block rounded bg-info px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]"
-        >
-          Contact with Teacher
-        </button>{" "} */}
       </div>
 
       <div className="mb-4 grid grid-cols-1 gap-6 lg:grid-cols-3 height-auto">
@@ -93,7 +83,8 @@ const ChildDetails = (props) => {
                 HadlePagenation(page);
               }}
             />
-          }>
+          }
+        >
           {slicedData.map((absence, index) => (
             <AbsenceDetailsRow
               key={Math.random()}
@@ -105,7 +96,6 @@ const ChildDetails = (props) => {
           ))}
         </AbsenceTable>
 
-        {/* </div> */}
         <div className="lg:relative lg:block flex justify-center items-center -order-1 lg:order-none">
           <ChildInfo childrenInfo={child} />
         </div>

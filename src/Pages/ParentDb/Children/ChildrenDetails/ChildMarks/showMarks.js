@@ -5,6 +5,7 @@ import Title from "../../../../../components/SectionTitle/Title";
 import SelectComp from "../../../../../components/SelectComponent/SelectComp";
 import Table from "../../../../../components/Table/Table";
 import { ShowMark } from "../../../../../components/Table/RowInfo/TableRow";
+import { AddMark } from "../../../../../components/assets";
 
 const ShowMarks = (props) => {
   const { id } = useParams();
@@ -59,7 +60,7 @@ const ShowMarks = (props) => {
     <>
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-title-md2 font-semibold text-mainColor dark:text-white">
-          <Title h2="Marks Your child  " />
+          <Title img={AddMark} h2="Marks Your child  " />
         </h2>
       </div>
 
@@ -71,7 +72,7 @@ const ShowMarks = (props) => {
             options={[
               { value: "first", label: "First" },
               { value: "second", label: "Second" },
-              { value: "final", label: "Final" }
+              { value: "final", label: "Final" },
             ]}
           />
         </div>
@@ -84,7 +85,8 @@ const ShowMarks = (props) => {
             th1="Subject"
             th2="Marks"
             th3="Notes"
-            th4="Rateing">
+            th4="Rateing"
+          >
             {subjects.map((subject) => (
               <ShowMark
                 key={subject.name}
@@ -99,8 +101,9 @@ const ShowMarks = (props) => {
         ) : (
           <div className="w-full flex justify-center items-center">
             <div
-              className="p-4 mb-4 w-fit text-sm text-white rounded-lg bg-clip-border bg-gradient-to-br from-blue-500 to-blue-400  dark:bg-gray-800 dark:text-blue-400"
-              role="alert">
+              className="p-4 mb-4 w-fit text-lg text-white rounded-lg bg-clip-border bg-gradient-to-br from-blue-500 to-blue-400  dark:bg-gray-800 dark:text-blue-400"
+              role="alert"
+            >
               <span className="font-medium">Info !</span> {notification}
             </div>
           </div>

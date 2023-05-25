@@ -1,23 +1,11 @@
-.main-containerLogin {
-  position: relative;
-  background: linear-gradient(135.11deg, #025f80 25.49%, #26d0ce 105.87%);
+@import url("https://fonts.googleapis.com/css2?family=Mogra&display=swap");
+
+.font-cla {
+  font-family: "Mogra", cursive;
 }
 
 .test {
   background-image: linear-gradient(rgba(13, 3, 51, 0.3), rgba(13, 3, 51, 0.3));
-}
-.sec-container {
-  position: absolute;
-  background: #025f80;
-  width: 1020px;
-  height: 852px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
 }
 
 .spinner {

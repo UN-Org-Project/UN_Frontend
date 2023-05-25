@@ -4,7 +4,7 @@ import Title from "./Title";
 const MainTitle = (props) => {
   return (
     <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <Title h2={props.title} />
+      <Title img={props.img} h2={props.title} />
     </div>
   );
 };

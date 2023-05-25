@@ -10,11 +10,11 @@ import axios from "axios";
 import ".././pagination.css";
 import Layout from "../../../Layout/Layout";
 import Btn from "../../../components/SideBar/MenuBtn/Btn";
-import { AdminAvatar } from "../../../components/assets";
+import { AdminAvatar, EditForm } from "../../../components/assets";
 import {
   FaChalkboardTeacher,
   FaUserEdit,
-  FaUserGraduate
+  FaUserGraduate,
 } from "react-icons/fa";
 import MainTitle from "../../../components/SectionTitle/MainTitle";
 import { Edit } from "@mui/icons-material";
@@ -114,23 +114,23 @@ function InfoStudents() {
     {
       name: "Add Student",
       path: "/Admin/AdminStudents",
-      icon: <FaUserGraduate style={{ width: "18", height: "18" }} />
+      icon: <FaUserGraduate style={{ width: "18", height: "18" }} />,
     },
     {
       name: "Edit Students",
       path: "/Admin/InfoStudents",
-      icon: <Edit style={{ width: "18", height: "18" }} />
+      icon: <Edit style={{ width: "18", height: "18" }} />,
     },
     {
       name: "Add Teachers",
       path: "/Admin/AdminTeachers",
-      icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />
+      icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />,
     },
     {
       name: "Edit Teachers",
       path: "/Admin/InfoTeachers",
-      icon: <FaUserEdit style={{ width: "18", height: "18" }} />
-    }
+      icon: <FaUserEdit style={{ width: "18", height: "18" }} />,
+    },
   ];
   //////////////////
   return (
@@ -144,9 +144,10 @@ function InfoStudents() {
             {" "}
             {item.icon}{" "}
           </Btn>
-        ))}>
+        ))}
+      >
         {isLoading && <div className="spinner"> </div>}
-        <MainTitle title="Edit Students Form" />
+        <MainTitle img={EditForm} title="Edit Students Form" />
 
         <Table
           state="student"

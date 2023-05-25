@@ -10,11 +10,11 @@ import "./../AdminDb.css";
 import Layout from "../../../Layout/Layout";
 
 import Btn from "../../../components/SideBar/MenuBtn/Btn";
-import { AdminAvatar } from "../../../components/assets";
+import { AddForm, AdminAvatar } from "../../../components/assets";
 import {
   FaChalkboardTeacher,
   FaUserEdit,
-  FaUserGraduate
+  FaUserGraduate,
 } from "react-icons/fa";
 import MainTitle from "../../../components/SectionTitle/MainTitle";
 
@@ -77,7 +77,7 @@ const AdminStd = () => {
         className: classValue,
         parentName: ParentName,
         emailAdress: email,
-        telephonNumber: phoneNumber
+        telephonNumber: phoneNumber,
       };
 
       // // For see all input fields in form
@@ -98,7 +98,7 @@ const AdminStd = () => {
       }
 
       const response = await axios.put("http://localhost:8000/parent", {
-        Data
+        Data,
       });
       setIsLoading(false);
       if (!response.ok) {
@@ -125,23 +125,23 @@ const AdminStd = () => {
     {
       name: "Add Student",
       path: "/Admin/AdminStudents",
-      icon: <FaUserGraduate style={{ width: "18", height: "18" }} />
+      icon: <FaUserGraduate style={{ width: "18", height: "18" }} />,
     },
     {
       name: "Edit Students",
       path: "/Admin/InfoStudents",
-      icon: <Edit style={{ width: "18", height: "18" }} />
+      icon: <Edit style={{ width: "18", height: "18" }} />,
     },
     {
       name: "Add Teachers",
       path: "/Admin/AdminTeachers",
-      icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />
+      icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />,
     },
     {
       name: "Edit Teachers",
       path: "/Admin/InfoTeachers",
-      icon: <FaUserEdit style={{ width: "18", height: "18" }} />
-    }
+      icon: <FaUserEdit style={{ width: "18", height: "18" }} />,
+    },
   ];
 
   return (
@@ -158,8 +158,9 @@ const AdminStd = () => {
           <Btn key={index} name={item.name} path={item.path}>
             {item.icon}
           </Btn>
-        ))}>
-        <MainTitle title="Add Student Form" />
+        ))}
+      >
+        <MainTitle img={AddForm} title="Add Student Form" />
         {isLoading && <div className="spinner"> </div>}
         <InfoStudentsForm
           studentName={studentName}

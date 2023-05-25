@@ -8,11 +8,11 @@ import "react-toastify/dist/ReactToastify.css";
 import "./../AdminDb.css";
 import axios from "axios";
 import Layout from "../../../Layout/Layout";
-import { AdminAvatar } from "../../../components/assets";
+import { AddForm, AdminAvatar } from "../../../components/assets";
 import {
   FaChalkboardTeacher,
   FaUserEdit,
-  FaUserGraduate
+  FaUserGraduate,
 } from "react-icons/fa";
 import AdminContent from "../../../sections/Content/AdminContent";
 import Btn from "../../../components/SideBar/MenuBtn/Btn";
@@ -63,7 +63,7 @@ const AdminTech = () => {
         _class: classValue,
         telepohoneNumber: phoneNumber,
         adress: TeacherAddress,
-        emailAdress: email
+        emailAdress: email,
       };
 
       // For see all input fields in form
@@ -72,7 +72,7 @@ const AdminTech = () => {
       // }
 
       const response = await axios.put("http://localhost:8000/teacher", {
-        Data
+        Data,
       });
       setIsLoading(false);
       if (!response.ok) {
@@ -99,23 +99,23 @@ const AdminTech = () => {
     {
       name: "Add Student",
       path: "/Admin/AdminStudents",
-      icon: <FaUserGraduate style={{ width: "18", height: "18" }} />
+      icon: <FaUserGraduate style={{ width: "18", height: "18" }} />,
     },
     {
       name: "Edit Students",
       path: "/Admin/InfoStudents",
-      icon: <Edit style={{ width: "18", height: "18" }} />
+      icon: <Edit style={{ width: "18", height: "18" }} />,
     },
     {
       name: "Add Teachers",
       path: "/Admin/AdminTeachers",
-      icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />
+      icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />,
     },
     {
       name: "Edit Teachers",
       path: "/Admin/InfoTeachers",
-      icon: <FaUserEdit style={{ width: "18", height: "18" }} />
-    }
+      icon: <FaUserEdit style={{ width: "18", height: "18" }} />,
+    },
   ];
 
   return (
@@ -129,8 +129,9 @@ const AdminTech = () => {
             {" "}
             {item.icon}{" "}
           </Btn>
-        ))}>
-        <MainTitle title="Add Teacher Form" />
+        ))}
+      >
+        <MainTitle img={AddForm} title="Add Teacher Form" />
         {isLoading && <div className="spinner"> </div>}
         <InfoTeacherForm
           teacherName={teacherName}

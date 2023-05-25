@@ -98,7 +98,7 @@ const Hero = () => {
                 </a>
                 <a
                   onClick={() => setOpenNav(false)}
-                  href="#login"
+                  href="/login"
                   className="text-lg font-semibold text-blue-800 transition-all hover:text-orange-500"
                 >
                   Login
@@ -120,7 +120,7 @@ const Hero = () => {
               <a href="#contact">Contact Us</a>
             </li>
             <li>
-              <a href="#login">Login</a>
+              <a href="/login">Login</a>
             </li>
           </ul>
           {/* !----- Start Disktop Nav-----!  */}

@@ -8,7 +8,7 @@ const SelectComp = (props) => {
 
   return (
     <div className="relative flex flex-col items-center gap-3 mr-12 w-full justify-center">
-      <label className="text-white text-lg uppercase font-medium  ">
+      <label className="text-white text-title-sm  uppercase font-bold  ">
         {props.lable}
       </label>
       <Select

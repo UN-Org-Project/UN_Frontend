@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Title from "../../../components/SectionTitle/Title";
 import Table from "../../../components/Table/Table";
 import DashboardRow from "../../../components/Table/RowInfo/TableRow";
-
+import { Info, boy, boy1, boy2, boy3 } from "../../../components/assets";
 import { useOutletContext } from "react-router-dom";
 import MainTitle from "../../../components/SectionTitle/MainTitle";
 const StudentInfo = (props) => {
@@ -16,9 +15,15 @@ const StudentInfo = (props) => {
     (a, b) => b.studentLevelRate - a.studentLevelRate
   );
   console.log(students);
+
+  const imageUrls = [boy, boy1, boy2, boy3];
+  const generateRandomImage = () => {
+    const randomIndex = Math.floor(Math.random() * imageUrls.length);
+    return imageUrls[randomIndex];
+  };
   return (
     <>
-      <MainTitle title="Student Information" />
+      <MainTitle img={Info} title="Student Information" />
 
       <div className="mt-12 grid grid-cols-1 gap-6 relative ">
         <Table
@@ -32,6 +37,7 @@ const StudentInfo = (props) => {
         >
           {students.map((student) => (
             <DashboardRow
+              generateRandomImage={generateRandomImage()}
               key={student._id}
               id={student._id}
               name={student.studentName}

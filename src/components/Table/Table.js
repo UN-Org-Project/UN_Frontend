@@ -2,10 +2,10 @@ import React from "react";
 
 const Table = (props) => {
   return (
-    <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md pb-2">
+    <div className="mt-[1rem] relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md pb-2">
       {/* !----- THIS FOR THE NAME OF THE TABLE -----! */}
       <div className="relative bg-clip-border mx-0 rounded-l overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg -mt-6 mb-8 p-5">
-        <h6 className="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white">
+        <h6 className="block antialiased font-sans  font-bold leading-relaxed text-white text-title-md ">
           {props.tableName}
         </h6>
       </div>
@@ -19,31 +19,31 @@ const Table = (props) => {
             {/* !----- TABLE ROW  -----! */}
             <tr className=" bg-clip-border bg-gradient-to-tr from-blue-600 to-blue-400 ">
               {props.th1 && (
-                <th className="py-3 px-5 border-b border-blue-gray-50  text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="py-3 px-5 border-b border-blue-gray-700  text-left text-md font-bold text-white uppercase ">
                   {props.th1}
                 </th>
               )}
 
               {props.th2 && (
-                <th className="py-3 px-5 border-b border-blue-gray-50  text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="py-3 px-5 border-b border-blue-gray-700  text-left text-md font-bold text-white uppercase ">
                   {props.th2}
                 </th>
               )}
 
               {props.th3 && (
-                <th className="py-3 px-5 border-b border-blue-gray-50  text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="py-3 px-5 border-b border-blue-gray-700  text-left text-md font-bold text-white uppercase ">
                   {props.th3}
                 </th>
               )}
 
               {props.th4 && (
-                <th className="py-3 px-5 border-b border-blue-gray-50  text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="py-3 px-5 border-b border-blue-gray-700  text-left text-md font-bold text-white uppercase ">
                   {props.th4}
                 </th>
               )}
 
               {props.th5 && (
-                <th className="py-3 px-5 border-b border-blue-gray-50  text-left text-xs font-semibold text-white uppercase tracking-wider">
+                <th className="py-3 px-5 border-b border-blue-gray-700  text-left text-md font-bold text-white uppercase ">
                   {props.th5}
                 </th>
               )}
@@ -63,8 +63,9 @@ const Table = (props) => {
           <div className=" flex justify-center items-center py-2">
             <form onSubmit={props.onClick}>
               <button
-                className="text-sm text-indigo-50 bg-clip-border bg-gradient-to-br from-gradientFrom to-gradientTo  transition duration-150 hover:bg-green-400  font-semibold py-3 px-5 rounded"
-                type="submit">
+                className="text-lg text-indigo-50 bg-clip-border bg-gradient-to-br from-gradientFrom to-gradientTo  transition duration-150 hover:bg-green-400  font-semibold py-3 px-5 rounded"
+                type="submit"
+              >
                 Submit
               </button>
             </form>

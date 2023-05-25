@@ -2,7 +2,7 @@ import "./TeacherDb.css";
 import { TeacherAvatar } from "../../components/assets/index";
 
 import Btn from "../../components/SideBar/MenuBtn/Btn";
-import TeacherContent from "../../sections/Content/TeacherContent";
+
 import Layout from "../../Layout/Layout";
 
 import React, { useEffect, useState } from "react";
@@ -17,28 +17,28 @@ const buttons = [
   {
     name: "Dashboard",
     path: "Dashboard",
-    icon: <Dashboard style={{ width: "18", height: "18" }} />
+    icon: <Dashboard style={{ width: "18", height: "18" }} />,
   },
   {
     name: "Add Marks",
     path: "Addmarks",
-    icon: <AiFillFileMarkdown style={{ width: "18", height: "18" }} />
+    icon: <AiFillFileMarkdown style={{ width: "18", height: "18" }} />,
   },
   {
-    name: "Notes & Reports",
+    name: "Events & Reports",
     path: "SendNotesAndReports",
-    icon: <NoteAltSharp style={{ width: "18", height: "18" }} />
+    icon: <NoteAltSharp style={{ width: "18", height: "18" }} />,
   },
   {
     name: "Students Info",
     path: "StudentsInfo",
-    icon: <BsPersonVcard style={{ width: "18", height: "18" }} />
+    icon: <BsPersonVcard style={{ width: "18", height: "18" }} />,
   },
   {
     name: "Messages",
     path: "ChattingTeacher/" + id,
-    icon: <Message style={{ width: "18", height: "18" }} />
-  }
+    icon: <Message style={{ width: "18", height: "18" }} />,
+  },
 ];
 
 const TeacherDb = () => {
@@ -96,10 +96,9 @@ const TeacherDb = () => {
               <Btn key={index} name={item.name} path={item.path}>
                 {item.icon}
               </Btn>
-            ))}>
-            <TeacherContent>
-              <Outlet context={{ students: studentData }} />
-            </TeacherContent>
+            ))}
+          >
+            <Outlet context={{ students: studentData }} />
           </Layout>
         )
       )}

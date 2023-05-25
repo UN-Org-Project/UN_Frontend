@@ -16,7 +16,7 @@ const GenerateReporte = ({ onClick }) => {
         <button
           href="#"
           onClick={onClick}
-          className="inline-flex items-center px-3 py-4 text-sm font-medium text-center text-white bg-clip-border bg-gradient-to-br from-gradientFrom to-gradientTo rounded-lg hover:bg-blue-800  focus:outline-none  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="text-title-xsm inline-flex items-center px-3 py-4 font-medium text-center text-white bg-clip-border bg-gradient-to-br from-gradientFrom to-gradientTo rounded-lg hover:bg-blue-800  focus:outline-none  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Send Report
           <svg

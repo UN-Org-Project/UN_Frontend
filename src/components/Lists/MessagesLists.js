@@ -19,8 +19,8 @@ const MessagesLists = ({ Data, deleteOneItem }) => {
   return (
     <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md ">
       <div className="relative bg-clip-border rounded-xl overflow-hidden bg-transparent text-gray-700 shadow-none m-0 p-4">
-        <h5 className="text-blue-400 block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-blue-gray-900">
-          Notes
+        <h5 className="text-alterColor block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-blue-gray-900">
+          Events
         </h5>
       </div>
 
@@ -30,7 +30,7 @@ const MessagesLists = ({ Data, deleteOneItem }) => {
             return (
               <AccordionItem
                 key={index}
-                className="relative block w-full text-base font-regular px-4 py-4 rounded-lg bg-blue-500 text-white dark:!border-white/10"
+                className="relative block w-full text-base font-regular px-4 py-4 rounded-lg bg-alterColor text-white dark:!border-white/10"
               >
                 <h2>
                   <AccordionButton className="flex justify-between">
@@ -76,8 +76,8 @@ const MessagesLists = ({ Data, deleteOneItem }) => {
             );
           })
         ) : (
-          <h2 className="text-center font-sans sm:text-title-md2 font-semibold bg-clip-text text-blue-500 bg-gradient-to-r from-blue-500 to-blue-400 dark:text-white text-lg">
-            There Is No Notes!
+          <h2 className="text-center font-sans sm:text-title-md2 font-semibold bg-clip-text text-alterColor bg-gradient-to-r from-mainColor to-alterColor dark:text-white text-lg">
+            There Is No Events!
           </h2>
         )}
       </Accordion>

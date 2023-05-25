@@ -3,7 +3,7 @@ import { Outlet, useNavigate, useLocation, Link } from "react-router-dom";
 import axios from "axios";
 
 import Layout from "../../Layout/Layout";
-import TeacherContent from "../../sections/Content/TeacherContent";
+
 import Btn from "../../components/SideBar/MenuBtn/Btn";
 import "./PreantDb.css";
 
@@ -67,35 +67,35 @@ const ParentDb = () => {
     {
       name: "My Children",
       path: "children",
-      icon: <FaChild style={{ width: "18", height: "18" }} />
-    }
+      icon: <FaChild style={{ width: "18", height: "18" }} />,
+    },
   ];
   const childDetailsButtons = [
     {
       name: "My Children",
       path: "children",
-      icon: <FaChild style={{ width: "18", height: "18" }} />
+      icon: <FaChild style={{ width: "18", height: "18" }} />,
     },
     {
       name: "Attendance",
       path: "childDetails/" + idchiled,
-      icon: <FaRegCalendarTimes style={{ width: "18", height: "18" }} />
+      icon: <FaRegCalendarTimes style={{ width: "18", height: "18" }} />,
     },
     {
       name: "Child Marks",
       path: "Showmarks/" + idchiled,
-      icon: <GradeOutlined style={{ width: "18", height: "18" }} />
+      icon: <GradeOutlined style={{ width: "18", height: "18" }} />,
     },
     {
       name: "Events",
       path: "Events/" + idchiled,
-      icon: <EventNote style={{ width: "18", height: "18" }} />
+      icon: <EventNote style={{ width: "18", height: "18" }} />,
     },
     {
       name: "Messages",
       path: "parentChating/" + idTeacher,
-      icon: <Message style={{ width: "18", height: "18" }} />
-    }
+      icon: <Message style={{ width: "18", height: "18" }} />,
+    },
   ];
   const parentButtons = buttons.map((item, index) => (
     <Btn key={index} name={item.name} path={item.path}>
@@ -120,12 +120,11 @@ const ParentDb = () => {
           userRoll="Parent Dashboard"
           sidebarChildren={
             pathname.includes("children") ? parentButtons : childButtons
-          }>
-          <TeacherContent>
-            <Outlet
-              context={{ childe: childData, enterFunc: handleEnterChild }}
-            />
-          </TeacherContent>
+          }
+        >
+          <Outlet
+            context={{ childe: childData, enterFunc: handleEnterChild }}
+          />
         </Layout>
       )}
     </>

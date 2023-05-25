@@ -11,7 +11,7 @@ module.exports = {
   darkMode: "class",
   theme: {
     fontFamily: {
-      sans: ["Mogra", "cursive"],
+      sans: ["Lato", "sans-serif"],
     },
 
     screens: {
@@ -45,9 +45,9 @@ module.exports = {
         stroke: "#E2E8F0",
         gray: "#EFF4FB",
         "blue-gray-700": "#b0bec5 ",
-        graydark: "#333A48",
-        "gray-2": "#F7F9FC",
-        "gray-3": "#FAFAFA",
+        graydark: "#A9A9A9",
+        "gray-2": "#DCDCDC",
+        "gray-3": "#C0C0C0",
         whiten: "#F1F5F9",
         whiter: "#F5F7FD",
         boxdark: "#24303F",

@@ -1,6 +1,6 @@
 import React from "react";
 import "./CardSidbar.css";
-import Admin from "./../../components/assets/images/admin-user-icon-4.jpg";
+// import Admin from "./../../components/assets/images/admin-user-icon-4.jpg";
 
 const CardSidbar = (props) => {
   return (
@@ -10,7 +10,8 @@ const CardSidbar = (props) => {
         <div className="flow-root">
           <ul
             role="list"
-            className="divide-y divide-gray-200 dark:divide-gray-700">
+            className="divide-y divide-gray-200 dark:divide-gray-700"
+          >
             <li className="py-3 sm:py-4">
               <div className="flex items-center space-x-4">
                 <div className="flex-shrink-0 photoimageoo">

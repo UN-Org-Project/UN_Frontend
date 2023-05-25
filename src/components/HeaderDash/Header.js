@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaGraduationCap } from "react-icons/fa";
 
 import LogoutButton from "../Buttons/Buttons";
+
 const Header = (props) => {
   return (
     <>
@@ -19,7 +20,8 @@ const Header = (props) => {
                 e.stopPropagation();
                 props.setSidebarOpen(!props.sidebarOpen);
               }}
-              className=" block rounded-sm border border-stroke bg-gradient-to-tr from-gradientFrom to-gradientTo p-1.5 shadow-sm dark:border-strokedark dark:bg-boxdark lg:hidden">
+              className=" block rounded-sm border border-stroke bg-gradient-to-tr from-gradientFrom to-gradientTo p-1.5 shadow-sm dark:border-strokedark dark:bg-boxdark lg:hidden"
+            >
               <span className="relative block h-5.5 w-5.5 cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -27,11 +29,13 @@ const Header = (props) => {
                   fill="currentColor"
                   aria-hidden="true"
                   strokeWidth="3"
-                  className="h-6 w-6 text-blue-gray-500">
+                  className="h-6 w-6 text-blue-gray-500"
+                >
                   <path
                     fillRule="evenodd"
                     d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
-                    clipRule="evenodd"></path>
+                    clipRule="evenodd"
+                  ></path>
                 </svg>
               </span>
             </button>
@@ -40,16 +44,16 @@ const Header = (props) => {
             <Link className="block flex-shrink-0 lg:block " to="/">
               {/* <img src={Logo} alt="Logo" width="42" height="32" /> */}
               <FaGraduationCap
-                style={{ width: "52px", height: "52px", color: "#00e10b" }}
+                style={{ width: "62px", height: "62px", color: "#00e10b" }}
               />
             </Link>
           </div>
 
           {/* !----- THIS IS THE NAME OF THE WEBSITE -----! */}
           <div className="hidden md:block sm:hidden lg:block">
-            <h1 className="block antialiased text-white tracking-normal leading-relaxed font-semibold text-xl font-sans">
+            <h1 className="block antialiased text-white tracking-normal leading-relaxed font-semibold text-title-lg font-sans">
               Student Tracking
-              <span className="  text-gradientTo font-sans">System</span>
+              <span className="  text-gradientTo font-sans"> System</span>
             </h1>
           </div>
 

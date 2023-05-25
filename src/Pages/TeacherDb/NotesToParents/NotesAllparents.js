@@ -26,7 +26,7 @@ const NotesAllStudent = (props) => {
     setData([...MessageToAll]);
 
     const response = await axios.post("http://localhost:8000/addNotes/" + id, {
-      note: MessageToAll
+      note: MessageToAll,
     });
     const updateNote = response.data.notes;
     setData(updateNote);
@@ -69,7 +69,7 @@ const NotesAllStudent = (props) => {
       {/* HEADER FOR THE SECTION */}
       <div className="mb-8 flex justify-center items-center ">
         <h2 className="sm:text-title-md2 font-semibold text-blue-400 dark:text-white text-title-md">
-          Write Note For All Parents
+          Write Events For All Parents
         </h2>
       </div>
 

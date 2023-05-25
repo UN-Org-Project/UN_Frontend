@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Title from "../../../components/SectionTitle/Title";
 import { useOutletContext } from "react-router-dom";
 import MainTitle from "../../../components/SectionTitle/MainTitle";
+import { ChildrenImg } from "../../../components/assets";
 
 const Children = () => {
   const childrenData = useOutletContext();
@@ -26,11 +27,11 @@ const Children = () => {
   };
   return (
     <>
-      <MainTitle title=" Your Children" />
+      <MainTitle img={ChildrenImg} title=" Your Children" />
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5 group ">
         {children.map((child, index) => (
-          <div key={index} className="flex items-center justify-center">
+          <div key={index} className="  flex items-center justify-center ">
             <ChildInfo
               key={child._id}
               id={child._id}

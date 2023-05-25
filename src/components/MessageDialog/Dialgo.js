@@ -4,7 +4,7 @@ import {
   Dialog,
   DialogHeader,
   DialogBody,
-  DialogFooter
+  DialogFooter,
 } from "@material-tailwind/react";
 
 export default function MessageDialog(props) {
@@ -14,11 +14,7 @@ export default function MessageDialog(props) {
 
   return (
     <Fragment>
-      <div
-      // class="grid place-items-center fixed w-screen h-screen bg-black bg-opacity-60 backdrop-blur-sm"
-      // data-projection-id="1"
-      // style="opacity: 1;"
-      >
+      <div>
         <Button onClick={handleOpen} variant="gradient">
           {props.btnName}
         </Button>
@@ -28,8 +24,9 @@ export default function MessageDialog(props) {
           handler={handleOpen}
           animate={{
             mount: { scale: 1, y: 0 },
-            unmount: { scale: 0.9, y: -100 }
-          }}>
+            unmount: { scale: 0.9, y: -100 },
+          }}
+        >
           <DialogHeader>{props.title}</DialogHeader>
           <DialogBody>{props.body}</DialogBody>
           <DialogFooter>

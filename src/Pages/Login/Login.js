@@ -5,11 +5,13 @@ import LoginForm from "./Form/LoginForm";
 import axios from "axios";
 import { Books } from "../../components/assets";
 import { VidBg } from "../../components/assets";
+import DoubleBubble from "../../components/DoubleBubble/DoubleBubble";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [success, setSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -25,10 +27,11 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
+    setErrorMessage("");
     try {
       const response = await axios.put("http://localhost:8000/auth/login", {
         username,
-        password
+        password,
       });
       console.log(response.status);
       console.log(response.data);
@@ -42,11 +45,13 @@ const Login = () => {
 
       if (response.data.state === "Teacher") {
         window.location.href = "/teacher";
+        setSuccess(true);
       } else if (response.data.state === "Parent") {
         window.location.href = "/parent";
+        setSuccess(true);
       } else if (response.data.state === "Admin") {
         window.location.href = "/Admin/AdminStudents";
-        console.log("admin");
+        setSuccess(true);
       } else {
         console.log(response.data);
         setErrorMessage("Invalid username or password");
@@ -79,10 +84,14 @@ const Login = () => {
       </div> */}
       {/* !----- END MOUSE HOVER ANIMATION* -----!*/}
 
-      <div className="test relative min-h-screen w-full">
+      <div className="test relative min-h-screen w-full overflow-hidden font-cla">
+        {/* !----- START VIDEO BACKGROUND -----! */}
         <video autoPlay loop muted playsInline className="back-video ">
           <source src={VidBg} type="video/mp4" />
         </video>
+        {/* !----- END VIDEO BACKGROUND -----! */}
+
+        {/* !-----START NAV BAR MENU -----! */}
         <div className="container relative z-40 mx-auto p-4">
           <nav>
             <h1 className=" xl:text-title-xl text-title-lg">
@@ -96,7 +105,8 @@ const Login = () => {
                 <button
                   onClick={() => {
                     navigateTo("about");
-                  }}>
+                  }}
+                >
                   About
                 </button>
               </li>
@@ -104,7 +114,8 @@ const Login = () => {
                 <button
                   onClick={() => {
                     navigateTo("services");
-                  }}>
+                  }}
+                >
                   Services
                 </button>
               </li>
@@ -112,15 +123,19 @@ const Login = () => {
                 <button
                   onClick={() => {
                     navigateTo("contact");
-                  }}>
+                  }}
+                >
                   Contact
                 </button>
               </li>
             </ul>
           </nav>
         </div>
+        {/* !-----END NAV BAR MENU -----! */}
 
-        {isLoading && <div className="spinner "> </div>}
+        {/* !----- START LOGIN FORM -----! */}
+        {/* {isLoading && <div className="spinner "> </div>} */}
+
         <LoginForm
           username={username}
           setUserName={setUsername}
@@ -130,7 +145,9 @@ const Login = () => {
           setErrorMessage={setErrorMessage}
           handleSubmit={handleSubmit}
           isloading={isLoading}
+          success={success}
         />
+        {/* !----- END LOGIN FORM -----! */}
       </div>
     </>
   );

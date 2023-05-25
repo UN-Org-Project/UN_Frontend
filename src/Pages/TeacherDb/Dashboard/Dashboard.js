@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-// import Title from "../../../components/SectionTitle/Title";
+import React, { useState } from "react";
 import Table from "../../../components/Table/Table";
 import DashboardRow from "../../../components/Table/RowInfo/TableRow";
-import StatisCard from "../../../components/StatisticsCard/StatisCard";
 import { ToastContainer, toast } from "react-toastify";
 import { useOutletContext } from "react-router-dom";
 import axios from "axios";
@@ -11,16 +9,18 @@ import Pagination from "@mui/material/Pagination";
 import ParentCards from "../../../components/StatisticsCard/ParentCards";
 import Card from "../../../components/StatisticsCard/Card/Card";
 import MainTitle from "../../../components/SectionTitle/MainTitle";
+import { Attendance, boy, boy1, boy2, boy3 } from "../../../components/assets";
 
 const Dashboard = (props) => {
   const id = localStorage.getItem("userData");
-  // to handle if any action happened then show the submit button
 
-  /////////////////// Handling Students Data?////////////////
-  //////////////Students Data////////////////////////////
+  // to handle if any action happened then show the submit button
+  // Handling Students Data?
+  // Students Data
+
   const studentData = useOutletContext();
   const students = studentData.students;
-  /////////////////////////////////////////
+
   const [isChanged, setIsChanged] = useState(false);
   const [absence, setAbsence] = useState({});
   const [note, setNote] = useState({});
@@ -30,20 +30,16 @@ const Dashboard = (props) => {
   const [numberOfPresent, setNumberofPresent] = useState(students.length);
   const [StudentInfo, setStudentInfo] = useState(false);
 
-  //////////////////////////notify fore Response//////////////////
+  // notify fore Response//////////////////
   const notify = (message, type) => {
     if (type === "Error") toast.error(message);
     else if (type === "Success") toast.success(message);
   };
 
-  // useEffect(() => {
-  //   console.log(students);
-  // }, []);
-
   const handleLevelChange = (id, value) => {
     setLevel((prevState) => ({
       ...prevState,
-      [id]: value
+      [id]: value,
     }));
     setIsChanged(true);
   };
@@ -51,7 +47,7 @@ const Dashboard = (props) => {
   const handleAbsenceChange = (id, value) => {
     setAbsence((prevState) => ({
       ...prevState,
-      [id]: value
+      [id]: value,
     }));
     setIsChanged(true);
   };
@@ -59,12 +55,12 @@ const Dashboard = (props) => {
   const handleNoteChange = (id, value) => {
     setNote((prevState) => ({
       ...prevState,
-      [id]: value
+      [id]: value,
     }));
     setIsChanged(true);
   };
 
-  ////////////////Submited Data////////////////////////////////
+  //Submited Data
   const handleSubmit = async (e) => {
     setIsLoading(true);
     e.preventDefault();
@@ -74,7 +70,7 @@ const Dashboard = (props) => {
         ...student,
         absence: absence[student._id] || "present",
         note: note[student._id] || "No note heve been add !",
-        level: level[student._id] || 2
+        level: level[student._id] || 2,
       };
 
       studentsData.push(updatedStudent);
@@ -87,12 +83,12 @@ const Dashboard = (props) => {
     setNumberofAbsence(numberabsence);
     setNumberofPresent(students.length - numberabsence);
 
-    ////////////////////////// Send Data to Back End/////////////////////////////////
+    // Send Data to Back End
     try {
       const response = await axios.post(
         "http://localhost:8000/add_Abs_Note_Rate/" + id,
         {
-          studentsData
+          studentsData,
         }
       );
       if (!response.ok) {
@@ -114,8 +110,7 @@ const Dashboard = (props) => {
     }
   };
 
-  /////////////////////////////
-  ///////paggination////////
+  // paggination
   const itemsPerPage = 3;
   const [currentPage, setCurrentPage] = useState(1);
   const [slicedData, setSlicedData] = useState(students.slice(0, itemsPerPage)); // Calculate the number of pages
@@ -129,13 +124,17 @@ const Dashboard = (props) => {
     endIndex = startIndex + itemsPerPage;
     setSlicedData(students.slice(startIndex, endIndex));
   };
-  //////////////////////////
 
+  const imageUrls = [boy, boy1, boy2, boy3];
+  const generateRandomImage = () => {
+    const randomIndex = Math.floor(Math.random() * imageUrls.length);
+    return imageUrls[randomIndex];
+  };
   return (
     <>
       {isLoading && <div className="spinner"> </div>}
       {/* !-- THE TITLE OF THIS SECTION --! */}
-      <MainTitle title="Student Absence Note And Level" />
+      <MainTitle img={Attendance} title="Student Absence Note And Level" />
 
       {/* COMPONTENT TO DISPLAY IF THE FUNCTION SUCCESSED OR FAILD */}
       <ToastContainer />
@@ -145,7 +144,7 @@ const Dashboard = (props) => {
         {/* TABLE HEADER */}
         <Table
           tableName="Attendance of Students"
-          th1="student"
+          th1="Students"
           th2="Contact"
           th3="Absence"
           th4="Notes Board"
@@ -155,20 +154,22 @@ const Dashboard = (props) => {
           notify={notify}
           pagination={
             <Pagination
-              className="flex justify-center"
-              color="primary"
+              className="flex justify-center "
+              color="standard"
               count={totalPages}
               page={currentPage}
               onChange={(event, page) => {
                 HadlePagenation(page);
               }}
             />
-          }>
+          }
+        >
           {/* TABLE BODY */}
           {/* pass the function that will change the value if any action happened */}
           {/* Render the sliced data on the current page */}
           {slicedData.map((student) => (
             <DashboardRow
+              generateRandomImage={generateRandomImage()}
               key={student._id}
               id={student._id}
               name={student.studentName}
