@@ -169,7 +169,7 @@ const Dashboard = (props) => {
           {/* Render the sliced data on the current page */}
           {slicedData.map((student, index) => (
             <DashboardRow
-              generateRandomImage={imageUrls[index]}
+              generateRandomImage={imageUrls[3]}
               key={student._id}
               id={student._id}
               name={student.studentName}

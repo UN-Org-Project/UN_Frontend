@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BsFillTrashFill } from "react-icons/bs";
+import { BsCloudFog, BsFillTrashFill } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
 import Avatar from "@mui/material/Avatar";
 import { ToastContainer, toast } from "react-toastify";
@@ -15,16 +15,9 @@ import {
 } from "../../../components/assets";
 
 export const Table = (props) => {
-  const [profileImage, setProfileImage] = useState("");
-
   // !----- Generat Random Images For Students
   if (props.state == "student") {
     const imageUrls = [boy, boy1, boy2, boy3];
-
-    useEffect(() => {
-      const randomIndex = Math.floor(Math.random() * imageUrls.length);
-      setProfileImage(imageUrls[randomIndex]);
-    });
 
     return (
       <>
@@ -64,7 +57,7 @@ export const Table = (props) => {
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 w-10 h-10">
-                            <img src={imageUrls[idx]} alt="profile" />
+                            <img src={imageUrls[2]} alt="profile" />
                           </div>
                           <div className="ml-3">
                             <p className="block antialiased font-sans text-title-sm font-medium text-alterColor">
@@ -162,7 +155,7 @@ export const Table = (props) => {
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 w-10 h-10">
-                            <img src={imageUrls[idx]} alt="profile" />
+                            <img src={imageUrls[1]} alt="profile" />
                           </div>
                           <div className="ml-3">
                             <p className="block antialiased font-sans text-title-sm font-medium text-alterColor">

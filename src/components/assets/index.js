@@ -20,7 +20,7 @@ export { default as ServiceImg3 } from "./images/discussion.png";
 
 // For the Avatars icons in Each Dashboard
 export { default as AdminAvatar } from "./images/Admin.png";
-export { default as TeacherAvatar } from "./images/teacher.png";
+export { default as TeacherAvatar } from "./images/teacher1.png";
 export { default as ParentAvatar } from "./images/man1.png";
 // export { default as notesandReports } from "./images/notesandReports.png";
 // export { default as chattingImage } from "./images/chattingImage.gif";

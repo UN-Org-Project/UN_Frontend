@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Note from "./Note";
 import Table from "../../../../../components/Table/Table";
 import { EventsRow } from "../../../../../components/Table/RowInfo/TableRow";
@@ -13,13 +13,13 @@ const ShowAllNotes = (props) => {
   useEffect(() => {
     setAllnotes(props.allNote);
   }, [props]);
-  let Navigate = useNavigate();
+  // let Navigate = useNavigate();
 
-  const handleNavigat = (note) => {
-    // Navigate("/parent/showNotes/Note/" + id);
-    setShownoteBody(true);
-    setContentNote(note);
-  };
+  // const handleNavigat = (note) => {
+  //   // Navigate("/parent/showNotes/Note/" + id);
+  //   setShownoteBody(true);
+  //   setContentNote(note);
+  // };
 
   return (
     <>

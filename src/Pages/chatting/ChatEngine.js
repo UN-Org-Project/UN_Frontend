@@ -55,7 +55,7 @@ const ChatEngineComp = () => {
       return (
         <>
           <br></br>
-          <span>{`${userState} _ ${name_user}`}</span>
+          <span className=" text-lg font-bold text-white font-sans">{`${userState} _ ${name_user}`}</span>
         </>
       );
     }

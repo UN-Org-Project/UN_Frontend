@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import "./Modal.css";
 import axios from "axios";
-export const Modal = ({
-  notify,
-  state,
-  closeModal,
-  onSubmit,
-  defaultValue
-}) => {
+export const Modal = ({ state, closeModal, onSubmit, defaultValue }) => {
   const [studentid, setstudentid] = useState(defaultValue[0]._id);
   const [formState, setFormState] = useState({});
   React.useEffect(() => {
@@ -76,7 +70,7 @@ export const Modal = ({
     setFormState({
       ...formState,
 
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
 
     // console.log(formState);
@@ -134,14 +128,16 @@ export const Modal = ({
         className="modal-container"
         onClick={(e) => {
           if (e.target.className === "modal-container") closeModal();
-        }}>
+        }}
+      >
         <div className="modal">
           <form>
             <div className="grid gap-6 mb-6 md:grid-cols-2">
               <div>
                 <label
                   htmlFor="student-name"
-                  className="block mb-2  mt-4 text-title-[16px] font-medium text-alterColor">
+                  className="block mb-2  mt-4 text-title-[16px] font-medium text-alterColor"
+                >
                   Student Name
                 </label>
                 <input
@@ -156,7 +152,8 @@ export const Modal = ({
               <div>
                 <label
                   htmlFor="StudentAddress"
-                  className="block mb-2 mt-4 text-title-[16px] font-medium text-alterColor ">
+                  className="block mb-2 mt-4 text-title-[16px] font-medium text-alterColor "
+                >
                   Student Address
                 </label>
                 <input
@@ -171,7 +168,8 @@ export const Modal = ({
               <div>
                 <label
                   htmlFor="gender"
-                  className="block mb-2 text-title-[16px] font-medium text-alterColor">
+                  className="block mb-2 text-title-[16px] font-medium text-alterColor"
+                >
                   Gender
                 </label>
                 <select
@@ -189,7 +187,8 @@ export const Modal = ({
               <div className="-mt-4">
                 <label
                   htmlFor="ParentName"
-                  className="block mb-2  mt-4 text-title-[16px] font-medium text-alterColor">
+                  className="block mb-2  mt-4 text-title-[16px] font-medium text-alterColor"
+                >
                   Parent Name
                 </label>
                 <input
@@ -204,7 +203,8 @@ export const Modal = ({
               <div>
                 <label
                   htmlFor="date"
-                  className="block mb-2 text-title-[16px] font-medium text-alterColor ">
+                  className="block mb-2 text-title-[16px] font-medium text-alterColor "
+                >
                   Date of Breath
                 </label>
                 <input
@@ -219,7 +219,8 @@ export const Modal = ({
               <div>
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-title-[16px] font-medium text-alterColor ">
+                  className="block mb-2 text-title-[16px] font-medium text-alterColor "
+                >
                   Parent's Email
                 </label>
                 <input
@@ -234,7 +235,8 @@ export const Modal = ({
               <div>
                 <label
                   htmlFor="class"
-                  className="block mb-2 text-title-[16px] font-medium text-alterColor ">
+                  className="block mb-2 text-title-[16px] font-medium text-alterColor "
+                >
                   Class
                 </label>
                 <select
@@ -255,7 +257,8 @@ export const Modal = ({
               <div>
                 <label
                   htmlFor="phone"
-                  className="block mb-2 text-title-[16px] font-medium text-alterColor  ">
+                  className="block mb-2 text-title-[16px] font-medium text-alterColor  "
+                >
                   Phone number
                 </label>
                 <input
@@ -274,13 +277,15 @@ export const Modal = ({
             <button
               className="btnm text-white bg-clip-border bg-gradient-to-br hover:from-gradientFrom hover:to-gradientTo from-blue-600 to-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 transition duration-1000 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               type="submit"
-              onClick={handleSubmit}>
+              onClick={handleSubmit}
+            >
               Submit
             </button>
             <br></br>
             <button
               className="btnm  mt-2 text-white bg-clip-border bg-gradient-to-br hover:from-gradientFrom hover:to-gradientTo from-orange-600 to-orange-400 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 transition duration-1000 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-              onClick={handleback}>
+              onClick={handleback}
+            >
               back
             </button>
           </form>
@@ -304,14 +309,16 @@ export const Modal = ({
         className="modal-container"
         onClick={(e) => {
           if (e.target.className === "modal-container") closeModal();
-        }}>
+        }}
+      >
         <div className="modal">
           <form>
             <div className="grid gap-6 mb-6 md:grid-cols-2">
               <div>
                 <label
                   htmlFor="student-name"
-                  className="block mb-2  mt-4 text-sm font-medium">
+                  className="block mb-2  mt-4 text-sm font-medium"
+                >
                   Teacher Name
                 </label>
                 <input
@@ -326,7 +333,8 @@ export const Modal = ({
               <div>
                 <label
                   htmlFor="StudentAddress"
-                  className="block mb-2 mt-4 text-sm font-medium ">
+                  className="block mb-2 mt-4 text-sm font-medium "
+                >
                   Teacher Address
                 </label>
                 <input
@@ -341,7 +349,8 @@ export const Modal = ({
               <div>
                 <label
                   htmlFor="gender"
-                  className="block mb-2 text-sm font-medium">
+                  className="block mb-2 text-sm font-medium"
+                >
                   Gender
                 </label>
                 <select
@@ -359,7 +368,8 @@ export const Modal = ({
               <div className="-mt-4">
                 <label
                   htmlFor="ParentName"
-                  className="block mb-2  mt-4 text-sm font-medium">
+                  className="block mb-2  mt-4 text-sm font-medium"
+                >
                   Experiance
                 </label>
                 <input
@@ -374,7 +384,8 @@ export const Modal = ({
               <div>
                 <label
                   htmlFor="date"
-                  className="block mb-2 text-sm font-medium ">
+                  className="block mb-2 text-sm font-medium "
+                >
                   Date of Breath
                 </label>
                 <input
@@ -389,7 +400,8 @@ export const Modal = ({
               <div>
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-medium ">
+                  className="block mb-2 text-sm font-medium "
+                >
                   Teacher's Email
                 </label>
                 <input
@@ -404,7 +416,8 @@ export const Modal = ({
               <div>
                 <label
                   htmlFor="class"
-                  className="block mb-2 text-sm font-medium ">
+                  className="block mb-2 text-sm font-medium "
+                >
                   Class
                 </label>
                 <select
@@ -425,7 +438,8 @@ export const Modal = ({
               <div>
                 <label
                   htmlFor="phone"
-                  className="block mb-2 text-sm font-medium text-blue-800 ">
+                  className="block mb-2 text-sm font-medium text-blue-800 "
+                >
                   Phone number
                 </label>
                 <input
@@ -444,13 +458,15 @@ export const Modal = ({
             <button
               className="btnm text-white bg-clip-border bg-gradient-to-br hover:from-gradientFrom hover:to-gradientTo from-blue-600 to-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 transition duration-1000 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               type="submit"
-              onClick={handleSubmit}>
+              onClick={handleSubmit}
+            >
               Submit
             </button>
             <br></br>
             <button
-              className="btnm  mt-2 text-white bg-clip-border bg-gradient-to-br hover:from-gradientFrom hover:to-gradientTo from-orange-600 to-orange-400 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 transition duration-1000 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-              onClick={handleback}>
+              className="btnm mt-2 text-white bg-clip-border bg-gradient-to-br hover:from-gradientFrom hover:to-gradientTo from-orange-600 to-orange-400 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 transition duration-1000 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+              onClick={handleback}
+            >
               back
             </button>
           </form>

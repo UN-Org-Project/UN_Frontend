@@ -18,12 +18,11 @@ const ChildInfo = (props) => {
   return (
     <div
       className=" group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-[1.05]  transition-all duration-[0.5s] bg-gradient-to-bl from-gradientFrom to-gradientTo text-white cursor-pointer bg-clip-border rounded-xl  shadow-md hover:shadow-2xl hover:shadow-slate-400 py-2"
-      onClick={props.handleNavigat}
-    >
+      onClick={props.handleNavigat}>
       <div className="photo-wrapper p-2">
         <img
           className="w-24 h-24 rounded-full mx-auto"
-          src={generateRandomImage()}
+          src={imageUrls[3]}
           alt="Child image"
         />
       </div>
@@ -69,44 +68,6 @@ const ChildInfo = (props) => {
         </div>
       </div>
     </div>
-
-    // {/* <div
-    //   className="bg-white cursor-pointer bg-clip-border rounded-xl transition-shadow duration-500  shadow-md hover:shadow-2xl hover:shadow-slate-400 flex flex-col items-center p-5 gap-3 "
-    //   onClick={props.handleNavigat}
-    // >
-    //   <img
-    //     className="w-24 h-24 rounded-full shadow-lg"
-    //     src={ParentAvatar}
-    //     alt="Child image"
-    //   />
-    //   <h5 className=" text-xl font-medium text-blue-600 dark:text-white hover:text-white">
-    //     {props.childrenInfo.studentName}
-    //   </h5>
-    //   <div className=" flex flex-col gap-1">
-    //     <div className="flex items-center gap-3">
-    //       <span className="text-sm dark:text-gray-400">Gender:</span>
-    //       <span className="text-sm dark:text-gray-400">
-    //         {props.childrenInfo.gender}
-    //       </span>
-    //     </div>
-    //     <div className="flex items-center gap-3">
-    //       <span className="text-sm dark:text-gray-400">Class:</span>
-    //       <span className="text-sm dark:text-gray-400">
-    //         {props.childrenInfo.class}
-    //       </span>
-    //     </div>
-    //     <div className="flex items-center gap-3">
-    //       <span className="text-sm font-bold dark:text-gray-400">
-    //         Teacher Name:
-    //       </span>
-    //       <span className="text-sm font-bold dark:text-gray-400">
-    //         {props.childrenInfo.teacherName}
-    //       </span>
-    //     </div>
-    //   </div>
-    //   {/* Progress Bar  */}
-    //   {/* <Progress percentage={+props.childrenInfo.studentLevelRate || 0} /> */}
-    // {/* </div> */}
   );
 };
 

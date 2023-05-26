@@ -184,11 +184,12 @@
 }
 
 #ce-feed-container {
-  overflow: hidden !important;
+  overflow: hidden scroll !important;
 }
 
 .ce-chat-feed-container {
-  background-color: white;
+  background-color: white !important;
+  height: 70% !important;
 }
 
 .ce-primary-button {
