@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import "./Modal.css";
 import axios from "axios";
-export const Modal = ({
-  notify,
-  state,
-  closeModal,
-  onSubmit,
-  defaultValue,
-}) => {
+export const Modal = ({ state, closeModal, onSubmit, defaultValue }) => {
   const [studentid, setstudentid] = useState(defaultValue[0]._id);
   const [formState, setFormState] = useState({});
   React.useEffect(() => {

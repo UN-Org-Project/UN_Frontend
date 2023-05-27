@@ -34,7 +34,7 @@ const AddMarks = () => {
   const handleLevelChange = (id, value) => {
     setLevel((prevState) => ({
       ...prevState,
-      [id]: value,
+      [id]: value
     }));
     // setIsChanged(true);
   };
@@ -53,7 +53,7 @@ const AddMarks = () => {
   const handleMarkChange = (id, value) => {
     setMarks((prevState) => ({
       ...prevState,
-      [id]: value,
+      [id]: value
     }));
     //setIsChanged(true);
   };
@@ -61,7 +61,7 @@ const AddMarks = () => {
   const handleNoteChange = (id, value) => {
     setNote((prevState) => ({
       ...prevState,
-      [id]: value,
+      [id]: value
     }));
     // setIsChanged(true);
   };
@@ -84,7 +84,7 @@ const AddMarks = () => {
         note: note[student._id] || "No note heve been add !",
         level: level[student._id] || 2,
         subject: subject,
-        exame: exame || "first",
+        exame: exame || "first"
       };
 
       studentsMark.push(updatedStudent);
@@ -107,7 +107,7 @@ const AddMarks = () => {
       const response = await axios.post(
         "http://localhost:8000/addtypeExam/" + id,
         {
-          studentsMark,
+          studentsMark
         }
       );
       if (!response.ok) {
@@ -175,7 +175,7 @@ const AddMarks = () => {
   return (
     <>
       {/* !----- THE NAME OF THE SECTION -----! */}
-      <MainTitle img={AddMark} title="Student Add Marks " />
+      <MainTitle img={AddMark} title="Add Student Marks " />
 
       {/* !----- THIS CONTAINER FOR CARDS THAT IT SHOW THE NUMBER OF SUTDENTS AND THE AVERAGE OF THERE MARKS -----! */}
       <div className="-mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-32 2xl:gap-16 mb-7">
@@ -215,15 +215,14 @@ const AddMarks = () => {
               { value: "english", label: "English" },
               { value: "arbic", label: "arbic" },
               { value: "history", label: "history" },
-              { value: "science", label: "science" },
+              { value: "science", label: "science" }
             ]}
           />
         </div>
         <div
           className={`  md:block ${
             isChanged ? "block" : "hidden"
-          } bg-clip-border rounded-xl bg-gradient-to-tr from-blue-500 to-blue-400 w-80 p-4 justify-self-end`}
-        >
+          } bg-clip-border rounded-xl bg-gradient-to-tr from-blue-500 to-blue-400 w-80 p-4 justify-self-end`}>
           <SelectComp
             isChanged={isChanged}
             onChange={handleExameChange}
@@ -231,7 +230,7 @@ const AddMarks = () => {
             options={[
               { value: "First", label: "First" },
               { value: "Second", label: "Second" },
-              { value: "Final", label: "Final" },
+              { value: "Final", label: "Final" }
             ]}
           />
         </div>
@@ -263,8 +262,7 @@ const AddMarks = () => {
                   HadlePagenation(page);
                 }}
               />
-            }
-          >
+            }>
             {/* TABLE BODY */}
             {/* pass the function that will change the value if any action happened */}
             {/* Render the sliced data on the current page */}
@@ -289,8 +287,7 @@ const AddMarks = () => {
           <div className="w-full flex justify-center items-center">
             <div
               className="p-4 mb-4 w-fit text-title-sm text-white rounded-lg bg-clip-border bg-gradient-to-br from-blue-500 to-blue-400  dark:bg-gray-800 dark:text-blue-400"
-              role="alert"
-            >
+              role="alert">
               <span className="font-medium text-title-sm ">Info !</span> Choose
               the Subject and type Exame please.
             </div>
