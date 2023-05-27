@@ -12,6 +12,7 @@ const DashboardRow = (props) => {
   const [checkedpresent, setcheckedpresent] = useState(false);
   const [isButtonVisible, setIsButtonVisible] = useState(true);
   const [color, setcolor] = useState("");
+
   //const [chating, setChating] = useState(false);
   let Navigate = useNavigate();
   const handleNavigat = (id) => {
@@ -39,16 +40,16 @@ const DashboardRow = (props) => {
       const range = +props.range;
       console.log(range);
       if (range >= 90) {
-        setcolor(" bg-green-700");
+        setcolor(" bg-green-500");
         console.log(color);
       } else if (range < 90 && range >= 80) {
-        setcolor(" bg-blue-700");
+        setcolor(" bg-blue-600");
         console.log(color);
       } else if (range < 80 && range >= 60) {
-        setcolor(" bg-yellow-700");
+        setcolor(" bg-yellow-500");
         console.log(color);
       } else {
-        setcolor(" bg-red-700");
+        setcolor(" bg-red-500");
         console.log(color);
       }
       console.log(color);
@@ -233,10 +234,10 @@ const DashboardRow = (props) => {
           )}
         </td>
 
-        <td className="px-5 py-5 border-b border-gray-100 bg-white text-lg">
+        <td className=" border-b border-gray-100 bg-white text-lg text-center">
           {props.StudentInfo ? (
             <div
-              className={`${color}  text-alterColor  rounded-lg text-center p-4 `}
+              className={`${color} w-fit py-3 px-2 text-black  rounded-lg text-center `}
             >
               {props.range} %{" "}
             </div>

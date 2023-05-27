@@ -17,10 +17,7 @@ const StudentInfo = (props) => {
   console.log(students);
 
   const imageUrls = [boy, boy1, boy2, boy3];
-  const generateRandomImage = () => {
-    const randomIndex = Math.floor(Math.random() * imageUrls.length);
-    return imageUrls[randomIndex];
-  };
+
   return (
     <>
       <MainTitle img={Info} title="Student Information" />
@@ -37,7 +34,7 @@ const StudentInfo = (props) => {
         >
           {students.map((student, index) => (
             <DashboardRow
-              generateRandomImage={imageUrls[index]}
+              generateRandomImage={imageUrls[3]}
               key={student._id}
               id={student._id}
               name={student.studentName}

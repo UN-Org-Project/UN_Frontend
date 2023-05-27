@@ -462,7 +462,7 @@ export const Modal = ({
               <div className="error">{`Please include: ${errors}`}</div>
             )}
             <button
-              className="btn text-white bg-clip-border bg-gradient-to-br hover:from-gradientFrom hover:to-gradientTo from-blue-600 to-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 transition duration-1000 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+              className="btnm text-white bg-clip-border bg-gradient-to-br hover:from-gradientFrom hover:to-gradientTo from-blue-600 to-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 transition duration-1000 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               type="submit"
               onClick={handleSubmit}
             >
@@ -470,7 +470,7 @@ export const Modal = ({
             </button>
             <br></br>
             <button
-              className="btn mt-2 text-white bg-clip-border bg-gradient-to-br hover:from-gradientFrom hover:to-gradientTo from-orange-600 to-orange-400 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 transition duration-1000 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+              className="btnm mt-2 text-white bg-clip-border bg-gradient-to-br hover:from-gradientFrom hover:to-gradientTo from-orange-600 to-orange-400 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 transition duration-1000 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={handleback}
             >
               back
