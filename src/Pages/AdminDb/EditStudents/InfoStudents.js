@@ -14,7 +14,7 @@ import { AdminAvatar, EditForm } from "../../../components/assets";
 import {
   FaChalkboardTeacher,
   FaUserEdit,
-  FaUserGraduate,
+  FaUserGraduate
 } from "react-icons/fa";
 import MainTitle from "../../../components/SectionTitle/MainTitle";
 import { Edit } from "@mui/icons-material";
@@ -86,6 +86,7 @@ function InfoStudents() {
       notify("Deleted Successfully", "Success");
     }
   };
+  const [ischanged, setischanged] = useState(false);
 
   const handleEditRow = (idx) => {
     setRowToEdit(idx);
@@ -114,23 +115,23 @@ function InfoStudents() {
     {
       name: "Add Student",
       path: "/Admin/AdminStudents",
-      icon: <FaUserGraduate style={{ width: "18", height: "18" }} />,
+      icon: <FaUserGraduate style={{ width: "18", height: "18" }} />
     },
     {
       name: "Edit Students",
       path: "/Admin/InfoStudents",
-      icon: <Edit style={{ width: "18", height: "18" }} />,
+      icon: <Edit style={{ width: "18", height: "18" }} />
     },
     {
       name: "Add Teachers",
       path: "/Admin/AdminTeachers",
-      icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />,
+      icon: <FaChalkboardTeacher style={{ width: "18", height: "18" }} />
     },
     {
       name: "Edit Teachers",
       path: "/Admin/InfoTeachers",
-      icon: <FaUserEdit style={{ width: "18", height: "18" }} />,
-    },
+      icon: <FaUserEdit style={{ width: "18", height: "18" }} />
+    }
   ];
   //////////////////
   return (
@@ -144,8 +145,7 @@ function InfoStudents() {
             {" "}
             {item.icon}{" "}
           </Btn>
-        ))}
-      >
+        ))}>
         {isLoading && <div className="spinner"> </div>}
         <MainTitle img={EditForm} title="Edit Students Form" />
 
