@@ -14,13 +14,13 @@ const StudentInfo = (props) => {
   const students = studentData.students.sort(
     (a, b) => b.studentLevelRate - a.studentLevelRate
   );
-  console.log(students);
+  const Classname = studentData.class;
 
   const imageUrls = [boy, boy1, boy2, boy3];
 
   return (
     <>
-      <MainTitle img={Info} title="Student Information" />
+      <MainTitle img={Info} title={`Student Information / ${Classname}`} />
 
       <div className="mt-12 grid grid-cols-1 gap-6 relative ">
         <Table
@@ -30,8 +30,7 @@ const StudentInfo = (props) => {
           th3="Date Of Birth"
           th4="Absence"
           th5="Level Rate"
-          StudentInfo={StudentInfo}
-        >
+          StudentInfo={StudentInfo}>
           {students.map((student, index) => (
             <DashboardRow
               generateRandomImage={imageUrls[3]}

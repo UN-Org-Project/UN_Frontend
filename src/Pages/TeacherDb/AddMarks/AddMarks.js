@@ -17,6 +17,7 @@ const AddMarks = () => {
   const [isLoading, setIsLoading] = useState(false);
   const studentData = useOutletContext();
   const students = studentData.students;
+  const Classname = studentData.class;
   const [isChanged, setIsChanged] = useState(false);
   const [marks, setMarks] = useState({});
   const [note, setNote] = useState({});
@@ -96,7 +97,7 @@ const AddMarks = () => {
       (accumulator, currentValue) => +accumulator + +currentValue,
       0
     );
-    const average = totalMarks / range.length;
+    const average = (totalMarks / range.length).toFixed(2);
     setRangeSubject(average);
 
     console.log(totalMarks);
@@ -175,7 +176,7 @@ const AddMarks = () => {
   return (
     <>
       {/* !----- THE NAME OF THE SECTION -----! */}
-      <MainTitle img={AddMark} title="Add Student Marks " />
+      <MainTitle img={AddMark} title={`Add Student Marks /${Classname}`} />
 
       {/* !----- THIS CONTAINER FOR CARDS THAT IT SHOW THE NUMBER OF SUTDENTS AND THE AVERAGE OF THERE MARKS -----! */}
       <div className="-mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-32 2xl:gap-16 mb-7">

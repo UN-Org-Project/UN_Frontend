@@ -17,28 +17,28 @@ const buttons = [
   {
     name: "Dashboard",
     path: "Dashboard",
-    icon: <Dashboard style={{ width: "18", height: "18" }} />,
+    icon: <Dashboard style={{ width: "18", height: "18" }} />
   },
   {
     name: "Add Marks",
     path: "Addmarks",
-    icon: <AiFillFileMarkdown style={{ width: "18", height: "18" }} />,
+    icon: <AiFillFileMarkdown style={{ width: "18", height: "18" }} />
   },
   {
     name: "Events & Reports",
     path: "SendNotesAndReports",
-    icon: <NoteAltSharp style={{ width: "18", height: "18" }} />,
+    icon: <NoteAltSharp style={{ width: "18", height: "18" }} />
   },
   {
     name: "Students Info",
     path: "StudentsInfo",
-    icon: <BsPersonVcard style={{ width: "18", height: "18" }} />,
+    icon: <BsPersonVcard style={{ width: "18", height: "18" }} />
   },
   {
     name: "Messages",
     path: "ChattingTeacher/" + id,
-    icon: <Message style={{ width: "18", height: "18" }} />,
-  },
+    icon: <Message style={{ width: "18", height: "18" }} />
+  }
 ];
 
 const TeacherDb = () => {
@@ -47,6 +47,7 @@ const TeacherDb = () => {
 
   const [teacherData, setTeachertData] = useState("");
   const [studentData, setStudentData] = useState([]);
+  const [teacherClass, setTeachertClass] = useState("");
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -71,7 +72,8 @@ const TeacherDb = () => {
           "http://localhost:8000/sendInfo/" + id
         );
         const data = response.data;
-        console.log(data.allStudents);
+        console.log(data.class);
+        setTeachertClass(data.class);
         setStudentData(data.allStudents);
         setTeachertData(data.name);
         setIsLoading(false);
@@ -96,9 +98,8 @@ const TeacherDb = () => {
               <Btn key={index} name={item.name} path={item.path}>
                 {item.icon}
               </Btn>
-            ))}
-          >
-            <Outlet context={{ students: studentData }} />
+            ))}>
+            <Outlet context={{ students: studentData, class: teacherClass }} />
           </Layout>
         )
       )}

@@ -64,7 +64,7 @@ const ChatEngineComp = () => {
   return (
     <ChatEngine
       height="100vh"
-      projectID="42ec5e7e-b43d-49fc-be0e-f6d36dd9fc1a"
+      projectID="873fe2ed-dc7e-4d12-8e0e-6d3825d48c36"
       userName={name_user}
       userSecret={secret}
       renderNewChatForm={(creds) => renderChatForm(creds)}

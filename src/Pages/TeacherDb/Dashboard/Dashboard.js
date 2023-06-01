@@ -20,6 +20,7 @@ const Dashboard = (props) => {
 
   const studentData = useOutletContext();
   const students = studentData.students;
+  const Classname = studentData.class;
 
   const [isChanged, setIsChanged] = useState(false);
   const [absence, setAbsence] = useState({});
@@ -39,7 +40,7 @@ const Dashboard = (props) => {
   const handleLevelChange = (id, value) => {
     setLevel((prevState) => ({
       ...prevState,
-      [id]: value,
+      [id]: value
     }));
     setIsChanged(true);
   };
@@ -47,7 +48,7 @@ const Dashboard = (props) => {
   const handleAbsenceChange = (id, value) => {
     setAbsence((prevState) => ({
       ...prevState,
-      [id]: value,
+      [id]: value
     }));
     setIsChanged(true);
   };
@@ -55,7 +56,7 @@ const Dashboard = (props) => {
   const handleNoteChange = (id, value) => {
     setNote((prevState) => ({
       ...prevState,
-      [id]: value,
+      [id]: value
     }));
     setIsChanged(true);
   };
@@ -70,7 +71,7 @@ const Dashboard = (props) => {
         ...student,
         absence: absence[student._id] || "present",
         note: note[student._id] || "No note heve been add !",
-        level: level[student._id] || 2,
+        level: level[student._id] || 2
       };
 
       studentsData.push(updatedStudent);
@@ -88,7 +89,7 @@ const Dashboard = (props) => {
       const response = await axios.post(
         "http://localhost:8000/add_Abs_Note_Rate/" + id,
         {
-          studentsData,
+          studentsData
         }
       );
       if (!response.ok) {
@@ -143,7 +144,7 @@ const Dashboard = (props) => {
       <div className="my-4 grid grid-cols-1 gap-6 ">
         {/* TABLE HEADER */}
         <Table
-          tableName="Attendance of Students"
+          tableName={`Attendance of Students / ${Classname}`}
           th1="Students"
           th2="Contact"
           th3="Absence"
@@ -162,8 +163,7 @@ const Dashboard = (props) => {
                 HadlePagenation(page);
               }}
             />
-          }
-        >
+          }>
           {/* TABLE BODY */}
           {/* pass the function that will change the value if any action happened */}
           {/* Render the sliced data on the current page */}
