@@ -103,7 +103,7 @@ const Hero = () => {
                   href="login"
                   className="text-lg font-semibold text-blue-800 transition-all hover:text-orange-500"
                 ></a> */}
-                  <Link to="/login"className="text-lg font-semibold text-blue-800 transition-all hover:text-orange-500">Login</Link>
+                  <Link to="login"className="text-lg font-semibold text-blue-800 transition-all hover:text-orange-500">Login</Link>
                 
                 
               </div>
