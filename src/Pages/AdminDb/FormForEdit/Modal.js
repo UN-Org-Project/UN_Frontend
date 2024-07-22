@@ -96,7 +96,7 @@ export const Modal = ({ state, closeModal, onSubmit, defaultValue }) => {
     const sendStudentDataToServer = async (data) => {
       try {
         await axios.post(
-          "http://localhost:8000/sendStudentInfo/" + studentid,
+          "https://trackingsystemserver.onrender.com/sendStudentInfo/" + studentid,
           data
         );
         console.log(data);
@@ -108,7 +108,7 @@ export const Modal = ({ state, closeModal, onSubmit, defaultValue }) => {
     const sendTeacherDataToServer = async (data) => {
       try {
         await axios.post(
-          "http://localhost:8000/sendTeacherInfo/" + studentid,
+          "https://trackingsystemserver.onrender.com/sendTeacherInfo/" + studentid,
           data
         );
         console.log(data);

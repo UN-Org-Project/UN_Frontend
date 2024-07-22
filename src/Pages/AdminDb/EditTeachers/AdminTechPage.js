@@ -40,7 +40,7 @@ const AdminTech = () => {
   const data = useEffect(() => {
     async function fetch() {
       const response = await axios.get(
-        "http://localhost:8000/getAdmininfo/" + id
+        "https://trackingsystemserver.onrender.com/getAdmininfo/" + id
       );
       console.log(response.data);
 
@@ -71,7 +71,7 @@ const AdminTech = () => {
       //   console.log(key, value);
       // }
 
-      const response = await axios.put("http://localhost:8000/teacher", {
+      const response = await axios.put("https://trackingsystemserver.onrender.com/teacher", {
         Data,
       });
       setIsLoading(false);

@@ -59,14 +59,14 @@ const InfoTeachers = () => {
     async function fetchStudentData() {
       try {
         const response = await axios.get(
-          "http://localhost:8000/getAllTeachers"
+          "https://trackingsystemserver.onrender.com/getAllTeachers"
         );
         const data = response.data;
         setRows(data);
         async function fetch() {
           setIsLoading(true);
           const response = await axios.get(
-            "http://localhost:8000/getAdmininfo/" + id
+            "https://trackingsystemserver.onrender.com/getAdmininfo/" + id
           );
           console.log(response.data);
           setIsLoading(false);
@@ -94,7 +94,7 @@ const InfoTeachers = () => {
   //   const newItems = [...rows];
   //   newItems.splice(targetIndex, 1);
   //   setRows(newItems);
-  //   axios.get(`http://localhost:8000/deleteTeacher/${targetIndex}`);
+  //   axios.get(`http://:8000/deleteTeacher/${targetIndex}`);
   //   notify("Deleted Successfully", "Success");
   // };
 
@@ -104,7 +104,7 @@ const InfoTeachers = () => {
     if (targetIndex >= 0) {
       newItems.splice(targetIndex, 1);
       setRows(newItems);
-      axios.get(`http://localhost:8000/deleteTeacher/${teacherId}`);
+      axios.get(`https://trackingsystemserver.onrender.com/deleteTeacher/${teacherId}`);
       notify("Deleted Successfully", "Success");
     }
   };

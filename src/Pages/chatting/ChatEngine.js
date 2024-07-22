@@ -16,7 +16,7 @@ const ChatEngineComp = () => {
     async function fetch() {
       try {
         const response = await axios.post(
-          "http://localhost:8000/auth/Info/" + user_id,
+          "https://trackingsystemserver.onrender.com/auth/Info/" + user_id,
           { userState: userState }
         );
         console.log(response.data.nameOfUser);

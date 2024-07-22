@@ -42,7 +42,7 @@ const ParentDb = () => {
       try {
         //6431b22ca8514ea551212e27
         const response = await axios.get(
-          "http://localhost:8000/parentInfo/" + id
+          "https://trackingsystemserver.onrender.com/parentInfo/" + id
         );
         const data = response.data.parentInfo;
         console.log(data);

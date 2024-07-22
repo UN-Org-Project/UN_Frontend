@@ -44,7 +44,7 @@ const AdminStd = () => {
   const data = useEffect(() => {
     async function fetch() {
       const response = await axios.get(
-        "http://localhost:8000/getAdmininfo/" + id
+        "https://trackingsystemserver.onrender.com/getAdmininfo/" + id
       );
       console.log(response.data);
       //    setAdminData(response.data.adminData);
@@ -99,7 +99,7 @@ const AdminStd = () => {
       //   console.log(key, value);
       // }
 
-      const response = await axios.put("http://localhost:8000/parent", {
+      const response = await axios.put("https://trackingsystemserver.onrender.com/parent", {
         Data,
       });
       setIsLoading(false);

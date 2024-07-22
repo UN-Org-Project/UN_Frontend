@@ -30,7 +30,7 @@ const Login = () => {
     setIsLoading(true);
     setErrorMessage("");
     try {
-      const response = await axios.put("http://localhost:8000/auth/login", {
+      const response = await axios.put("https://trackingsystemserver.onrender.com/auth/login", {
         username,
         password,
       });

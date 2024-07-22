@@ -38,14 +38,14 @@ function InfoStudents() {
     async function fetchStudentData() {
       try {
         const response = await axios.get(
-          "http://localhost:8000/getAllStudents"
+          "https://trackingsystemserver.onrender.com/getAllStudents"
         );
         const data = response.data;
         setRows(data);
         async function fetch() {
           setIsLoading(true);
           const response = await axios.get(
-            "http://localhost:8000/getAdmininfo/" + id
+            "https://trackingsystemserver.onrender.com/getAdmininfo/" + id
           );
           console.log(response.data);
           //    setAdminData(response.data.adminData);
@@ -82,7 +82,7 @@ function InfoStudents() {
     if (targetIndex >= 0) {
       newItems.splice(targetIndex, 1);
       setRows(newItems);
-      axios.get(`http://localhost:8000/deleteStudent/${studentId}`);
+      axios.get(`https://trackingsystemserver.onrender.com/deleteStudent/${studentId}`);
       notify("Deleted Successfully", "Success");
     }
   };

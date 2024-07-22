@@ -106,7 +106,7 @@ const AddMarks = () => {
     //////////////////// send Data to Back End/////////////////////////////////////////////
     try {
       const response = await axios.post(
-        "http://localhost:8000/addtypeExam/" + id,
+        "https://trackingsystemserver.onrender.com/addtypeExam/" + id,
         {
           studentsMark
         }

@@ -14,7 +14,7 @@ const NotesAllStudent = (props) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     async function getnotesArray() {
-      const response = await axios.get("http://localhost:8000/getnotes/" + id);
+      const response = await axios.get("https://trackingsystemserver.onrender.com/getnotes/" + id);
       const notesArray = response.data.notes;
       setData(notesArray);
     }
@@ -25,7 +25,7 @@ const NotesAllStudent = (props) => {
   const addItem = async () => {
     setData([...MessageToAll]);
 
-    const response = await axios.post("http://localhost:8000/addNotes/" + id, {
+    const response = await axios.post("https://trackingsystemserver.onrender.com/addNotes/" + id, {
       note: MessageToAll,
     });
     const updateNote = response.data.notes;
@@ -40,7 +40,7 @@ const NotesAllStudent = (props) => {
     /////// print////////////////////////
 
     const response = await axios.post(
-      "http://localhost:8000/deletNotes/" + id,
+      "https://trackingsystemserver.onrender.com/deletNotes/" + id,
       { id: ID }
     );
 
@@ -57,7 +57,7 @@ const NotesAllStudent = (props) => {
     console.log("Reports");
     setIsLoading(true);
     // notify("Send Reports For All Parents successfully", "Error");
-    const response = await axios.post("http://localhost:8000/getPdfDoc/" + id);
+    const response = await axios.post("https://trackingsystemserver.onrender.com/getPdfDoc/" + id);
 
     const res = response.data;
     setIsLoading(false);

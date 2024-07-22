@@ -87,7 +87,7 @@ const Dashboard = (props) => {
     // Send Data to Back End
     try {
       const response = await axios.post(
-        "http://localhost:8000/add_Abs_Note_Rate/" + id,
+        "https://trackingsystemserver.onrender.com/add_Abs_Note_Rate/" + id,
         {
           studentsData
         }
