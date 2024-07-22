@@ -98,13 +98,14 @@ const Hero = () => {
                 >
                   Contact Us
                 </a>
-                <a
+                {/* <a
                   onClick={() => setOpenNav(false)}
                   href="login"
                   className="text-lg font-semibold text-blue-800 transition-all hover:text-orange-500"
-                >
-                  Login
-                </a>
+                ></a> */}
+                  <Link to="/login"className="text-lg font-semibold text-blue-800 transition-all hover:text-orange-500">Login</Link>
+                
+                
               </div>
             </div>
           )}
