@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoginForm from "./Form/LoginForm";
 import axios from "axios";
-import { Books } from "../../components/assets";
+
 import { VidBg } from "../../components/assets";
-import DoubleBubble from "../../components/DoubleBubble/DoubleBubble";
+
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -17,6 +17,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const navigateTo = (section) => {
+    document.preventDefault();
     navigate("/");
     setTimeout(() => {
       const aboutSection = document.getElementById(section);

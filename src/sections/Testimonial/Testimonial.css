@@ -70,7 +70,7 @@ body {
 .testimonial .name {
   font-size: 15px;
   font-weight: bold;
-  color: white;
+  color: rgb(45, 44, 44);
   text-transform: capitalize;
   margin: 10px 0 5px 0;
 }
@@ -78,7 +78,7 @@ body {
 .testimonial .title {
   display: block;
   font-size: 14px;
-  color: #ffd9b8;
+  color: #837f7b;
 }
 
 .owl-controls {

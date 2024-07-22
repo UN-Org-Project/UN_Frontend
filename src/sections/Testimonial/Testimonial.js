@@ -3,7 +3,11 @@ import "./Testimonial.css"
 
 import Jump from 'react-reveal/Jump';
 import Rotate from 'react-reveal/Rotate';
-
+import {
+  SectionHeader,
+  SectionWrapper,
+  SubSectionHeader
+} from "../../components/index";
 import t1 from "./../../components/assets/images/team-1.jpg";
 import t2 from "./../../components/assets/images/team-2.jpg";
 import t3 from "./../../components/assets/images/team-3.jpg";
@@ -25,7 +29,7 @@ const Testimonial = () => {
         id="about"
         className="pt-20 mb-20 text-3xl  font-semibold text-center text-mainColor lg:font-bold uppercase"
       >
-        <span className='border-b-4 border-blue-600 '>Testimonial{" "}</span>
+        <SectionHeader className='border-b-4 border-blue-600 '>Testimonial{" "}</SectionHeader>
       </div>
 </Jump>
 

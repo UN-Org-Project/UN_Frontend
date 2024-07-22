@@ -28,7 +28,7 @@ const LoginForm = (props) => {
             <div className=" relative w-full min-w-[200px] h-11">
               <input
                 type="text"
-                className="peer w-full h-full bg-transparent outline outline-0 focus:outline-0 disabled:bg-blue-500 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-gray  border focus:border-2 border-gray border-t-transparent focus:border-t-transparent text-sm px-3 py-3 rounded-md  focus:border-blue-500 text-body font-sans font-medium text-[17px]"
+              className="peer w-full h-full bg-transparent outline outline-0 focus:outline-0 disabled:bg-blue-500 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-gray border focus:border-2 border-gray border-t-transparent focus:border-t-transparent text-sm px-3 py-3 rounded-md focus:border-blue-500 text-blue font-sans font-medium text-[17px]"
                 placeholder=" "
                 value={props.username}
                 onChange={(event) => props.setUserName(event.target.value)}
@@ -42,7 +42,7 @@ const LoginForm = (props) => {
             <div className=" relative w-full min-w-[200px] h-11">
               <input
                 type="password"
-                className="peer w-full h-full bg-transparent outline outline-0 focus:outline-0 disabled:bg-blue-500 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-gray  border focus:border-2 border-gray border-t-transparent focus:border-t-transparent text-sm px-3 py-3 rounded-md  focus:border-blue-500 text-body font-sans font-medium text-[17px]"
+                className="peer w-full h-full bg-transparent outline outline-0 focus:outline-0 disabled:bg-blue-500 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-gray border focus:border-2 border-gray border-t-transparent focus:border-t-transparent text-sm px-3 py-3 rounded-md focus:border-blue-500 text-blue font-sans font-medium text-[17px]"
                 placeholder=" "
                 value={props.password}
                 onChange={(event) => props.setPassword(event.target.value)}
